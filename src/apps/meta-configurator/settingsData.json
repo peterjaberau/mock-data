@@ -1,0 +1,113 @@
+{
+  "settingss": {
+    "settingsVersion": "1.0.2",
+    "preferencesSelected": true,
+    "dataFormat": "json",
+    "toolbarTitle": "MetaConfigurator",
+    "hideSchemaEditor": false,
+    "hideSettings": false,
+    "codeEditor": {
+      "fontSize": 14,
+      "tabSize": 2,
+      "showFormatSelector": true,
+      "xml": {
+        "attributeNamePrefix": "_"
+      }
+    },
+    "guiEditor": {
+      "maximumDepth": 20,
+      "propertySorting": "schemaOrder",
+      "hideAddPropertyButton": true
+    },
+    "schemaDiagram": {
+      "editMode": true,
+      "vertical": true,
+      "showAttributes": true,
+      "showEnumValues": true,
+      "maxAttributesToShow": 30,
+      "maxEnumValuesToShow": 10,
+      "moveViewToSelectedElement": true,
+      "automaticZoomMaxValue": 1,
+      "automaticZoomMinValue": 0.5,
+      "mergeAllOfs": true
+    },
+    "metaSchema": {
+      "allowBooleanSchema": true,
+      "allowMultipleTypes": false,
+      "objectTypesComfort": false,
+      "markMoreFieldsAsAdvanced": false,
+      "showAdditionalPropertiesButton": false,
+      "showJsonLdFields": true
+    },
+    "panels": {
+      "dataEditor": [
+        {
+          "panelType": "textEditor",
+          "mode": "dataEditor",
+          "size": 50
+        },
+        {
+          "panelType": "guiEditor",
+          "mode": "dataEditor",
+          "size": 50
+        },
+        {
+          "panelType": "tableView",
+          "mode": "dataEditor",
+          "size": 40
+        }
+      ],
+      "schemaEditor": [
+        {
+          "panelType": "schemaDiagram",
+          "mode": "schemaEditor",
+          "size": 33
+        },
+        {
+          "panelType": "guiEditor",
+          "mode": "schemaEditor",
+          "size": 40
+        }
+      ],
+      "settings": [
+        {
+          "panelType": "guiEditor",
+          "mode": "settings",
+          "size": 40
+        },
+        {
+          "panelType": "textEditor",
+          "mode": "settings",
+          "size": 40
+        }
+      ],
+      "hidden": [
+        "aiPrompts",
+        "debug",
+        "test"
+      ]
+    },
+    "frontend": {
+      "hostname": "https://metaconfigurator.github.io/meta-configurator"
+    },
+    "backend": {
+      "hostname": "https://metaconfigurator.informatik.uni-stuttgart.de"
+    },
+    "rdf": {
+      "sparqlEndpointUrl": "https://dbpedia.org/sparql"
+    },
+    "aiIntegration": {
+      "model": "gpt-4o-mini",
+      "maxTokens": 5000,
+      "temperature": 0,
+      "endpoint": "https://api.openai.com/v1/chat/completions"
+    }
+  },
+  "dataFormatOptions": ["json","yaml","xml"],
+  "ModeSelector": {
+    "items": [{"label":"Data Editor","icon":"fa-regular fa-file","style":"","command":{"_custom":{"type":"function","displayText":"<span style=\"opacity:.8;margin-right:5px;\">function</span> <span style=\"white-space:nowrap;\">command()</span>","tooltipText":"<pre>() => {\n          emit(\"mode-selected\", SessionMode.DataEditor);\n        }</pre>"}}},{"label":"Schema Editor","icon":"fa-regular fa-file-code","style":"","command":{"_custom":{"type":"function","displayText":"<span style=\"opacity:.8;margin-right:5px;\">function</span> <span style=\"white-space:nowrap;\">command()</span>","tooltipText":"<pre>() => {\n          emit(\"mode-selected\", SessionMode.SchemaEditor);\n        }</pre>"}}},{"label":"Settings","icon":"fa-solid fa-cog","style":"","command":{"_custom":{"type":"function","displayText":"<span style=\"opacity:.8;margin-right:5px;\">function</span> <span style=\"white-space:nowrap;\">command()</span>","tooltipText":"<pre>() => {\n          emit(\"mode-selected\", SessionMode.Settings);\n        }</pre>"}}}],
+    "model": [{"label":"Data Editor","icon":"fa-regular fa-file","style":"","command":{"_custom":{"type":"function","displayText":"<span style=\"opacity:.8;margin-right:5px;\">function</span> <span style=\"white-space:nowrap;\">command()</span>","tooltipText":"<pre>() => {\n          emit(\"mode-selected\", SessionMode.DataEditor);\n        }</pre>"}}},{"label":"Schema Editor","icon":"fa-regular fa-file-code","style":"","command":{"_custom":{"type":"function","displayText":"<span style=\"opacity:.8;margin-right:5px;\">function</span> <span style=\"white-space:nowrap;\">command()</span>","tooltipText":"<pre>() => {\n          emit(\"mode-selected\", SessionMode.SchemaEditor);\n        }</pre>"}}},{"label":"Settings","icon":"fa-solid fa-cog","style":"","command":{"_custom":{"type":"function","displayText":"<span style=\"opacity:.8;margin-right:5px;\">function</span> <span style=\"white-space:nowrap;\">command()</span>","tooltipText":"<pre>() => {\n          emit(\"mode-selected\", SessionMode.Settings);\n        }</pre>"}}}]
+  },
+
+
+}

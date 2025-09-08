@@ -1,0 +1,22 @@
+[
+  {
+    "id": "ILAfx4p1C7d0",
+    "uid": "83cfb484-0a3f-4bfd-aab3-70432d021cab",
+    "name": "my-team",
+    "identifier": "0",
+    "icon": "https://cdn.illacloud.com/email-template/people.png",
+    "myRole": 1,
+    "teamMemberID": "ILAfx4p1C7dZ",
+    "teamMemberPermission": {
+      "config": 0
+    },
+    "permission": {
+      "allowEditorInvite": true,
+      "allowViewerInvite": true,
+      "allowEditorManageTeamMember": true,
+      "allowViewerManageTeamMember": true,
+      "inviteLinkEnabled": true,
+      "blockRegister": false
+    }
+  }
+]

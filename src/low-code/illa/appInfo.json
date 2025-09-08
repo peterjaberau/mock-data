@@ -1,0 +1,180 @@
+{
+  "appInfo": {
+    "appId": "ILAfx4p1C7dY",
+    "uid": "cde1270b-85ae-4912-a232-5f5cb3337203",
+    "teamID": "ILAfx4p1C7d0",
+    "appName": "app1",
+    "releaseVersion": 0,
+    "mainlineVersion": 0,
+    "deployed": false,
+    "config": {
+      "public": false,
+      "waterMark": true,
+      "description": "",
+      "publishedToMarketplace": false,
+      "publishWithAIAgent": false,
+      "cover": "",
+      "appType": "pc",
+      "components": [],
+      "actions": []
+    },
+    "updatedBy": "ILAfx4p1C7dZ",
+    "updatedAt": "2024-10-20T13:20:30.066532Z",
+    "appActivity": {
+      "modifier": "root",
+      "modifiedAt": "2024-10-20T13:20:30.066532Z"
+    },
+    "editedBy": [
+      {
+        "userID": "ILAfx4p1C7dZ",
+        "nickname": "root",
+        "email": "root",
+        "avatar": "",
+        "editedAt": "2024-10-20T13:20:30.066532916Z"
+      }
+    ]
+  },
+  "actions": [],
+  "components": {
+    "version": 0,
+    "displayName": "root",
+    "parentNode": "",
+    "showName": "root",
+    "childrenNode": [
+      {
+        "version": 0,
+        "displayName": "page1",
+        "parentNode": "root",
+        "showName": "page",
+        "childrenNode": [
+          {
+            "version": 0,
+            "displayName": "bodySection1",
+            "parentNode": "page1",
+            "showName": "bodySection",
+            "childrenNode": [
+              {
+                "version": 0,
+                "displayName": "bodySection1-bodySectionContainer1",
+                "parentNode": "bodySection1",
+                "showName": "bodySection1-bodySectionContainer1",
+                "childrenNode": null,
+                "type": "CONTAINER_NODE",
+                "containerType": "EDITOR_DOT_PANEL",
+                "h": 0,
+                "w": 0,
+                "minH": 0,
+                "minW": 0,
+                "x": -1,
+                "y": -1,
+                "z": 0,
+                "props": {}
+              }
+            ],
+            "type": "SECTION_NODE",
+            "containerType": "EDITOR_LAYOUT_SQUARE",
+            "h": 0,
+            "w": 0,
+            "minH": 0,
+            "minW": 0,
+            "x": -1,
+            "y": -1,
+            "z": 0,
+            "props": {
+              "currentViewIndex": 0,
+              "defaultViewKey": "sub-page1",
+              "sectionViewConfigs": [
+                {
+                  "id": "a8199cd5-e146-4668-a377-a2b2c3e361c8",
+                  "key": "sub-page1",
+                  "path": "sub-page1",
+                  "viewDisplayName": "bodySection1-bodySectionContainer1"
+                }
+              ],
+              "style": {
+                "padding": {
+                  "mode": "all",
+                  "size": "24"
+                }
+              },
+              "viewSortedKey": [
+                "bodySection1-bodySectionContainer1"
+              ]
+            }
+          },
+          {
+            "version": 0,
+            "displayName": "modalSection1",
+            "parentNode": "page1",
+            "showName": "modalSection",
+            "childrenNode": null,
+            "type": "MODAL_SECTION_NODE",
+            "containerType": "EDITOR_LAYOUT_SQUARE",
+            "h": 0,
+            "w": 0,
+            "minH": 0,
+            "minW": 0,
+            "x": -1,
+            "y": -1,
+            "z": 0,
+            "props": {}
+          }
+        ],
+        "type": "PAGE_NODE",
+        "containerType": "EDITOR_PAGE_SQUARE",
+        "h": 0,
+        "w": 0,
+        "minH": 0,
+        "minW": 0,
+        "x": -1,
+        "y": -1,
+        "z": 0,
+        "props": {
+          "bodyColumns": 32,
+          "bottomHeight": 0,
+          "canvasSize": "auto",
+          "canvasWidth": 100,
+          "footerColumns": 32,
+          "hasFooter": false,
+          "hasHeader": false,
+          "hasLeft": false,
+          "hasRight": false,
+          "headerColumns": 32,
+          "isFooterFixed": true,
+          "isHeaderFixed": true,
+          "isLeftFixed": true,
+          "isRightFixed": true,
+          "layout": "default",
+          "leftColumns": 8,
+          "leftPosition": "NONE",
+          "leftWidth": 0,
+          "rightColumns": 8,
+          "rightPosition": "NONE",
+          "rightWidth": 0,
+          "showLeftFoldIcon": false,
+          "showRightFoldIcon": false,
+          "topHeight": 0
+        }
+      }
+    ],
+    "type": "DOT_PANEL",
+    "containerType": "EDITOR_DOT_PANEL",
+    "h": 0,
+    "w": 0,
+    "minH": 0,
+    "minW": 0,
+    "x": -1,
+    "y": -1,
+    "z": 0,
+    "props": {
+      "currentPageIndex": 0,
+      "pageSortedKey": [
+        "page1"
+      ]
+    }
+  },
+  "dependenciesState": {},
+  "dragShadowState": {},
+  "dottedLineSquareState": {},
+  "displayNameState": []
+}
