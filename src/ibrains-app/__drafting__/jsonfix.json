@@ -1,0 +1,1705 @@
+{
+  "title": "builder",
+  "schema": {
+    "properties": {
+      "blocksTree": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "n": {
+              "type": "string"
+            },
+            "v": {
+              "type": "string"
+            },
+            "c": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "n": {
+                    "type": "string"
+                  },
+                  "v": {
+                    "type": "string"
+                  },
+                  "c": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "n": {
+                          "type": "string"
+                        },
+                        "v": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "blocks": {
+        "type": "object",
+        "properties": {
+          "container-main": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "class": {
+                    "type": "string"
+                  }
+                }
+              },
+              "computed": {
+                "type": "object",
+                "properties": { }
+              },
+              "editor": {
+                "type": "boolean"
+              }
+            }
+          },
+          "container-flow": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "class": {
+                    "type": "string"
+                  }
+                }
+              },
+              "computed": {
+                "type": "object",
+                "properties": { }
+              },
+              "editor": {
+                "type": "boolean"
+              }
+            }
+          },
+          "container-renderer": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "class": {
+                    "type": "string"
+                  }
+                }
+              },
+              "computed": {
+                "type": "object",
+                "properties": { }
+              },
+              "editor": {
+                "type": "boolean"
+              }
+            }
+          },
+          "smart-cell-1": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "icon": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "openConfigPanel": {
+                    "type": "boolean"
+                  },
+                  "optionMode": {
+                    "type": "string"
+                  },
+                  "showOptionsWhenCollapsed": {
+                    "type": "boolean"
+                  },
+                  "configMode": {
+                    "type": "string"
+                  },
+                  "addOptions": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string"
+                      },
+                      "addAllowed": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              },
+              "editor": {
+                "type": "object",
+                "properties": {
+                  "openConfigPanel": {
+                    "type": "boolean"
+                  },
+                  "optionMode": {
+                    "type": "string"
+                  },
+                  "showOptionsWhenCollapsed": {
+                    "type": "boolean"
+                  },
+                  "configMode": {
+                    "type": "string"
+                  },
+                  "addOptions": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string"
+                      },
+                      "addAllowed": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "smart-cell-2": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "icon": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "openConfigPanel": {
+                    "type": "boolean"
+                  },
+                  "optionMode": {
+                    "type": "string"
+                  },
+                  "showOptionsWhenCollapsed": {
+                    "type": "boolean"
+                  },
+                  "configMode": {
+                    "type": "string"
+                  },
+                  "addOptions": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string"
+                      },
+                      "addAllowed": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              },
+              "editor": {
+                "type": "boolean"
+              }
+            }
+          },
+          "button1": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "icon": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "size": {
+                    "type": "string"
+                  }
+                }
+              },
+              "computed": {
+                "type": "object",
+                "properties": { }
+              },
+              "editor": {
+                "type": "object",
+                "properties": {
+                  "openConfigPanel": {
+                    "type": "boolean"
+                  },
+                  "optionMode": {
+                    "type": "string"
+                  },
+                  "showOptionsWhenCollapsed": {
+                    "type": "boolean"
+                  },
+                  "configMode": {
+                    "type": "string"
+                  },
+                  "addOptions": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string"
+                      },
+                      "addAllowed": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "container-ui": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "class": {
+                    "type": "string"
+                  }
+                }
+              },
+              "computed": {
+                "type": "object",
+                "properties": { }
+              },
+              "editor": {
+                "type": "boolean"
+              }
+            }
+          },
+          "button2": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "icon": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "size": {
+                    "type": "string"
+                  }
+                }
+              },
+              "computed": {
+                "type": "object",
+                "properties": { }
+              },
+              "editor": {
+                "type": "object",
+                "properties": {
+                  "openConfigPanel": {
+                    "type": "boolean"
+                  },
+                  "optionMode": {
+                    "type": "string"
+                  },
+                  "showOptionsWhenCollapsed": {
+                    "type": "boolean"
+                  },
+                  "configMode": {
+                    "type": "string"
+                  },
+                  "addOptions": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string"
+                      },
+                      "addAllowed": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "uidialog1": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "style": {
+                    "type": "string"
+                  },
+                  "modal": {
+                    "type": "string"
+                  },
+                  "closable": {
+                    "type": "string"
+                  },
+                  "showHeader": {
+                    "type": "string"
+                  },
+                  "closeOnEscape": {
+                    "type": "string"
+                  },
+                  "draggable": {
+                    "type": "string"
+                  },
+                  "header": {
+                    "type": "string"
+                  }
+                }
+              },
+              "computed": {
+                "type": "object",
+                "properties": { }
+              },
+              "editor": {
+                "type": "object",
+                "properties": {
+                  "openConfigPanel": {
+                    "type": "boolean"
+                  },
+                  "optionMode": {
+                    "type": "string"
+                  },
+                  "showOptionsWhenCollapsed": {
+                    "type": "boolean"
+                  },
+                  "configMode": {
+                    "type": "string"
+                  },
+                  "addOptions": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string"
+                      },
+                      "addAllowed": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "dialog1": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "style": {
+                    "type": "object",
+                    "properties": {
+                      "width": {
+                        "type": "string"
+                      },
+                      "position": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "modal": {
+                    "type": "string"
+                  },
+                  "closable": {
+                    "type": "string"
+                  },
+                  "showHeader": {
+                    "type": "string"
+                  },
+                  "closeOnEscape": {
+                    "type": "string"
+                  },
+                  "draggable": {
+                    "type": "string"
+                  },
+                  "header": {
+                    "type": "string"
+                  },
+                  "v-model:visible": {
+                    "type": "string"
+                  }
+                }
+              },
+              "computed": {
+                "type": "object",
+                "properties": { }
+              },
+              "editor": {
+                "type": "object",
+                "properties": {
+                  "openConfigPanel": {
+                    "type": "boolean"
+                  },
+                  "optionMode": {
+                    "type": "string"
+                  },
+                  "showOptionsWhenCollapsed": {
+                    "type": "boolean"
+                  },
+                  "configMode": {
+                    "type": "string"
+                  },
+                  "addOptions": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string"
+                      },
+                      "addAllowed": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "blocksSchema": {
+        "type": "object",
+        "properties": {
+          "uiBaseContainer": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "options": {
+                "type": "object",
+                "properties": {
+                  "defaultValue": {
+                    "type": "object",
+                    "properties": {
+                      "class": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "uiSmartbookCell": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "options": {
+                "type": "object",
+                "properties": {
+                  "defaultValue": {
+                    "type": "object",
+                    "properties": {
+                      "icon": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "openConfigPanel": {
+                        "type": "boolean"
+                      },
+                      "optionMode": {
+                        "type": "string"
+                      },
+                      "showOptionsWhenCollapsed": {
+                        "type": "boolean"
+                      },
+                      "configMode": {
+                        "type": "string"
+                      },
+                      "addOptions": {
+                        "type": "object",
+                        "properties": {
+                          "position": {
+                            "type": "string"
+                          },
+                          "addAllowed": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Button": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "properties": {
+                    "type": "object",
+                    "properties": {
+                      "label": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "size": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "link": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "icon": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "iconPos": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "loading": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "severity": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "disabled": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "raised": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "rounded": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "text": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "outlined": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "badge": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "templates": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "desc": {
+                      "type": "string"
+                    },
+                    "variance": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string"
+                          },
+                          "size": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "options": {
+                "type": "object",
+                "properties": {
+                  "Link": {
+                    "type": "object",
+                    "properties": {
+                      "icon": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "size": {
+                        "type": "string"
+                      },
+                      "link": {
+                        "type": "boolean"
+                      },
+                      "iconPos": {
+                        "type": "string"
+                      },
+                      "loading": {
+                        "type": "boolean"
+                      },
+                      "severity": {
+                        "type": "string"
+                      },
+                      "disabled": {
+                        "type": "boolean"
+                      },
+                      "raised": {
+                        "type": "boolean"
+                      },
+                      "rounded": {
+                        "type": "boolean"
+                      },
+                      "text": {
+                        "type": "boolean"
+                      },
+                      "outlined": {
+                        "type": "boolean"
+                      },
+                      "badge": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Dialog": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "properties": {
+                    "type": "object",
+                    "properties": {
+                      "modal": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "closable": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "showHeader": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "closeOnEscape": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "draggable": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "header": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "templates": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": { }
+                }
+              },
+              "options": {
+                "type": "object",
+                "properties": { }
+              }
+            }
+          },
+          "uiBaseDialog": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "properties": {
+                    "type": "object",
+                    "properties": {
+                      "modal": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "closable": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "showHeader": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "closeOnEscape": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "draggable": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "header": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "templates": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": { }
+                }
+              },
+              "options": {
+                "type": "object",
+                "properties": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "type": "object"
+  },
+
+  "model": {
+    "blocksTree": [
+    {
+      "n": "container-main",
+      "v": "uiBaseContainer",
+      "c": [
+        {
+          "n": "container-flow",
+          "v": "uiBaseContainer",
+          "c": [
+            {
+              "n": "smart-cell-1",
+              "v": "uiSmartbookCell"
+            },
+            {
+              "n": "smart-cell-2",
+              "v": "uiSmartbookCell"
+            }
+          ]
+        },
+        {
+          "n": "container-renderer",
+          "v": "uiBaseContainer",
+          "c": [
+            {
+              "n": "button1",
+              "v": "uiSmartbookCell"
+            },
+            {
+              "n": "button2",
+              "v": "uiSmartbookCell"
+            },
+            {
+              "n": "dialog1",
+              "v": "uiSmartbookCell"
+            }
+          ]
+        },
+        {
+          "n": "container-ui",
+          "v": "uiBaseContainer",
+          "c": [
+            {
+              "n": "button1",
+              "v": "Button"
+            },
+            {
+              "n": "button2",
+              "v": "Button"
+            },
+            {
+              "n": "dialog1",
+              "v": "Dialog"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+    "blocks": {
+    "container-main": {
+      "id": "container-main",
+      "type": "uiBlock",
+      "tag": "uiBaseContainer",
+      "config": {
+        "class": "grid grid-cols-3 items-start justify-start"
+      },
+      "computed": {
+
+      },
+      "editor": false
+    },
+    "container-flow": {
+      "id": "container-flow",
+      "type": "uiBlock",
+      "tag": "uiBaseContainer",
+      "config": {
+        "class": "flex flex-col px-5"
+      },
+      "computed": {},
+      "editor": false
+    },
+    "container-renderer": {
+      "id": "container-renderer",
+      "type": "uiBlock",
+      "tag": "uiBaseContainer",
+      "config": {
+        "class": "flex flex-col px-5"
+      },
+      "computed": {},
+      "editor": false
+    },
+    "smart-cell-1": {
+      "id": "smart-cell-1",
+      "type": "uiBlock",
+      "tag": "uiSmartbookCell",
+      "meta": {
+        "title": "Smart Cell 1",
+        "icon": "fa-regular fa-code",
+        "desc": "smart cell edits itself"
+      },
+      "config": {
+        "icon": "fa-regular fa-rocket",
+        "title": "first step",
+
+        "openConfigPanel": true,
+        "optionMode": "INPUTS",
+        "showOptionsWhenCollapsed": false,
+        "configMode": "GUI",
+        "addOptions": {
+          "position": "BETWEEN",
+          "addAllowed": true
+        }
+      },
+      "editor": {
+        "openConfigPanel": false,
+        "optionMode": "INPUTS",
+        "showOptionsWhenCollapsed": false,
+        "configMode": "GUI",
+        "addOptions": {
+          "position": "END",
+          "addAllowed": true
+        }
+      }
+
+    },
+    "smart-cell-2": {
+      "id": "smart-cell-2",
+      "type": "uiBlock",
+      "tag": "uiSmartbookCell",
+      "meta": {
+        "title": "Smart Cell 2",
+        "icon": "fa-regular fa-code",
+        "desc": "smart cell renders itself"
+      },
+      "config": {
+        "icon": "fa-regular fa-rocket",
+        "title": "second step",
+
+        "openConfigPanel": true,
+        "optionMode": "INPUTS",
+        "showOptionsWhenCollapsed": false,
+        "configMode": "GUI",
+        "addOptions": {
+          "position": "END",
+          "addAllowed": true
+        }
+      },
+      "editor": false
+    },
+    "button1": {
+      "id": "button1",
+      "type": "uiBlock",
+      "tag": "Button",
+      "meta": {
+        "title": "Button",
+        "icon": "fa-regular fa-bolt",
+        "desc": "Smart Cell for Button"
+      },
+      "config": {
+        "icon": "fa-regular fa-bolt",
+        "label": "Button Text",
+        "size": "small"
+      },
+      "computed": {},
+      "editor": {
+        "openConfigPanel": false,
+        "optionMode": "INPUTS",
+        "showOptionsWhenCollapsed": false,
+        "configMode": "GUI",
+        "addOptions": {
+          "position": "BETWEEN",
+          "addAllowed": true
+        }
+      }
+    },
+    "container-ui": {
+      "id": "container-ui",
+      "type": "uiBlock",
+      "tag": "uiBaseContainer",
+      "config": {
+        "class": "flex  items-start justify-start px-5"
+      },
+      "computed": {},
+      "editor": false
+    },
+    "button2": {
+      "id": "button2",
+      "type": "uiBlock",
+      "tag": "Button",
+      "meta": {
+        "title": "Button opens Modal",
+        "icon": "fa-regular fa-bolt",
+        "desc": "Button"
+      },
+      "config": {
+        "icon": "fa-regular fa-bolt",
+        "label": "Click to open dialog",
+        "size": "small"
+      },
+      "computed": {},
+      "editor": {
+        "openConfigPanel": false,
+        "optionMode": "INPUTS",
+        "showOptionsWhenCollapsed": false,
+        "configMode": "GUI",
+        "addOptions": {
+          "position": "BETWEEN",
+          "addAllowed": true
+        }
+      }
+    },
+    "uidialog1": {
+      "id": "uidialog1",
+      "type": "uiBlock",
+      "tag": "uiBaseDialog",
+      "meta": {
+        "title": "Dialog - uiBaseDialog example",
+        "icon": "fa-regular fa-bolt",
+        "desc": "Dialog"
+      },
+      "config": {
+        "style": "{width: '400px', position: 'absolute'}",
+        "modal": "false",
+        "closable": "false",
+        "showHeader": "true",
+        "closeOnEscape": "true",
+        "draggable": "true",
+        "header": "uiBaseDialog Header"
+      },
+      "computed": {},
+      "editor": {
+        "openConfigPanel": false,
+        "optionMode": "INPUTS",
+        "showOptionsWhenCollapsed": false,
+        "configMode": "GUI",
+        "addOptions": {
+          "position": "END",
+          "addAllowed": true
+        }
+      }
+    },
+    "dialog1": {
+      "id": "dialog1",
+      "type": "uiBlock",
+      "tag": "Dialog",
+      "meta": {
+        "title": "Dialog example",
+        "icon": "fa-regular fa-bolt",
+        "desc": "Dialog"
+      },
+      "config": {
+        "style": {"width": "400px", "position": "absolute"},
+        "modal": "false",
+        "closable": "false",
+        "showHeader": "true",
+        "closeOnEscape": "true",
+        "draggable": "true",
+        "header": "Dialog Header",
+        "v-model:visible": "open"
+      },
+      "computed": {},
+      "editor": {
+        "openConfigPanel": false,
+        "optionMode": "INPUTS",
+        "showOptionsWhenCollapsed": false,
+        "configMode": "GUI",
+        "addOptions": {
+          "position": "END",
+          "addAllowed": true
+        }
+      }
+    }
+
+  },
+    "blocksSchema": {
+    "uiBaseContainer": {
+      "type": "uiBlocks",
+      "name": "uiBaseContainer",
+      "options": {
+        "defaultValue": {
+          "class": "flex flex-col items-center"
+        }
+      }
+    },
+    "uiSmartbookCell": {
+      "type": "uiBlocks",
+      "name": "uiSmartbookCell",
+      "options": {
+        "defaultValue": {
+          "icon": "fa-regular fa-rocket",
+          "title": "Untitled",
+          "openConfigPanel": true,
+          "optionMode": "INPUTS",
+          "showOptionsWhenCollapsed": false,
+          "configMode": "GUI",
+          "addOptions": {
+            "position": "BETWEEN",
+            "addAllowed": true
+          }
+        }
+      }
+    },
+    "Button": {
+      "type": "uiBlocks",
+      "name": "Button",
+      "meta": {
+        "title": "Button",
+        "icon": "fa-regular fa-bolt",
+        "desc": "Button is an extension to standard input element with icons and theming"
+      },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
+          "link": {
+            "type": "boolean"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "iconPos": {
+            "type": "string"
+          },
+
+          "loading": {
+            "type": "boolean"
+          },
+
+          "severity": {
+            "type": "string"
+          },
+
+          "disabled": {
+            "type": "boolean"
+          },
+          "raised": {
+            "type": "boolean"
+          },
+          "rounded": {
+            "type": "boolean"
+          },
+          "text": {
+            "type": "boolean"
+          },
+          "outlined": {
+            "type": "boolean"
+          },
+          "badge": {
+            "type": "string"
+          }
+        }
+      },
+      "templates": [
+        {
+          "title": "Basic",
+          "desc": "Text to display on a button is defined with the label property",
+          "variance": [
+            {
+              "label": "Submit",
+              "size": "small"
+            }
+          ]
+        },
+        {
+          "title": "Link",
+          "desc": "A button can be rendered as a link as well",
+          "variance": [
+            {
+              "label": "Link",
+              "link": true,
+              "size": "small"
+
+            }
+          ]
+        },
+        {
+          "title": "Icons",
+          "desc": "Icon of a button is specified with icon property and position is configured using iconPos attribute",
+          "variance": [
+            {
+              "icon": "fa-solid fa-check",
+              "size": "small"
+            },
+            {
+              "label": "Submit",
+              "icon": "fa-solid fa-check",
+              "size": "small"
+            },
+            {
+              "label": "Submit",
+              "icon": "fa-solid fa-check",
+              "iconPos": "right",
+              "size": "small"
+            }
+          ]
+        },
+        {
+          "title": "Loading",
+          "desc": "Busy state is controlled with the loading property",
+          "variance": [
+            {
+              "label": "Search",
+              "icon": "fa-solid fa-check",
+              "size": "small"
+            },
+            {
+              "label": "Search",
+              "icon": "fa-solid fa-check",
+              "loading": true,
+              "size": "small"
+            }
+          ]
+        },
+        {
+          "title": "Severity",
+          "desc": "Severity defines the type of button",
+          "variance": [
+            {
+              "label": "Primary",
+              "size": "small"
+            },
+            {
+              "label": "Secondary",
+              "severity": "secondary",
+              "size": "small"
+            },
+            {
+              "label": "Success",
+              "severity": "success",
+              "size": "small"
+            },
+            {
+              "label": "Info",
+              "severity": "info",
+              "size": "small"
+            },
+            {
+              "label": "Warning",
+              "severity": "warning",
+              "size": "small"
+            },
+            {
+              "label": "Help",
+              "severity": "help",
+              "size": "small"
+            },
+            {
+              "label": "Danger",
+              "severity": "danger",
+              "size": "small"
+            }
+          ]
+        }
+      ],
+      "options": {
+        "Link": {
+          "icon": "fa-regular fa-bolt",
+          "label": "Button Text",
+          "size": "small",
+          "link": false,
+          "iconPos": "",
+          "loading": false,
+          "severity": "",
+          "disabled": false,
+          "raised": false,
+          "rounded": false,
+          "text": false,
+          "outlined": false,
+          "badge": ""
+        }
+      }
+    },
+    "Dialog": {
+      "type": "uiBlocks",
+      "name": "Dialog",
+      "meta": {
+        "title": "Dialog title",
+        "icon": "fa-regular fa-bolt",
+        "desc": "Dialog description"
+      },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "modal": {
+            "type": "boolean"
+          },
+          "closable": {
+            "type": "boolean"
+          },
+          "showHeader": {
+            "type": "boolean"
+          },
+          "closeOnEscape": {
+            "type": "boolean"
+          },
+          "draggable": {
+            "type": "boolean"
+          },
+          "header": {
+            "type": "string"
+          }
+        }
+      },
+      "templates": [
+      ],
+      "options": {
+
+      }
+    },
+    "uiBaseDialog": {
+      "type": "uiBlocks",
+      "name": "uiBaseDialog",
+      "meta": {
+        "title": "uiBaseDialog title",
+        "icon": "fa-regular fa-bolt",
+        "desc": "uiBaseDialog description"
+      },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "modal": {
+            "type": "boolean"
+          },
+          "closable": {
+            "type": "boolean"
+          },
+          "showHeader": {
+            "type": "boolean"
+          },
+          "closeOnEscape": {
+            "type": "boolean"
+          },
+          "draggable": {
+            "type": "boolean"
+          },
+          "header": {
+            "type": "string"
+          }
+        }
+      },
+      "templates": [
+      ],
+      "options": {
+
+      }
+    }
+
+  }
+  }
+}

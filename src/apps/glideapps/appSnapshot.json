@@ -1,0 +1,2558 @@
+{
+  "appID": "ypkwf5as4ERREKQEKPAF",
+  "schema": {
+    "tables": [
+      {
+        "name": {
+          "name": "native-table-QPKijX8LgCShuqEeGsAN",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowID",
+            "displayName": "🔒 Row ID",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true,
+            "fromNativeTable": true
+          },
+          {
+            "type": {
+              "kind": "string"
+            },
+            "name": "Name",
+            "isProtected": false,
+            "displayName": "Position / Title",
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Type",
+            "displayName": "Position / Type",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Short description",
+            "displayName": "Position / Description",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "FBZrL",
+            "displayName": "Position / Department",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Active Position",
+            "displayName": "Position / Active?",
+            "type": {
+              "kind": "boolean"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "If Active",
+            "displayName": "Position / If Active",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "if-then-else",
+              "condition": {
+                "kind": "check-value",
+                "operator": "is-truthy",
+                "value": {
+                  "kind": "get-column",
+                  "column": "Active Position"
+                }
+              },
+              "consequent": {
+                "kind": "constant",
+                "value": "Active"
+              },
+              "alternative": {
+                "kind": "constant",
+                "value": "Inactive"
+              }
+            }
+          },
+          {
+            "name": "Count Active Positions",
+            "displayName": "Position / Count Active",
+            "type": {
+              "kind": "number"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "reduce",
+              "operator": "count-true",
+              "rows": {
+                "kind": "get-table-rows",
+                "table": {
+                  "name": "native-table-QPKijX8LgCShuqEeGsAN",
+                  "isSpecial": false
+                }
+              },
+              "valueContextName": "value",
+              "value": {
+                "kind": "get-column",
+                "column": "Active Position",
+                "contextName": "value"
+              }
+            },
+            "displayFormula": {
+              "kind": "format-number-fixed",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "decimalsAfterPoint": {
+                "kind": "constant",
+                "value": 0
+              },
+              "groupSeparator": {
+                "kind": "constant",
+                "value": false
+              }
+            }
+          },
+          {
+            "name": "Count inactive Positions copy",
+            "displayName": "Position / Count Inactive",
+            "type": {
+              "kind": "number"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "reduce",
+              "operator": "count-not-true",
+              "rows": {
+                "kind": "get-table-rows",
+                "table": {
+                  "name": "native-table-QPKijX8LgCShuqEeGsAN",
+                  "isSpecial": false
+                }
+              },
+              "valueContextName": "value",
+              "value": {
+                "kind": "get-column",
+                "column": "Active Position",
+                "contextName": "value"
+              }
+            },
+            "displayFormula": {
+              "kind": "format-number-fixed",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "decimalsAfterPoint": {
+                "kind": "constant",
+                "value": 0
+              },
+              "groupSeparator": {
+                "kind": "constant",
+                "value": false
+              }
+            }
+          },
+          {
+            "name": "Candidates",
+            "displayName": "Candidates/Relation",
+            "type": {
+              "kind": "array",
+              "items": {
+                "kind": "table-ref",
+                "tableName": {
+                  "name": "native-table-323HmLlsEtnkF3w3wm0x",
+                  "isSpecial": false
+                }
+              }
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "filter-rows",
+              "rows": {
+                "kind": "get-table-rows",
+                "table": {
+                  "name": "native-table-323HmLlsEtnkF3w3wm0x",
+                  "isSpecial": false
+                }
+              },
+              "predicateContextName": "matchee",
+              "predicate": {
+                "kind": "compare-values",
+                "left": {
+                  "kind": "get-column",
+                  "column": "$rowID"
+                },
+                "operator": "equals",
+                "right": {
+                  "kind": "get-column",
+                  "column": "Apply for",
+                  "contextName": "matchee"
+                }
+              }
+            }
+          },
+          {
+            "name": "Candidates/Count per Position",
+            "displayName": "Candidates/Count per Position",
+            "type": {
+              "kind": "number"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "reduce",
+              "operator": "count-non-empty",
+              "rows": {
+                "kind": "get-column",
+                "column": "Candidates"
+              },
+              "valueContextName": "value",
+              "value": {
+                "kind": "get-column",
+                "column": "$rowID",
+                "contextName": "value"
+              }
+            },
+            "displayFormula": {
+              "kind": "if-then-else",
+              "condition": {
+                "kind": "check-value",
+                "operator": "is-not-empty",
+                "value": {
+                  "kind": "get-variable",
+                  "name": "x"
+                }
+              },
+              "consequent": {
+                "kind": "text-template",
+                "template": {
+                  "kind": "constant",
+                  "value": "NU"
+                },
+                "replacements": [
+                  {
+                    "pattern": {
+                      "kind": "constant",
+                      "value": "N"
+                    },
+                    "replacement": {
+                      "kind": "format-number-fixed",
+                      "value": {
+                        "kind": "get-variable",
+                        "name": "x"
+                      },
+                      "decimalsAfterPoint": {
+                        "kind": "constant",
+                        "value": 0
+                      },
+                      "groupSeparator": {
+                        "kind": "constant",
+                        "value": false
+                      }
+                    }
+                  },
+                  {
+                    "pattern": {
+                      "kind": "constant",
+                      "value": "U"
+                    },
+                    "replacement": {
+                      "kind": "constant",
+                      "value": " candidate(s)"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "sheetName": "Positions",
+        "rowIDColumn": "$rowID",
+        "emailOwnersColumn": [],
+        "isReadOnly": false,
+        "sourceMetadata": {
+          "type": "Native table",
+          "id": "dHwcAOfSb7vuUoahyQwy",
+          "tableName": {
+            "name": "native-table-QPKijX8LgCShuqEeGsAN",
+            "isSpecial": false
+          },
+          "fromSharedDrive": false
+        }
+      },
+      {
+        "name": {
+          "name": "native-table-KsdQyCFIXSAtKbesQh2R",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true,
+            "fromNativeTable": true
+          },
+          {
+            "name": "$rowID",
+            "displayName": "🔒 Row ID",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "J1dRR",
+            "displayName": "Image",
+            "type": {
+              "kind": "image-uri"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "generate-image",
+              "input": {
+                "kind": "get-column",
+                "column": "Name"
+              },
+              "imageKind": {
+                "kind": "constant",
+                "value": "triangles"
+              }
+            }
+          },
+          {
+            "name": "rYyZT",
+            "displayName": "Positions / Relation",
+            "type": {
+              "kind": "array",
+              "items": {
+                "kind": "table-ref",
+                "tableName": {
+                  "name": "native-table-QPKijX8LgCShuqEeGsAN",
+                  "isSpecial": false
+                }
+              }
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "filter-rows",
+              "rows": {
+                "kind": "get-table-rows",
+                "table": {
+                  "name": "native-table-QPKijX8LgCShuqEeGsAN",
+                  "isSpecial": false
+                }
+              },
+              "predicateContextName": "matchee",
+              "predicate": {
+                "kind": "compare-values",
+                "left": {
+                  "kind": "get-column",
+                  "column": "Name"
+                },
+                "operator": "equals",
+                "right": {
+                  "kind": "get-column",
+                  "column": "FBZrL",
+                  "contextName": "matchee"
+                }
+              }
+            }
+          },
+          {
+            "name": "eBUX1",
+            "displayName": "Positions / Active",
+            "type": {
+              "kind": "number"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "reduce",
+              "operator": "sum",
+              "rows": {
+                "kind": "get-table-rows",
+                "table": {
+                  "name": "native-table-QPKijX8LgCShuqEeGsAN",
+                  "isSpecial": false
+                }
+              },
+              "valueContextName": "value",
+              "value": {
+                "kind": "get-column",
+                "column": "Count Active Positions",
+                "contextName": "value"
+              }
+            },
+            "displayFormula": {
+              "kind": "format-number-fixed",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "decimalsAfterPoint": {
+                "kind": "constant",
+                "value": 0
+              },
+              "groupSeparator": {
+                "kind": "constant",
+                "value": true
+              }
+            }
+          },
+          {
+            "name": "xj4od",
+            "displayName": "Positions / Inactive",
+            "type": {
+              "kind": "number"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "reduce",
+              "operator": "sum",
+              "rows": {
+                "kind": "get-column",
+                "column": "rYyZT"
+              },
+              "valueContextName": "value",
+              "value": {
+                "kind": "get-column",
+                "column": "Count inactive Positions copy",
+                "contextName": "value"
+              }
+            },
+            "displayFormula": {
+              "kind": "format-number-fixed",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "decimalsAfterPoint": {
+                "kind": "constant",
+                "value": 0
+              },
+              "groupSeparator": {
+                "kind": "constant",
+                "value": true
+              }
+            }
+          },
+          {
+            "name": "ta2Sj",
+            "displayName": "Candidates Sum",
+            "type": {
+              "kind": "number"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "reduce",
+              "operator": "sum",
+              "rows": {
+                "kind": "get-column",
+                "column": "rYyZT"
+              },
+              "valueContextName": "value",
+              "value": {
+                "kind": "get-column",
+                "column": "Candidates/Count per Position",
+                "contextName": "value"
+              }
+            },
+            "displayFormula": {
+              "kind": "format-number-fixed",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "decimalsAfterPoint": {
+                "kind": "constant",
+                "value": 0
+              },
+              "groupSeparator": {
+                "kind": "constant",
+                "value": true
+              }
+            }
+          }
+        ],
+        "sheetName": "Departments",
+        "rowIDColumn": "$rowID",
+        "sourceMetadata": {
+          "type": "Native table",
+          "id": "rr32JpwaOOsmy5kgSrDR",
+          "tableName": {
+            "name": "native-table-KsdQyCFIXSAtKbesQh2R",
+            "isSpecial": false
+          },
+          "needsQuery": false,
+          "fromSharedDrive": false
+        },
+        "isReadOnly": false,
+        "emailOwnersColumn": []
+      },
+      {
+        "name": {
+          "name": "native-table-323HmLlsEtnkF3w3wm0x",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowID",
+            "displayName": "🔒 Row ID",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true,
+            "fromNativeTable": true
+          },
+          {
+            "name": "Name",
+            "displayName": "Candidate / Name",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Email",
+            "displayName": "Candidate / Email",
+            "type": {
+              "kind": "email-address"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Photo",
+            "displayName": "Candidate / Photo",
+            "type": {
+              "kind": "image-uri"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Level",
+            "displayName": "Candidate / Level",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Phone",
+            "displayName": "Candidate / Phone",
+            "type": {
+              "kind": "phone-number"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Resume link",
+            "displayName": "Candidate / Resume link",
+            "type": {
+              "kind": "uri"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Notes",
+            "displayName": "Candidate / Notes",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Status",
+            "displayName": "Candidate / Status",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Apply for",
+            "displayName": "Position / Applied",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Relate to Positions",
+            "displayName": "Position / Relation",
+            "type": {
+              "kind": "table-ref",
+              "tableName": {
+                "name": "native-table-QPKijX8LgCShuqEeGsAN",
+                "isSpecial": false
+              }
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "find-row",
+              "rows": {
+                "kind": "get-table-rows",
+                "table": {
+                  "name": "native-table-QPKijX8LgCShuqEeGsAN",
+                  "isSpecial": false
+                }
+              },
+              "predicateContextName": "matchee",
+              "predicate": {
+                "kind": "compare-values",
+                "left": {
+                  "kind": "get-column",
+                  "column": "Apply for"
+                },
+                "operator": "equals",
+                "right": {
+                  "kind": "get-column",
+                  "column": "$rowID",
+                  "contextName": "matchee"
+                }
+              }
+            }
+          },
+          {
+            "name": "ulIlr",
+            "displayName": "Position / Name",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "with",
+              "contextName": "relation",
+              "context": {
+                "kind": "get-column",
+                "column": "Relate to Positions"
+              },
+              "value": {
+                "kind": "get-column",
+                "column": "Name",
+                "contextName": "relation"
+              }
+            }
+          },
+          {
+            "name": "Kanban order",
+            "displayName": "Kanban order",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          }
+        ],
+        "sheetName": "Candidates",
+        "rowIDColumn": "$rowID",
+        "sourceMetadata": {
+          "type": "Native table",
+          "tableName": {
+            "name": "native-table-323HmLlsEtnkF3w3wm0x",
+            "isSpecial": false
+          },
+          "id": "0cBBSDTHaz2K77sg3rKY",
+          "fromSharedDrive": false
+        },
+        "isReadOnly": false,
+        "emailOwnersColumn": []
+      },
+      {
+        "name": {
+          "name": "native-table-pjSspStS4yEKlQLtRtoB",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowID",
+            "displayName": "🔒 Row ID",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true,
+            "fromNativeTable": true
+          },
+          {
+            "name": "Type of Event",
+            "displayName": "Event / Type",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Date Time Scheduled",
+            "displayName": "Event / Date Time Start",
+            "type": {
+              "kind": "date-time"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "format-date-time",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "dateFormat": {
+                "kind": "constant",
+                "value": "medium"
+              },
+              "timeFormat": {
+                "kind": "constant",
+                "value": "without-seconds"
+              },
+              "timeZone": {
+                "kind": "constant",
+                "value": "local"
+              }
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "UakIe",
+            "displayName": "Event / Date Time End",
+            "type": {
+              "kind": "date-time"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "format-date-time",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "dateFormat": {
+                "kind": "constant",
+                "value": "medium"
+              },
+              "timeFormat": {
+                "kind": "constant",
+                "value": "without-seconds"
+              },
+              "timeZone": {
+                "kind": "constant",
+                "value": "local"
+              }
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Admin/Notes",
+            "displayName": "Event / Notes",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Candidate/Email",
+            "displayName": "Candidate / Email",
+            "type": {
+              "kind": "email-address"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Candidate/Relation",
+            "displayName": "Candidate / Relation",
+            "type": {
+              "kind": "table-ref",
+              "tableName": {
+                "name": "native-table-323HmLlsEtnkF3w3wm0x",
+                "isSpecial": false
+              }
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "find-row",
+              "rows": {
+                "kind": "get-table-rows",
+                "table": {
+                  "name": "native-table-323HmLlsEtnkF3w3wm0x",
+                  "isSpecial": false
+                }
+              },
+              "predicateContextName": "matchee",
+              "predicate": {
+                "kind": "compare-values",
+                "left": {
+                  "kind": "get-column",
+                  "column": "Candidate/Email"
+                },
+                "operator": "equals",
+                "right": {
+                  "kind": "get-column",
+                  "column": "Email",
+                  "contextName": "matchee"
+                }
+              }
+            }
+          },
+          {
+            "name": "Candidate/Name",
+            "displayName": "Candidate / Name",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "with",
+              "contextName": "relation",
+              "context": {
+                "kind": "get-column",
+                "column": "Candidate/Relation"
+              },
+              "value": {
+                "kind": "get-column",
+                "column": "Name",
+                "contextName": "relation"
+              }
+            }
+          },
+          {
+            "name": "Candidate/Photo",
+            "displayName": "Candidate / Photo",
+            "type": {
+              "kind": "image-uri"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "with",
+              "contextName": "relation",
+              "context": {
+                "kind": "get-column",
+                "column": "Candidate/Relation"
+              },
+              "value": {
+                "kind": "get-column",
+                "column": "Photo",
+                "contextName": "relation"
+              }
+            }
+          },
+          {
+            "name": "hJg1W",
+            "displayName": "Candidate / Position",
+            "type": {
+              "kind": "table-ref",
+              "tableName": {
+                "name": "native-table-QPKijX8LgCShuqEeGsAN",
+                "isSpecial": false
+              }
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "with",
+              "contextName": "relation",
+              "context": {
+                "kind": "get-column",
+                "column": "Candidate/Relation"
+              },
+              "value": {
+                "kind": "get-column",
+                "column": "Relate to Positions",
+                "contextName": "relation"
+              }
+            }
+          },
+          {
+            "name": "eQ42m",
+            "displayName": "Candidate / Position Name",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "with",
+              "contextName": "relation",
+              "context": {
+                "kind": "get-column",
+                "column": "hJg1W"
+              },
+              "value": {
+                "kind": "get-column",
+                "column": "Name",
+                "contextName": "relation"
+              }
+            }
+          }
+        ],
+        "sheetName": "Meetings",
+        "rowIDColumn": "$rowID",
+        "sourceMetadata": {
+          "type": "Native table",
+          "tableName": {
+            "name": "native-table-pjSspStS4yEKlQLtRtoB",
+            "isSpecial": false
+          },
+          "id": "JmRX9qRBGF9bwdPBbLko",
+          "fromSharedDrive": false
+        },
+        "isReadOnly": false,
+        "emailOwnersColumn": []
+      },
+      {
+        "name": {
+          "name": "native-table-amQ4j6qwoLVxbBi7EnPu",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowID",
+            "displayName": "🔒 Row ID",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true,
+            "fromNativeTable": true
+          },
+          {
+            "name": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "isProtected": false,
+            "displayName": "Pipeline Status",
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Level",
+            "displayName": "Level",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Type of Position",
+            "displayName": "Type of Position",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Type of Event",
+            "displayName": "Type of Event",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          }
+        ],
+        "sheetName": "Helper Table",
+        "rowIDColumn": "$rowID",
+        "sourceMetadata": {
+          "type": "Native table",
+          "tableName": {
+            "name": "native-table-amQ4j6qwoLVxbBi7EnPu",
+            "isSpecial": false
+          },
+          "id": "bE1muxEnSoe4f11GSZ5m",
+          "fromSharedDrive": false
+        },
+        "isReadOnly": false,
+        "emailOwnersColumn": []
+      },
+      {
+        "name": {
+          "name": "native-table-qQtBfW3I3zbQYJd4b3oF",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowID",
+            "displayName": "🔒 Row ID",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true,
+            "fromNativeTable": true
+          },
+          {
+            "name": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "hidden": false,
+            "name": "Email",
+            "displayName": "Email",
+            "isProtected": false,
+            "type": {
+              "kind": "email-address"
+            },
+            "isUserSpecific": false,
+            "displayFormula": {
+              "name": "x",
+              "kind": "get-variable"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "displayFormula": {
+              "name": "x",
+              "kind": "get-variable"
+            },
+            "name": "Photo",
+            "isUserSpecific": false,
+            "hidden": false,
+            "type": {
+              "kind": "image-uri"
+            },
+            "isProtected": false,
+            "displayName": "Photo",
+            "fromNativeTable": true
+          },
+          {
+            "isUserSpecific": false,
+            "name": "Role",
+            "hidden": false,
+            "displayName": "Role",
+            "isProtected": false,
+            "displayFormula": {
+              "name": "x",
+              "kind": "get-variable"
+            },
+            "type": {
+              "kind": "string"
+            },
+            "fromNativeTable": true
+          }
+        ],
+        "sheetName": "Users",
+        "rowIDColumn": "$rowID",
+        "emailOwnersColumn": [],
+        "sourceMetadata": {
+          "type": "Native table",
+          "id": "rwVHyCu4k60JSDjEkZp4",
+          "tableName": {
+            "name": "native-table-qQtBfW3I3zbQYJd4b3oF",
+            "isSpecial": false
+          },
+          "fromSharedDrive": false
+        },
+        "isReadOnly": false
+      },
+      {
+        "name": {
+          "name": "native-table-0NS8OzbnM582QalugjqC",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true,
+            "fromNativeTable": true
+          },
+          {
+            "name": "$rowID",
+            "displayName": "🔒 Row ID",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "isUserSpecific": false,
+            "type": {
+              "kind": "image-uri"
+            },
+            "hidden": false,
+            "displayFormula": {
+              "name": "x",
+              "kind": "get-variable"
+            },
+            "displayName": "Photo",
+            "name": "New Column",
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "displayName": "Email",
+            "name": "Owner",
+            "type": {
+              "kind": "email-address"
+            },
+            "isProtected": false,
+            "fromNativeTable": true,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            }
+          },
+          {
+            "displayName": "Team",
+            "type": {
+              "kind": "string"
+            },
+            "name": "Description",
+            "isProtected": false,
+            "fromNativeTable": true,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            }
+          },
+          {
+            "name": "Phone Number",
+            "displayName": "Phone number",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Location",
+            "displayName": "Location",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Birthday / Month",
+            "displayName": "Birthday / Month",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Birthday / Day",
+            "displayName": "Birthday / Day",
+            "type": {
+              "kind": "number"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "format-number-fixed",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "decimalsAfterPoint": {
+                "kind": "constant",
+                "value": 0
+              },
+              "groupSeparator": {
+                "kind": "constant",
+                "value": false
+              }
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Birthday / Formatted Date",
+            "displayName": "Birthday / Formatted Date",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "text-template",
+              "template": {
+                "kind": "constant",
+                "value": "Month Day, Current Year"
+              },
+              "replacements": [
+                {
+                  "pattern": {
+                    "kind": "constant",
+                    "value": "Month"
+                  },
+                  "replacement": {
+                    "kind": "apply-column-format",
+                    "value": {
+                      "kind": "get-column",
+                      "column": "Birthday / Month"
+                    },
+                    "column": "Birthday / Month"
+                  }
+                },
+                {
+                  "pattern": {
+                    "kind": "constant",
+                    "value": "Day"
+                  },
+                  "replacement": {
+                    "kind": "apply-column-format",
+                    "value": {
+                      "kind": "get-column",
+                      "column": "Birthday / Day"
+                    },
+                    "column": "Birthday / Day"
+                  }
+                },
+                {
+                  "pattern": {
+                    "kind": "constant",
+                    "value": "Current Year"
+                  },
+                  "replacement": {
+                    "kind": "constant",
+                    "value": "2022"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "Text to Date",
+            "displayName": "Birthday / Text to Date",
+            "type": {
+              "kind": "date-time"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "yes-code",
+              "url": {
+                "kind": "constant",
+                "value": "https://column.sh/parse-date"
+              },
+              "params": [
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": ""
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": ""
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "text"
+                  },
+                  "value": {
+                    "kind": "get-column",
+                    "column": "Birthday / Formatted Date"
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "zone"
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": ""
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "locale"
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": ""
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "format"
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": "DDD"
+                  }
+                }
+              ],
+              "type": {
+                "kind": "date-time"
+              },
+              "typeIsPrecise": true
+            },
+            "displayFormula": {
+              "kind": "format-date-time",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "dateFormat": {
+                "kind": "constant",
+                "value": "medium"
+              }
+            }
+          },
+          {
+            "name": "Birthday / Time to birthday",
+            "displayName": "Birthday / Time to birthday",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "yes-code",
+              "url": {
+                "kind": "constant",
+                "value": "https://column.sh/time-ago"
+              },
+              "params": [
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": ""
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": ""
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "date"
+                  },
+                  "value": {
+                    "kind": "get-column",
+                    "column": "Text to Date"
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "style"
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": ""
+                  }
+                }
+              ],
+              "type": {
+                "kind": "string"
+              },
+              "typeIsPrecise": true
+            }
+          },
+          {
+            "name": "Birthday / Title prefix",
+            "displayName": "Birthday / Time to prefix",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "if-then-else",
+              "condition": {
+                "kind": "compare-values",
+                "left": {
+                  "kind": "convert-to-type",
+                  "typeKind": "date-time",
+                  "value": {
+                    "kind": "get-column",
+                    "column": "Text to Date"
+                  }
+                },
+                "operator": "is-less-than",
+                "right": {
+                  "kind": "start-of-day",
+                  "dateTime": {
+                    "kind": "special-value",
+                    "valueKind": "timestamp"
+                  }
+                }
+              },
+              "consequent": {
+                "kind": "constant",
+                "value": "Their birthday was"
+              },
+              "alternative": {
+                "kind": "if-then-else",
+                "condition": {
+                  "kind": "compare-values",
+                  "left": {
+                    "kind": "convert-to-type",
+                    "typeKind": "date-time",
+                    "value": {
+                      "kind": "get-column",
+                      "column": "Text to Date"
+                    }
+                  },
+                  "operator": "is-greater-than",
+                  "right": {
+                    "kind": "end-of-day",
+                    "dateTime": {
+                      "kind": "special-value",
+                      "valueKind": "timestamp"
+                    }
+                  }
+                },
+                "consequent": {
+                  "kind": "constant",
+                  "value": "Their birthday is"
+                },
+                "alternative": {
+                  "kind": "empty"
+                }
+              }
+            }
+          },
+          {
+            "name": "Birthday / Template",
+            "displayName": "Birthday / Relative text",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "text-template",
+              "template": {
+                "kind": "constant",
+                "value": "Start Time"
+              },
+              "replacements": [
+                {
+                  "pattern": {
+                    "kind": "constant",
+                    "value": "Start"
+                  },
+                  "replacement": {
+                    "kind": "apply-column-format",
+                    "value": {
+                      "kind": "get-column",
+                      "column": "Birthday / Title prefix"
+                    },
+                    "column": "Birthday / Title prefix"
+                  }
+                },
+                {
+                  "pattern": {
+                    "kind": "constant",
+                    "value": "Time"
+                  },
+                  "replacement": {
+                    "kind": "apply-column-format",
+                    "value": {
+                      "kind": "get-column",
+                      "column": "Birthday / Time to birthday"
+                    },
+                    "column": "Birthday / Time to birthday"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "Birthday / Title prefix copy",
+            "displayName": "Birthday / Final text",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "if-then-else",
+              "condition": {
+                "kind": "is-in-range",
+                "value": {
+                  "kind": "convert-to-type",
+                  "typeKind": "date-time",
+                  "value": {
+                    "kind": "get-column",
+                    "column": "Text to Date"
+                  }
+                },
+                "start": {
+                  "kind": "start-of-day",
+                  "dateTime": {
+                    "kind": "special-value",
+                    "valueKind": "timestamp"
+                  }
+                },
+                "end": {
+                  "kind": "end-of-day",
+                  "dateTime": {
+                    "kind": "special-value",
+                    "valueKind": "timestamp"
+                  }
+                }
+              },
+              "consequent": {
+                "kind": "constant",
+                "value": "🎉 Today is their birthday"
+              },
+              "alternative": {
+                "kind": "get-column",
+                "column": "Birthday / Template"
+              }
+            }
+          }
+        ],
+        "sheetName": "People (sample)",
+        "rowIDColumn": "$rowID",
+        "emailOwnersColumn": [],
+        "isReadOnly": false
+      },
+      {
+        "name": {
+          "name": "native-table-mg5DR51eyCC2Ml4zKkbe",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true,
+            "fromNativeTable": true
+          },
+          {
+            "name": "$rowID",
+            "displayName": "🔒 Row ID",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "isUserSpecific": false,
+            "type": {
+              "kind": "image-uri"
+            },
+            "hidden": false,
+            "displayFormula": {
+              "name": "x",
+              "kind": "get-variable"
+            },
+            "displayName": "Photo",
+            "name": "New Column",
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "displayName": "Email",
+            "name": "Owner",
+            "type": {
+              "kind": "email-address"
+            },
+            "isProtected": false,
+            "fromNativeTable": true,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            }
+          },
+          {
+            "displayName": "Team",
+            "type": {
+              "kind": "string"
+            },
+            "name": "Description",
+            "isProtected": false,
+            "fromNativeTable": true,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            }
+          },
+          {
+            "name": "Phone Number",
+            "displayName": "Phone number",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Location",
+            "displayName": "Location",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Birthday / Month",
+            "displayName": "Birthday / Month",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Birthday / Day",
+            "displayName": "Birthday / Day",
+            "type": {
+              "kind": "number"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "format-number-fixed",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "decimalsAfterPoint": {
+                "kind": "constant",
+                "value": 0
+              },
+              "groupSeparator": {
+                "kind": "constant",
+                "value": false
+              }
+            },
+            "fromNativeTable": true
+          },
+          {
+            "name": "Birthday / Formatted Date",
+            "displayName": "Birthday / Formatted Date",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "text-template",
+              "template": {
+                "kind": "constant",
+                "value": "Month Day, Current Year"
+              },
+              "replacements": [
+                {
+                  "pattern": {
+                    "kind": "constant",
+                    "value": "Month"
+                  },
+                  "replacement": {
+                    "kind": "apply-column-format",
+                    "value": {
+                      "kind": "get-column",
+                      "column": "Birthday / Month"
+                    },
+                    "column": "Birthday / Month"
+                  }
+                },
+                {
+                  "pattern": {
+                    "kind": "constant",
+                    "value": "Day"
+                  },
+                  "replacement": {
+                    "kind": "apply-column-format",
+                    "value": {
+                      "kind": "get-column",
+                      "column": "Birthday / Day"
+                    },
+                    "column": "Birthday / Day"
+                  }
+                },
+                {
+                  "pattern": {
+                    "kind": "constant",
+                    "value": "Current Year"
+                  },
+                  "replacement": {
+                    "kind": "constant",
+                    "value": "2022"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "Text to Date",
+            "displayName": "Birthday / Text to Date",
+            "type": {
+              "kind": "date-time"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "yes-code",
+              "url": {
+                "kind": "constant",
+                "value": "https://column.sh/parse-date"
+              },
+              "params": [
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": ""
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": ""
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "text"
+                  },
+                  "value": {
+                    "kind": "get-column",
+                    "column": "Birthday / Formatted Date"
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "zone"
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": ""
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "locale"
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": ""
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "format"
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": "DDD"
+                  }
+                }
+              ],
+              "type": {
+                "kind": "date-time"
+              },
+              "typeIsPrecise": true
+            },
+            "displayFormula": {
+              "kind": "format-date-time",
+              "value": {
+                "kind": "get-variable",
+                "name": "x"
+              },
+              "dateFormat": {
+                "kind": "constant",
+                "value": "medium"
+              }
+            }
+          },
+          {
+            "name": "Birthday / Time to birthday",
+            "displayName": "Birthday / Time to birthday",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "yes-code",
+              "url": {
+                "kind": "constant",
+                "value": "https://column.sh/time-ago"
+              },
+              "params": [
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": ""
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": ""
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "date"
+                  },
+                  "value": {
+                    "kind": "get-column",
+                    "column": "Text to Date"
+                  }
+                },
+                {
+                  "name": {
+                    "kind": "constant",
+                    "value": "style"
+                  },
+                  "value": {
+                    "kind": "constant",
+                    "value": ""
+                  }
+                }
+              ],
+              "type": {
+                "kind": "string"
+              },
+              "typeIsPrecise": true
+            }
+          },
+          {
+            "name": "Birthday / Title prefix",
+            "displayName": "Birthday / Time to prefix",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "if-then-else",
+              "condition": {
+                "kind": "compare-values",
+                "left": {
+                  "kind": "convert-to-type",
+                  "typeKind": "date-time",
+                  "value": {
+                    "kind": "get-column",
+                    "column": "Text to Date"
+                  }
+                },
+                "operator": "is-less-than",
+                "right": {
+                  "kind": "start-of-day",
+                  "dateTime": {
+                    "kind": "special-value",
+                    "valueKind": "timestamp"
+                  }
+                }
+              },
+              "consequent": {
+                "kind": "constant",
+                "value": "Their birthday was"
+              },
+              "alternative": {
+                "kind": "if-then-else",
+                "condition": {
+                  "kind": "compare-values",
+                  "left": {
+                    "kind": "convert-to-type",
+                    "typeKind": "date-time",
+                    "value": {
+                      "kind": "get-column",
+                      "column": "Text to Date"
+                    }
+                  },
+                  "operator": "is-greater-than",
+                  "right": {
+                    "kind": "end-of-day",
+                    "dateTime": {
+                      "kind": "special-value",
+                      "valueKind": "timestamp"
+                    }
+                  }
+                },
+                "consequent": {
+                  "kind": "constant",
+                  "value": "Their birthday is"
+                },
+                "alternative": {
+                  "kind": "empty"
+                }
+              }
+            }
+          },
+          {
+            "name": "Birthday / Template",
+            "displayName": "Birthday / Relative text",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "text-template",
+              "template": {
+                "kind": "constant",
+                "value": "Start Time"
+              },
+              "replacements": [
+                {
+                  "pattern": {
+                    "kind": "constant",
+                    "value": "Start"
+                  },
+                  "replacement": {
+                    "kind": "apply-column-format",
+                    "value": {
+                      "kind": "get-column",
+                      "column": "Birthday / Title prefix"
+                    },
+                    "column": "Birthday / Title prefix"
+                  }
+                },
+                {
+                  "pattern": {
+                    "kind": "constant",
+                    "value": "Time"
+                  },
+                  "replacement": {
+                    "kind": "apply-column-format",
+                    "value": {
+                      "kind": "get-column",
+                      "column": "Birthday / Time to birthday"
+                    },
+                    "column": "Birthday / Time to birthday"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "Birthday / Title prefix copy",
+            "displayName": "Birthday / Final text",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "formula": {
+              "kind": "if-then-else",
+              "condition": {
+                "kind": "is-in-range",
+                "value": {
+                  "kind": "convert-to-type",
+                  "typeKind": "date-time",
+                  "value": {
+                    "kind": "get-column",
+                    "column": "Text to Date"
+                  }
+                },
+                "start": {
+                  "kind": "start-of-day",
+                  "dateTime": {
+                    "kind": "special-value",
+                    "valueKind": "timestamp"
+                  }
+                },
+                "end": {
+                  "kind": "end-of-day",
+                  "dateTime": {
+                    "kind": "special-value",
+                    "valueKind": "timestamp"
+                  }
+                }
+              },
+              "consequent": {
+                "kind": "constant",
+                "value": "🎉 Today is their birthday"
+              },
+              "alternative": {
+                "kind": "get-column",
+                "column": "Birthday / Template"
+              }
+            }
+          }
+        ],
+        "sheetName": "People (sample)",
+        "rowIDColumn": "$rowID",
+        "emailOwnersColumn": [],
+        "isReadOnly": false
+      },
+      {
+        "name": {
+          "name": "Easyflow Calendly",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "number"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true
+          },
+          {
+            "name": "hftfh",
+            "displayName": "hftfh",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false
+          }
+        ],
+        "sheetName": "Easyflow Calendly",
+        "sheetID": 0,
+        "numDataRows": 1,
+        "emailOwnersColumn": []
+      },
+      {
+        "name": {
+          "name": "Vodafone",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "number"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true
+          },
+          {
+            "name": "col1",
+            "displayName": "col1",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false
+          },
+          {
+            "name": "col2",
+            "displayName": "col2",
+            "type": {
+              "kind": "date-time"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false
+          },
+          {
+            "name": "col3",
+            "displayName": "col3",
+            "type": {
+              "kind": "date-time"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false
+          },
+          {
+            "name": "col4",
+            "displayName": "col4",
+            "type": {
+              "kind": "date-time"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false
+          },
+          {
+            "name": "col5",
+            "displayName": "col5",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false
+          },
+          {
+            "name": "col6",
+            "displayName": "col6",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false
+          },
+          {
+            "name": "col7",
+            "displayName": "col7",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false
+          },
+          {
+            "name": "col",
+            "displayName": "col",
+            "type": {
+              "kind": "array",
+              "items": {
+                "kind": "string"
+              },
+              "itemColumnNames": [
+                "col1",
+                "col2",
+                "col3",
+                "col4",
+                "col5",
+                "col6",
+                "col7"
+              ]
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false
+          },
+          {
+            "name": "__PowerAppsId__",
+            "displayName": "__PowerAppsId__",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false
+          }
+        ],
+        "sheetName": "Vodafone",
+        "sheetID": 586633215,
+        "numDataRows": 27,
+        "emailOwnersColumn": []
+      },
+      {
+        "name": {
+          "name": "native-table-Rk1ismwjaa3PYlBze7mT",
+          "isSpecial": false
+        },
+        "columns": [
+          {
+            "name": "$rowIndex",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isProtected": false,
+            "isUserSpecific": false,
+            "isReadOnly": true,
+            "fromNativeTable": true
+          },
+          {
+            "name": "$rowID",
+            "displayName": "🔒 Row ID",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": true,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "isProtected": false,
+            "fromNativeTable": true
+          },
+          {
+            "name": "d7S7Q",
+            "displayName": "New Column",
+            "type": {
+              "kind": "string"
+            },
+            "hidden": false,
+            "isUserSpecific": false,
+            "isProtected": false,
+            "displayFormula": {
+              "kind": "get-variable",
+              "name": "x"
+            },
+            "fromNativeTable": true
+          }
+        ],
+        "sheetName": "frantic-stew",
+        "rowIDColumn": "$rowID",
+        "sourceMetadata": {
+          "type": "Native table",
+          "id": "Rk1ismwjaa3PYlBze7mT",
+          "tableName": {
+            "name": "native-table-Rk1ismwjaa3PYlBze7mT",
+            "isSpecial": false
+          },
+          "needsQuery": false
+        },
+        "isReadOnly": false,
+        "emailOwnersColumn": []
+      }
+    ]
+  },
+  "dataSnapshot": "https://storage.googleapis.com/glide-prod.appspot.com/snapshots-private/ypkwf5as4ERREKQEKPAF.jzon?GoogleAccessId=gcs-url-signer%40glide-prod.iam.gserviceaccount.com&Expires=1789872990&Signature=IlG6pVX4j%2FW4OUmRkuBecb%2F8DfF9lY8zSZCMmV27m51veby2Q7MNk%2BghhoCUc%2FXpg3GX3f2GmpeL0Z5XcZOraMi6CEbW2%2ByGyWQofFS3%2F0ui28nAr5%2FVPD9na6JjleaSubbZ%2B%2FMsmILDzJMePgGdBFtjJtwlqfa3hTi6lDbvz2dFZwocYb95WhA3sa6O3bKZRhzebtK0KPJlVauslx0eifmiGlYjD0NU1hYJoaNVpPVDZELqWUJDSEyqB1WecgxQPvFXwrPZH9OLuWarVwDcdfSsCVAKq4Qu5Omn5bwEz1BIDe5If4klM%2BZb0ADHT3e7rFnSfbrii6NkluVBNYBMgg%3D%3D#GlideSnapshotVersion=7103",
+  "privateDataSnapshot": "https://storage.googleapis.com/glide-prod.appspot.com/snapshots-backend/ypkwf5as4ERREKQEKPAF.jzon?GoogleAccessId=gcs-url-signer%40glide-prod.iam.gserviceaccount.com&Expires=1789872990&Signature=Q9ksXA9bm4y1XaRf%2Bp7hnDMJiQR7W0fRqvTvMQ60yCS3GDvTLXhRcenTOvRKt2GbLAQk9oLbFTw%2F122dXoGerYT8yapReTvUswa15SQESz6zu1RLiFyTEMTPVZOXOny%2FYMlkvU4uJcg%2FHMIArOqcqViv5o1XOtGBhn1qUcLF4BWf1VQEC6%2Fk7i1Vw7wWzPCL9CC5XccNjLX7QFT9aoGPsbzm%2FwbLKypDjyjTMrrGY0XQ%2BZaESM3hOMuChKJXZcL%2FhMi2IkdS9P7cGAMIVc7r7i4XT4IIgAKeRvErqjZWFqkxXauegv5xnM%2BYupNtgrv1eb0tD6jU1PYoiRjVVu49ww%3D%3D#GlideSnapshotVersion=7103",
+  "unusedDataSnapshot": "https://storage.googleapis.com/glide-prod.appspot.com/snapshots-backend-unused/ypkwf5as4ERREKQEKPAF.jzon?GoogleAccessId=gcs-url-signer%40glide-prod.iam.gserviceaccount.com&Expires=1789872990&Signature=JEAz9dt%2F0yOmcNoCuCKnamFHuwxcsU4KguwWCIxy8EU74YSzVxhAhsmqORE4n3EBtEq8nF8wvbLo3ZEZqrhGkX1i0uQflTCZ4UXzq23fO0uyCDRpTmJEDQhKzyJ9EEAt5xKWoZE1Qzk9V9iquvrvR12plaQEtwbk5nMWlCFScNSfQZkFHQpCf2keMXKF8GXL3aihqh3EgnutcduCgZa%2F5dBKF%2BHJNAiN1OoqedancDNd0GpUbTeUjrZ2wWSQuFnZ9VhB7KfHrlx%2FpUwzDLmA1VL4W8uaeLT0HRxyhLPnyOs1tl1lBIHX08JeT8v4yaute2ORhLXxXneoiIus6PbsaQ%3D%3D#GlideSnapshotVersion=7103",
+  "nativeTableSnapshots": {},
+  "numRowsUsedInApp": 80
+}

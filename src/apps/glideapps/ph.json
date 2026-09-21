@@ -1,0 +1,241 @@
+{
+  "errorsWhileComputingFlags": false,
+  "flags": {
+    "ai-agent-onboarding": {
+      "key": "ai-agent-onboarding",
+      "enabled": true,
+      "variant": null,
+      "reason": {
+        "code": "condition_match",
+        "condition_index": 0,
+        "description": "Matched condition set 1"
+      },
+      "metadata": {
+        "id": 125247,
+        "version": 56,
+        "description": null,
+        "payload": null,
+        "has_experiment": false
+      }
+    },
+    "image-generation-cache": {
+      "key": "image-generation-cache",
+      "enabled": true,
+      "variant": "cache",
+      "reason": {
+        "code": "condition_match",
+        "condition_index": 0,
+        "description": "Matched condition set 1"
+      },
+      "metadata": {
+        "id": 204070,
+        "version": 12,
+        "description": null,
+        "payload": "{\"cacheEnabled\": true}",
+        "has_experiment": true
+      }
+    },
+    "g3-redirect": {
+      "key": "g3-redirect",
+      "enabled": false,
+      "variant": null,
+      "reason": {
+        "code": "out_of_rollout_bound",
+        "condition_index": 0,
+        "description": "Out of rollout bound"
+      },
+      "metadata": {
+        "id": 681501,
+        "version": 1,
+        "description": null,
+        "payload": null,
+        "has_experiment": false
+      }
+    },
+    "ai-model-feature-flag": {
+      "key": "ai-model-feature-flag",
+      "enabled": true,
+      "variant": "control",
+      "reason": {
+        "code": "condition_match",
+        "condition_index": 1,
+        "description": "Matched condition set 2"
+      },
+      "metadata": {
+        "id": 219697,
+        "version": 20,
+        "description": null,
+        "payload": null,
+        "has_experiment": true
+      }
+    },
+    "ai-builder-experiment": {
+      "key": "ai-builder-experiment",
+      "enabled": true,
+      "variant": null,
+      "reason": {
+        "code": "condition_match",
+        "condition_index": 0,
+        "description": "Matched condition set 1"
+      },
+      "metadata": {
+        "id": 421835,
+        "version": 7,
+        "description": null,
+        "payload": null,
+        "has_experiment": false
+      }
+    },
+    "image-generation-strategy": {
+      "key": "image-generation-strategy",
+      "enabled": true,
+      "variant": "control",
+      "reason": {
+        "code": "condition_match",
+        "condition_index": 0,
+        "description": "Matched condition set 1"
+      },
+      "metadata": {
+        "id": 202800,
+        "version": 10,
+        "description": null,
+        "payload": null,
+        "has_experiment": true
+      }
+    },
+    "create-sample-tables-unified-tool": {
+      "key": "create-sample-tables-unified-tool",
+      "enabled": true,
+      "variant": null,
+      "reason": {
+        "code": "condition_match",
+        "condition_index": 0,
+        "description": "Matched condition set 1"
+      },
+      "metadata": {
+        "id": 167526,
+        "version": 3,
+        "description": null,
+        "payload": null,
+        "has_experiment": false
+      }
+    },
+    "enable-intercom-support": {
+      "key": "enable-intercom-support",
+      "enabled": true,
+      "variant": null,
+      "reason": {
+        "code": "condition_match",
+        "condition_index": 0,
+        "description": "Matched condition set 1"
+      },
+      "metadata": {
+        "id": 634269,
+        "version": 5,
+        "description": null,
+        "payload": null,
+        "has_experiment": false
+      }
+    },
+    "agent-usage-upgrade-strategy": {
+      "key": "agent-usage-upgrade-strategy",
+      "enabled": true,
+      "variant": "control",
+      "reason": {
+        "code": "condition_match",
+        "condition_index": 0,
+        "description": "Matched condition set 1"
+      },
+      "metadata": {
+        "id": 223379,
+        "version": 4,
+        "description": null,
+        "payload": null,
+        "has_experiment": false
+      }
+    },
+    "billing-middleware": {
+      "key": "billing-middleware",
+      "enabled": true,
+      "variant": null,
+      "reason": {
+        "code": "condition_match",
+        "condition_index": 0,
+        "description": "Matched condition set 1"
+      },
+      "metadata": {
+        "id": 157531,
+        "version": 5,
+        "description": null,
+        "payload": null,
+        "has_experiment": false
+      }
+    }
+  },
+  "requestId": "d203f494-1e37-4842-a4af-56d85886e467",
+  "evaluatedAt": 1789871831833,
+  "push": {
+    "appIds": []
+  },
+  "sdkVersion": {
+    "requested": "1"
+  },
+  "siteApps": [],
+  "defaultIdentifiedOnly": true,
+  "sessionRecording": {
+    "canvasFps": null,
+    "canvasQuality": null,
+    "consoleLogRecordingEnabled": false,
+    "endpoint": "/s/",
+    "eventTriggers": [
+      "sign up success"
+    ],
+    "linkedFlag": null,
+    "masking": {
+      "maskAllInputs": false
+    },
+    "minimumDurationMilliseconds": 10000,
+    "networkPayloadCapture": {
+      "recordBody": true,
+      "recordHeaders": true
+    },
+    "recordCanvas": false,
+    "recorderVersion": "v2",
+    "sampleRate": "0",
+    "scriptConfig": {
+      "script": "posthog-recorder"
+    },
+    "triggerMatchType": null,
+    "urlBlocklist": [],
+    "urlTriggers": [],
+    "version": 1
+  },
+  "captureDeadClicks": false,
+  "autocaptureExceptions": false,
+  "capturePerformance": {
+    "network_timing": true,
+    "web_vitals": false,
+    "web_vitals_allowed_metrics": null
+  },
+  "conversations": false,
+  "heatmaps": false,
+  "elementsChainAsString": true,
+  "errorTracking": {
+    "autocaptureExceptions": false,
+    "suppressionRules": []
+  },
+  "productTours": false,
+  "supportedCompression": [
+    "gzip",
+    "gzip-js"
+  ],
+  "logs": {
+    "captureConsoleLogs": false
+  },
+  "autocapture_opt_out": true,
+  "hasFeatureFlags": true,
+  "surveys": false,
+  "analytics": {
+    "endpoint": "/i/v0/e/"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "updates": {
+    "current": 121
+  },
+  "rows-used": {
+    "current": 500
+  },
+  "file-bytes-used": {
+    "current": 12097703
+  },
+  "reloads": {
+    "current": 0
+  },
+  "zaps": {
+    "current": 0
+  },
+  "signatures": {
+    "current": 0
+  },
+  "deliver-email": {
+    "current": 0
+  },
+  "barcodes-scanned": {
+    "current": 0
+  },
+  "map-pins": {
+    "current": 0
+  },
+  "private-users": {
+    "current": 0
+  },
+  "public-users": {
+    "current": 0
+  },
+  "app-editors": {
+    "current": 1
+  }
+}

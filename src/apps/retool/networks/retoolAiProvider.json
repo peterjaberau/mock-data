@@ -1,0 +1,91 @@
+{
+  "resourceByEnv": {
+    "production": {
+      "displayName": "Anthropic",
+      "options": {
+        "baseURL": "https://api.anthropic.com",
+        "keySource": "retoolManaged",
+        "authentication": "none",
+        "legacyMigrationSource": "retool_ai_resource_explosion",
+        "retoolAISourceIdentifier": "anthropic:retoolManaged"
+      },
+      "id": 12809529,
+      "name": "retool_ai_provider_e8b61cf70c68bd43f59f9bd8d8c07a92",
+      "type": "anthropic",
+      "environment": "production",
+      "host": null,
+      "port": null,
+      "databaseName": null,
+      "databaseUsername": null,
+      "databasePassword": null,
+      "description": "Retool AI Resource",
+      "outboundRegion": null,
+      "ssl": null,
+      "editPrivilege": false,
+      "whitelabeled": true,
+      "dynamicallyQueryable": false,
+      "environmentId": "32caa813-0078-4317-94fc-7d3c5d1fd664",
+      "protected": false,
+      "lastSyncedChecksum": null,
+      "authorId": null,
+      "uuid": "a8bf8ba6-0231-425c-a288-e0a3b14dd186",
+      "dataAccessEnforced": null,
+      "createdAt": "2026-02-26T23:40:08.933Z",
+      "updatedAt": "2026-07-30T17:08:15.261Z",
+      "organizationId": 117894,
+      "resourceFolderId": 121064,
+      "editorType": "AnthropicQuery",
+      "accessLevel": "own",
+      "gridManaged": false,
+      "synced": false,
+      "tokenData": {
+        "authFlowType": "UNKNOWN",
+        "tokens": {}
+      }
+    },
+    "32caa813-0078-4317-94fc-7d3c5d1fd664": {
+      "displayName": "Anthropic",
+      "options": {
+        "baseURL": "https://api.anthropic.com",
+        "keySource": "retoolManaged",
+        "authentication": "none",
+        "legacyMigrationSource": "retool_ai_resource_explosion",
+        "retoolAISourceIdentifier": "anthropic:retoolManaged"
+      },
+      "id": 12809529,
+      "name": "retool_ai_provider_e8b61cf70c68bd43f59f9bd8d8c07a92",
+      "type": "anthropic",
+      "environment": "production",
+      "host": null,
+      "port": null,
+      "databaseName": null,
+      "databaseUsername": null,
+      "databasePassword": null,
+      "description": "Retool AI Resource",
+      "outboundRegion": null,
+      "ssl": null,
+      "editPrivilege": false,
+      "whitelabeled": true,
+      "dynamicallyQueryable": false,
+      "environmentId": "32caa813-0078-4317-94fc-7d3c5d1fd664",
+      "protected": false,
+      "lastSyncedChecksum": null,
+      "authorId": null,
+      "uuid": "a8bf8ba6-0231-425c-a288-e0a3b14dd186",
+      "dataAccessEnforced": null,
+      "createdAt": "2026-02-26T23:40:08.933Z",
+      "updatedAt": "2026-07-30T17:08:15.261Z",
+      "organizationId": 117894,
+      "resourceFolderId": 121064,
+      "editorType": "AnthropicQuery",
+      "accessLevel": "own",
+      "gridManaged": false,
+      "synced": false,
+      "tokenData": {
+        "authFlowType": "UNKNOWN",
+        "tokens": {}
+      }
+    }
+  },
+  "resourceLevelAccess": "own"
+}

@@ -1,0 +1,740 @@
+{
+  "app": {
+    "name": "Glide",
+    "audio_enabled": false,
+    "show_powered_by": false,
+    "team_intro": null,
+    "team_greeting": "Hi Peter 👋",
+    "messenger_background": "background-1",
+    "expected_response_delay_translation_key": "expected_response_delay_86400",
+    "launcher_expected_response_delay_translation_key": "the_team_typically_replies_in_86400",
+    "sms_notifications_enabled": false,
+    "inbound_conversations_disabled": false,
+    "office_hours_response": "Monday",
+    "help_center_site_url": "https://help.glideapps.com",
+    "messenger_logo_url": "https://downloads.intercomcdn.com/i/o/552532/c756ddbda2c0e9a83ed95030/990e9dc076e21dc8e4d8492fcc43237a.png",
+    "user_conversation_gifs_enabled": true,
+    "user_conversation_voice_notes_enabled": true,
+    "developer_workspace": false,
+    "upfront_email_collection_setting": "never",
+    "temporary_expectations_message": null,
+    "localized_expected_response_delay_short_text": "Back Monday",
+    "localized_expected_response_delay_long_text": "We'll be back online on Monday",
+    "help_center_id": null,
+    "article_auto_reaction_enabled": false,
+    "conversation_history_ttl_days": null,
+    "use_cache_for": []
+  },
+  "user": {
+    "id": "65bd3d8783e3e6fb9d032da6",
+    "role": "user_role",
+    "locale": "en",
+    "has_conversations": false,
+    "country_code": "au",
+    "new_session": false,
+    "help_center_require_search": false,
+    "requires_cookie_consent": false,
+    "prevent_multiple_inbound_conversation": false,
+    "user_assignments": {}
+  },
+  "client_matches": [],
+  "launcher_settings": {
+    "alignment": "right",
+    "color": "#000000",
+    "color_dark": "#9c9c9c",
+    "has_required_features": true,
+    "horizontal_padding": 20,
+    "instant_boot_enabled": false,
+    "launcher_logo_url": null,
+    "launcher_logo_dark_url": null,
+    "messenger_layout": "widget",
+    "messenger_mode_switcher_enabled": false,
+    "secondary_color": "#0a4c55",
+    "secondary_color_dark": "#0A4C55",
+    "show_launcher": false,
+    "theme_mode": "system",
+    "updated_at": 1789805728,
+    "vertical_padding": 20,
+    "show_book_meeting_button": false
+  },
+  "modules": {
+    "messages": {
+      "google_analytics_tracking_id": null
+    },
+    "rtm": {
+      "endpoints": [
+        "https://nexus-websocket-a.intercom.io/pubsub/5-PS-XMUA4uG-eVgPopvRXPy-1o2wPLiABicl0PwkRJB88PMZHJwnZk-CeDjRXp2uJTipQOKcOv1gRiCFQ-F8On3DjhkrNrbFquTZ5"
+      ],
+      "options": {
+        "PING_TIMEOUT": 45000,
+        "PONG_TIMEOUT": 10000
+      }
+    },
+    "metrics": {
+      "enabled": false
+    },
+    "error_reporting": {
+      "disabled": false
+    },
+    "customization": {
+      "brand_name": "Glide",
+      "messenger_logo_url": "https://downloads.intercomcdn.com/i/o/552532/c756ddbda2c0e9a83ed95030/990e9dc076e21dc8e4d8492fcc43237a.png",
+      "messenger_wallpaper": "background-1",
+      "action": {
+        "background_color": "#000000",
+        "foreground_color": "#ffffff",
+        "foreground_color_low_contrast": "#ffffff",
+        "background_color_dark": "#9c9c9c",
+        "foreground_color_dark": "#14161a",
+        "foreground_color_low_contrast_dark": "#14161a"
+      },
+      "action_contrast_white": null,
+      "action_contrast_dark": null,
+      "header": {
+        "background_color": "#ffffff",
+        "foreground_color": "#222222",
+        "background_color_dark": "#14161a",
+        "foreground_color_dark": "#f7f7f7"
+      },
+      "theme_mode": "system",
+      "launcher_logo_dark_url": null,
+      "messenger_logo_dark_url": null,
+      "custom_font": null
+    },
+    "home": {
+      "header": {
+        "background": {
+          "enabled": false,
+          "animated": false,
+          "type": "colors",
+          "type_dark": "solid",
+          "color": "#0a4c55",
+          "color_dark": "#0A4C55",
+          "fade_to_white": true,
+          "fade_to_dark": false,
+          "gradient": [
+            "#0a4c55",
+            "#000000"
+          ],
+          "gradient_dark": null,
+          "image_url": null,
+          "image_dark_url": null
+        },
+        "content": {
+          "greeting": {
+            "content": "Hi Peter 👋",
+            "text_color": "#ffffff",
+            "text_color_dark": "#ffffff",
+            "opacity": 0.7
+          },
+          "introduction": {
+            "content": "How can we help?",
+            "text_color": "#ffffff",
+            "text_color_dark": "#ffffff",
+            "opacity": 1.0
+          },
+          "close_button": {
+            "foreground_color": "#ffffff",
+            "background_color": "#000000",
+            "background_opacity": 0.2
+          },
+          "show_avatars": true,
+          "text_color_type": "light",
+          "text_color_type_dark": "light",
+          "logo_url": "https://downloads.intercomcdn.com/i/o/552532/c756ddbda2c0e9a83ed95030/990e9dc076e21dc8e4d8492fcc43237a.png",
+          "logo_dark_url": null
+        },
+        "header_expanded": true,
+        "identity": "ai_agent"
+      },
+      "open_config": null
+    },
+    "features": {
+      "checklists": true,
+      "checklists_reminders": true,
+      "inbound_messages": true,
+      "inbound_lead_messaging": true,
+      "inbound_lead_messaging_docs_site": true,
+      "launcher_discovery_mode": true,
+      "marketo_enrichment_installed": false,
+      "hubspot_installed": true,
+      "google_analytics": true,
+      "single_page_app_rate_limiting": false,
+      "cross_site_cookies": false,
+      "cookie_secure_flag": false,
+      "ticket_creation": false,
+      "google_analytics_4_integration": true,
+      "view_in_help_center_button": true,
+      "customer_privacy_policy": false,
+      "eprivacy_cookie_compliance_required": false,
+      "persist_client_id_for_conversation_parts": true,
+      "composer_is_not_hiding": true,
+      "unified_reply_expectations": true,
+      "disable_fin_image_reading": false,
+      "delay_tour_render": false,
+      "disable_tickets_after_conversation_end": false,
+      "new_mobile_notifications_enabled": false,
+      "nexus_ably": true,
+      "disable_ticket_email_notification": false,
+      "url_based_client_matching": true,
+      "shab_test_prod": false,
+      "mercury_ui_changes": false,
+      "enable_custom_emojis": false,
+      "asana_limit_uploads_to_5mb": false,
+      "user_images_aspect_ratio": true,
+      "new_privacy_policy_layout": false,
+      "fin_launcher_discovery_mode": false,
+      "ai_titles": true,
+      "client_side_actions": false,
+      "messenger_optimistic_fin_thinking": false,
+      "fin_ecommerce_sync_cart": false,
+      "fin_ecommerce_cart_card": true,
+      "generic_ecommerce_connector_setup": false,
+      "team_workflows_new_conversation_inbound_matching": true,
+      "voice_recorder_keyboard_shortcut": false,
+      "messenger_rich_text": true,
+      "messenger_rich_text_code": false,
+      "improve_open_behavior": false,
+      "smart_suggestion_impressions_enabled": true,
+      "improve_code_block_rendering": true,
+      "improve_spotlight_code_block_rendering": true,
+      "full_page_admin_bubbles": false,
+      "full_page_conversations_card": false,
+      "full_page_hide_context_hub": false,
+      "full_page_hide_ticket_pill": false,
+      "success_plan_rename": false,
+      "bubble_seen_indicator": true,
+      "messenger_user_not_found_retry": false,
+      "fin_sdr_calendar_lazy_availability": false,
+      "page_journey_matching": false,
+      "conversation_media_gallery": false,
+      "full_page_non_destructive_retarget": false,
+      "messenger_embedded_composer": false,
+      "messenger_open_links_in_same_tab": false,
+      "fin_success_agent": false,
+      "messenger_error_callbacks": false,
+      "spotlight_right_align": false,
+      "fin_latency_messenger_header_revamp_enabled": false,
+      "fin_only_click_outside": false,
+      "carousel_grid_layout": false,
+      "fin_send_current_page_data": false,
+      "fin_voice": false
+    }
+  },
+  "unread_conversation_ids": [],
+  "unread_dismissed_conversation_ids": [],
+  "unread_news_items_count": 28,
+  "anonymous_session": "bFVYV3h6ZFR1V3dVYW9EZXNzQ04wa2x2eGdubVE3SzZwbVRzRm9udGdCVFoydmFpRVhwQS8rZU1RWjNMM1FMVDk2VlRMWTlMZkFoNGdnVmYvSEczbmsxZTVlRjI0V3JrYWpKajhZRjRqUXJzRzRiSXRkMnVMVG9XamRsTEhjR1BJclNoZno4WDhrbmpwQ1JXRVlBYldQbG5EdVUycWw5L3B4NkV6K3ZnTllqR3VCclVGMnMxcFkveWd1L0JZVkhxRnY2UnF6S0RxektFWUwxZ3FKNGdHdz09LS12UmhleWNKQkVxVndsL2JYbjlnZURRPT0=--80c337dab677de3b57f07f5f17a5c59b1da520ae",
+  "identity_verified": false,
+  "origin_cookie_domain": "glideapps.com",
+  "cdas_breaching_limit": [],
+  "tooltip_groups": [
+    {
+      "id": 75525,
+      "tooltips": [
+        {
+          "id": "111992",
+          "css_selector": "",
+          "text_selector": "Select an Airtable Base",
+          "text_selector_type": 1,
+          "anchor_type": 1,
+          "anchor_icon_type": 0,
+          "anchor_icon": "info",
+          "anchor_text": "New",
+          "anchor_color": "#FF8A6A",
+          "anchor_font_color": null,
+          "trigger_type": 0,
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "<b>Airtable limitations:</b>"
+            },
+            {
+              "type": "paragraph",
+              "text": "Maximum 25,000 rows in linked tables of the Airtable base. Unlink unnecessary tables to improve performance. "
+            },
+            {
+              "type": "paragraph",
+              "text": "Read more about the integration <a href=\"https://www.glideapps.com/docs/essentials/data-sources/airtable\" rel=\"nofollow noopener noreferrer\" target=\"_blank\" data-via=\"https://via.intercom.io/c?url=https%3A%2F%2Fwww.glideapps.com%2Fdocs%2Fessentials%2Fdata-sources%2Fairtable&amp;h=393e7125f4cc7cc5b5f3c0c908650dad7f2587e5-rnjf1j5t_105:-41557266466815614&amp;l=b5fc52bbacfe0dc020d4ead474b57d05901d9f17-149194182\">here</a>."
+            }
+          ],
+          "align_to": 1,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 1,
+          "offset_x": 0,
+          "offset_y": 0,
+          "positioning_strategy": 0,
+          "url_predicates": {
+            "predicates": [
+              {
+                "type": "and",
+                "predicates": [
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "contains",
+                    "value": "/data"
+                  },
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "starts_with",
+                    "value": "https://go.glideapps.com"
+                  }
+                ]
+              }
+            ]
+          },
+          "pointer_position": 0,
+          "style": 0
+        }
+      ],
+      "customization_options": {
+        "background_color": "#FFFFFF",
+        "button_color": "#222222",
+        "font_color": "#222222",
+        "button_font_color": "#FFFFFF",
+        "customization_type": 0
+      },
+      "display_behavior": 0
+    },
+    {
+      "id": 75527,
+      "tooltips": [
+        {
+          "id": "111994",
+          "css_selector": "",
+          "text_selector": "Select a Library",
+          "text_selector_type": 1,
+          "anchor_type": 0,
+          "anchor_icon_type": 0,
+          "anchor_icon": "info",
+          "anchor_text": "New",
+          "anchor_color": "#FF8A6A",
+          "anchor_font_color": null,
+          "trigger_type": 0,
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "<b>Microsoft Excel limitations:</b>"
+            },
+            {
+              "type": "unorderedList",
+              "items": [
+                "Maximum 25,000 rows across all tabs in the spreadsheet"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Read more about the Microsoft Excel integration <a href=\"https://www.glideapps.com/docs/essentials/data-sources/microsoft-excel\" rel=\"nofollow noopener noreferrer\" target=\"_blank\" data-via=\"https://via.intercom.io/c?url=https%3A%2F%2Fwww.glideapps.com%2Fdocs%2Fessentials%2Fdata-sources%2Fmicrosoft-excel&amp;h=26bb808e81fab4b81562e9e714a1cafd867c4187-rnjf1j5t_105:-6556828987334845337&amp;l=21c5519bcbcd033b2a1f9e665291e0f50db7c64d-149194798\">here</a>."
+            }
+          ],
+          "align_to": 1,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 1,
+          "offset_x": 0,
+          "offset_y": 0,
+          "positioning_strategy": 0,
+          "url_predicates": {
+            "predicates": [
+              {
+                "type": "and",
+                "predicates": [
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "starts_with",
+                    "value": "https://go.glideapps.com"
+                  },
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "contains",
+                    "value": "/data"
+                  }
+                ]
+              }
+            ]
+          },
+          "pointer_position": 0,
+          "style": 0
+        }
+      ],
+      "customization_options": {
+        "background_color": "#FFFFFF",
+        "button_color": "#222222",
+        "font_color": "#222222",
+        "button_font_color": "#FFFFFF",
+        "customization_type": 0
+      },
+      "display_behavior": 0
+    },
+    {
+      "id": 75528,
+      "tooltips": [
+        {
+          "id": "111995",
+          "css_selector": "",
+          "text_selector": "SSH hostname",
+          "text_selector_type": 1,
+          "anchor_type": 0,
+          "anchor_icon_type": 0,
+          "anchor_icon": "tooltip",
+          "anchor_text": "New",
+          "anchor_color": "#18BED4",
+          "anchor_font_color": null,
+          "trigger_type": 0,
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Read more about configuring an <a href=\"intercom://start/v1/article/10237838\" rel=\"nofollow noopener noreferrer\" target=\"_blank\" data-via=\"https://via.intercom.io/c?url=intercom%3A%2F%2Fstart%2Fv1%2Farticle%2F10237838&amp;h=a0ebe34497087e218a46fd3bd3d7c940513b90f6-rnjf1j5t_105:8137070800580887393&amp;l=0ea773a7f66212167eb595f7392491512eda68b5-149195649\">SSH Tunnel here</a>. "
+            }
+          ],
+          "align_to": 1,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 1,
+          "offset_x": 0,
+          "offset_y": 0,
+          "positioning_strategy": 0,
+          "url_predicates": {
+            "predicates": [
+              {
+                "type": "and",
+                "predicates": [
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "starts_with",
+                    "value": "https://go.glideapps.com"
+                  },
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "contains",
+                    "value": "/settings/integrations"
+                  }
+                ]
+              }
+            ]
+          },
+          "pointer_position": 0,
+          "style": 0
+        }
+      ],
+      "customization_options": {
+        "background_color": "#FFFFFF",
+        "button_color": "#222222",
+        "font_color": "#222222",
+        "button_font_color": "#FFFFFF",
+        "customization_type": 0
+      },
+      "display_behavior": 0
+    },
+    {
+      "id": 75722,
+      "tooltips": [
+        {
+          "id": "112255",
+          "css_selector": "",
+          "text_selector": "Include button with link to app",
+          "text_selector_type": 1,
+          "anchor_type": 1,
+          "anchor_icon_type": 0,
+          "anchor_icon": "alert-circle",
+          "anchor_text": "New",
+          "anchor_color": "#0A4C55",
+          "anchor_font_color": null,
+          "trigger_type": 0,
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Including the app link is temporarily disabled while we make improvements. It will be back soon."
+            }
+          ],
+          "align_to": 1,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 1,
+          "offset_x": 0,
+          "offset_y": 0,
+          "positioning_strategy": 0,
+          "url_predicates": {
+            "predicates": [
+              {
+                "type": "and",
+                "predicates": [
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "contains",
+                    "value": "go.glideapps.com/app/"
+                  }
+                ]
+              }
+            ]
+          },
+          "pointer_position": 0,
+          "style": 0
+        }
+      ],
+      "customization_options": {
+        "background_color": "#FFFFFF",
+        "button_color": "#222222",
+        "font_color": "#222222",
+        "button_font_color": "#FFFFFF",
+        "customization_type": 0
+      },
+      "display_behavior": 0
+    },
+    {
+      "id": 76211,
+      "tooltips": [
+        {
+          "id": "113268",
+          "css_selector": ".usage-card___StyledSpan15-sc-15dxbyw-40",
+          "text_selector": "",
+          "text_selector_type": 0,
+          "anchor_type": 1,
+          "anchor_icon_type": 0,
+          "anchor_icon": "info",
+          "anchor_text": "New",
+          "anchor_color": "#18BED4",
+          "anchor_font_color": null,
+          "trigger_type": 0,
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Row count includes spreadsheet <a href=\"https://www.glideapps.com/docs/essentials/data-sources\" rel=\"nofollow noopener noreferrer\" target=\"_blank\" data-via=\"https://via.intercom.io/c?url=https%3A%2F%2Fwww.glideapps.com%2Fdocs%2Fessentials%2Fdata-sources&amp;h=d12b95c3b678e9aee99800fc0cc7e74c29d0569e-rnjf1j5t_105:-8570852398596515751&amp;l=c0e1acfcfcf79327df4c1953e8eabe905a3e8d9e-151282817\">data sources</a> (Glide Tables, Google Sheets, Airtable, Excel). Big Tables and SQL data sources are not included."
+            }
+          ],
+          "align_to": 1,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 1,
+          "offset_x": 0,
+          "offset_y": 0,
+          "positioning_strategy": 0,
+          "url_predicates": {
+            "predicates": [
+              {
+                "type": "or",
+                "predicates": [
+                  {
+                    "type": "and",
+                    "predicates": [
+                      {
+                        "attribute": "client_attributes.last_visited_url",
+                        "type": "string",
+                        "comparison": "starts_with",
+                        "value": "https://go.glideapps.com/o"
+                      },
+                      {
+                        "attribute": "client_attributes.last_visited_url",
+                        "type": "string",
+                        "comparison": "contains",
+                        "value": "usage"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "and",
+                    "predicates": [
+                      {
+                        "attribute": "client_attributes.last_visited_url",
+                        "type": "string",
+                        "comparison": "starts_with",
+                        "value": "https://staging.heyglide.com/o"
+                      },
+                      {
+                        "attribute": "client_attributes.last_visited_url",
+                        "type": "string",
+                        "comparison": "contains",
+                        "value": "usage"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "pointer_position": 0,
+          "style": 0
+        }
+      ],
+      "customization_options": {
+        "background_color": "#FFFFFF",
+        "button_color": "#222222",
+        "font_color": "#222222",
+        "button_font_color": "#FFFFFF",
+        "customization_type": 0
+      },
+      "display_behavior": 0
+    },
+    {
+      "id": 78164,
+      "tooltips": [
+        {
+          "id": "115137",
+          "css_selector": ":nth-child(2) > :nth-child(3) > :nth-child(4) > :nth-child(1) > :nth-child(1) > :nth-child(1) > :nth-child(2) > :nth-child(1) > :nth-child(3) > :nth-child(2) > :nth-child(2) > :nth-child(3)",
+          "text_selector": "",
+          "text_selector_type": 0,
+          "anchor_type": 1,
+          "anchor_icon_type": 0,
+          "anchor_icon": "info",
+          "anchor_text": "New",
+          "anchor_color": "#18BED4",
+          "anchor_font_color": null,
+          "trigger_type": 0,
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "You can import data into your app, but syncing with a Google Sheet requires at least a Maker plan. "
+            }
+          ],
+          "align_to": 1,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 1,
+          "offset_x": 5,
+          "offset_y": 0,
+          "positioning_strategy": 0,
+          "url_predicates": {
+            "predicates": [
+              {
+                "type": "and",
+                "predicates": [
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "contains",
+                    "value": "go.glideapps.com/o"
+                  },
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "contains",
+                    "value": "create-app"
+                  }
+                ]
+              }
+            ]
+          },
+          "pointer_position": 0,
+          "style": 0
+        }
+      ],
+      "customization_options": {
+        "background_color": "#FFFFFF",
+        "button_color": "#222222",
+        "font_color": "#222222",
+        "button_font_color": "#FFFFFF",
+        "customization_type": 0
+      },
+      "display_behavior": 0
+    },
+    {
+      "id": 78443,
+      "tooltips": [
+        {
+          "id": "115771",
+          "css_selector": "",
+          "text_selector": "Write row ID to",
+          "text_selector_type": 1,
+          "anchor_type": 1,
+          "anchor_icon_type": 0,
+          "anchor_icon": "info",
+          "anchor_text": "New",
+          "anchor_color": "#0A4C55",
+          "anchor_font_color": null,
+          "trigger_type": 0,
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "⚡️ Each run uses an additional update when using <b>Write row ID to</b>"
+            },
+            {
+              "type": "paragraph",
+              "text": "<i>(excludes App interaction workflows)</i>"
+            }
+          ],
+          "align_to": 1,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 1,
+          "offset_x": 5,
+          "offset_y": 0,
+          "positioning_strategy": 0,
+          "url_predicates": {
+            "predicates": [
+              {
+                "type": "and",
+                "predicates": [
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "contains",
+                    "value": "go.glideapps.com/app"
+                  },
+                  {
+                    "attribute": "client_attributes.last_visited_url",
+                    "type": "string",
+                    "comparison": "contains",
+                    "value": "workflows"
+                  }
+                ]
+              }
+            ]
+          },
+          "pointer_position": 0,
+          "style": 0
+        }
+      ],
+      "customization_options": {
+        "background_color": "#FFFFFF",
+        "button_color": "#222222",
+        "font_color": "#222222",
+        "button_font_color": "#FFFFFF",
+        "customization_type": 0
+      },
+      "display_behavior": 0
+    }
+  ],
+  "checklists": [],
+  "newsfeed_id": 65332,
+  "last_unread_news_item_id": 130822,
+  "open_config": {
+    "form": "default",
+    "open_to": "home",
+    "spaces": [
+      {
+        "type": "home",
+        "label": "Home",
+        "navigation_label": "Home",
+        "badge": null
+      },
+      {
+        "type": "messages",
+        "label": "Messages",
+        "navigation_label": "Messages",
+        "badge": null
+      },
+      {
+        "type": "news",
+        "label": "News",
+        "navigation_label": "News",
+        "badge": {
+          "badge_type": "passive"
+        }
+      },
+      {
+        "type": "help",
+        "label": "Help",
+        "navigation_label": "Help",
+        "badge": null
+      }
+    ],
+    "user_has_tickets": false,
+    "user_has_received_checklists": false,
+    "user_has_live_newsfeed": true,
+    "unified_style": true
+  },
+  "session_expiry": 1790476632,
+  "jwt_expired": false,
+  "messenger_security_enabled": true
+}

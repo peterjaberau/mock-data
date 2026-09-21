@@ -1,0 +1,139 @@
+{
+  "success": true,
+  "tableInfo": {
+    "fields": [
+      {
+        "name": "id",
+        "type": {
+          "kind": "Number",
+          "numberType": "integer",
+          "scale": 0,
+          "precision": 0,
+          "overrides": {
+            "databaseTypeId": 20,
+            "nullable": false,
+            "isUnique": true,
+            "default": {
+              "kind": "NoDefault"
+            }
+          }
+        },
+        "databaseTypeId": 20,
+        "nullable": false,
+        "columnDefault": {
+          "kind": "NoDefault"
+        },
+        "isUnique": true,
+        "isIdentity": false,
+        "uniqueConstraintName": "",
+        "foreignKeyConstraintName": null
+      },
+      {
+        "name": "name",
+        "type": {
+          "kind": "Text",
+          "overrides": {
+            "databaseTypeId": 25,
+            "nullable": true,
+            "isUnique": false,
+            "default": {
+              "kind": "NoDefault"
+            }
+          }
+        },
+        "databaseTypeId": 25,
+        "nullable": true,
+        "columnDefault": {
+          "kind": "NoDefault"
+        },
+        "isUnique": false,
+        "isIdentity": false,
+        "uniqueConstraintName": "",
+        "foreignKeyConstraintName": null
+      },
+      {
+        "name": "email",
+        "type": {
+          "kind": "Text",
+          "overrides": {
+            "databaseTypeId": 25,
+            "nullable": true,
+            "isUnique": false,
+            "default": {
+              "kind": "NoDefault"
+            }
+          }
+        },
+        "databaseTypeId": 25,
+        "nullable": true,
+        "columnDefault": {
+          "kind": "NoDefault"
+        },
+        "isUnique": false,
+        "isIdentity": false,
+        "uniqueConstraintName": "",
+        "foreignKeyConstraintName": null
+      },
+      {
+        "name": "sales",
+        "type": {
+          "kind": "Number",
+          "numberType": "integer",
+          "scale": 0,
+          "precision": 0,
+          "overrides": {
+            "databaseTypeId": 20,
+            "nullable": true,
+            "isUnique": false,
+            "default": {
+              "kind": "NoDefault"
+            }
+          }
+        },
+        "databaseTypeId": 20,
+        "nullable": true,
+        "columnDefault": {
+          "kind": "NoDefault"
+        },
+        "isUnique": false,
+        "isIdentity": false,
+        "uniqueConstraintName": "",
+        "foreignKeyConstraintName": null
+      },
+      {
+        "name": "image",
+        "type": {
+          "kind": "Text",
+          "overrides": {
+            "databaseTypeId": 25,
+            "nullable": true,
+            "isUnique": false,
+            "default": {
+              "kind": "NoDefault"
+            }
+          }
+        },
+        "databaseTypeId": 25,
+        "nullable": true,
+        "columnDefault": {
+          "kind": "NoDefault"
+        },
+        "isUnique": false,
+        "isIdentity": false,
+        "uniqueConstraintName": "",
+        "foreignKeyConstraintName": null
+      }
+    ],
+    "primaryKeyColumn": "id",
+    "primaryKey": [
+      "id"
+    ],
+    "views": [],
+    "userCapabilities": [
+      "canReadData",
+      "canUpdateSchema",
+      "canWriteData"
+    ],
+    "totalRowCount": 5
+  }
+}

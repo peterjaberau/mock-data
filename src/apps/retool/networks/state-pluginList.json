@@ -1,0 +1,94 @@
+{
+  "pluginList": [
+    "query1",
+    "button1",
+    "text1",
+    "uuidState",
+    "button2",
+    "$main",
+    "table1",
+    "theme",
+    "current_user",
+    "localStorage",
+    "retoolContext",
+    "viewport",
+    "urlparams"
+  ],
+  "groups": {
+    "queries": [
+      "query1"
+    ],
+    "functions": [],
+    "transformers": [],
+    "variables": [
+      "uuidState"
+    ],
+    "components": [
+      "button1",
+      "text1",
+      "button2",
+      "table1"
+    ],
+    "globals": [
+      "theme",
+      "current_user",
+      "localStorage",
+      "retoolContext",
+      "viewport",
+      "urlparams"
+    ],
+    "settings": [],
+    "frames": [],
+    "widget property": [],
+    "widget output": [],
+    "screens": [],
+    "pages": [],
+    "instrumentation": [],
+    "workflows": [],
+    "sync functions": []
+  },
+  "groupsBySection": {
+    "$globalSection": {
+      "queries": [
+        "query1"
+      ],
+      "functions": [],
+      "transformers": [],
+      "variables": [
+        "uuidState"
+      ],
+      "components": [
+        "button1",
+        "text1",
+        "button2",
+        "table1"
+      ],
+      "globals": [
+        "theme",
+        "current_user",
+        "localStorage",
+        "retoolContext",
+        "viewport",
+        "urlparams"
+      ],
+      "settings": [],
+      "frames": [],
+      "widget property": [],
+      "widget output": [],
+      "screens": [],
+      "pages": [],
+      "instrumentation": [],
+      "workflows": [],
+      "sync functions": []
+    }
+  },
+  "searchTerm": "",
+  "matchesByKey": {},
+  "noSearchResults": false,
+  "selectedPluginId": "",
+  "selectedCanvasPlugins": [],
+  "selectedDatasource": "",
+  "inEditorMode": true,
+  "sidebarHeight": 100,
+  "inSidebarTab": false
+}

@@ -1,0 +1,36 @@
+{
+  "latestSavedTriggers": [
+    {
+      "id": "e5456afd-f08b-48a6-be22-a05175b2d475",
+      "workflowId": "11757356-ed03-4732-a854-6a07df60fa1b",
+      "environmentId": "32caa813-0078-4317-94fc-7d3c5d1fd664",
+      "enabledAt": null,
+      "createdBy": null,
+      "concurrencyLimit": 1,
+      "triggerType": "schedule",
+      "triggerOptions": {
+        "crontab": "0 0 * * *",
+        "timezone": "Australia/Sydney",
+        "scheduleType": "interval"
+      },
+      "environmentName": "production"
+    }
+  ],
+  "deployedTriggers": [
+    {
+      "id": "e5456afd-f08b-48a6-be22-a05175b2d475",
+      "workflowId": "11757356-ed03-4732-a854-6a07df60fa1b",
+      "environmentId": "32caa813-0078-4317-94fc-7d3c5d1fd664",
+      "enabledAt": null,
+      "createdBy": null,
+      "concurrencyLimit": 1,
+      "triggerType": "schedule",
+      "triggerOptions": {
+        "crontab": "0 0 * * *",
+        "timezone": "Australia/Sydney",
+        "scheduleType": "interval"
+      },
+      "environmentName": "production"
+    }
+  ]
+}

@@ -1,0 +1,673 @@
+{
+  "templateMetadata": [
+    {
+      "id": "postgresToSlack",
+      "name": "Postgres to Slack",
+      "description": "Get slack messages on new custom query matches",
+      "resources": [
+        "postgresql",
+        "slackopenapi"
+      ],
+      "category": "Notifications"
+    },
+    {
+      "id": "googleAnalyticsToBigQuery",
+      "name": "Google Analytics to BigQuery",
+      "description": "Send Google Analytics data to BigQuery",
+      "resources": [
+        "googleAnalytics",
+        "bigquery"
+      ],
+      "category": "ETL"
+    },
+    {
+      "id": "githubToPostgres",
+      "name": "GitHub to Postgres",
+      "description": "Send GitHub repository information to Postgres",
+      "resources": [
+        "github",
+        "postgresql"
+      ],
+      "category": "APIs"
+    },
+    {
+      "id": "githubToSlack",
+      "name": "GitHub to Slack",
+      "description": "Query GitHub repository information with GraphQL and send to Slack",
+      "resources": [
+        "github",
+        "slackopenapi"
+      ],
+      "category": "Notifications"
+    },
+    {
+      "id": "postgresToGSheets",
+      "name": "Postgres to Google Sheets",
+      "description": "Append Postgres row data to Google Sheets",
+      "resources": [
+        "postgresql",
+        "googlesheets"
+      ],
+      "category": "ETL"
+    },
+    {
+      "id": "fullStoryAlertHandler",
+      "name": "FullStory Alerts to Slack",
+      "description": "Process FullStory alerts and send to Slack",
+      "resources": [
+        "restapi",
+        "slackopenapi"
+      ],
+      "category": "APIs"
+    },
+    {
+      "id": "pythonChartingAPI",
+      "name": "Python Charting API",
+      "category": "APIs",
+      "resources": [
+        "python"
+      ],
+      "description": "Create an API using pandas and seaborn for dynamic data processing and chart generation"
+    },
+    {
+      "id": "updateDataInGoogleSheetsFromNewWebhookPostRequest",
+      "description": "Update data in Google Sheets from new webhook POST request",
+      "resources": [
+        "googlesheets",
+        "restapi"
+      ],
+      "category": "APIs",
+      "name": "Update data in Google Sheets from new webhook POST request"
+    },
+    {
+      "id": "sendSlackWhenGoogleSheetsRowUpdated",
+      "description": "Send a Slack notification when a Google Sheets row is updated",
+      "resources": [
+        "googlesheets",
+        "slackopenapi"
+      ],
+      "category": "Notifications",
+      "name": "Send Slack When Google Sheets Row Updated"
+    },
+    {
+      "id": "send-slack-message-when-google-sheet-rows-added",
+      "description": "Send a Slack message when a Google Sheet row is added",
+      "resources": [
+        "googlesheets",
+        "slackopenapi"
+      ],
+      "category": "Notifications",
+      "name": "Send Slack Message When Google Sheet Rows Added"
+    },
+    {
+      "id": "send-slack-message-when-google-sheets-rows-updated",
+      "description": "Send a Slack Message When a Google Sheets Row is Updated",
+      "resources": [
+        "slackopenapi",
+        "googlesheets"
+      ],
+      "category": "Notifications",
+      "name": "Send Slack Message When Google Sheets Rows Updated"
+    },
+    {
+      "id": "update-data-to-google-sheet-from-webhook-post-request",
+      "description": "Update data to Google Sheets from a new Webhook POST request",
+      "resources": [
+        "googlesheets"
+      ],
+      "category": "APIs",
+      "name": "Update Data to Google Sheet from Webhook POST request"
+    },
+    {
+      "id": "add-data-to-google-sheets-from-new-webhook-post-request",
+      "description": "Add Data to Google Sheets from a new Webhook POST request",
+      "resources": [
+        "googlesheets"
+      ],
+      "category": "APIs",
+      "name": "Add Data to Google Sheets from new Webhook POST request"
+    },
+    {
+      "id": "send-slack-on-new-custom-query-matches-in-google-sheets",
+      "description": "Send a Slack notification on new custom query matches in Google Sheets",
+      "resources": [
+        "slackopenapi",
+        "googlesheets"
+      ],
+      "category": "Notifications",
+      "name": "Send Slack on new Custom Query Matches in Google Sheets"
+    },
+    {
+      "id": "send-slack-message-lead-converts-in-salesforce",
+      "description": "Send a Slack message when a lead converts in Salesforce",
+      "resources": [
+        "salesforce",
+        "slackopenapi"
+      ],
+      "category": "Notifications",
+      "name": "Send Slack Message Lead Converts in Salesforce"
+    },
+    {
+      "id": "send-slack-message-new-salesforce-cases",
+      "description": "Send a Slack message fo a new Salesforce case",
+      "resources": [
+        "slackopenapi",
+        "salesforce"
+      ],
+      "category": "Notifications",
+      "name": "Send Slack Message New Salesforce Cases"
+    },
+    {
+      "id": "supportResponseTimeReport",
+      "description": "Support response time report",
+      "resources": [
+        "alloydb",
+        "asana",
+        "athena"
+      ],
+      "category": "APIs",
+      "name": "Support Response Time Report"
+    },
+    {
+      "id": "notify-slack-when-salesforce-opportunity-is-closed-won",
+      "description": "Notify Slack when a Salesforce opportunity is marked as Closed Won",
+      "resources": [
+        "salesforce",
+        "slackopenapi"
+      ],
+      "category": "Cron Jobs",
+      "name": "Notify Slack when Salesforce opportunity is Closed Won"
+    },
+    {
+      "id": "append-postgres-rows-to-google-sheets",
+      "description": "Append new Postgres rows to Google Sheets",
+      "resources": [
+        "postgresql",
+        "googlesheets"
+      ],
+      "category": "ETL",
+      "name": "Append Postgres Rows to Google Sheets"
+    },
+    {
+      "id": "create-hubspot-contact-for-new-google-sheets-rows",
+      "description": "Create a new Hubspot Contact when a Google Sheets row is added",
+      "resources": [
+        "googlesheets"
+      ],
+      "category": "ETL",
+      "name": "Create Hubspot contact for new Google Sheets rows"
+    },
+    {
+      "id": "add-typeform-responses-to-google-sheets",
+      "description": "Add new Typeform responses to Google Sheets",
+      "resources": [
+        "googlesheets"
+      ],
+      "category": "ETL",
+      "name": "Add Typeform responses to Google Sheets"
+    },
+    {
+      "id": "summarize-google-sheets-and-send-via-smtp",
+      "description": "Summarize Google Sheets data and send it via SMTP",
+      "resources": [
+        "googlesheets",
+        "smtp"
+      ],
+      "category": "Cron Jobs",
+      "name": "Summarize Google Sheets and send via SMTP"
+    },
+    {
+      "id": "send-github-repo-to-slack",
+      "description": "Send Github repository query results to Slack",
+      "resources": [
+        "slackopenapi",
+        "github"
+      ],
+      "category": "Notifications",
+      "name": "Send Github repo to Slack"
+    },
+    {
+      "id": "add-new-git-hub-issues-to-asana",
+      "description": "Add new GitHub issues to Asana as tasks",
+      "resources": [
+        "asana",
+        "github"
+      ],
+      "category": "APIs",
+      "name": "Add new GitHub issues to Asana"
+    },
+    {
+      "id": "send-new-git-hub-commits-to-slack",
+      "description": "Send new Github commits to Slack as messages",
+      "resources": [
+        "slackopenapi",
+        "github"
+      ],
+      "category": "Notifications",
+      "name": "Send new GitHub commits to Slack"
+    },
+    {
+      "id": "send-github-mentions-to-slack",
+      "description": "Send new Github mentions to Slack as messages",
+      "resources": [
+        "slackopenapi",
+        "github"
+      ],
+      "category": "Notifications",
+      "name": "Send Github mentions to Slack"
+    },
+    {
+      "id": "sync-salesforce-to-postgres",
+      "description": "Sync Salesforce account data to Postgres",
+      "resources": [
+        "salesforce",
+        "postgresql"
+      ],
+      "category": "ETL",
+      "name": "Sync Salesforce to Postgres"
+    },
+    {
+      "id": "create-salesforce-contacts-from-typeform",
+      "description": "Create Salesforce contacts from new Typeform entries",
+      "resources": [
+        "salesforce",
+        "cassandra",
+        "closeio",
+        "datadog"
+      ],
+      "category": "APIs",
+      "name": "Create Salesforce contacts from Typeform"
+    },
+    {
+      "id": "export-leads-from-google-sheets-to-salesforce",
+      "description": "Export leads from Google Sheets to Salesforce",
+      "resources": [
+        "googlesheets",
+        "salesforce"
+      ],
+      "category": "ETL",
+      "name": "Export leads from Google Sheets to Salesforce"
+    },
+    {
+      "id": "enrich-google-form-submissions-and-send-to-salesforce",
+      "description": "Enrich Google Form submissions and send to Salesforce",
+      "resources": [
+        "salesforce"
+      ],
+      "category": "ETL",
+      "name": "Enrich Google Form submissions and send to Salesforce"
+    },
+    {
+      "id": "create-linear-ticket-from-salesforce-feature-request",
+      "description": "Create a Linear ticket from a new feature request in Salesforce",
+      "resources": [
+        "salesforce",
+        "gcs",
+        "googleMaps",
+        "jira"
+      ],
+      "category": "APIs",
+      "name": "Create Linear ticket from Salesforce feature request"
+    },
+    {
+      "id": "webhook-monitor-to-slack-alert",
+      "description": "Webhook monitor to Slack alert",
+      "resources": [
+        "slackopenapi"
+      ],
+      "category": "APIs",
+      "name": "Webhook monitor to Slack alert"
+    },
+    {
+      "id": "create-salesforce-tasks-from-shopify-customers",
+      "description": "Create Salesforce tasks from Shopify customers",
+      "resources": [
+        "salesforce"
+      ],
+      "category": "APIs",
+      "name": "Create Salesforce tasks from Shopify customers"
+    },
+    {
+      "id": "churn-prediction",
+      "description": "Identify accounts that are at risk of churn based on product activity",
+      "resources": [
+        "salesforce",
+        "slackopenapi"
+      ],
+      "category": "Notifications",
+      "name": "Churn Prediction"
+    },
+    {
+      "id": "sync-linear-issues-with-trello-cards",
+      "description": "Sync Linear issues with Trello cards",
+      "resources": [],
+      "category": "APIs",
+      "name": "Sync Linear issues with Trello cards"
+    },
+    {
+      "id": "send-slack-message-when-linear-ticket-is-assigned",
+      "description": "Send a Slack message when Linear ticket is assigned",
+      "resources": [
+        "slackopenapi"
+      ],
+      "category": "Notifications",
+      "name": "Send Slack message when Linear ticket is assigned"
+    },
+    {
+      "id": "weekly-linear-activity-report",
+      "description": "Send a weekly report of activity in Linear",
+      "resources": [
+        "smtp"
+      ],
+      "category": "Cron Jobs",
+      "name": "Weekly Linear activity report"
+    },
+    {
+      "id": "send-slack-message-when-linear-issue-is-closed",
+      "description": "Send a Slack message when Linear issue is closed",
+      "resources": [
+        "slackopenapi"
+      ],
+      "category": "Notifications",
+      "name": "Send Slack message when Linear issue is closed"
+    },
+    {
+      "id": "sync-shopify-orders-with-quickbooks",
+      "description": "Sync Shopify orders with Quickbooks online",
+      "resources": [
+        "Shopify"
+      ],
+      "category": "ETL",
+      "name": "Sync Shopify orders with Quickbooks"
+    },
+    {
+      "id": "create-new-shopify-product-from-google-sheets",
+      "description": "Create a new Shopify product from a Google Sheets row",
+      "resources": [
+        "Shopify",
+        "googlesheets"
+      ],
+      "category": "ETL",
+      "name": "Create new Shopify product from Google Sheets"
+    },
+    {
+      "id": "send-slack-message-for-high-value-shopify-orders",
+      "description": "Send a Slack message when high-value Shopify orders are completed",
+      "resources": [
+        "Shopify",
+        "slackopenapi"
+      ],
+      "category": "Notifications",
+      "name": "Send Slack message for high-value Shopify orders"
+    },
+    {
+      "id": "location-based-shopify-order-assignment",
+      "description": "Assign orders on Shopify based on order location",
+      "resources": [
+        "Shopify"
+      ],
+      "category": "ETL",
+      "name": "Location-based Shopify order assignment"
+    },
+    {
+      "id": "send-email-for-low-inventory-levels-in-shopify",
+      "description": "Send an email notification for low inventory levels in Shopify",
+      "resources": [
+        "Shopify",
+        "smtp"
+      ],
+      "category": "Notifications",
+      "name": "Send email for low inventory levels in Shopify"
+    },
+    {
+      "id": "enrich-airtable-records-with-clearbit",
+      "description": "Enrich Airtable records with Clearbit data",
+      "resources": [
+        "Airtable"
+      ],
+      "category": "ETL",
+      "name": "Enrich Airtable records with Clearbit"
+    },
+    {
+      "id": "send-weekly-airtable-summary-via-email",
+      "description": "Send a weekly Airtable base summary via email",
+      "resources": [
+        "Airtable",
+        "smtp"
+      ],
+      "category": "Notifications",
+      "name": "Send Weekly Airtable Summary via Email"
+    },
+    {
+      "id": "send-daily-airtable-summary-in-slack",
+      "description": "Send a daily Airtable base activity summary in Slack",
+      "resources": [
+        "Airtable",
+        "slackopenapi"
+      ],
+      "category": "Notifications",
+      "name": "Send Daily Airtable Summary in Slack"
+    },
+    {
+      "id": "create-trello-cards-from-new-jira-issues",
+      "description": "Create Trello cards from new Jira issues",
+      "resources": [
+        "jira",
+        "asana"
+      ],
+      "category": "APIs",
+      "name": "Create Trello cards from new Jira issues"
+    },
+    {
+      "id": "add-typeform-entries-into-airtable",
+      "description": "Add new Typeform entries as records in Airtable",
+      "resources": [
+        "Airtable"
+      ],
+      "category": "ETL",
+      "name": "Add Typeform entries into Airtable"
+    },
+    {
+      "id": "create-trello-cards-from-data-in-airtable",
+      "description": "Create Trello cards or lists from data in Airtable",
+      "resources": [
+        "Airtable",
+        "asana"
+      ],
+      "category": "ETL",
+      "name": "Create Trello cards from data in Airtable"
+    },
+    {
+      "id": "sync-api-to-database",
+      "description": "Sync API to Retool DB Postgres Database",
+      "resources": [
+        "Retool DB"
+      ],
+      "category": "APIs",
+      "name": "Sync API to Database"
+    },
+    {
+      "id": "update-database-with-api",
+      "description": "Update Retool DB Postgres Database with API",
+      "resources": [
+        "Retool DB"
+      ],
+      "category": "APIs",
+      "name": "Update Database with API"
+    },
+    {
+      "id": "ai-powered-personalized-newsletter",
+      "description": "An AI-powered personalized newsletter",
+      "resources": [
+        "openapi"
+      ],
+      "category": "APIs",
+      "name": "AI-powered personalized newsletter"
+    },
+    {
+      "id": "ai-powered-changelog",
+      "description": "AI-powered Github changelog summary and send to team for review",
+      "resources": [
+        "github",
+        "openapi"
+      ],
+      "category": "APIs",
+      "name": "AI-powered changelog"
+    },
+    {
+      "id": "daily-mrr-notification",
+      "description": "Receive daily notifications of your Monthly Recurring Revenue (MRR), providing timely insights into your subscription-based business's financial performance.",
+      "resources": [
+        "salesforce",
+        "slackopenapi"
+      ],
+      "category": "Notifications",
+      "name": "Daily MRR Notification"
+    },
+    {
+      "id": "abandoned-cart-recovery-emails",
+      "description": "Recover potentially lost sales by sending targeted emails to customers who have abandoned their shopping carts.",
+      "resources": [],
+      "category": "ETL",
+      "name": "Abandoned Cart Recovery Emails"
+    },
+    {
+      "id": "triage-support-tickets-with-gpt-4",
+      "description": "Efficiently manage support tickets by utilizing GPT-4 to categorize and prioritize them, ensuring faster and accurate ticket resolution.",
+      "resources": [],
+      "category": "APIs",
+      "name": "Triage Support Tickets with GPT-4"
+    },
+    {
+      "id": "low-inventory-alerts",
+      "description": "Receive timely alerts when inventory levels fall below predefined thresholds, ensuring proactive inventory management and avoiding stockouts.",
+      "resources": [],
+      "category": "Notifications",
+      "name": "Low Inventory Alerts"
+    },
+    {
+      "id": "daily-update-for-new-orders",
+      "description": "Get daily updates on new orders, ensuring you stay informed about incoming business and can manage operations effectively.",
+      "resources": [],
+      "category": "Notifications",
+      "name": "Daily Update For New Orders"
+    },
+    {
+      "id": "refund-fulfillment",
+      "description": "Efficiently process and manage refunds, ensuring timely and accurate resolution for improved customer satisfaction and operational effectiveness.",
+      "resources": [],
+      "category": "ETL",
+      "name": "Refund Fulfillment"
+    },
+    {
+      "id": "store-performance-reports",
+      "description": "Access comprehensive performance reports for your store, providing insights into sales, customer trends, and key metrics to optimize business strategies.",
+      "resources": [],
+      "category": "ETL",
+      "name": "Store Performance Reports"
+    },
+    {
+      "id": "fraudulent-order-notifications",
+      "description": "Instantly receive notifications for suspicious orders, helping prevent fraudulent transactions and safeguarding your business and customers.",
+      "resources": [],
+      "category": "Notifications",
+      "name": "Fraudulent Order Notifications"
+    },
+    {
+      "id": "new-customer-follow-up",
+      "description": "Initiate follow-up interactions with new customers, fostering engagement and building relationships to enhance customer retention and loyalty.",
+      "resources": [],
+      "category": "ETL",
+      "name": "New Customer Follow Up"
+    },
+    {
+      "id": "customer-loyalty-offer",
+      "description": "Create special offers to reward loyal customers, promoting customer retention and strengthening brand engagement for long-term business success.",
+      "resources": [],
+      "category": "ETL",
+      "name": "Customer Loyalty Offer"
+    },
+    {
+      "id": "automatically-re-order-low-stock-items",
+      "description": "Automate reordering of low-stock items, ensuring inventory availability and preventing stockouts for seamless business operations.",
+      "resources": [],
+      "category": "APIs",
+      "name": "Automatically Re-Order Low-Stock Items"
+    },
+    {
+      "id": "tag-items-with-shipping-time",
+      "description": "Assign shipping time tags to items, providing customers with accurate delivery expectations and enhancing transparency in online shopping experiences.",
+      "resources": [],
+      "category": "ETL",
+      "name": "Tag Items With Shipping Time"
+    },
+    {
+      "id": "weekly-automated-shopify-order-report",
+      "description": "Track and analyze Shopify orders with our weekly automated report template. Streamline insights and decision-making by receiving comprehensive sales data every week.",
+      "resources": [
+        "snowflake",
+        "postgresql",
+        "graphql"
+      ],
+      "category": "Notifications",
+      "name": "Weekly Automated Shopify Order Report"
+    },
+    {
+      "id": "api-to-sms",
+      "description": "Automate SMS notifications using API integration. Streamline communication, send alerts, and engage with personalized text messages seamlessly.",
+      "resources": [
+        "Retool DB",
+        "athena",
+        "graphql",
+        "restapi"
+      ],
+      "category": "Notifications",
+      "name": "API to SMS"
+    },
+    {
+      "id": "automated-linear-ticket-assignment",
+      "description": "Automate ticket distribution. Assign Linear tickets efficiently, enhancing task management and optimizing workflow distribution.",
+      "resources": [],
+      "category": "APIs",
+      "name": "Automated Linear Ticket Assignment"
+    },
+    {
+      "id": "send-github-repo-to-postgres",
+      "description": "Send GitHub repository data to a PostgreSQL database, facilitating seamless integration and enabling efficient storage and management of code-related information.",
+      "resources": [
+        "github",
+        "postgresql"
+      ],
+      "category": "ETL",
+      "name": "Send Github Repo to Postgres"
+    },
+    {
+      "id": "sync-google-sheets-rows-to-postgres-database",
+      "description": "Synchronize Google Sheets rows with a PostgreSQL database, enabling seamless data transfer and ensuring real-time integration between the two platforms.",
+      "resources": [
+        "googlesheets",
+        "postgresql"
+      ],
+      "category": "APIs",
+      "name": "Sync Google Sheets Rows to Postgres Database"
+    },
+    {
+      "id": "update-data-to-google-sheets-from-new-webhook-post-request",
+      "description": "Automatically update Google Sheets with data from new webhook POST requests, ensuring real-time integration and accurate data reflection.",
+      "resources": [],
+      "category": "APIs",
+      "name": "Update Data to Google Sheets from New Webhook POST Request"
+    },
+    {
+      "id": "vector-slack-sync",
+      "description": "Sync your Slack conversations with Retool Vectors",
+      "resources": [
+        "retoolAI",
+        "restapi",
+        "slackopenapi"
+      ],
+      "category": "APIs",
+      "name": "Vector Slack Sync"
+    }
+  ]
+}

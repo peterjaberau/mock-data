@@ -1,0 +1,45 @@
+{
+  "label": { "type": "string", "default": null },
+  "icon": { "type": "string", "default": null },
+  "iconPos": { "type": "string", "default": "left", "enum": ["left",
+    "right", "top", "bottom"] },
+  "loading": {"type": "boolean", "default": false},
+  "loadingIcon": {
+    "type": "string",
+    "default": null
+  },
+  "link": {
+    "type": "boolean",
+    "default": false
+  },
+  "severity": {
+    "type": "string",
+    "default": null,
+    "enum": ["secondary" , "success" , "info" , "warning" , "help" , "danger"]
+  },
+  "raised": {
+    "type": "boolean",
+    "default": false
+  },
+  "rounded": {
+    "type": "boolean",
+    "default": false
+  },
+  "text": {
+    "type": "boolean",
+    "default": false
+  },
+  "outlined": {
+    "type": "boolean",
+    "default": false
+  },
+  "size": {
+    "type": "string",
+    "enum": ["small" , "normal" , "large"],
+    "default": null
+  },
+  "plain": {
+    "type": "boolean",
+    "default": false
+  }
+}

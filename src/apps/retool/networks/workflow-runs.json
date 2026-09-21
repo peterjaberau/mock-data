@@ -1,0 +1,21 @@
+{
+  "rows": [
+    {
+      "id": "01a0be27-d4a8-7593-879c-c44f5680f985",
+      "workflowId": "11757356-ed03-4732-a854-6a07df60fa1b",
+      "status": "FAILURE",
+      "inputDataSizeBytes": null,
+      "outputDataSizeBytes": null,
+      "triggerType": "manual",
+      "logFile": "117894/11757356-ed03-4732-a854-6a07df60fa1b-01a0be27-d4a8-7593-879c-c44f5680f985.log",
+      "createdAt": "2026-09-20T09:31:16.521Z",
+      "updatedAt": "2026-09-20T09:31:17.944Z",
+      "timeTakenToExecuteWorkflow": 1399,
+      "workflowSaveId": "f6391a1a-d249-46a0-bc21-1404a5683d52",
+      "canBeTerminated": false,
+      "workflowName": "Onboarding Demo - Peter Jaber",
+      "failedBlockType": "default"
+    }
+  ],
+  "canLoadMore": false
+}

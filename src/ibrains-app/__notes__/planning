@@ -1,0 +1,38 @@
+common ---> folder the contains common entities that could be used for extending other entities
+        - orm lifecycle-hook (creating-created-updating-updated-saving-saved-deleting-deleted-retrieved)
+        - global orm lc-hook (delete, insert, update, flush, destroy, save and fresh)
+        - machine service lc-hook (error, isReady, isStarted, isExecuting, isDone, isError, isFinished)
+        - constants
+
+console ---> folder for the platform foundation.
+                    - iBrains main UI, bootstrap-system related data to be cached. eg: meta-resource-plugins (connectos, widgets..)
+                    - ibrains theming and constants
+                    - files
+                        - helpers (folder)
+                        - entities (tenant + tenantList  full, simple, lite, list-simple, list-lite). including schemas for ui and schema for openapi
+                        - constants (includes the constants)
+                        - actions
+                        - stories
+                        - state (include entities + console global levels)
+                        - dsl (domain-specific-language) to generate and assemble things together). eg: build a global state from collecting sub states from different places.
+                        - index to link the dotes together
+
+
+store --> folder for pinia and pinia-orm
+account --> tenant - users - auth - permissions - workspaces (full, simple, lite, list-simple, list-lite)
+eventHandler -->
+queryManager -->
+serviceManager -->
+resourceManager -->
+repository --> list of connectors (stencils), base models, widget models, templates...)
+library
+moduleManager --> sub-folders (workflows, appbuilder, visualiser..)
+
+editorsComponents -->
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+{
+  "pages": [],
+  "queries": [],
+  "workflows": [],
+  "aiSettings": {
+    "assist": [
+      "Anthropic"
+    ],
+    "selectedByAskAI": false
+  },
+  "vectors": []
+}

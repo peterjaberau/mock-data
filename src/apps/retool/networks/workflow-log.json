@@ -1,0 +1,95 @@
+{
+  "logs": [
+    {
+      "timestamp": 1789896677416,
+      "message": "--- Successfully finished running query: startTrigger ---",
+      "tags": {
+        "blockPluginId": "startTrigger",
+        "displayWorkflowInputParams": true,
+        "logLevel": "success"
+      },
+      "dropdownData": null
+    },
+    {
+      "timestamp": 1789896677416,
+      "message": "--- Running query: fetchHNBestStories ---",
+      "tags": {
+        "blockPluginId": "fetchHNBestStories"
+      }
+    },
+    {
+      "timestamp": 1789896677418,
+      "message": "--- Running query: query26 ---",
+      "tags": {
+        "blockPluginId": "query26"
+      }
+    },
+    {
+      "timestamp": 1789896677418,
+      "message": "--- Running query: workflow3 ---",
+      "tags": {
+        "blockPluginId": "workflow3"
+      }
+    },
+    {
+      "timestamp": 1789896677418,
+      "message": "--- Running query: code6 ---",
+      "tags": {
+        "blockPluginId": "code6"
+      }
+    },
+    {
+      "timestamp": 1789896677420,
+      "message": "Unexpected Error WorkflowId was not provided"
+    },
+    {
+      "timestamp": 1789896677423,
+      "message": "Error evaluating workflow3: WorkflowId was not provided",
+      "tags": {
+        "logLevel": "error",
+        "blockPluginId": "workflow3"
+      }
+    },
+    {
+      "timestamp": 1789896677423,
+      "message": "--- Failed running query: workflow3 ---",
+      "tags": {
+        "logLevel": "error",
+        "blockPluginId": "workflow3"
+      }
+    },
+    {
+      "timestamp": 1789896677423,
+      "message": "--- Hit failure, skipping queries: fetchHNBestStories, query26, code6, query1, branch4, query27, agent1, filter1, code5 ---",
+      "tags": {
+        "logLevel": "error"
+      }
+    },
+    {
+      "timestamp": 1789896677423,
+      "message": "--- Successfully finished running query: fetchHNBestStories ---",
+      "tags": {
+        "blockPluginId": "fetchHNBestStories",
+        "logLevel": "success"
+      }
+    },
+    {
+      "timestamp": 1789896677423,
+      "message": "--- Successfully finished running query: code6 ---",
+      "tags": {
+        "blockPluginId": "code6",
+        "logLevel": "success"
+      }
+    },
+    {
+      "timestamp": 1789896677652,
+      "message": "--- Successfully finished running query: query26 ---",
+      "tags": {
+        "blockPluginId": "query26",
+        "logLevel": "success"
+      }
+    }
+  ],
+  "status": "FAILURE",
+  "nextForwardToken": "f/39916029740013753515379901409542599797306205613799374863/s"
+}

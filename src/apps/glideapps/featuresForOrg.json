@@ -1,0 +1,472 @@
+{
+  "features": {
+    "iframe-embed": {
+      "requiredPlanLabel": "Business",
+      "requiredTier": "business"
+    },
+    "gmail": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "mixpanel": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "segment": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "koala": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "pinecone": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "open-ai": true,
+    "open-ai-v2": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "webhook-trigger": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "email-trigger": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "slack-bot": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "twilio": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "discord": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "google-calendar": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "gravatar": true,
+    "intercom": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "meta-pixel": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "urlbox": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "files": true,
+    "browser": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "glide-ai": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "glide-api": {
+      "requiredPlanLabel": "Business",
+      "requiredTier": "business"
+    },
+    "giphy": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "azure-ml": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "gtag": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "google-analytics-non-ua": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "docusign": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "zendesk": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "stripe": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "short-io": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "github": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "zenrows": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "hubspot": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "google-stt": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "google-vision": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "clearbit": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "make": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "zapier": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "generate-csv": true,
+    "outlook": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "google-maps": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "pexels": true,
+    "ifttt-webhook": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "docsautomator": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "microsoft-teams": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "push-notifications": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "device-features": true,
+    "pdf-moneky": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "asana": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "data-structures": true,
+    "radar": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "replicate": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "yelp": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "mysql": {
+      "requiredPlanLabel": "Enterprise",
+      "requiredTier": "enterprise"
+    },
+    "postgresql": {
+      "requiredPlanLabel": "Enterprise",
+      "requiredTier": "enterprise"
+    },
+    "sqlserver": {
+      "requiredPlanLabel": "Enterprise",
+      "requiredTier": "enterprise"
+    },
+    "snowflake": {
+      "requiredPlanLabel": "Contact Sales",
+      "requiredTier": "contact-sales"
+    },
+    "workos": {
+      "requiredPlanLabel": "Enterprise",
+      "requiredTier": "enterprise"
+    },
+    "workos-per-org": {
+      "requiredPlanLabel": "Contact Sales",
+      "requiredTier": "contact-sales"
+    },
+    "google-cloud-sql": {
+      "requiredPlanLabel": "Enterprise",
+      "requiredTier": "enterprise"
+    },
+    "generic-api": {
+      "requiredPlanLabel": "Business",
+      "requiredTier": "business"
+    },
+    "atc-api": true,
+    "json": true,
+    "native-barcode-scanner": {
+      "requiredPlanLabel": "Business",
+      "requiredTier": "business"
+    },
+    "trigger-webhook-plugin": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "sign-on-with-glide": true,
+    "image-editor": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "bigquery-plugin": {
+      "requiredPlanLabel": "Business",
+      "requiredTier": "business"
+    },
+    "elevenlabs": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "link-in-the-loop": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "opengraph": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "google-gemini": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "google-gemini-v2": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "open-ai-v3": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "anthropic-claude": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "openrouter": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "xml": true,
+    "app-special-values": true,
+    "posthog": {
+      "requiredPlanLabel": "Explorer",
+      "requiredTier": "starter"
+    },
+    "code-sandbox": {
+      "requiredPlanLabel": "Contact Sales",
+      "requiredTier": "contact-sales"
+    },
+    "membrane-salesforce": {
+      "requiredPlanLabel": "Contact Sales",
+      "requiredTier": "contact-sales"
+    },
+    "membrane-quickbooks": {
+      "requiredPlanLabel": "Contact Sales",
+      "requiredTier": "contact-sales"
+    },
+    "membrane-xero": {
+      "requiredPlanLabel": "Contact Sales",
+      "requiredTier": "contact-sales"
+    },
+    "bigquery": {
+      "requiredPlanLabel": "Enterprise",
+      "requiredTier": "enterprise"
+    },
+    "glide-big-tables": {
+      "requiredPlanLabel": "Business",
+      "requiredTier": "business"
+    },
+    "gsheet": {
+      "requiredPlanLabel": "Maker",
+      "requiredTier": "pro"
+    },
+    "airtable": {
+      "requiredPlanLabel": "Business",
+      "requiredTier": "business"
+    },
+    "excel": {
+      "requiredPlanLabel": "Business",
+      "requiredTier": "business"
+    },
+    "appLoginsSheet": true,
+    "appUserRequestAccessInPrivateProjectsDefault": true,
+    "automaticRefresh": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "base64EncodePublicUserProfiles": true,
+    "bigQuery": {
+      "requiredTier": "business",
+      "requiredPlanLabel": "Business"
+    },
+    "bigTables": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "canAccessAnalytics": false,
+    "canChangeAuthType": true,
+    "canCreateSupportTicket": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "canCustomizeSignIn": {
+      "requiredTier": "pro",
+      "requiredPlanLabel": "Maker"
+    },
+    "canDisableShare": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "canDowngrade": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "canPausePublish": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "canSubmitTemplate": true,
+    "canTransferBetweenUsers": false,
+    "canTransferToOrg": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "canUpgrade": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "canUseSignInWithGoogle": true,
+    "confirmChangeAuthOnUpgrade": true,
+    "customDomains": {
+      "requiredTier": "pro",
+      "requiredPlanLabel": "Maker"
+    },
+    "customSignInAppearance": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "downgradeBeforeDelete": true,
+    "gmailForSendEmails": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "googleAnalytics": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "googleSharedDrive": true,
+    "integrationsCountTowardUpdatesQuota": true,
+    "isAgency": false,
+    "isFreeEminence": true,
+    "isPrivateProTrial": false,
+    "isUserMetered": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "isV1Pro": false,
+    "logOrgLogin": true,
+    "needsBuilderModifyAppFeatures": false,
+    "needsPublishableOrgToTransfer": false,
+    "newNewAppFlow": true,
+    "offlineActionQueue": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "pagesCustomCss": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "personalUsersOnly": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "proComponents": {
+      "requiredTier": "business",
+      "requiredPlanLabel": "Business"
+    },
+    "proDisplayQuotas": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "proIcons": true,
+    "protectedColumns": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "removeBranding": {
+      "requiredTier": "pro",
+      "requiredPlanLabel": "Maker"
+    },
+    "roles": true,
+    "rowQuotasIncludeBigTables": false,
+    "showQuotaBanners": true,
+    "showReportApp": true,
+    "shouldUseNewPrivacy": true,
+    "signInAgreements": {
+      "requiredTier": "pro",
+      "requiredPlanLabel": "Maker"
+    },
+    "supportsQuotaUpgrades": true,
+    "tabletMode": true,
+    "unlimitedPasswordAndTeamMembersOnlyUsers": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "unlimitedZapier": false,
+    "upgradeButton": true,
+    "virtualEmailAddressesInPublicProjectsDefault": false,
+    "withGrandfathering": false,
+    "queryTablesAPICountsTowardUpdatesQuota": {
+      "requiredTier": "starter",
+      "requiredPlanLabel": "Explorer"
+    },
+    "mutateTablesAPICountsTowardUpdatesQuota": true,
+    "signaturesCountTowardUpdatesQuota": false,
+    "userCRUDActionsOnInternalDataSourcesCountTowardUpdatesQuota": true,
+    "userCRUDActionsOnExternalDataSourcesCountTowardUpdatesQuota": true,
+    "glideAPIv2CountsTowardUpdatesQuota": true,
+    "deletingOrgRequiresSupport": false,
+    "pgMirrorSyncsCountTowardUpdatesQuota": false,
+    "blockUpdatesUsage": false,
+    "blockUsersUsage": false,
+    "glideAgentUsageCountsTowardUpdatesQuota": false,
+    "automaticLogout": false,
+    "canUseBackups": false,
+    "disallowCloudinary": true,
+    "folderPermissions": false,
+    "printScreenToPDF": {
+      "requiredTier": "business",
+      "requiredPlanLabel": "Business"
+    }
+  },
+  "newNewAppFlow": true,
+  "isV4SystemUser": true
+}

@@ -1,0 +1,412 @@
+{
+  "name": "projects/glide-prod/databases/(default)/documents/users-v1/cIxxT2CIisUJo5DF1lQv",
+  "fields": {
+    "appTrials": {
+      "mapValue": {}
+    },
+    "freeEntitlementsPriceOverride": {
+      "stringValue": "price_free_2023-01-01"
+    },
+    "emails": {
+      "arrayValue": {
+        "values": [
+          {
+            "stringValue": "peterjaberau@gmail.com"
+          }
+        ]
+      }
+    },
+    "referrals": {
+      "integerValue": "0"
+    },
+    "reasonForGlide": {
+      "stringValue": "For work"
+    },
+    "workRole": {
+      "stringValue": "IT & Engineering"
+    },
+    "otherUseCase": {
+      "stringValue": ""
+    },
+    "useCase": {
+      "stringValue": "field operations"
+    },
+    "customerInformation": {
+      "mapValue": {
+        "fields": {
+          "serial": {
+            "integerValue": "-1"
+          }
+        }
+      }
+    },
+    "stripeCustomerIDs": {
+      "arrayValue": {}
+    },
+    "integrations": {
+      "arrayValue": {
+        "values": [
+          {
+            "mapValue": {
+              "fields": {
+                "authentication": {
+                  "mapValue": {
+                    "fields": {
+                      "kind": {
+                        "stringValue": "oauth2-offline"
+                      },
+                      "idToken": {
+                        "stringValue": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjOWM3OGUzYjAwZTFiYjA5MmQyNDZjODg3YjExMjIwYzg3YjdkMjAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzOTcwNDYyMTU5MTEtYWVpZDJsbjdkdTdjZ2l2amNmOGliOGQ0djhibHZyZGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIzOTcwNDYyMTU5MTEtYWVpZDJsbjdkdTdjZ2l2amNmOGliOGQ0djhibHZyZGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI5NjIzMTUxNTkxMjc0MDQwNDkiLCJlbWFpbCI6InBldGVyamFiZXJhdUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IkotbDhlclFHc3RYQmJvVDJtVTBmMWciLCJuYW1lIjoiUGV0ZXIgSmFiZXIiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUFjSFR0ZVljQVEyVkVPZHNNZTN5SGdxd3ZrLXdWU19DWXdOZGNXc2RsU3VoN0dLPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IlBldGVyIiwiZmFtaWx5X25hbWUiOiJKYWJlciIsImxvY2FsZSI6ImVuIiwiaWF0IjoxNjkyMDAzODk0LCJleHAiOjE2OTIwMDc0OTR9.GNHH08cgNyJv-k1BHiU9CPNiE_BrzPgioZQFl6lsxI-zMAgerOIFYXvAdtugVMG9i3NqAnd1rVBOyhm85RMJkXD5ayQsGzhsyhQ67Ygql5NEPojUtAab1Y_8GTFAFtvP6IyLrU0UPM1eUtyGgzq_acCi-ahkl9HKXAkN4cTqasTN7eTpTbf6IJkc51obcqL13HUJ2qEJ9s3gTqFzLld-fb-Ru864EcLNMBdlWAn1XWxS4TJ2ZUo11kEivUxR7kNN8kAKZ-DfR1-ugNEc4hKnS8X6TGd1ng7yUQk0ltrurDsIM3bR92NwleJS8kHY-Ihhr6Jb6VD7mSsMd67xuAxkNg"
+                      },
+                      "refreshToken": {
+                        "stringValue": "[REDACTED: Google OAuth refresh token]"
+                      }
+                    }
+                  }
+                },
+                "name": {
+                  "stringValue": "google-drive"
+                },
+                "kind": {
+                  "stringValue": "google-drive"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "orgUserIDs": {
+      "arrayValue": {
+        "values": [
+          {
+            "stringValue": "1oTMe7Opw2imuxlsDSpy"
+          },
+          {
+            "stringValue": "TzVasc3kgNg8LFi3kyJB"
+          }
+        ]
+      }
+    },
+    "devicePreferences": {
+      "mapValue": {
+        "fields": {
+          "aqvR7YXauoRxjigxp31U": {
+            "stringValue": "desktop"
+          },
+          "ypkwf5as4ERREKQEKPAF": {
+            "stringValue": "desktop"
+          },
+          "iOxK1yLZqPGpHDNeIh9a-template-builder": {
+            "stringValue": "desktop"
+          },
+          "njp0UqKP1yAyrj7kyUkK": {
+            "stringValue": "phone"
+          },
+          "Qbp5HQfXqjKlE2D4qHMl-template-builder": {
+            "stringValue": "desktop"
+          },
+          "YbjzTYxIinzyyKduKpZk": {
+            "stringValue": "desktop"
+          }
+        }
+      }
+    },
+    "planAppIDs": {
+      "mapValue": {
+        "fields": {
+          "pro": {
+            "arrayValue": {}
+          }
+        }
+      }
+    },
+    "email": {
+      "stringValue": "peterjaberau@gmail.com"
+    },
+    "kind": {
+      "stringValue": "user"
+    },
+    "hubspotContactID": {
+      "stringValue": "209286951"
+    },
+    "photoURL": {
+      "stringValue": "https://lh3.googleusercontent.com/a/ACg8ocKKvTMAi9X1pGF8xIaEOecBnrmus1pT7f5WElpMGUILpSmyRQ=s96-c"
+    },
+    "authIDs": {
+      "arrayValue": {
+        "values": [
+          {
+            "stringValue": "jsG9Ub53i9bms4D9Ru1mRwGuLSD2"
+          }
+        ]
+      }
+    },
+    "features": {
+      "mapValue": {
+        "fields": {
+          "pagesCustomCss": {
+            "booleanValue": false
+          },
+          "unlimitedBarcodeScanning": {
+            "booleanValue": false
+          },
+          "JSONata": {
+            "booleanValue": false
+          },
+          "alternateUniverseGlide": {
+            "booleanValue": false
+          },
+          "privateMagicLinks": {
+            "booleanValue": false
+          },
+          "yesCodeAction": {
+            "booleanValue": false
+          },
+          "removeBranding": {
+            "booleanValue": false
+          },
+          "filterSortLimitColumn": {
+            "booleanValue": false
+          },
+          "glideAI": {
+            "booleanValue": false
+          },
+          "multipleFilters": {
+            "booleanValue": false
+          },
+          "canOnlyMakePages": {
+            "booleanValue": true
+          },
+          "appStoreReview": {
+            "booleanValue": false
+          },
+          "queryableNativeTables": {
+            "booleanValue": false
+          },
+          "copyToClipboardAction": {
+            "booleanValue": false
+          },
+          "multiFileUpload": {
+            "booleanValue": false
+          },
+          "chatGPTButton": {
+            "booleanValue": false
+          },
+          "convertAppToPage": {
+            "booleanValue": false
+          },
+          "primaryKeyProperties": {
+            "booleanValue": false
+          },
+          "genericAPI": {
+            "booleanValue": false
+          },
+          "canApplyPromoCodes": {
+            "booleanValue": true
+          },
+          "authenticationSupportPassword": {
+            "booleanValue": false
+          },
+          "forceHardEnforcement": {
+            "booleanValue": false
+          },
+          "forceSoftEnforcement": {
+            "booleanValue": false
+          },
+          "hasV3TeamBasedPricing": {
+            "booleanValue": true
+          },
+          "billingVnext": {
+            "booleanValue": false
+          },
+          "isV3FreePlan": {
+            "booleanValue": true
+          },
+          "advancedPro": {
+            "booleanValue": false
+          },
+          "notesComponent": {
+            "booleanValue": false
+          },
+          "offlineActionQueue": {
+            "booleanValue": false
+          },
+          "allowNCMOverWire": {
+            "booleanValue": false
+          },
+          "authenticationSupportEmailWhitelist": {
+            "booleanValue": false
+          },
+          "onChangeAction": {
+            "booleanValue": false
+          },
+          "autoApproveTemplate": {
+            "booleanValue": false
+          },
+          "commentsCollection": {
+            "booleanValue": false
+          },
+          "omitNotifications": {
+            "booleanValue": false
+          },
+          "forceAllowTemplateSubmit": {
+            "booleanValue": false
+          },
+          "ncmPerformanceAnalysis": {
+            "booleanValue": false
+          },
+          "jdbcDataSources": {
+            "booleanValue": false
+          },
+          "addRowToSheet": {
+            "booleanValue": false
+          },
+          "isPluginsAlpha": {
+            "booleanValue": false
+          },
+          "hasMigratedTeamTemplates": {
+            "booleanValue": false
+          },
+          "billingVNoneCodePaths": {
+            "booleanValue": false
+          },
+          "unifiedApps": {
+            "booleanValue": false
+          },
+          "nonBlockingButton": {
+            "booleanValue": false
+          },
+          "adminPanel": {
+            "booleanValue": false
+          },
+          "appAnalytics": {
+            "booleanValue": false
+          },
+          "emailClientOption": {
+            "booleanValue": false
+          },
+          "builderTrackingDisableAnalytics": {
+            "booleanValue": false
+          },
+          "payAsYouGoAddon": {
+            "booleanValue": false
+          },
+          "massScanBarcodes": {
+            "booleanValue": false
+          }
+        }
+      }
+    },
+    "displayName": {
+      "stringValue": "Peter Jaber"
+    },
+    "otherWorkRole": {
+      "stringValue": ""
+    },
+    "reasonForGlideOtherExplanation": {
+      "stringValue": ""
+    },
+    "appIDs": {
+      "arrayValue": {}
+    },
+    "templateLicenses": {
+      "arrayValue": {}
+    },
+    "flags": {
+      "mapValue": {
+        "fields": {
+          "hasSeenOrganizeTip": {
+            "booleanValue": false
+          },
+          "templateMigrationTip": {
+            "stringValue": "not-needed"
+          },
+          "useSystemTheme": {
+            "booleanValue": true
+          },
+          "hasSeenNavigationTip": {
+            "booleanValue": false
+          },
+          "hidePagesAdvert": {
+            "booleanValue": false
+          },
+          "shouldShowGlideOSInviteBanner": {
+            "booleanValue": false
+          },
+          "hideGettingStartedPrompt": {
+            "booleanValue": false
+          },
+          "allowEmail": {
+            "booleanValue": false
+          },
+          "onboardedIntoTheAgent": {
+            "booleanValue": false
+          },
+          "activationChecklist": {
+            "stringValue": "skipped"
+          },
+          "showActivationChecklist": {
+            "booleanValue": true
+          },
+          "hasDismissedFolderPermissionsAd": {
+            "arrayValue": {}
+          },
+          "builderTheme": {
+            "stringValue": "light"
+          },
+          "hasSeenLearningCenter": {
+            "booleanValue": true
+          },
+          "visibilityWarningComplete": {
+            "booleanValue": true
+          },
+          "onboardingComplete": {
+            "booleanValue": true
+          },
+          "builderTrackingOptOut": {
+            "booleanValue": false
+          },
+          "unprotectedColumnWarningComplete": {
+            "booleanValue": false
+          },
+          "hasSeenHireAnExpertDialog": {
+            "booleanValue": true
+          },
+          "hasSeenHireAnExpertHelpMenuItem": {
+            "booleanValue": true
+          },
+          "filterWarningComplete": {
+            "booleanValue": false
+          },
+          "disabledLinkTablesModal": {
+            "booleanValue": false
+          },
+          "lastAcceptedTermsOfService": {
+            "integerValue": "8"
+          },
+          "disabledNewComponentsForNewColumns": {
+            "booleanValue": false
+          },
+          "tourComplete": {
+            "booleanValue": false
+          }
+        }
+      }
+    },
+    "createdAt": {
+      "integerValue": "1692003896790"
+    },
+    "planCounts": {
+      "mapValue": {
+        "fields": {
+          "pro": {
+            "integerValue": "0"
+          }
+        }
+      }
+    }
+  },
+  "createTime": "2023-08-14T09:04:56.841783Z",
+  "updateTime": "2026-09-20T01:56:12.450749Z"
+}

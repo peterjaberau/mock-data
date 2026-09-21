@@ -1,0 +1,74 @@
+{
+  "model": { "selects": [] },
+  "fields": [
+    {
+      "component": "Panel",
+      "props": {
+        "header": "Icons",
+        "toggleable": true,
+        "class": "my-3",
+        "pt": "$:{ header: { class: 'bg-gray-200' }}"
+      },
+      "children": [
+        {
+          "component": "div",
+          "props": {
+            "class": "flex flex-wrap gap-3 justify-content-start p-3"
+          },
+          "children": [
+            {
+              "component": "Button",
+              "props": {
+                "icon": "pi pi-check",
+                "aria-label": "Submit"
+              }
+            },
+            {
+              "component": "Button",
+              "props": {
+                "label": "Submit",
+                "icon": "pi pi-check"
+              }
+            },
+            {
+              "component": "Button",
+              "props": {
+                "label": "$:JSON.stringify(ADD(1, 1))",
+                "icon": "pi pi-check",
+                "iconPos": "right"
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "component": "Panel",
+      "props": {
+        "header": "Loading",
+        "toggleable": true,
+        "class": "my-3",
+        "pt": "$:{ header: { class: 'bg-gray-200' }}"
+      },
+      "children": [
+        {
+          "component": "div",
+          "props": {
+            "class": "flex flex-wrap gap-3 justify-content-start p-3"
+          },
+          "children": [
+            {
+              "component": "Button",
+              "props": {
+                "icon": "pi pi-search",
+                "label": "Search",
+                "onClick": "@:SUBMIT_MESSAGE()"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

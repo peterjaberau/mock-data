@@ -1,0 +1,42 @@
+{
+  "org": {
+    "id": "org",
+    "users": ["user"],
+    "theme": {},
+    "appThemes": [],
+    "preloadedCSS": null
+  },
+  "user": {
+    "id": "user",
+    "enabled": true,
+    "metadata": {},
+    "roleScopes": [],
+    "organization": {
+      "preloadedCSS": null,
+      "themeId": null,
+      "defaultAppThemeId": null
+    }
+  },
+  "userSpaces": [
+    {
+      "userId": "user",
+      "orgId": "org",
+      "spaceName": "Admin Space"
+    }
+  ],
+  "queries": [{
+    "type": "viewLayout",
+    "name": "view_layout",
+    "displayName": "view_layout",
+    "editorType": "JSONQuery"
+  },
+    {
+      "type": "viewTheme",
+      "name": "view_theme",
+      "displayName": "view_theme",
+      "editorType": "JSONQuery"
+    }
+
+  ],
+  "experimentValues": {}
+}

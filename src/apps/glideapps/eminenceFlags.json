@@ -1,0 +1,209 @@
+{
+  "allowRealEmails": true,
+  "apiCapabilities": {
+    "mutateTables": false,
+    "queryTables": false,
+    "requestReload": false,
+    "createAnonymousUser": false
+  },
+  "badge": "Legacy Free",
+  "canAppUserRequestAccess": "private",
+  "displayName": "Legacy Free",
+  "includedWhitelabels": 0,
+  "maxSingleUploadBytes": 10485760,
+  "pluginTier": "free",
+  "quotaContext": "org",
+  "quotaEnforcementScheme": "free",
+  "stripeTransactionFeePercentage": 5,
+  "transferToOrgAs": "public",
+  "authenticationSupport": {
+    "public": true,
+    "publicWithEmail": true,
+    "publicDisabled": true,
+    "password": false,
+    "emailWhitelist": true,
+    "userProfiles": true,
+    "allowedEmailDomains": true,
+    "organizationMembers": true,
+    "justMe": false,
+    "optionalPublicWithEmail": true,
+    "optionalOtherEmail": true
+  },
+  "pluginAllowList": [
+    ""
+  ],
+  "pluginDenyList": [],
+  "allowedPlugins": [
+    "open-ai",
+    "gravatar",
+    "files",
+    "generate-csv",
+    "pexels",
+    "device-features",
+    "data-structures",
+    "atc-api",
+    "json",
+    "sign-on-with-glide",
+    "xml",
+    "app-special-values"
+  ],
+  "quotas": {
+    "airtable-rows-used": {
+      "prepaidUsage": 500,
+      "maxOverage": 0
+    },
+    "app-editors": {
+      "prepaidUsage": 2,
+      "maxOverage": 0
+    },
+    "barcodes-scanned": {
+      "prepaidUsage": 0,
+      "maxOverage": 0
+    },
+    "big-table-rows": {
+      "prepaidUsage": 0,
+      "maxOverage": 0
+    },
+    "deliver-email": {
+      "prepaidUsage": 0,
+      "maxOverage": 0
+    },
+    "file-bytes-used": {
+      "prepaidUsage": 209715200,
+      "maxOverage": 0
+    },
+    "geocodes": {
+      "prepaidUsage": 10,
+      "maxOverage": 0
+    },
+    "map-pins": {
+      "prepaidUsage": 10,
+      "maxOverage": 0
+    },
+    "private-users": {
+      "prepaidUsage": 3,
+      "maxOverage": 0
+    },
+    "public-users": {
+      "prepaidUsage": 10,
+      "maxOverage": 0
+    },
+    "published-apps": {
+      "prepaidUsage": 3,
+      "maxOverage": 0
+    },
+    "reloads": {
+      "prepaidUsage": 9007199254740991,
+      "maxOverage": 0
+    },
+    "rows-used": {
+      "prepaidUsage": 500,
+      "maxOverage": 0
+    },
+    "signatures": {
+      "prepaidUsage": 0,
+      "maxOverage": 0
+    },
+    "sql-rows": {
+      "prepaidUsage": 0,
+      "maxOverage": 0
+    },
+    "updates": {
+      "prepaidUsage": 1000,
+      "maxOverage": 0
+    },
+    "users": {
+      "prepaidUsage": 9007199254740991,
+      "maxOverage": 0
+    },
+    "zaps": {
+      "prepaidUsage": 9007199254740991,
+      "maxOverage": 0
+    },
+    "glide-agent": {
+      "prepaidUsage": 5,
+      "maxOverage": 0
+    },
+    "glide-agent-tool-calls": {
+      "prepaidUsage": 9007199254740991,
+      "maxOverage": 0
+    }
+  },
+  "actionLogsHistoryLength": 7,
+  "automationTriggerScheduleBillableConsumed": 1,
+  "automationScheduleKind": [],
+  "automationTriggerKind": [
+    "app"
+  ],
+  "automationMaxStepsLimit": 2000,
+  "automationMaxConcurrentRuns": 10,
+  "glideAgentPricingScheme": "message-only",
+  "appLoginsSheet": true,
+  "appUserRequestAccessInPrivateProjectsDefault": true,
+  "automaticRefresh": false,
+  "base64EncodePublicUserProfiles": true,
+  "bigQuery": false,
+  "bigTables": false,
+  "canAccessAnalytics": false,
+  "canChangeAuthType": true,
+  "canCreateSupportTicket": false,
+  "canCustomizeSignIn": false,
+  "canDisableShare": false,
+  "canDowngrade": false,
+  "canPausePublish": false,
+  "canSubmitTemplate": true,
+  "canTransferBetweenUsers": false,
+  "canTransferToOrg": false,
+  "canUpgrade": false,
+  "canUseSignInWithGoogle": true,
+  "confirmChangeAuthOnUpgrade": true,
+  "customDomains": false,
+  "customSignInAppearance": false,
+  "downgradeBeforeDelete": true,
+  "gmailForSendEmails": false,
+  "googleAnalytics": false,
+  "googleSharedDrive": true,
+  "integrationsCountTowardUpdatesQuota": true,
+  "isAgency": false,
+  "isFreeEminence": true,
+  "isPrivateProTrial": false,
+  "isUserMetered": false,
+  "isV1Pro": false,
+  "logOrgLogin": true,
+  "needsBuilderModifyAppFeatures": false,
+  "needsPublishableOrgToTransfer": false,
+  "newNewAppFlow": true,
+  "offlineActionQueue": false,
+  "pagesCustomCss": false,
+  "personalUsersOnly": false,
+  "proComponents": false,
+  "proDisplayQuotas": false,
+  "proIcons": true,
+  "protectedColumns": false,
+  "removeBranding": false,
+  "roles": true,
+  "rowQuotasIncludeBigTables": false,
+  "shouldUseNewPrivacy": true,
+  "showQuotaBanners": true,
+  "showReportApp": true,
+  "signInAgreements": false,
+  "supportsQuotaUpgrades": true,
+  "tabletMode": true,
+  "unlimitedPasswordAndTeamMembersOnlyUsers": false,
+  "unlimitedZapier": false,
+  "upgradeButton": true,
+  "virtualEmailAddressesInPublicProjectsDefault": false,
+  "withGrandfathering": false,
+  "queryTablesAPICountsTowardUpdatesQuota": false,
+  "mutateTablesAPICountsTowardUpdatesQuota": true,
+  "glideAPIv2CountsTowardUpdatesQuota": true,
+  "signaturesCountTowardUpdatesQuota": false,
+  "userCRUDActionsOnInternalDataSourcesCountTowardUpdatesQuota": true,
+  "userCRUDActionsOnExternalDataSourcesCountTowardUpdatesQuota": true,
+  "deletingOrgRequiresSupport": false,
+  "pgMirrorSyncsCountTowardUpdatesQuota": false,
+  "blockUpdatesUsage": false,
+  "blockUsersUsage": false,
+  "glideAgentUsageCountsTowardUpdatesQuota": false,
+  "disallowCloudinary": true
+}

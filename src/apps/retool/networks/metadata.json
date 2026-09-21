@@ -1,0 +1,91 @@
+{
+  "metadata": [
+    {
+      "id": "competition-scanner",
+      "name": "Competition Scanner",
+      "iconName": "EyeglassesDuotone",
+      "iconColor": "red",
+      "description": "Researches your competition, creates and/or updates a competitive analysis, emails you when there are notable updates.",
+      "resources": [
+        "retoolDb",
+        "retoolEmail"
+      ],
+      "category": "Data Intelligence"
+    },
+    {
+      "id": "sales-lead-responder",
+      "name": "Sales Lead Responder",
+      "iconName": "MailboxDuotone",
+      "iconColor": "blue",
+      "description": "Respond to new leads in real time, understand if they are a net new customer, or new user at existing customer, research them and their company, send them the appropriate email template (e.g. book a demo).",
+      "resources": [
+        "retoolDb",
+        "retoolEmail"
+      ],
+      "category": "Sales & Support"
+    },
+    {
+      "id": "customer-support",
+      "name": "Customer Support Agent",
+      "iconName": "ChatsDuotone",
+      "iconColor": "blue",
+      "description": "This agent triages customer support tickets and does one of these things depending on the ticket details: resolves the ticket, hands off to a \"Customer Feedback\" agent, hands off to a \"Billing agent\", or escalates complex cases to a human.",
+      "resources": [
+        "retoolDb",
+        "retoolEmail"
+      ],
+      "category": "Sales & Support"
+    },
+    {
+      "id": "automated-chargeback-fighter",
+      "name": "Automated Chargeback Fighter",
+      "iconName": "CreditCardDuotone",
+      "iconColor": "red",
+      "description": "Automatically responds to fraudulent chargebacks using pre-approved dispute templates.",
+      "resources": [],
+      "category": "Finance Operations"
+    },
+    {
+      "id": "scheduling-assistant",
+      "name": "Scheduling Assistant",
+      "iconName": "CalendarDuotone",
+      "iconColor": "yellow",
+      "description": "Schedules or reschedules meetings, summarizes your calendar, highlights important events, and tells you when you're free.",
+      "resources": [
+        "retoolEmail"
+      ],
+      "category": "Scheduling & Meeting Assistants"
+    },
+    {
+      "id": "meeting-prep",
+      "name": "Meeting Prep",
+      "iconName": "NewspaperDuotone",
+      "iconColor": "yellow",
+      "description": "Sends you a pre-meeting email with attendee bios and key details before external meetings.",
+      "resources": [
+        "retoolEmail"
+      ],
+      "category": "Scheduling & Meeting Assistants"
+    },
+    {
+      "id": "google-docs-copilot",
+      "name": "Google Docs Copilot",
+      "iconName": "FileDuotone",
+      "iconColor": "blue",
+      "description": "Summarize and critique my document (e.g. product brief, report, etc) before sharing with my boss. ",
+      "resources": [],
+      "category": "Docs Copilots"
+    },
+    {
+      "id": "product-brief-generator",
+      "name": "Product Brief Generator",
+      "iconName": "ArticleNyTimesDuotone",
+      "iconColor": "purple",
+      "description": "Review roadmap, customer feedback, etc and draft a product brief for me based on a short outline of the feature + an existing template. ",
+      "resources": [
+        "retoolDb"
+      ],
+      "category": "Docs Copilots"
+    }
+  ]
+}

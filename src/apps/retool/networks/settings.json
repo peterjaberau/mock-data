@@ -1,0 +1,13 @@
+{
+  "settings": {
+    "enableAutoBranchNaming": true,
+    "enableCustomPullRequestTemplate": false,
+    "customPullRequestTemplate": null,
+    "forceUuidMapping": false,
+    "releaseManifestName": null,
+    "versionControlLocked": false,
+    "enableAutoCleanupBranches": true,
+    "disableAutoCatchUpCommits": false,
+    "enableMultiInstanceReleases": false
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "workflowsMetadata": [
+    {
+      "id": "2db1876d-a87e-4abc-a535-b7cc37fd033d",
+      "name": "Workflow - Peter Jaber - 2026-05-02 12:45:28 AM",
+      "isEnabled": false,
+      "workflowAccessLevel": "own",
+      "createdBy": 177737,
+      "folderId": 739201,
+      "protected": false,
+      "lastDeployedAt": "2026-05-01T14:45:29.025Z",
+      "deployedBy": "Peter Jaber",
+      "resourceNames": [
+        "webhook",
+        "JavascriptQuery"
+      ],
+      "startTriggerType": {
+        "type": "webhook"
+      },
+      "type": "workflow",
+      "private": false,
+      "description": "",
+      "iconName": "",
+      "iconColor": "",
+      "createdAt": "2026-05-01T14:45:29.004Z",
+      "updatedAt": "2026-08-01T03:58:26.828Z",
+      "releaseName": "0.0.1"
+    },
+    {
+      "id": "eae9f2cf-d554-42ff-bc80-37d26b4614a7",
+      "name": "Workflow - Peter Jaber - Jun 27, 2023 1:17 AM",
+      "isEnabled": false,
+      "workflowAccessLevel": "own",
+      "createdBy": 177737,
+      "folderId": 1024659,
+      "protected": false,
+      "lastDeployedAt": "2023-06-26T15:17:51.076Z",
+      "deployedBy": "Peter Jaber",
+      "resourceNames": [
+        "schedule",
+        "JavascriptQuery"
+      ],
+      "startTriggerType": {
+        "type": "schedule",
+        "cronString": "0 0 * * *"
+      },
+      "type": "workflow",
+      "private": false,
+      "description": null,
+      "iconName": null,
+      "iconColor": null,
+      "createdAt": "2023-06-26T15:17:51.055Z",
+      "updatedAt": "2026-08-01T04:17:51.490Z",
+      "releaseName": "0.0.1"
+    },
+    {
+      "id": "11757356-ed03-4732-a854-6a07df60fa1b",
+      "name": "Onboarding Demo - Peter Jaber",
+      "isEnabled": false,
+      "workflowAccessLevel": "own",
+      "createdBy": 177737,
+      "folderId": 739201,
+      "protected": false,
+      "lastDeployedAt": "2023-05-28T07:01:27.249Z",
+      "deployedBy": "Peter Jaber",
+      "resourceNames": [
+        "schedule",
+        "REST-WithoutResource",
+        "REST-WithoutResource",
+        "JavascriptQuery",
+        "JavascriptQuery",
+        "REST-WithoutResource"
+      ],
+      "startTriggerType": {
+        "type": "schedule",
+        "cronString": ""
+      },
+      "type": "workflow",
+      "private": false,
+      "description": null,
+      "iconName": null,
+      "iconColor": null,
+      "createdAt": "2023-05-28T07:01:27.226Z",
+      "updatedAt": "2026-08-01T03:55:11.764Z",
+      "releaseName": "0.0.1"
+    },
+    {
+      "id": "26277201-fc03-4bfe-8bf2-146c2b6a0114",
+      "name": "Workflow - Peter Jaber - Sep 22, 2023 1:59 AM",
+      "isEnabled": false,
+      "workflowAccessLevel": "own",
+      "createdBy": 177737,
+      "folderId": 739201,
+      "protected": false,
+      "lastDeployedAt": "2023-09-21T15:59:26.573Z",
+      "deployedBy": "Peter Jaber",
+      "resourceNames": [
+        "webhook",
+        "JavascriptQuery"
+      ],
+      "startTriggerType": {
+        "type": "webhook"
+      },
+      "type": "workflow",
+      "private": false,
+      "description": null,
+      "iconName": null,
+      "iconColor": null,
+      "createdAt": "2023-09-21T15:59:26.516Z",
+      "updatedAt": "2026-08-01T03:57:36.746Z",
+      "releaseName": "0.0.1"
+    }
+  ],
+  "universalWorkflowAccess": "own",
+  "workflowFolders": [
+    {
+      "id": 739201,
+      "name": "root",
+      "organizationId": 117894,
+      "systemFolder": true,
+      "parentFolderId": null,
+      "createdAt": "2022-10-20T20:37:30.563Z",
+      "updatedAt": "2022-10-20T20:37:30.563Z",
+      "folderType": "workflow",
+      "privateOwnerId": null,
+      "description": null,
+      "accessLevel": "own"
+    },
+    {
+      "id": 1024659,
+      "name": "archive",
+      "organizationId": 117894,
+      "systemFolder": true,
+      "parentFolderId": 739201,
+      "createdAt": "2022-10-27T01:31:13.816Z",
+      "updatedAt": "2022-10-27T01:31:13.816Z",
+      "folderType": "workflow",
+      "privateOwnerId": null,
+      "description": null,
+      "accessLevel": "own"
+    }
+  ],
+  "workflowsDisplayMetadata": {
+    "2db1876d-a87e-4abc-a535-b7cc37fd033d": {
+      "id": "2db1876d-a87e-4abc-a535-b7cc37fd033d",
+      "name": "Workflow - Peter Jaber - 2026-05-02 12:45:28 AM",
+      "updatedAt": "2026-08-01T03:58:26.828Z",
+      "type": "workflow",
+      "workflowAccessLevel": "own"
+    },
+    "eae9f2cf-d554-42ff-bc80-37d26b4614a7": {
+      "id": "eae9f2cf-d554-42ff-bc80-37d26b4614a7",
+      "name": "Workflow - Peter Jaber - Jun 27, 2023 1:17 AM",
+      "updatedAt": "2026-08-01T04:17:51.490Z",
+      "type": "workflow",
+      "workflowAccessLevel": "own"
+    },
+    "11757356-ed03-4732-a854-6a07df60fa1b": {
+      "id": "11757356-ed03-4732-a854-6a07df60fa1b",
+      "name": "Onboarding Demo - Peter Jaber",
+      "updatedAt": "2026-08-01T03:55:11.764Z",
+      "type": "workflow",
+      "workflowAccessLevel": "own"
+    },
+    "26277201-fc03-4bfe-8bf2-146c2b6a0114": {
+      "id": "26277201-fc03-4bfe-8bf2-146c2b6a0114",
+      "name": "Workflow - Peter Jaber - Sep 22, 2023 1:59 AM",
+      "updatedAt": "2026-08-01T03:57:36.746Z",
+      "type": "workflow",
+      "workflowAccessLevel": "own"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+[
+  [
+    "xXiGwEYVa1ByXMlKTMdR",
+    {
+      "appIDs": [
+        "ypkwf5as4ERREKQEKPAF"
+      ],
+      "action": {
+        "kind": "compound",
+        "key": "70OBihCWR3aYnUqhSYIBIw",
+        "conditionalFlows": [],
+        "elseFlow": {
+          "kind": "flow",
+          "key": "TUC8Z2nARnaKfNzLZX.oiQ",
+          "actions": [
+            {
+              "kind": "primitive",
+              "key": "qlD1zV-dQ.SmZpDCTRQ1uQ",
+              "actionDescription": {
+                "kind": "plugin-open-ai-complete-prompt",
+                "param_prompt": {
+                  "kind": "column",
+                  "value": {
+                    "kind": "default-ctx",
+                    "name": "Name"
+                  }
+                },
+                "param_model": {
+                  "kind": "string",
+                  "value": "text-davinci-003"
+                },
+                "param_temperature": {
+                  "kind": "column",
+                  "value": {
+                    "kind": "default-ctx",
+                    "name": "Count Active Positions"
+                  }
+                },
+                "param_frequency_penalty": {
+                  "kind": "column",
+                  "value": {
+                    "kind": "default-ctx",
+                    "name": "Count inactive Positions copy"
+                  }
+                }
+              }
+            },
+            {
+              "actionDescription": {
+                "kind": "Increment",
+                "outputRow": {
+                  "kind": "column",
+                  "value": {
+                    "kind": "default-ctx",
+                    "name": []
+                  }
+                },
+                "sourceColumn": {
+                  "kind": "column",
+                  "value": {
+                    "kind": "default-ctx",
+                    "name": "Name"
+                  }
+                },
+                "amount": {
+                  "kind": "number",
+                  "value": 1
+                }
+              },
+              "key": "mqVJaEY3RiOdPMHaHZTsvQ",
+              "kind": "primitive"
+            },
+            {
+              "actionDescription": {
+                "kind": "plugin-data-structures-string-set-add",
+                "param_stringSet": {
+                  "kind": "column",
+                  "value": {
+                    "kind": "default-ctx",
+                    "name": "Name"
+                  }
+                }
+              },
+              "key": "C.hHu1iJT.2rq9Dv9r1C6g",
+              "kind": "primitive"
+            }
+          ]
+        }
+      },
+      "title": "Untitled action",
+      "lastSeenAt": "2023-08-14T09:18:38.138Z",
+      "perApp": {
+        "ypkwf5as4ERREKQEKPAF": {
+          "tableName": {
+            "isSpecial": false,
+            "name": "native-table-QPKijX8LgCShuqEeGsAN"
+          }
+        }
+      },
+      "hasAutomation": false,
+      "version": 0
+    }
+  ]
+]

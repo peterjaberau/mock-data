@@ -1,0 +1,60 @@
+{
+  "border": "#0d0d0d",
+  "borderDark": "#faf9f8",
+  "outstandingTransactionLimit": 50,
+  "pageUrlEvents": [
+    {
+      "id": 1796881326,
+      "matchType": "contains",
+      "pattern": "discourse"
+    },
+    {
+      "id": 1796881325,
+      "matchType": "contains",
+      "pattern": "community"
+    },
+    {
+      "id": 1796879527,
+      "matchType": "contains",
+      "pattern": "/editor"
+    },
+    {
+      "id": 1796879525,
+      "matchType": "contains",
+      "pattern": "retool"
+    },
+    {
+      "id": 1796879524,
+      "matchType": "exactly",
+      "pattern": "https://retoolin.tryretool.com"
+    },
+    {
+      "id": 1796870115,
+      "matchType": "contains",
+      "pattern": "/settings"
+    }
+  ],
+  "interactiveEvents": [
+    {
+      "name": "docs_feedback_button_click",
+      "id": 1796893004,
+      "pattern": "docs-git-jen-docs-4469-feedback-widget-retool.vercel.app",
+      "properties": {
+        "selector": ".feedback-toc__trigger"
+      },
+      "matchType": "contains"
+    }
+  ],
+  "metricThresholds": [],
+  "metricsReportingIntervalSeconds": 60,
+  "metricsReportingEnabled": false,
+  "mobileMetricsReportingEnabled": false,
+  "maxAttrNameLength": 255,
+  "maxAttrValueLength": 255,
+  "maxEmailLength": 255,
+  "maxEventLength": 255,
+  "maxUserIdLength": 255,
+  "showSurveyBrand": false,
+  "dismissOnPageChange": false,
+  "showStripes": false
+}

@@ -1,0 +1,28 @@
+{
+  "userParams": {
+    "queryParams": {
+      "length": 0
+    },
+    "databaseNameOverrideParams": {
+      "length": 0
+    },
+    "databaseHostOverrideParams": {
+      "length": 0
+    },
+    "databaseUsernameOverrideParams": {
+      "length": 0
+    },
+    "databasePasswordOverrideParams": {
+      "length": 0
+    }
+  },
+  "queryType": "SqlQueryUnified",
+  "environment": "production",
+  "showLatest": true,
+  "isEditorMode": true,
+  "frontendVersion": "1",
+  "releaseVersion": null,
+  "includeQueryExecutionMetadata": true,
+  "streamResponse": false,
+  "isEmbedded": false
+}

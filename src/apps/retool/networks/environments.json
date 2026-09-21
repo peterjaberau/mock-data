@@ -1,0 +1,26 @@
+{
+  "environments": [
+    {
+      "id": "32caa813-0078-4317-94fc-7d3c5d1fd664",
+      "name": "production",
+      "description": "An environment to define the production configuration of your resources",
+      "displayColor": "#3C92DC",
+      "authorId": null,
+      "isDefault": true,
+      "createdAt": "2021-11-10T02:10:25.133Z",
+      "updatedAt": "2021-11-10T02:10:25.133Z",
+      "organizationId": 117894
+    },
+    {
+      "id": "588ec4ec-313a-429a-b76a-057af3bbdb1d",
+      "name": "staging",
+      "description": "An environment to define the staging configuration of your resources",
+      "displayColor": "#E9AB11",
+      "authorId": null,
+      "isDefault": false,
+      "createdAt": "2021-11-10T02:10:25.133Z",
+      "updatedAt": "2021-11-10T02:10:25.133Z",
+      "organizationId": 117894
+    }
+  ]
+}

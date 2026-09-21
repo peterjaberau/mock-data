@@ -1,0 +1,684 @@
+{
+  "workflow": {
+    "id": "11757356-ed03-4732-a854-6a07df60fa1b",
+    "saveId": "f6391a1a-d249-46a0-bc21-1404a5683d52",
+    "name": "Onboarding Demo - Peter Jaber",
+    "apiKey": "retool_wk_a00c186fcb2c42b8b06ff7e39c7402b3",
+    "description": null,
+    "organizationId": 117894,
+    "isEnabled": false,
+    "crontab": null,
+    "timezone": "Australia/Sydney",
+    "blockData": [
+      {
+        "top": -1440,
+        "left": 448,
+        "uuid": "393f22f5-ae71-4ad1-a1e4-f4174de29b51",
+        "pluginId": "startTrigger",
+        "blockType": "webhook",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "webhook",
+        "responseHeight": 603,
+        "retryPanelOpen": false,
+        "responsePanelState": "open",
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": 272,
+        "left": 48,
+        "uuid": "69f43ddb-89a0-48b6-95f3-14e232a82b45",
+        "comment": {
+          "body": "Using the previous block's information, we will\ncompose an email message to send to your attached email address.",
+          "visible": true,
+          "pluginId": "composeEmailMessage-comment"
+        },
+        "options": {},
+        "pluginId": "composeEmailMessage",
+        "blockType": "code",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": true,
+        "resourceName": "JavascriptQuery",
+        "retryPanelOpen": false,
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": -240,
+        "left": 384,
+        "uuid": "dfbcc4f7-7179-49fe-b009-2411171f4ed4",
+        "comment": {
+          "body": "After running all the blocks in a row, this workflow\ncan run front-to-back with the \"Run\" button in the top right of the editor. If the workflow\nis to your liking, you can \"deploy\" the workflow and \"enable\" it to run it on a scheduled cadence.",
+          "visible": false,
+          "pluginId": "sendEmailBlock-comment"
+        },
+        "options": {},
+        "pluginId": "sendEmail",
+        "blockType": "default",
+        "dimensions": {
+          "width": 336,
+          "height": 192
+        },
+        "editorType": "RESTQuery",
+        "environment": "production",
+        "isMinimized": true,
+        "resourceName": "REST-WithoutResource",
+        "retryPanelOpen": false,
+        "responsePanelState": "open",
+        "incomingOnSuccessEdges": [
+          "69f43ddb-89a0-48b6-95f3-14e232a82b45"
+        ]
+      },
+      {
+        "top": 656,
+        "left": 48,
+        "uuid": "58f792e4-a9cb-4e40-a4df-ddc62f1342a3",
+        "options": {
+          "parameters": [
+            {
+              "id": "00b56b36-6c5b-4583-a81f-99e2c1ecab9f",
+              "name": "param1",
+              "exampleValue": ""
+            }
+          ]
+        },
+        "pluginId": "function1",
+        "blockType": "function",
+        "editorType": "RESTQuery",
+        "environment": "production",
+        "isMinimized": true,
+        "resourceName": "REST-WithoutResource",
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": -624,
+        "left": 416,
+        "uuid": "391d40b3-896f-4ba3-bf47-a72366835e45",
+        "comment": {
+          "body": "",
+          "visible": false,
+          "pluginId": "query1-comment"
+        },
+        "pluginId": "query1",
+        "blockType": "default",
+        "editorType": "RESTQuery",
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "e28c6d07-5eff-4a61-bf57-701acb540e1e",
+        "incomingOnSuccessEdges": [
+          "a7f4f262-abb2-4727-898e-31e0f0cb6199"
+        ]
+      },
+      {
+        "top": 960,
+        "left": 48,
+        "uuid": "bb9362e4-a1b4-4762-99f7-16f03514eb9e",
+        "pluginId": "query10_lambda",
+        "blockType": "default",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": true,
+        "resourceName": "JavascriptQuery",
+        "incomingPorts": [],
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": 1264,
+        "left": 48,
+        "uuid": "0dda6fb7-f954-4ac3-bc63-204e080dd3e3",
+        "options": {
+          "to": "bb9362e4-a1b4-4762-99f7-16f03514eb9e",
+          "forEachUIType": "gui"
+        },
+        "pluginId": "query10",
+        "blockType": "forEach",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": true,
+        "resourceName": "JavascriptQuery",
+        "incomingPorts": [],
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": 1264,
+        "left": 560,
+        "uuid": "0c674b5d-6541-4970-b6d6-fd5eede10315",
+        "pluginId": "code1",
+        "blockType": "code",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": true,
+        "resourceName": "JavascriptQuery",
+        "incomingOnSuccessEdges": [
+          "0dda6fb7-f954-4ac3-bc63-204e080dd3e3"
+        ]
+      },
+      {
+        "top": 1568,
+        "left": 48,
+        "uuid": "80f22702-0a3b-4bb6-962c-7c20e2f2e3b5",
+        "options": {
+          "conditions": [
+            {
+              "id": "71a18097-bc40-40dd-9b73-fff39143bb4a",
+              "type": "if",
+              "statement": "",
+              "outgoingPortId": "02faf4ab-31e7-4436-8ac7-a93aec06fadf"
+            }
+          ]
+        },
+        "pluginId": "branch2",
+        "blockType": "conditional",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "JavascriptQuery",
+        "incomingPorts": [],
+        "outgoingPorts": [
+          {
+            "id": "02faf4ab-31e7-4436-8ac7-a93aec06fadf",
+            "name": "0",
+            "type": "conditional"
+          }
+        ],
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": 1872,
+        "left": 48,
+        "uuid": "d1ac5b61-17a9-4cd2-bf56-bb497a7fc54b",
+        "pluginId": "query15_lambda",
+        "blockType": "default",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "resourceName": "JavascriptQuery",
+        "incomingPorts": [],
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": 656,
+        "left": 560,
+        "uuid": "59d07f21-5236-43f9-905f-69c7007a0803",
+        "options": {
+          "to": "d1ac5b61-17a9-4cd2-bf56-bb497a7fc54b",
+          "from": "69f43ddb-89a0-48b6-95f3-14e232a82b45",
+          "forEachUIType": "gui"
+        },
+        "pluginId": "query15",
+        "blockType": "forEach",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "JavascriptQuery",
+        "incomingOnSuccessEdges": [
+          "69f43ddb-89a0-48b6-95f3-14e232a82b45"
+        ]
+      },
+      {
+        "top": 2176,
+        "left": 48,
+        "uuid": "39e85c72-930c-403b-9287-edd73b3e13fd",
+        "pluginId": "query17_lambda",
+        "blockType": "default",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "resourceName": "JavascriptQuery",
+        "incomingPorts": [],
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": 1264,
+        "left": 1072,
+        "uuid": "49a03c8a-4ac4-4748-8612-78dd773d2324",
+        "options": {
+          "to": "39e85c72-930c-403b-9287-edd73b3e13fd",
+          "from": "0c674b5d-6541-4970-b6d6-fd5eede10315",
+          "forEachUIType": "gui"
+        },
+        "pluginId": "query17",
+        "blockType": "forEach",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "JavascriptQuery",
+        "incomingOnSuccessEdges": [
+          "0c674b5d-6541-4970-b6d6-fd5eede10315"
+        ]
+      },
+      {
+        "top": 1568,
+        "left": 1584,
+        "uuid": "1ca7cb51-aa81-4ef9-8ee5-bbf06336c4e4",
+        "options": {
+          "conditions": [
+            {
+              "id": "0a6a5200-366a-4fa9-b82c-df5e59475102",
+              "type": "if",
+              "statement": "",
+              "outgoingPortId": "8c4f3ba0-9156-4096-80ff-d9e954739896"
+            }
+          ]
+        },
+        "pluginId": "branch3",
+        "blockType": "conditional",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "JavascriptQuery",
+        "incomingPorts": [],
+        "outgoingPorts": [
+          {
+            "id": "8c4f3ba0-9156-4096-80ff-d9e954739896",
+            "name": "0",
+            "type": "conditional"
+          }
+        ],
+        "incomingOnSuccessEdges": [
+          "49a03c8a-4ac4-4748-8612-78dd773d2324"
+        ]
+      },
+      {
+        "top": 1264,
+        "left": 1584,
+        "uuid": "388e8554-97de-48ae-a72a-4ce6d0bb808e",
+        "pluginId": "code3",
+        "blockType": "code",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "resourceName": "JavascriptQuery",
+        "incomingOnSuccessEdges": [
+          "49a03c8a-4ac4-4748-8612-78dd773d2324"
+        ]
+      },
+      {
+        "top": 1264,
+        "left": 2096,
+        "uuid": "7dd2b11b-d0e8-4e54-a6fa-0c771f4f2672",
+        "pluginId": "workflow1",
+        "blockType": "default",
+        "editorType": "WorkflowRun",
+        "environment": "production",
+        "resourceName": "WorkflowRun",
+        "incomingOnSuccessEdges": [
+          "388e8554-97de-48ae-a72a-4ce6d0bb808e"
+        ]
+      },
+      {
+        "top": 2480,
+        "left": 48,
+        "uuid": "043529ba-9b73-4938-9f7d-848881c960d4",
+        "pluginId": "query18",
+        "blockType": "default",
+        "environment": "production",
+        "responsePanelState": "closed",
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": 3392,
+        "left": 48,
+        "uuid": "e1fdd45d-7910-492d-b298-6d24fe0a8ebd",
+        "options": {
+          "body": "",
+          "status": "200"
+        },
+        "pluginId": "webhookReturn1",
+        "blockType": "webhookReturn",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "JavascriptQuery",
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": -1024,
+        "left": 400,
+        "uuid": "a7f4f262-abb2-4727-898e-31e0f0cb6199",
+        "pluginId": "fetchHNBestStories",
+        "blockType": "code",
+        "dimensions": {
+          "width": 336,
+          "height": 208
+        },
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "JavascriptQuery",
+        "incomingOnSuccessEdges": [
+          "393f22f5-ae71-4ad1-a1e4-f4174de29b51"
+        ]
+      },
+      {
+        "top": 1264,
+        "left": 2608,
+        "uuid": "0e73a9ca-0a01-4a49-856b-9192f32f0346",
+        "pluginId": "query24",
+        "blockType": "default",
+        "editorType": "RetoolAIQuery",
+        "environment": "production",
+        "resourceName": "retool_ai",
+        "incomingOnSuccessEdges": [
+          "7dd2b11b-d0e8-4e54-a6fa-0c771f4f2672"
+        ]
+      },
+      {
+        "top": 1568,
+        "left": 2608,
+        "uuid": "4f68b069-e5a3-4e8f-94b5-0faac71946dc",
+        "pluginId": "code4",
+        "blockType": "code",
+        "editorType": "PythonQuery",
+        "environment": "production",
+        "resourceName": "PythonQuery",
+        "incomingOnSuccessEdges": [
+          "7dd2b11b-d0e8-4e54-a6fa-0c771f4f2672"
+        ]
+      },
+      {
+        "top": 3696,
+        "left": 48,
+        "uuid": "cd029449-745e-4172-ad83-e4fb9bbbdcf5",
+        "pluginId": "query25_lambda",
+        "blockType": "default",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "resourceName": "JavascriptQuery",
+        "incomingPorts": [],
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": 1568,
+        "left": 560,
+        "uuid": "a736a50d-1cf6-4fdf-80c0-c041287b7749",
+        "options": {
+          "to": "cd029449-745e-4172-ad83-e4fb9bbbdcf5",
+          "from": "0dda6fb7-f954-4ac3-bc63-204e080dd3e3",
+          "forEachUIType": "gui"
+        },
+        "pluginId": "query25",
+        "blockType": "forEach",
+        "editorType": "JavascriptQuery",
+        "onboarding": false,
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "JavascriptQuery",
+        "incomingOnSuccessEdges": [
+          "0dda6fb7-f954-4ac3-bc63-204e080dd3e3"
+        ]
+      },
+      {
+        "top": 4000,
+        "left": 48,
+        "uuid": "f48b8cf0-4b2b-44c9-b77c-5faf6f281fc9",
+        "pluginId": "workflow2",
+        "blockType": "default",
+        "editorType": "WorkflowRun",
+        "environment": "production",
+        "resourceName": "WorkflowRun",
+        "incomingOnSuccessEdges": []
+      },
+      {
+        "top": 624,
+        "left": 1088,
+        "uuid": "b9d57b30-aadb-49c1-a734-44a81fbef6f7",
+        "pluginId": "code5",
+        "blockType": "default",
+        "editorType": "WorkflowRun",
+        "environment": "production",
+        "resourceName": "WorkflowRun",
+        "incomingOnSuccessEdges": [
+          "391d40b3-896f-4ba3-bf47-a72366835e45"
+        ]
+      },
+      {
+        "top": -1328,
+        "left": 1040,
+        "uuid": "ce4f9135-27d1-43ed-9761-cfe29f75ec39",
+        "pluginId": "query26",
+        "blockType": "default",
+        "editorType": "RESTQuery",
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "REST-WithoutResource",
+        "incomingOnSuccessEdges": [
+          "393f22f5-ae71-4ad1-a1e4-f4174de29b51"
+        ]
+      },
+      {
+        "top": -1424,
+        "left": 832,
+        "uuid": "248ad70a-34d7-43e9-bea4-a84fc7fd79e0",
+        "pluginId": "workflow3",
+        "blockType": "default",
+        "editorType": "WorkflowRun",
+        "environment": "production",
+        "resourceName": "WorkflowRun",
+        "incomingOnSuccessEdges": [
+          "393f22f5-ae71-4ad1-a1e4-f4174de29b51"
+        ]
+      },
+      {
+        "top": -1600,
+        "left": 1168,
+        "uuid": "9df36477-f5a0-4d3d-996a-469ab9ade816",
+        "pluginId": "code6",
+        "blockType": "code",
+        "editorType": "JavascriptQuery",
+        "environment": "production",
+        "isMinimized": true,
+        "resourceName": "JavascriptQuery",
+        "incomingOnSuccessEdges": [
+          "393f22f5-ae71-4ad1-a1e4-f4174de29b51"
+        ]
+      },
+      {
+        "top": -1568,
+        "left": 1520,
+        "uuid": "e6f9d80d-d2ff-4150-8513-06e9a68c611c",
+        "options": {
+          "conditions": [
+            {
+              "id": "b4bfcdbd-a3ca-4065-9a7d-d5127129f6fd",
+              "type": "if",
+              "statement": "",
+              "outgoingPortId": "8a969325-0e42-4a76-8f30-7c1571e4667b"
+            },
+            {
+              "id": "beef1296-b7f2-4f2a-b349-2da959acf099",
+              "type": "else",
+              "statement": "",
+              "outgoingPortId": "03a3ee1b-5f2c-4840-a44b-783ad3abf9b6"
+            }
+          ]
+        },
+        "pluginId": "branch4",
+        "blockType": "conditional",
+        "editorType": "JavascriptQuery",
+        "onboarding": false,
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "JavascriptQuery",
+        "incomingPorts": [],
+        "outgoingPorts": [
+          {
+            "id": "8a969325-0e42-4a76-8f30-7c1571e4667b",
+            "name": "0",
+            "type": "conditional"
+          },
+          {
+            "id": "03a3ee1b-5f2c-4840-a44b-783ad3abf9b6",
+            "name": "1",
+            "type": "conditional"
+          }
+        ],
+        "incomingOnSuccessEdges": [
+          "ce4f9135-27d1-43ed-9761-cfe29f75ec39"
+        ]
+      },
+      {
+        "top": -1056,
+        "left": 1040,
+        "uuid": "365f69fe-d234-4c29-a946-aa4e80d13a8f",
+        "pluginId": "query27",
+        "blockType": "default",
+        "editorType": "OpenAIProviderQuery",
+        "environment": "production",
+        "isMinimized": true,
+        "resourceName": "retool_ai_provider_3a0e782a0c1199bd10ec5429a1a26e1a",
+        "incomingOnSuccessEdges": [
+          "ce4f9135-27d1-43ed-9761-cfe29f75ec39"
+        ]
+      },
+      {
+        "top": -1072,
+        "left": 1520,
+        "uuid": "4ff06f50-34fe-4ef1-af1e-e91ab9ca83ce",
+        "pluginId": "agent1",
+        "blockType": "default",
+        "editorType": "RetoolAIAgentInvokeQuery",
+        "environment": "production",
+        "isMinimized": true,
+        "resourceName": "RetoolAIAgentInvokeQuery",
+        "incomingOnSuccessEdges": [
+          "ce4f9135-27d1-43ed-9761-cfe29f75ec39"
+        ]
+      },
+      {
+        "top": -1008,
+        "left": 1488,
+        "uuid": "488d7449-bdda-4e13-a66c-675bf3dea21b",
+        "options": {
+          "iterable": "ce4f9135-27d1-43ed-9761-cfe29f75ec39",
+          "executionMode": "parallel",
+          "iterationErrorConfig": {
+            "errorPolicy": "ignore"
+          }
+        },
+        "pluginId": "loop1",
+        "blockType": "loop",
+        "editorType": "JavascriptQuery",
+        "onboarding": false,
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "JavascriptQuery",
+        "incomingOnSuccessEdges": [
+          "ce4f9135-27d1-43ed-9761-cfe29f75ec39"
+        ]
+      },
+      {
+        "top": -672,
+        "left": 1488,
+        "uuid": "6d5af451-aab6-44b5-acf5-b8cfe4c68a8b",
+        "options": {
+          "blockToIterate": "ce4f9135-27d1-43ed-9761-cfe29f75ec39",
+          "filterStatement": ""
+        },
+        "pluginId": "filter1",
+        "blockType": "filter",
+        "editorType": "JavascriptQuery",
+        "onboarding": false,
+        "environment": "production",
+        "isMinimized": false,
+        "resourceName": "JavascriptQuery",
+        "incomingOnSuccessEdges": [
+          "ce4f9135-27d1-43ed-9761-cfe29f75ec39"
+        ]
+      }
+    ],
+    "templateData": "[\"~#iR\",[\"^ \",\"n\",\"appTemplate\",\"v\",[\"^ \",\"appMaxWidth\",\"1560px\",\"appStyles\",\"\",\"appTesting\",null,\"appThemeId\",null,\"appThemeModeId\",null,\"appThemeName\",null,\"createdAt\",null,\"customComponentCollections\",[],\"customDocumentTitle\",\"\",\"customDocumentTitleEnabled\",false,\"customShortcuts\",[],\"experimentalFeatures\",[\"^ \",\"sourceControlTemplateDehydration\",false],\"folders\",[\"~#iL\",[]],\"formAppSettings\",[\"^ \",\"customRedirectUrl\",\"\"],\"inAppRetoolPillAppearance\",\"NO_OVERRIDE\",\"instrumentationEnabled\",false,\"internationalizationSettings\",[\"^ \",\"internationalizationEnabled\",false,\"internationalizationFiles\",[]],\"isFetching\",false,\"isFormApp\",false,\"isGlobalWidget\",false,\"isMobileApp\",false,\"loadingIndicatorsDisabled\",false,\"markdownLinkBehavior\",\"never\",\"mobileAppSettings\",[\"^ \",\"mobileOfflineModeEnabled\",false,\"mobileOfflineModeDelaySync\",false,\"mobileOfflineModeBannerMode\",\"default\",\"displaySetting\",[\"^ \",\"landscapeMode\",false,\"tabletMode\",false]],\"mobileOfflineAssets\",[],\"multiScreenMobileApp\",false,\"notificationsSettings\",[\"^ \",\"globalQueryShowFailureToast\",true,\"globalQueryShowSuccessToast\",true],\"pageCodeFolders\",[\"^ \"],\"pageLoadValueOverrides\",[\"^?\",[]],\"persistUrlParams\",false,\"plugins\",[\"~#iOM\",[\"startTrigger\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"startTrigger\",\"uuid\",null,\"_comment\",null,\"type\",\"datasource\",\"subtype\",\"JavascriptQuery\",\"namespace\",null,\"resourceName\",\"JavascriptQuery\",\"resourceDisplayName\",null,\"template\",[\"~#iM\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"showFailureToaster\",true,\"query\",\"\\n  const evalStartTriggerBlock = () => {\\n    const getExampleInputJSON = () => {\\n      try {\\n        return null\\n      } catch {\\n        return { error: true, message: 'Error parsing example input JSON' }\\n      }\\n    }\\n    const getExamplePathParams = () => {\\n      try {\\n        return {}\\n      } catch {\\n        return { error: true, message: 'Error parsing example path params' }\\n      }\\n    }\\n    const getExampleHeaders = () => {\\n      try {\\n        return {\\\"\\\":\\\"\\\"}\\n      } catch {\\n        return { error: true, message: 'Error parsing example headers' }\\n      }\\n    }\\n    return {\\n      _retool_exampleInputJSON: getExampleInputJSON(),\\n      _retool_exampleHeaders: getExampleHeaders(),\\n      _retool_examplePathParams: getExamplePathParams(),\\n    }\\n  }\\n  return evalStartTriggerBlock()\\n  \",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^1:\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"return data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"importedQueryDefaults\",[\"^1:\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"return data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"style\",null,\"position2\",null,\"mobilePosition2\",null,\"mobileAppPosition\",null,\"tabIndex\",null,\"container\",\"\",\"^7\",\"~m1685257287808\",\"updatedAt\",\"~m1749435509763\",\"folder\",\"\",\"presetName\",null,\"screen\",null,\"boxId\",null,\"subBoxIds\",null]]],\"composeEmailMessage\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"composeEmailMessage\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"// we can use lodash to get the top three stories of today\\nconst topThreeStories = _.sortBy(fetchStoryDetails.data, 'score').slice(0, 3);\\n\\n// Now, let's create an email message formatting this data!\\nconst messageParts = []\\nmessageParts.push('Your top three stories for today:')\\nfor (const story of topThreeStories) {\\n  messageParts.push(`- ${story.title} \\n ${story.url}`)\\n}\\nreturn messageParts.join('\\\\n\\\\n')\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"120000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1685257287810\",\"^1A\",\"~m1685257287810\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"sendEmail\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"sendEmail\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"RESTQuery\",\"^16\",null,\"^17\",\"REST-WithoutResource\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"paginationLimit\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"openAPIRequestBody\",\"\",\"streamResponse\",false,\"body\",\"[{\\\"key\\\":\\\"message\\\",\\\"value\\\":\\\"{{composeEmailMessage.data}}\\\"},{\\\"key\\\":\\\"toEmail\\\",\\\"value\\\":\\\"peterjaberau@gmail.com\\\"},{\\\"key\\\":\\\"workflowId\\\",\\\"value\\\":\\\"{{workflowContext.workflowId}}\\\"}]\",\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"openAPIResolvedSpec\",\"\",\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",true,\"paginationPaginationField\",\"\",\"workflowRunExecutionType\",\"sync\",\"headers\",\"\",\"workflowRunId\",null,\"showFailureToaster\",true,\"paginationEnabled\",false,\"query\",\"https://api.retool.com/v1/workflows/sendTestEmail\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"cookies\",\"\",\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"openAPIOperationId\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"paginationDataField\",\"\",\"timestamp\",0,\"openAPIParams\",\"{}\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"version\",1,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// type your code here\\n// example: return formatDataAsArray(data).filter(row => row.quantity > 20)\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",12000,\"workflowId\",null,\"requireConfirmation\",false,\"type\",\"POST\",\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"bodyType\",\"json\",\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1685257287810\",\"^1A\",\"~m1685257287810\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"function1\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"function1\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"RESTQuery\",\"^16\",null,\"^17\",\"REST-WithoutResource\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"paginationLimit\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"openAPIRequestBody\",\"\",\"streamResponse\",false,\"body\",\"\",\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"openAPIResolvedSpec\",\"\",\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",true,\"paginationPaginationField\",\"\",\"workflowRunExecutionType\",\"sync\",\"headers\",\"\",\"workflowRunId\",null,\"showFailureToaster\",true,\"paginationEnabled\",false,\"query\",null,\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"cookies\",\"\",\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"openAPIOperationId\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"paginationDataField\",\"\",\"timestamp\",0,\"openAPIParams\",\"{}\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"version\",1,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn formatDataAsArray(data)\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"type\",\"GET\",\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"bodyType\",\"none\",\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1690143737835\",\"^1A\",\"~m1690143737835\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query1\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query1\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"RESTQuery\",\"^16\",null,\"^17\",\"e28c6d07-5eff-4a61-bf57-701acb540e1e\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"paginationLimit\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"openAPIRequestBody\",\"\",\"streamResponse\",false,\"body\",\"\",\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"openAPIResolvedSpec\",\"\",\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",true,\"paginationPaginationField\",\"\",\"workflowRunExecutionType\",\"sync\",\"headers\",\"\",\"workflowRunId\",null,\"showFailureToaster\",true,\"paginationEnabled\",false,\"query\",\"?name={{uuid}}&{{}}=\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"cookies\",\"\",\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"openAPIOperationId\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"paginationDataField\",\"\",\"timestamp\",0,\"openAPIParams\",\"{}\",\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"version\",1,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn formatDataAsArray(data)\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"type\",\"GET\",\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"bodyType\",\"none\",\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1693203967648\",\"^1A\",\"~m1696031032166\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query10\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query10\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"const results = [];\\nfor (const [index, value] of {data: [{id: 1, name: 'Mike' }, {id: 2, name: 'Jennifer' }]}.data.entries()) {\\n  const result = query10_lambda.trigger();\\n  results.push(result)\\n}\\nreturn await Promise.all(results)\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn formatDataAsArray(data)\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1693204154981\",\"^1A\",\"~m1693204195901\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query10_lambda\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query10_lambda\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"return value\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn formatDataAsArray(data)\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1693204155005\",\"^1A\",\"~m1693204155005\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"code1\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"code1\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"return query10.data\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn formatDataAsArray(data)\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1693204162363\",\"^1A\",\"~m1693204162363\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"branch2\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"branch2\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"if (false) {\\n  executePathAtMostOnce('0')\\n}\\n\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"editorMode\",\"sql\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1695113659146\",\"^1A\",\"~m1695113659146\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query15\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query15\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"const results = [];\\nfor (const [index, value] of composeEmailMessage.data.entries()) {\\n  const result = query15_lambda.trigger();\\n  results.push(result)\\n}\\nreturn await Promise.all(results)\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1695113671285\",\"^1A\",\"~m1695113671413\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query15_lambda\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query15_lambda\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"return value\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1695113671322\",\"^1A\",\"~m1695113671322\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query17\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query17\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"const results = [];\\nfor (const [index, value] of code1.data.entries()) {\\n  const result = query17_lambda.trigger();\\n  results.push(result)\\n}\\nreturn await Promise.all(results)\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1695113682261\",\"^1A\",\"~m1695113682381\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query17_lambda\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query17_lambda\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"return value\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1695113682303\",\"^1A\",\"~m1695113682303\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"branch3\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"branch3\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"if (false) {\\n  executePathAtMostOnce('0')\\n}\\n\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"editorMode\",\"sql\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1695113694277\",\"^1A\",\"~m1695113694277\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"code3\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"code3\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"return query17.data\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"120000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1695113701435\",\"^1A\",\"~m1695113701435\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"workflow1\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"workflow1\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"WorkflowRun\",\"^16\",null,\"^17\",\"WorkflowRun\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",\"run-workflow\",\"editorMode\",\"sql\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1695113708339\",\"^1A\",\"~m1695113708339\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query18\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query18\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",null,\"^16\",null,\"^17\",null,\"^18\",null,\"^19\",[\"^1:\",[\"query\",\"\",\"evalType\",\"script\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1695113815677\",\"^1A\",\"~m1695113815677\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"webhookReturn1\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"webhookReturn1\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"const generateReturn = () => {\\n    const status = () => {\\n      try {\\n        return 200\\n      } catch {\\n        return 200\\n      }\\n    }\\n  const body = () => {\\n    try {\\n      return {}\\n    } catch {\\n      return {'error': true, 'messsage': 'there was a problem parsing the JSON body of a webhook return block'}\\n    }\\n  }\\n  return {status: status(), body: body() }\\n  }\\n  return generateReturn()\\n  \",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"editorMode\",\"sql\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"workflowBlockPluginId\",null,\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1695113906553\",\"^1A\",\"~m1695113906553\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"fetchHNBestStories\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"fetchHNBestStories\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"showFailureToaster\",true,\"query\",\"\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^1:\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"return data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^1:\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"return data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1696915542588\",\"^1A\",\"~m1696915547452\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query24\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query24\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"RetoolAIQuery\",\"^16\",null,\"^17\",\"retool_ai\",\"^18\",null,\"^19\",[\"^1:\",[\"vectorNamespaceIds\",[\"^?\",[]],\"vectorDynamicUrls\",\"\",\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"vectorActionNamespaceDynamicModeEnabled\",false,\"vectorCreateAndFetchDynamicModeEnabled\",false,\"streamResponse\",true,\"imageClassifierDynamicLabels\",\"\",\"lastReceivedFromResourceAt\",null,\"vectorSemanticSearchString\",\"\",\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"customTemperature\",\"1\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"vectorUrls\",[\"^?\",[]],\"customSystemMessage\",\"\",\"textExtractorDynamicLabels\",\"\",\"imageExtractorLabels\",[\"^?\",[]],\"query\",\"\",\"playgroundQueryUuid\",\"\",\"imageExtractorDynamicModeEnabled\",false,\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"model\",\"gpt-4\",\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"defaultModelInitialized\",false,\"providerId\",\"retoolAIBuiltIn::openAI\",\"textClassifierLabels\",[\"^?\",[]],\"textClassifierDynamicModeEnabled\",false,\"importedQueryInputs\",[\"^11\",[]],\"instruction\",\"\",\"isImported\",false,\"imageModel\",\"dall-e-3\",\"showSuccessToaster\",true,\"fileUseDynamicSource\",false,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"textClassifierDynamicLabels\",\"\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"embeddingModel\",\"text-embedding-ada-002\",\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"chatInput\",\"\",\"rawData\",null,\"vectorNamespaceId\",\"\",\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"vectorDynamicNamespaces\",\"\",\"enableErrorTransformer\",false,\"imageExtractorDynamicLabels\",\"\",\"multimodalModel\",\"gpt-4-visual\",\"showLatestVersionUpdatedWarning\",false,\"vectorActionDynamicNamespace\",\"\",\"dynamicModelName\",\"\",\"timestamp\",0,\"evalType\",\"script\",\"textExtractorDynamicModeEnabled\",false,\"action\",\"textGeneration\",\"textExtractorLabels\",[\"^?\",[]],\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"fileSource\",\"\",\"filterLabels\",[\"^?\",[]],\"dynamicModelEnabled\",false,\"systemMessage\",\"You are a helpful assistant\",\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"content\",\"\",\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"vectorAction\",\"upsertDocument\",\"queryTimeout\",\"120000\",\"workflowId\",null,\"vectorNamespacesDynamicModeEnabled\",false,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"source\",\"\",\"imageClassifierLabels\",[\"^?\",[]],\"imageClassifierDynamicModeEnabled\",false,\"changesetIsObject\",false,\"vectorModeEnabled\",false,\"vectorNamespaceIdsFilters\",[\"^?\",[]],\"providerName\",\"openAI\",\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"chatHistory\",\"\",\"imageContent\",\"\",\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1701867876121\",\"^1A\",\"~m1701867876121\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"code4\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"code4\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"PythonQuery\",\"^16\",null,\"^17\",\"PythonQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"120000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1701867887014\",\"^1A\",\"~m1701867887014\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query25\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query25\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"const results = [];\\nfor (const [index, value] of query10.data.entries()) {\\n  const result = query25_lambda.trigger();\\n  results.push(result)\\n}\\nreturn await Promise.all(results)\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1701867897039\",\"^1A\",\"~m1701867897237\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query25_lambda\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query25_lambda\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"return value\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1701867897122\",\"^1A\",\"~m1701867897122\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"workflow2\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"workflow2\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"WorkflowRun\",\"^16\",null,\"^17\",\"WorkflowRun\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",\"run-workflow\",\"editorMode\",\"sql\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1701867907348\",\"^1A\",\"~m1701867907348\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"code5\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"code5\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"WorkflowRun\",\"^16\",null,\"^17\",\"WorkflowRun\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"workflowRunId\",null,\"showFailureToaster\",true,\"query\",\"\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"workflowBlockUuid\",null,\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^11\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"workflowActionType\",\"run-workflow\",\"editorMode\",\"sql\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"// The variable 'data' allows you to reference the request's data in the transformer. \\n// example: return data.find(element => element.isError)\\nreturn data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^11\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"// Query results are available as the `data` variable\\nreturn data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1702093471525\",\"^1A\",\"~m1702093471525\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query26\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query26\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"RESTQuery\",\"^16\",null,\"^17\",\"REST-WithoutResource\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"paginationLimit\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"openAPIRequestBody\",\"\",\"streamResponse\",false,\"body\",\"\",\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"openAPIResolvedSpec\",\"\",\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",true,\"paginationPaginationField\",\"\",\"workflowRunExecutionType\",\"sync\",\"headers\",\"\",\"showFailureToaster\",true,\"paginationEnabled\",false,\"query\",\"\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^1:\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"cookies\",\"\",\"metadata\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"return data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"openAPIOperationId\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"paginationDataField\",\"\",\"timestamp\",0,\"openAPIParams\",\"{}\",\"evalType\",\"script\",\"importedQueryDefaults\",[\"^1:\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"version\",2,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"return data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"type\",\"GET\",\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"bodyType\",\"none\",\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1749436873439\",\"^1A\",\"~m1749436873439\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"workflow3\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"workflow3\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"WorkflowRun\",\"^16\",null,\"^17\",\"WorkflowRun\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"showFailureToaster\",true,\"query\",\"\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^1:\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"editorMode\",\"sql\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"return data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^1:\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"return data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1749436878724\",\"^1A\",\"~m1749436878724\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"code6\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"code6\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"showFailureToaster\",true,\"query\",\"return startTrigger.data\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^1:\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"return data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^1:\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"return data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1749436886129\",\"^1A\",\"~m1749436886129\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"branch4\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"branch4\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"showFailureToaster\",true,\"query\",\"if (false) {\\n  executePathAtMostOnce('0')\\n}\\nelse { executePathAtMostOnce('1') }\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^1:\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"editorMode\",\"sql\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"return data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^1:\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"return data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1749436895441\",\"^1A\",\"~m1749436897648\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"query27\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"query27\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"OpenAIProviderQuery\",\"^16\",null,\"^17\",\"retool_ai_provider_3a0e782a0c1199bd10ec5429a1a26e1a\",\"^18\",null,\"^19\",[\"^1:\",[\"vectorNamespaceIds\",[\"^?\",[]],\"vectorDynamicUrls\",\"\",\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"vectorActionNamespaceDynamicModeEnabled\",false,\"vectorCreateAndFetchDynamicModeEnabled\",false,\"streamResponse\",true,\"imageClassifierDynamicLabels\",\"\",\"lastReceivedFromResourceAt\",null,\"vectorSemanticSearchString\",\"\",\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"customTemperature\",\"1\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"showFailureToaster\",true,\"vectorUrls\",[\"^?\",[]],\"customSystemMessage\",\"\",\"textExtractorDynamicLabels\",\"\",\"imageExtractorLabels\",[\"^?\",[]],\"query\",\"\",\"playgroundQueryUuid\",\"\",\"imageExtractorDynamicModeEnabled\",false,\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"model\",\"gpt-4o-mini\",\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"defaultModelInitialized\",true,\"providerId\",\"retoolAIBuiltIn::openAI\",\"textClassifierLabels\",[\"^?\",[]],\"textClassifierDynamicModeEnabled\",false,\"importedQueryInputs\",[\"^1:\",[]],\"instruction\",\"\",\"isImported\",false,\"imageModel\",\"gpt-image-2\",\"showSuccessToaster\",true,\"fileUseDynamicSource\",false,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",[\"^1:\",[]],\"textClassifierDynamicLabels\",\"\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"return data.error\",\"finished\",null,\"embeddingModel\",\"text-embedding-ada-002\",\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"chatInput\",\"\",\"rawData\",null,\"vectorNamespaceId\",\"\",\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"vectorDynamicNamespaces\",\"\",\"enableErrorTransformer\",false,\"imageExtractorDynamicLabels\",\"\",\"multimodalModel\",\"gpt-5\",\"showLatestVersionUpdatedWarning\",false,\"vectorActionDynamicNamespace\",\"\",\"dynamicModelName\",\"\",\"timestamp\",0,\"evalType\",\"script\",\"textExtractorDynamicModeEnabled\",false,\"action\",\"textGeneration\",\"textExtractorLabels\",[\"^?\",[]],\"importedQueryDefaults\",[\"^1:\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"fileSource\",\"\",\"filterLabels\",[\"^?\",[]],\"dynamicModelEnabled\",false,\"systemMessage\",\"You are a helpful assistant\",\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"content\",\"\",\"transformer\",\"return data\",\"events\",[\"^?\",[]],\"vectorAction\",\"upsertDocument\",\"queryTimeout\",\"120000\",\"workflowId\",null,\"vectorNamespacesDynamicModeEnabled\",false,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"source\",\"\",\"imageClassifierLabels\",[\"^?\",[]],\"imageClassifierDynamicModeEnabled\",false,\"changesetIsObject\",false,\"vectorModeEnabled\",false,\"vectorNamespaceIdsFilters\",[\"^?\",[]],\"providerName\",\"openAI\",\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"chatHistory\",\"\",\"imageContent\",\"\",\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1749436905274\",\"^1A\",\"~m1789896265108\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"agent1\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"agent1\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"RetoolAIAgentInvokeQuery\",\"^16\",null,\"^17\",\"RetoolAIAgentInvokeQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"agentId\",\"\",\"agentRunId\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"agentDynamicModeEnabled\",false,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"agentQueryMode\",\"json\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"showFailureToaster\",true,\"query\",\"\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"queryRunOnSelectorUpdate\",false,\"agentWorkflowRunMode\",\"sync\",\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^1:\",[]],\"agentInputs\",\"\",\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"editorMode\",\"sql\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"return data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"action\",\"agentInvoke\",\"importedQueryDefaults\",[\"^1:\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"return data\",\"events\",[\"^?\",[]],\"agentGuiMode\",\"invoke\",\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1749436913275\",\"^1A\",\"~m1749436913275\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"loop1\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"loop1\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"showFailureToaster\",true,\"query\",\"return value\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^1:\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"return data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^1:\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"return data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1749436926396\",\"^1A\",\"~m1749436926396\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]],\"filter1\",[\"^0\",[\"^ \",\"n\",\"pluginTemplate\",\"v\",[\"^ \",\"id\",\"filter1\",\"^12\",null,\"^13\",null,\"^14\",\"datasource\",\"^15\",\"JavascriptQuery\",\"^16\",null,\"^17\",\"JavascriptQuery\",\"^18\",null,\"^19\",[\"^1:\",[\"queryRefreshTime\",\"\",\"allowedGroupIds\",[\"^?\",[]],\"streamResponse\",false,\"lastReceivedFromResourceAt\",null,\"isFunction\",false,\"functionParameters\",null,\"queryDisabledMessage\",\"\",\"servedFromCache\",false,\"offlineUserQueryInputs\",\"\",\"functionDescription\",null,\"successMessage\",\"\",\"queryDisabled\",\"\",\"playgroundQuerySaveId\",\"latest\",\"workflowParams\",null,\"resourceNameOverride\",\"\",\"runWhenModelUpdates\",false,\"workflowRunExecutionType\",\"sync\",\"showFailureToaster\",true,\"query\",\"\",\"playgroundQueryUuid\",\"\",\"playgroundQueryId\",null,\"error\",null,\"workflowRunBodyType\",\"raw\",\"privateParams\",[\"^?\",[]],\"queryRunOnSelectorUpdate\",false,\"runWhenPageLoadsDelay\",\"\",\"data\",null,\"importedQueryInputs\",[\"^1:\",[]],\"_additionalScope\",[\"^?\",[]],\"isImported\",false,\"showSuccessToaster\",true,\"cacheKeyTtl\",\"\",\"requestSentTimestamp\",null,\"metadata\",null,\"editorMode\",\"sql\",\"queryRunTime\",null,\"changesetObject\",\"\",\"offlineOptimisticResponse\",null,\"errorTransformer\",\"return data.error\",\"finished\",null,\"confirmationMessage\",null,\"isFetching\",false,\"changeset\",\"\",\"rawData\",null,\"queryTriggerDelay\",\"0\",\"resourceTypeOverride\",null,\"watchedParams\",[\"^?\",[]],\"enableErrorTransformer\",false,\"showLatestVersionUpdatedWarning\",false,\"timestamp\",0,\"evalType\",\"script\",\"importedQueryDefaults\",[\"^1:\",[]],\"enableTransformer\",false,\"showUpdateSetValueDynamicallyToggle\",true,\"overrideOrgCacheForUserCache\",false,\"runWhenPageLoads\",false,\"transformer\",\"return data\",\"events\",[\"^?\",[]],\"queryTimeout\",\"10000\",\"workflowId\",null,\"requireConfirmation\",false,\"queryFailureConditions\",\"\",\"changesetIsObject\",false,\"enableCaching\",false,\"allowedGroups\",[\"^?\",[]],\"offlineQueryType\",\"None\",\"queryThrottleTime\",\"750\",\"updateSetValueDynamically\",false,\"notificationDuration\",\"\"]],\"^1;\",null,\"^1<\",null,\"^1=\",null,\"^1>\",null,\"^1?\",null,\"^1@\",\"\",\"^7\",\"~m1749436936000\",\"^1A\",\"~m1749436936000\",\"^1B\",\"\",\"^1C\",null,\"^1D\",null,\"^1E\",null,\"^1F\",null]]]]],\"preloadedAppJavaScript\",null,\"preloadedAppJSLinks\",[],\"pubAppDecoupledQueriesDisabled\",null,\"queryStatusVisibility\",true,\"responsiveLayoutDisabled\",false,\"rootScreen\",null,\"savePlatform\",\"web\",\"shortlink\",null,\"testEntities\",[],\"tests\",[],\"urlFragmentDefinitions\",[\"^?\",[]],\"version\",\"4.61.0\",\"serializedLayout\",null,\"agentEvals\",[\"^ \"]]]]",
+    "triggerWebhooks": [
+      {
+        "name": "startTrigger",
+        "uuid": "startTrigger",
+        "headers": "{\"\":\"\"}",
+        "inputSchema": {
+          "properties": []
+        },
+        "useHeaderApiKey": false,
+        "exampleInputJSON": ""
+      }
+    ],
+    "releaseId": "c582ac9a-bb36-4d74-8c58-c9253500ed8f",
+    "customLibraries": [
+      {
+        "version": "4.17.21",
+        "language": "javascript",
+        "variable": "_",
+        "codeString": "/* Edit library variable below */\n\nconst _ = require('lodash')\n\n/* Add destructured imports from library below\neg. const { pow, log } = require('mathjs') */\n",
+        "libraryName": "lodash"
+      },
+      {
+        "version": "2.1.0",
+        "language": "javascript",
+        "variable": "numbro",
+        "codeString": "/* Edit library variable below */\n\nconst numbro = require('numbro')\n\n/* Add destructured imports from library below\neg. const { pow, log } = require('mathjs') */\n",
+        "libraryName": "numbro"
+      },
+      {
+        "version": "5.3.2",
+        "language": "javascript",
+        "variable": "Papa",
+        "codeString": "/* Edit library variable below */\n\nconst Papa = require('papaparse')\n\n/* Add destructured imports from library below\neg. const { pow, log } = require('mathjs') */\n",
+        "libraryName": "papaparse"
+      },
+      {
+        "version": "0.5.23",
+        "language": "javascript",
+        "variable": "moment",
+        "codeString": "/* Edit library variable below */\n\nconst moment = require('moment-timezone')\n\n/* Add destructured imports from library below\neg. const { pow, log } = require('mathjs') */\n",
+        "libraryName": "moment-timezone"
+      },
+      {
+        "version": "3.4.0",
+        "language": "javascript",
+        "variable": "uuid",
+        "codeString": "/* Edit library variable below */\n\nconst uuid = require('uuid')\n\n/* Add destructured imports from library below\neg. const { pow, log } = require('mathjs') */\n",
+        "libraryName": "uuid"
+      }
+    ],
+    "createdAt": "2026-09-20T09:24:27.608Z",
+    "updatedAt": "2026-09-20T09:24:27.608Z",
+    "createdBy": 177737,
+    "folderId": 739201,
+    "protected": false,
+    "javascriptLanguageConfigurationSaveId": null,
+    "pythonLanguageConfigurationSaveId": null,
+    "setupScripts": {
+      "python": {
+        "codeString": ""
+      },
+      "javascript": {
+        "codeString": "// lodash\n/* Edit library variable below */\n\nconst _ = require('lodash')\n\n/* Add destructured imports from library below\neg. const { pow, log } = require('mathjs') */\n\n\n// numbro\n/* Edit library variable below */\n\nconst numbro = require('numbro')\n\n/* Add destructured imports from library below\neg. const { pow, log } = require('mathjs') */\n\n\n// papaparse\n/* Edit library variable below */\n\nconst Papa = require('papaparse')\n\n/* Add destructured imports from library below\neg. const { pow, log } = require('mathjs') */\n\n\n// moment-timezone\n/* Edit library variable below */\n\nconst moment = require('moment-timezone')\n\n/* Add destructured imports from library below\neg. const { pow, log } = require('mathjs') */\n\n\n// uuid\n/* Edit library variable below */\n\nconst uuid = require('uuid')\n\n/* Add destructured imports from library below\neg. const { pow, log } = require('mathjs') */"
+      }
+    },
+    "concurrentLimit": null,
+    "subflows": [],
+    "type": "workflow",
+    "iconName": null,
+    "iconColor": null,
+    "private": false,
+    "hasProtectedTriggers": false,
+    "protectedTriggers": [],
+    "readme": null,
+    "codeExecutorMemoryLimitMbs": null,
+    "accessLevel": "own"
+  },
+  "workflowMetadata": {
+    "id": "11757356-ed03-4732-a854-6a07df60fa1b",
+    "name": "Onboarding Demo - Peter Jaber",
+    "isEnabled": false,
+    "workflowAccessLevel": "own",
+    "hasResourceAccess": true,
+    "resourcesWithoutPermissions": [],
+    "folderId": 739201,
+    "path": "",
+    "protected": false,
+    "type": "workflow",
+    "private": false,
+    "description": null,
+    "iconName": null,
+    "iconColor": null,
+    "createdAt": "2026-09-20T09:24:27.608Z",
+    "updatedAt": "2026-09-20T09:24:27.608Z"
+  }
+}

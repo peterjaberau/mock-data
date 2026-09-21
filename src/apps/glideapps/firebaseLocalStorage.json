@@ -1,0 +1,35 @@
+[
+  {
+    "key": "firebase:authUser:AIzaSyCdlydoa5aGY9eVkZODhJFbD_lx_q7Pmks:[DEFAULT]",
+    "value": {
+      "fbase_key": "firebase:authUser:AIzaSyCdlydoa5aGY9eVkZODhJFbD_lx_q7Pmks:[DEFAULT]",
+      "value": {
+        "uid": "jsG9Ub53i9bms4D9Ru1mRwGuLSD2",
+        "email": "peterjaberau@gmail.com",
+        "emailVerified": true,
+        "displayName": "Peter Jaber",
+        "isAnonymous": false,
+        "photoURL": "https://lh3.googleusercontent.com/a/AAcHTteYcAQ2VEOdsMe3yHgqwvk-wVS_CYwNdcWsdlSuh7GK=s96-c",
+        "providerData": [
+          {
+            "providerId": "google.com",
+            "uid": "102962315159127404049",
+            "displayName": "Peter Jaber",
+            "email": "peterjaberau@gmail.com",
+            "phoneNumber": null,
+            "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocKKvTMAi9X1pGF8xIaEOecBnrmus1pT7f5WElpMGUILpSmyRQ=s96-c"
+          }
+        ],
+        "stsTokenManager": {
+          "refreshToken": "AMf-vBz_tVRFs-Xydj0Qiiz9vsm5vtJCjmoooXFAbwK_d42POigEznBOzuF62ulYegdMBZjbrgGxqnC5tMg412tevK3ljxuPuOMc-iW_Jvt5MYrQ__Ec1pNtMAVzsNbmlTameBrP32AJGozIY2v2CP04NKA6CrzbkdBRifyKQ_iTTNcOKLHEnDJ33mDxxX6wSZBKBZZQZtEtb5tzKs41YaLDCDI_PUmc43WMpIuhD9i5341U9drSQ4l64RNY6ioaGCTbiNWJeHpeIT_FRBqPNFFK8-E5dNG5xHZOuDDootLQ3yBQmBKkouyCYjy2QnHQCdRBIcJMIv_8DT1DBmvgY1E1MXubug3sqt2dfPRs6K0Ux-UG4ie8-L8Tp3e9A29s0vy7E4ZGSjeIlM_a881__0XXb8nGTSDWjIkMqnsPi_WaKC--dgV33hc",
+          "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImVjMjdhOWI2YWEzMDg4ZDI3Y2FkYjFjNjRmYTJmYTQ1Y2Y5ZmQ5ZTciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiUGV0ZXIgSmFiZXIiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUFjSFR0ZVljQVEyVkVPZHNNZTN5SGdxd3ZrLXdWU19DWXdOZGNXc2RsU3VoN0dLPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2dsaWRlLXByb2QiLCJhdWQiOiJnbGlkZS1wcm9kIiwiYXV0aF90aW1lIjoxNzg5ODY5MTc2LCJ1c2VyX2lkIjoianNHOVViNTNpOWJtczREOVJ1MW1Sd0d1TFNEMiIsInN1YiI6ImpzRzlVYjUzaTlibXM0RDlSdTFtUndHdUxTRDIiLCJpYXQiOjE3ODk4NjkxNzYsImV4cCI6MTc4OTg3Mjc3NiwiZW1haWwiOiJwZXRlcmphYmVyYXVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMDI5NjIzMTUxNTkxMjc0MDQwNDkiXSwiZW1haWwiOlsicGV0ZXJqYWJlcmF1QGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.reTEZ0SQTnVzozEcHykP5Ky5CgO7uS_hQNuyhttI7w32z7Fojvjtwbyelh91J-GTpIEMfS4oDrid_jlCNJ7ZDiAV-qxjNsJEimd4xOu-LhLoFcdhSf99AC0Ljax-fX94FrGWgkWh2nc985Lke0W2An6XY00kqa2qlTUFqE0f7NmFqd8MZ3UH0G5hqKr1iXd4_IbBLlCaDj2CUbsGnw-_KxeOIDhZhoIhyrv3KX8eQ5K8ED-Et2AoAzPBQjGTiv_eQGuV4ObiL0DPWSaSsJ-qhpLsx9oyRWi8Rr02Wvv3It0GfbqIuz3PIrKlBPsTnQULwYeojuy2J89SY8-Iv6Wm7w",
+          "expirationTime": 1789872776567
+        },
+        "createdAt": "1692003895323",
+        "lastLoginAt": "1789869176396",
+        "apiKey": "AIzaSyCdlydoa5aGY9eVkZODhJFbD_lx_q7Pmks",
+        "appName": "[DEFAULT]"
+      }
+    }
+  }
+]
