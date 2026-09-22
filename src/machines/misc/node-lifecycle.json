@@ -1,0 +1,130 @@
+{
+  "context": {
+    "isReady": false,
+    "isCreated": false,
+    "isCreating": false,
+    "isTerminating": false
+  },
+  "id": "nodeLifeCycle",
+  "initial": "creating",
+  "states": {
+    "creating": {
+      "tags": [
+        "canStart",
+        "New tag 1"
+      ],
+      "initial": "start",
+      "states": {
+        "start": {
+          "entry": {
+            "type": "handleStartCreating"
+          },
+          "on": {
+            "NEXT": [
+              {
+                "target": "process",
+                "actions": [],
+                "meta": {}
+              }
+            ]
+          }
+        },
+        "process": {
+          "entry": {
+            "type": "handleProcessCreating"
+          },
+          "on": {
+            "NEXT": [
+              {
+                "target": "complete",
+                "actions": [],
+                "meta": {}
+              }
+            ]
+          }
+        },
+        "complete": {
+          "type": "final"
+        }
+      },
+      "on": {
+        "NEXT": [
+          {
+            "target": "created",
+            "actions": [],
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "created": {
+      "always": {
+        "target": "ready",
+        "actions": [],
+        "meta": {}
+      }
+    },
+    "ready": {
+      "entry": {
+        "type": "handleEventReady"
+      },
+      "on": {
+        "TERMINATE": [
+          {
+            "target": "terminating",
+            "actions": [],
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "terminating": {
+      "initial": "start",
+      "states": {
+        "start": {
+          "entry": {
+            "type": "handleStartTerminating"
+          },
+          "on": {
+            "NEXT": [
+              {
+                "target": "process",
+                "actions": [],
+                "meta": {}
+              }
+            ]
+          }
+        },
+        "process": {
+          "entry": {
+            "type": "handleProcessTerminating"
+          },
+          "on": {
+            "NEXT": [
+              {
+                "target": "complete",
+                "actions": [],
+                "meta": {}
+              }
+            ]
+          }
+        },
+        "complete": {
+          "type": "final"
+        }
+      },
+      "on": {
+        "NEXT": [
+          {
+            "target": "terminated",
+            "actions": [],
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "terminated": {
+      "type": "final"
+    }
+  }
+}

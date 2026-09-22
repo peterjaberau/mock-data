@@ -1,0 +1,124 @@
+{
+  "id": "state-sync-client",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "description": "Waiting for instructions.",
+      "on": {
+        "connect": [
+          {
+            "target": "connecting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "connecting": {
+      "description": "Connecting to state sync server.",
+      "invoke": {
+        "input": {},
+        "src": "inline:state-sync-client.connecting#actor[0]",
+        "id": "connect",
+        "onDone": [
+          {
+            "target": "connected",
+            "actions": [],
+            "meta": {}
+          }
+        ],
+        "onError": [
+          {
+            "target": "connectionFailed",
+            "actions": [],
+            "meta": {}
+          }
+        ]
+      },
+      "on": {
+        "disconnect": [
+          {
+            "target": "idle",
+            "actions": [],
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "connected": {
+      "states": {
+        "editable": {}
+      },
+      "on": {
+        "disconnect": [
+          {
+            "target": "idle",
+            "actions": [],
+            "meta": {}
+          }
+        ],
+        "enqueueTransaction": [
+          {
+            "target": "connected",
+            "actions": [
+              {
+                "type": "inline:state-sync-client.connected#enqueueTransaction[-1]#transition[0]"
+              },
+              {
+                "type": "setLocalData"
+              }
+            ],
+            "meta": {}
+          }
+        ],
+        "setTransactionProcessingPaused": [
+          {
+            "target": "connected",
+            "actions": [
+              {
+                "type": "setTransactionProcessingPaused"
+              }
+            ],
+            "meta": {}
+          }
+        ],
+        "updateLastKnownServerState": [
+          {
+            "target": "connected",
+            "actions": [
+              {
+                "type": "setLastKnownServerState"
+              },
+              {
+                "type": "trySetLocalState"
+              }
+            ],
+            "meta": {}
+          }
+        ],
+        "connectionFailureDetected": [
+          {
+            "target": "connectionFailed",
+            "actions": [
+              {
+                "type": "resetLocalStateToLastGood"
+              }
+            ],
+            "meta": {}
+          }
+        ]
+      },
+      "type": "parallel"
+    },
+    "connectionFailed": {
+      "on": {
+        "connect": [
+          {
+            "target": "connecting",
+            "actions": [],
+            "meta": {}
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "cacheCodeChangesMachine",
+  "initial": "idle",
+  "states": {
+    "idle": {},
+    "throttling": {
+      "after": {
+        "300": [
+          {
+            "target": "#cacheCodeChangesMachine.saving",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "saving": {
+      "always": {
+        "target": "idle",
+        "actions": [
+          {
+            "type": "inline:(machine).saving#always[-1]#transition[0]"
+          }
+        ]
+      }
+    }
+  },
+  "on": {
+    "CODE_UPDATED": [
+      {
+        "target": ".throttling",
+        "actions": [
+          {
+            "type": "inline:(machine)#CODE_UPDATED[-1]#transition[0]"
+          }
+        ],
+        "reenter": true
+      }
+    ]
+  }
+}

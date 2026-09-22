@@ -1,0 +1,232 @@
+{
+  "context": {
+    "type": "idle"
+  },
+  "id": "canvas-metadata",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "fetchCanvas": [
+          {
+            "target": "loading",
+            "actions": [
+              {
+                "type": "inline:canvas-metadata.idle#fetchCanvas[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "loading": {
+      "initial": "fetchingCanvas",
+      "states": {
+        "fetchingCanvas": {
+          "invoke": {
+            "input": {},
+            "src": "fetchCanvas",
+            "id": "fetchCanvas",
+            "onDone": [
+              {
+                "target": "fetchingCanvasMetadata",
+                "actions": [
+                  {
+                    "type": "inline:canvas-metadata.loading.fetchingCanvas#done.invoke.fetchCanvas[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "onError": [
+              {
+                "target": "#canvas-metadata.failure",
+                "actions": [
+                  {
+                    "type": "inline:canvas-metadata.loading.fetchingCanvas#error.platform.fetchCanvas[-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "fetchingCanvasMetadata": {
+          "states": {
+            "fetchingCanvasVersion": {
+              "initial": "idle",
+              "states": {
+                "idle": {
+                  "always": [
+                    {
+                      "target": "fetching",
+                      "guard": "shouldFetchVersionedCanvas",
+                      "actions": []
+                    },
+                    {
+                      "target": "done",
+                      "actions": []
+                    }
+                  ]
+                },
+                "fetching": {
+                  "invoke": {
+                    "input": {},
+                    "src": "fetchCanvasVersion",
+                    "id": "fetchCanvasVersion",
+                    "onDone": [
+                      {
+                        "target": "done",
+                        "actions": []
+                      }
+                    ],
+                    "onError": [
+                      {
+                        "target": "#canvas-metadata.failure",
+                        "actions": [
+                          {
+                            "type": "inline:canvas-metadata.loading.fetchingCanvasMetadata.fetchingCanvasVersion.fetching#error.platform.fetchCanvasVersion[-1]#transition[0]"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "done": {
+                  "type": "final"
+                }
+              }
+            },
+            "fetchingCanvasPermissions": {
+              "initial": "idle",
+              "states": {
+                "idle": {
+                  "always": [
+                    {
+                      "target": "fetching",
+                      "guard": "shouldFetchPermissions",
+                      "actions": []
+                    },
+                    {
+                      "target": "done",
+                      "actions": []
+                    }
+                  ]
+                },
+                "fetching": {
+                  "invoke": {
+                    "input": {},
+                    "src": "fetchPermissions",
+                    "id": "fetchPermissions",
+                    "onDone": [
+                      {
+                        "target": "done",
+                        "actions": []
+                      }
+                    ],
+                    "onError": [
+                      {
+                        "target": "#canvas-metadata.failure",
+                        "actions": [
+                          {
+                            "type": "inline:canvas-metadata.loading.fetchingCanvasMetadata.fetchingCanvasPermissions.fetching#error.platform.fetchPermissions[-1]#transition[0]"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "done": {
+                  "type": "final"
+                }
+              }
+            },
+            "fetchingCanvasDrafts": {
+              "initial": "idle",
+              "states": {
+                "idle": {
+                  "always": [
+                    {
+                      "target": "fetching",
+                      "guard": "shouldFetchDrafts",
+                      "actions": []
+                    },
+                    {
+                      "target": "done",
+                      "actions": []
+                    }
+                  ]
+                },
+                "fetching": {
+                  "invoke": {
+                    "input": {},
+                    "src": "fetchCanvasDrafts",
+                    "id": "fetchCanvasDrafts",
+                    "onDone": [
+                      {
+                        "target": "done",
+                        "actions": []
+                      }
+                    ],
+                    "onError": [
+                      {
+                        "target": "#canvas-metadata.failure",
+                        "actions": [
+                          {
+                            "type": "inline:canvas-metadata.loading.fetchingCanvasMetadata.fetchingCanvasDrafts.fetching#error.platform.fetchCanvasDrafts[-1]#transition[0]"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "done": {
+                  "type": "final"
+                }
+              }
+            }
+          },
+          "type": "parallel",
+          "onDone": {
+            "target": "#canvas-metadata.loaded",
+            "actions": []
+          }
+        }
+      },
+      "on": {
+        "unload": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:canvas-metadata.loading#unload[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "loaded": {
+      "on": {
+        "unload": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:canvas-metadata.loaded#unload[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "failure": {
+      "on": {
+        "retryLoad": [
+          {
+            "target": "loading",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

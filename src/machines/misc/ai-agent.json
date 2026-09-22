@@ -1,0 +1,303 @@
+{
+  "context": "{{({ input }) => ({\n        agent: input.agent,\n        appConfig: input.appConfig,\n        llmRequestTimeoutMs: input.llmRequestTimeoutMs,\n        maxRetryCount: 3,\n        maxStepCount: input.maxStepCount || 1,\n        model: input.model,\n        parentMessageId: input.parentMessageId,\n        parentRef: input.parentRef,\n        pendingToolCalls: [],\n        retryCount: 0,\n        sessionId: input.sessionId,\n        stepCount: 0,\n        toolCallExecuteRef: null,\n        toolCallQueue: [],\n        toolChoice: input.toolChoice,\n    })}}",
+  "id": "agent",
+  "initial": "Starting",
+  "states": {
+    "Starting": {
+      "invoke": {
+        "input": {},
+        "src": "onStart",
+        "onDone": [
+          {
+            "target": "MaybeStartingLLMRequest",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "Finishing",
+            "actions": [
+              {
+                "type": "assignEventError"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MaybeStartingLLMRequest": {
+      "always": [
+        {
+          "target": "LLMStreaming",
+          "guard": "inline:agent.MaybeStartingLLMRequest#always[-1]#guard",
+          "actions": []
+        },
+        {
+          "target": "SavingMaxStepsMessage",
+          "actions": []
+        }
+      ]
+    },
+    "Finishing": {
+      "invoke": {
+        "input": {},
+        "src": "onFinish",
+        "onDone": [
+          {
+            "target": "Done",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "Done",
+            "actions": [
+              {
+                "type": "assignEventError"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "LLMStreaming": {
+      "entry": {
+        "type": "inline:agent.LLMStreaming#entry[0]"
+      },
+      "invoke": {
+        "input": {},
+        "src": "llmRequestLogic",
+        "onDone": [
+          {
+            "actions": [
+              {
+                "type": "inline:agent.LLMStreaming#done.invoke.agent.LLMStreaming:invocation[0][-1]#transition[0]"
+              },
+              {
+                "type": "inline:agent.LLMStreaming#done.invoke.agent.LLMStreaming:invocation[0][-1]#transition[1]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "Finishing",
+            "actions": [
+              {
+                "type": "assignEventError"
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "llmRequestTimeoutMs": [
+          {
+            "actions": [
+              {
+                "type": "inline:agent.LLMStreaming#xstate.after(llmRequestTimeoutMs)#agent.LLMStreaming[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      },
+      "on": {
+        "executeToolCalls": [
+          {
+            "target": "MaybeExecutingToolCalls",
+            "actions": [
+              {
+                "type": "inline:agent.LLMStreaming#executeToolCalls[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "retry": [
+          {
+            "target": "RetryingWithDelay",
+            "guard": "inline:agent.LLMStreaming#retry[-1]#guard",
+            "actions": []
+          },
+          {
+            "target": "Finishing",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "SavingMaxStepsMessage": {
+      "invoke": {
+        "input": {},
+        "src": "saveMaxStepsMessage",
+        "onDone": [
+          {
+            "target": "Finishing",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "Finishing",
+            "actions": [
+              {
+                "type": "assignEventError"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Done": {
+      "entry": {
+        "type": "inline:agent.Done#entry[0]"
+      }
+    },
+    "MaybeExecutingToolCalls": {
+      "always": [
+        {
+          "target": "ExecutingToolCall",
+          "guard": "inline:agent.MaybeExecutingToolCalls#always[-1]#guard",
+          "actions": []
+        },
+        {
+          "target": "MaybeWaitingForPendingToolCalls",
+          "guard": "inline:agent.MaybeExecutingToolCalls#always[-1]#guard",
+          "actions": []
+        }
+      ]
+    },
+    "RetryingWithDelay": {
+      "after": {
+        "retryBackoff": [
+          {
+            "target": "#agent.LLMStreaming",
+            "actions": [
+              {
+                "type": "inline:agent.RetryingWithDelay#xstate.after(retryBackoff)#agent.RetryingWithDelay[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ExecutingToolCall": {
+      "invoke": {
+        "input": {},
+        "src": "executeToolCallMachine",
+        "onDone": [
+          {
+            "target": "MaybeExecutingToolCalls",
+            "actions": [
+              {
+                "type": "inline:agent.ExecutingToolCall#done.invoke.agent.ExecutingToolCall:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "MaybeExecutingToolCalls",
+            "actions": [
+              {
+                "type": "assignEventError"
+              },
+              {
+                "type": "inline:agent.ExecutingToolCall#error.platform.agent.ExecutingToolCall:invocation[0][-1]#transition[1]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MaybeWaitingForPendingToolCalls": {
+      "always": [
+        {
+          "target": "WaitingForPendingToolCalls",
+          "guard": "inline:agent.MaybeWaitingForPendingToolCalls#always[-1]#guard",
+          "actions": []
+        },
+        {
+          "target": "MaybeContinuing",
+          "actions": []
+        }
+      ]
+    },
+    "WaitingForPendingToolCalls": {
+      "entry": {
+        "type": "inline:agent.WaitingForPendingToolCalls#entry[0]"
+      },
+      "exit": {
+        "type": "inline:agent.WaitingForPendingToolCalls#exit[0]"
+      },
+      "always": {
+        "target": "MaybeContinuing",
+        "guard": "inline:agent.WaitingForPendingToolCalls#always[-1]#guard",
+        "actions": []
+      }
+    },
+    "MaybeContinuing": {
+      "invoke": {
+        "input": {},
+        "src": "shouldContinue",
+        "onDone": [
+          {
+            "target": "MaybeStartingLLMRequest",
+            "guard": "inline:agent.MaybeContinuing#done.invoke.agent.MaybeContinuing:invocation[0][-1]#guard",
+            "actions": []
+          },
+          {
+            "target": "Finishing",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "Finishing",
+            "actions": [
+              {
+                "type": "assignEventError"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "on": {
+    "*": [
+      {
+        "actions": [
+          {
+            "type": "inline:agent#*[-1]#transition[0]"
+          }
+        ]
+      }
+    ],
+    "error": [
+      {
+        "target": ".Finishing",
+        "actions": []
+      }
+    ],
+    "stop": [
+      {
+        "target": ".Finishing",
+        "actions": [
+          {
+            "type": "inline:agent#stop[-1]#transition[0]"
+          }
+        ],
+        "meta": {}
+      }
+    ],
+    "updateInteractiveToolCall": [
+      {
+        "actions": [
+          {
+            "type": "inline:agent#updateInteractiveToolCall[-1]#transition[0]"
+          }
+        ]
+      }
+    ]
+  }
+}

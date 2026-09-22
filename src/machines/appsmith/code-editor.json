@@ -1,0 +1,73 @@
+{
+  "id": "Appsmith Code Editor",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "RENDERED": [
+          {
+            "target": "loading",
+            "guard": "code editor wasn’t loaded yet",
+            "actions": [],
+            "meta": {},
+            "reenter": true
+          },
+          {
+            "target": "waiting-idle-callback",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "loading": {
+      "on": {
+        "LOADING_FINISHED": [
+          {
+            "target": "waiting-idle-callback",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "PLACEHOLDER_INTERACTED": [
+          {
+            "target": "loading-interacted",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "waiting-idle-callback": {
+      "on": {
+        "IDLE_CALLBACK_FIRED": [
+          {
+            "target": "active",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "PLACEHOLDER_INTERACTED": [
+          {
+            "target": "active-focused",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "loading-interacted": {
+      "on": {
+        "LOADING_FINISHED": [
+          {
+            "target": "active-focused",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "active": {},
+    "active-focused": {}
+  }
+}

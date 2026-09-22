@@ -1,0 +1,126 @@
+{
+  "context": {
+    "error": null,
+    "plugins": []
+  },
+  "id": "pluginManager",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "description": "The plugin manager is idle, with no plugins registered or active.",
+      "on": {
+        "register": [
+          {
+            "target": "registered",
+            "actions": [
+              {
+                "type": "registerPlugin"
+              },
+              {
+                "type": "logRegister"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "registered": {
+      "description": "The plugin manager has one or more plugins registered but not yet activated.",
+      "on": {
+        "activate": [
+          {
+            "target": "active",
+            "guard": "pluginExists",
+            "actions": [
+              {
+                "type": "activatePlugin"
+              },
+              {
+                "type": "logActivate"
+              }
+            ]
+          },
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "logError"
+              }
+            ]
+          }
+        ],
+        "unregister": [
+          {
+            "target": "idle",
+            "guard": "isLastPlugin",
+            "actions": [
+              {
+                "type": "unregisterPlugin"
+              },
+              {
+                "type": "logUnregister"
+              }
+            ]
+          },
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "logError"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "active": {
+      "description": "The plugin manager has one or more plugins registered and active.",
+      "on": {
+        "deactivate": [
+          {
+            "target": "registered",
+            "actions": [
+              {
+                "type": "deactivatePlugin"
+              },
+              {
+                "type": "logDeactivate"
+              }
+            ]
+          }
+        ],
+        "unregister": [
+          {
+            "target": "registered",
+            "actions": [
+              {
+                "type": "unregisterPlugin"
+              },
+              {
+                "type": "logUnregister"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "error": {
+      "description": "An error occurred in the plugin manager.",
+      "entry": {
+        "type": "logError"
+      },
+      "on": {
+        "retry": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "clearError"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

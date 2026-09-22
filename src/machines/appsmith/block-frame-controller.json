@@ -1,0 +1,187 @@
+{
+  "context": "{{({ input }) => ({\n        model: input.model,\n        dragging: input.initData.type === InitType.INSERTION\n            ? {\n                dragStart: input.initData.dragStart,\n            }\n            : null,\n        initData: input.initData,\n    })}}",
+  "id": "blockFrameController",
+  "initial": "eval",
+  "states": {
+    "eval": {
+      "always": [
+        {
+          "target": "dragging",
+          "guard": "inline:blockFrameController.eval#always[-1]#guard",
+          "actions": []
+        },
+        {
+          "target": "idle",
+          "actions": []
+        }
+      ]
+    },
+    "dragging": {
+      "initial": "ready",
+      "states": {
+        "ready": {
+          "entry": [
+            {
+              "type": "inline:blockFrameController.dragging.ready#entry[0]"
+            },
+            {
+              "type": "inline:blockFrameController.dragging.ready#entry[1]"
+            }
+          ],
+          "on": {
+            "blockFrame.dragStart": [
+              {
+                "target": "active",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "active": {
+          "entry": {
+            "type": "inline:blockFrameController.dragging.active#entry[0]"
+          },
+          "on": {
+            "blockFrame.dragging": [
+              {
+                "actions": [
+                  {
+                    "type": "inline:blockFrameController.dragging.active#blockFrame.dragging[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "blockFrame.dragEnd": [
+              {
+                "target": "#blockFrameController.selected",
+                "actions": [
+                  {
+                    "type": "inline:blockFrameController.dragging.active#blockFrame.dragEnd[-1]#transition[0]"
+                  },
+                  {
+                    "type": "inline:blockFrameController.dragging.active#blockFrame.dragEnd[-1]#transition[1]"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "idle": {
+      "on": {
+        "blockFrame.selected": [
+          {
+            "target": "selected",
+            "actions": []
+          }
+        ],
+        "blockFrame.siblingSelected": [
+          {
+            "target": "softEdit",
+            "actions": []
+          }
+        ],
+        "blockFrame.dragInit": [
+          {
+            "target": "dragging",
+            "actions": [
+              {
+                "type": "inline:blockFrameController.idle#blockFrame.dragInit[-1]#transition[0]"
+              },
+              {
+                "type": "inline:blockFrameController.idle#blockFrame.dragInit[-1]#transition[1]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "selected": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "blockFrame.edit": [
+              {
+                "target": "edit",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "edit": {
+          "entry": {
+            "type": "inline:blockFrameController.selected.edit#entry[0]"
+          },
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "blockFrame.blur": [
+                  {
+                    "target": "#blockFrameController.idle",
+                    "actions": []
+                  }
+                ],
+                "blockFrame.siblingSelected": [
+                  {
+                    "target": "#blockFrameController.softEdit",
+                    "actions": [
+                      {
+                        "type": "inline:blockFrameController.selected.edit.idle#blockFrame.siblingSelected[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "blockFrame.blur": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ],
+        "blockFrame.dragInit": [
+          {
+            "target": "dragging",
+            "actions": [
+              {
+                "type": "inline:blockFrameController.selected#blockFrame.dragInit[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "softEdit": {
+      "on": {
+        "blockFrame.selected": [
+          {
+            "target": "#blockFrameController.selected.edit",
+            "actions": [
+              {
+                "type": "inline:blockFrameController.softEdit#blockFrame.selected[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "on": {
+    "blockFrame.rectangleUpdate": [
+      {
+        "actions": [
+          {
+            "type": "inline:blockFrameController#blockFrame.rectangleUpdate[-1]#transition[0]"
+          }
+        ]
+      }
+    ]
+  }
+}

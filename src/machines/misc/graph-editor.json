@@ -1,0 +1,179 @@
+{
+  "context": {
+    "edges": [],
+    "nodes": [],
+    "history": {
+      "states": []
+    },
+    "shouldRunLayout": true,
+    "hasManualChanges": false,
+    "isApplyingHistory": false
+  },
+  "id": "graphEditor",
+  "initial": "viewing",
+  "states": {
+    "viewing": {
+      "entry": {
+        "type": "enableLayout"
+      },
+      "on": {
+        "ENTER_EDIT_MODE": [
+          {
+            "target": "editing",
+            "actions": []
+          }
+        ],
+        "UPDATE_NODES": [
+          {
+            "actions": [
+              {
+                "type": "updateNodes"
+              }
+            ]
+          }
+        ],
+        "UPDATE_EDGES": [
+          {
+            "actions": [
+              {
+                "type": "updateEdges"
+              }
+            ]
+          }
+        ],
+        "UPDATE_NODES_AND_EDGES": [
+          {
+            "actions": [
+              {
+                "type": "updateNodes"
+              },
+              {
+                "type": "updateEdges"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "editing": {
+      "entry": {
+        "type": "resetManualChangeFlag"
+      },
+      "exit": [
+        {
+          "type": "clearHistory"
+        },
+        {
+          "type": "enableLayout"
+        }
+      ],
+      "on": {
+        "EXIT_EDIT_MODE": [
+          {
+            "target": "viewing",
+            "actions": [
+              {
+                "type": "restoreViewData"
+              }
+            ]
+          }
+        ],
+        "UPDATE_NODES": [
+          {
+            "actions": [
+              {
+                "type": "updateNodes"
+              },
+              {
+                "type": "markManualChange"
+              }
+            ]
+          }
+        ],
+        "UPDATE_EDGES": [
+          {
+            "actions": [
+              {
+                "type": "updateEdges"
+              },
+              {
+                "type": "markManualChange"
+              }
+            ]
+          }
+        ],
+        "UPDATE_NODES_AND_EDGES": [
+          {
+            "actions": [
+              {
+                "type": "updateNodesAndEdgesAndInitHistory"
+              }
+            ]
+          }
+        ],
+        "INITIALIZE_HISTORY": [
+          {
+            "actions": [
+              {
+                "type": "initializeHistory"
+              }
+            ]
+          }
+        ],
+        "TAKE_SNAPSHOT": [
+          {
+            "actions": [
+              {
+                "type": "takeSnapshot"
+              }
+            ]
+          }
+        ],
+        "UNDO": [
+          {
+            "guard": "canUndo",
+            "actions": [
+              {
+                "type": "applyUndo"
+              }
+            ]
+          }
+        ],
+        "REDO": [
+          {
+            "guard": "canRedo",
+            "actions": [
+              {
+                "type": "applyRedo"
+              }
+            ]
+          }
+        ],
+        "CLEAR_APPLYING_HISTORY": [
+          {
+            "actions": [
+              {
+                "type": "clearApplyingHistory"
+              }
+            ]
+          }
+        ],
+        "LOAD_FROM_VIEW": [
+          {
+            "actions": [
+              {
+                "type": "loadFromView"
+              },
+              {
+                "type": "clearHistory"
+              },
+              {
+                "type": "initializeHistory"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

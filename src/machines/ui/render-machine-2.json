@@ -1,0 +1,100 @@
+{
+  "context": {
+    "frameCount": 0,
+    "renderTime": 0
+  },
+  "id": "renderMachine",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "description": "The machine is in an idle state, waiting to start rendering.",
+      "on": {
+        "start": [
+          {
+            "target": "initializing",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "initializing": {
+      "description": "The machine is initializing resources and preparing for rendering.",
+      "on": {
+        "initialized": [
+          {
+            "target": "rendering",
+            "actions": []
+          }
+        ],
+        "error": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "rendering": {
+      "description": "The machine is actively rendering frames.",
+      "on": {
+        "frameRendered": [
+          {
+            "target": "rendering",
+            "actions": [
+              {
+                "type": "inline:renderMachine.rendering#frameRendered[-1]#transition[0]"
+              }
+            ],
+            "reenter": false
+          }
+        ],
+        "pause": [
+          {
+            "target": "paused",
+            "actions": []
+          }
+        ],
+        "stop": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "error": {
+      "description": "An error occurred during rendering. The process needs to be reset or stopped.",
+      "on": {
+        "reset": [
+          {
+            "target": "initializing",
+            "actions": []
+          }
+        ],
+        "stop": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "paused": {
+      "description": "The rendering process is paused. It can be resumed or stopped.",
+      "on": {
+        "resume": [
+          {
+            "target": "rendering",
+            "actions": []
+          }
+        ],
+        "stop": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

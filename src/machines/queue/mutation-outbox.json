@@ -1,0 +1,48 @@
+{
+  "id": "mutationOutbox",
+  "initial": "prepared",
+  "states": {
+    "prepared": {
+      "on": {
+        "LOCAL_COMMITTED": [
+          {
+            "target": "localCommitted",
+            "actions": []
+          }
+        ],
+        "ABANDON": [
+          {
+            "target": "abandoned",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "localCommitted": {
+      "on": {
+        "MEMENTO_COMMITTED": [
+          {
+            "target": "mementoCommitted",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "abandoned": {
+      "type": "final"
+    },
+    "mementoCommitted": {
+      "on": {
+        "RAFT_HEAD_COMMITTED": [
+          {
+            "target": "raftHeadCommitted",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "raftHeadCommitted": {
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "context": "{{({ input }) => ({\n        highlight_id: input.highlight_id,\n        recording_id: input.recording_id,\n        clip_id: 0,\n        overlay_id: 0,\n        reaction_id: 0,\n        skip_reaction: false,\n        error: \"\",\n    })}}",
+  "id": "render-machine",
+  "initial": "init",
+  "states": {
+    "init": {
+      "always": [
+        {
+          "target": "clip",
+          "guard": "inline:render-machine.init#always[-1]#guard",
+          "actions": []
+        },
+        {
+          "target": "record",
+          "actions": []
+        }
+      ]
+    },
+    "clip": {
+      "invoke": {
+        "input": {},
+        "src": "clipMachine",
+        "onDone": [
+          {
+            "target": "overlay",
+            "actions": [
+              {
+                "type": "inline:render-machine.clip#done.invoke.render-machine.clip:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "record": {
+      "invoke": {
+        "input": {},
+        "src": "recorderMachine",
+        "onDone": [
+          {
+            "target": "clip",
+            "actions": [
+              {
+                "type": "inline:render-machine.record#done.invoke.render-machine.record:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "overlay": {
+      "invoke": {
+        "input": {},
+        "src": "overlayMachine",
+        "onDone": [
+          {
+            "target": "concat",
+            "guard": "inline:render-machine.overlay#done.invoke.render-machine.overlay:invocation[0][-1]#guard",
+            "actions": [
+              {
+                "type": "inline:render-machine.overlay#done.invoke.render-machine.overlay:invocation[0][-1]#transition[0]"
+              }
+            ]
+          },
+          {
+            "target": "reaction",
+            "actions": [
+              {
+                "type": "inline:render-machine.overlay#done.invoke.render-machine.overlay:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "failed": {
+      "entry": {
+        "type": "inline:render-machine.failed#entry[0]"
+      },
+      "invoke": {
+        "input": {},
+        "src": "notifyFailed"
+      }
+    },
+    "concat": {
+      "invoke": {
+        "input": {},
+        "src": "concatMachine",
+        "onDone": [
+          {
+            "target": "metadata",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "reaction": {
+      "invoke": {
+        "input": {},
+        "src": "reactionMachine",
+        "onDone": [
+          {
+            "target": "concat",
+            "actions": [
+              {
+                "type": "inline:render-machine.reaction#done.invoke.render-machine.reaction:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "metadata": {
+      "invoke": {
+        "input": {},
+        "src": "descriptionMachine",
+        "onDone": [
+          {
+            "target": "upload",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "upload": {
+      "invoke": {
+        "input": {},
+        "src": "uploadGoogle",
+        "onDone": [
+          {
+            "target": "complete",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "complete": {
+      "type": "final"
+    }
+  }
+}

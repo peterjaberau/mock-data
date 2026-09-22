@@ -1,0 +1,294 @@
+{
+  "context": "{{({ input }) => ({\n        apiClient: input.apiClient,\n        dialogId: null,\n        messages: [],\n        error: null,\n        lastMessageReceivedAt: null,\n        pushTransportReady: false,\n    })}}",
+  "id": "engine",
+  "initial": "loadingDialog",
+  "states": {
+    "loadingDialog": {
+      "invoke": {
+        "input": {},
+        "src": "loadDialog",
+        "id": "loadDialog",
+        "onDone": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "setDialogData"
+              },
+              {
+                "type": "emitDialogCreatedIfNew"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "setError"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "idle": {
+      "on": {
+        "SEND_MESSAGE": [
+          {
+            "target": "sending",
+            "guard": "hasDialogId",
+            "actions": []
+          }
+        ],
+        "PUSH_NOTIFICATION": [
+          {
+            "guard": "isPushForCurrentDialog",
+            "actions": [
+              {
+                "type": "emitPushMessage"
+              },
+              {
+                "type": "addPushMessage"
+              }
+            ]
+          }
+        ],
+        "PUSH_TRANSPORT_LOST": [
+          {
+            "actions": [
+              {
+                "type": "markTransportLost"
+              }
+            ]
+          }
+        ],
+        "PUSH_TRANSPORT_READY": [
+          {
+            "actions": [
+              {
+                "type": "markTransportReady"
+              }
+            ]
+          }
+        ],
+        "POLL_HISTORY": [
+          {
+            "target": "polling",
+            "guard": "hasDialogId",
+            "actions": []
+          }
+        ],
+        "DESTROY": [
+          {
+            "target": "destroyed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "error": {
+      "entry": {
+        "type": "emitError"
+      },
+      "on": {
+        "CLEAR_ERROR": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ],
+        "DESTROY": [
+          {
+            "target": "destroyed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "sending": {
+      "entry": {
+        "type": "clearError"
+      },
+      "invoke": {
+        "input": {},
+        "src": "sendMessage",
+        "id": "sendMessage",
+        "onDone": [
+          {
+            "target": "idle",
+            "guard": "hasAssistantMessages",
+            "actions": [
+              {
+                "type": "addUserMessage"
+              },
+              {
+                "type": "emitUserMessage"
+              },
+              {
+                "type": "addAssistantMessages"
+              },
+              {
+                "type": "emitAssistantMessages"
+              }
+            ]
+          },
+          {
+            "target": "thinking",
+            "actions": [
+              {
+                "type": "addUserMessage"
+              },
+              {
+                "type": "emitUserMessage"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "idle",
+            "guard": "isAbortError",
+            "actions": []
+          },
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "setError"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "polling": {
+      "invoke": {
+        "input": {},
+        "src": "pollHistory",
+        "id": "pollHistory",
+        "onDone": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "emitPolledMessages"
+              },
+              {
+                "type": "mergePolledMessages"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      },
+      "on": {
+        "SEND_MESSAGE": [
+          {
+            "target": "sending",
+            "guard": "hasDialogId",
+            "actions": []
+          }
+        ],
+        "PUSH_NOTIFICATION": [
+          {
+            "guard": "isPushForCurrentDialog",
+            "actions": [
+              {
+                "type": "emitPushMessage"
+              },
+              {
+                "type": "addPushMessage"
+              }
+            ]
+          }
+        ],
+        "PUSH_TRANSPORT_LOST": [
+          {
+            "actions": [
+              {
+                "type": "markTransportLost"
+              }
+            ]
+          }
+        ],
+        "PUSH_TRANSPORT_READY": [
+          {
+            "actions": [
+              {
+                "type": "markTransportReady"
+              }
+            ]
+          }
+        ],
+        "DESTROY": [
+          {
+            "target": "destroyed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "destroyed": {
+      "entry": {
+        "type": "destroyApiClient"
+      },
+      "type": "final"
+    },
+    "thinking": {
+      "on": {
+        "PUSH_NOTIFICATION": [
+          {
+            "target": "idle",
+            "guard": "isPushForCurrentDialog",
+            "actions": [
+              {
+                "type": "emitPushMessage"
+              },
+              {
+                "type": "addPushMessage"
+              }
+            ]
+          }
+        ],
+        "PUSH_TRANSPORT_LOST": [
+          {
+            "actions": [
+              {
+                "type": "markTransportLost"
+              }
+            ]
+          }
+        ],
+        "PUSH_TRANSPORT_READY": [
+          {
+            "actions": [
+              {
+                "type": "markTransportReady"
+              }
+            ]
+          }
+        ],
+        "POLL_HISTORY": [
+          {
+            "target": "polling",
+            "guard": "hasDialogId",
+            "actions": []
+          }
+        ],
+        "DESTROY": [
+          {
+            "target": "destroyed",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

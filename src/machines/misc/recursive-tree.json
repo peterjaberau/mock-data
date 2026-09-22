@@ -1,0 +1,119 @@
+{
+  "context": "{{({ input }: any) => {\n        return {\n            source: null,\n            transform: null,\n            output: [],\n            ...input,\n        };\n    }}}",
+  "id": "recursiveTreeMachine",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "START": [
+          {
+            "target": "boot",
+            "actions": []
+          }
+        ],
+        "RESET": [
+          {
+            "actions": [
+              {
+                "type": "resetAction"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "boot": {
+      "invoke": {
+        "input": {},
+        "src": "bootstrapActor"
+      },
+      "on": {
+        "BOOTSTRAP": [
+          {
+            "target": "tree",
+            "actions": [
+              {
+                "type": "receiveSource"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "tree": {
+      "initial": "prepare",
+      "states": {
+        "prepare": {
+          "entry": {
+            "type": "initIteration"
+          },
+          "always": [
+            {
+              "target": "node",
+              "guard": "hasWork",
+              "actions": []
+            },
+            {
+              "target": "done",
+              "actions": []
+            }
+          ]
+        },
+        "node": {
+          "initial": "enter",
+          "states": {
+            "enter": {
+              "entry": {
+                "type": "nodeEnterAction"
+              },
+              "always": {
+                "target": "process",
+                "actions": []
+              }
+            },
+            "process": {
+              "entry": {
+                "type": "nodeLogicAction"
+              },
+              "always": {
+                "target": "exit",
+                "actions": []
+              }
+            },
+            "exit": {
+              "exit": {
+                "type": "nodeExitAction"
+              },
+              "always": {
+                "target": "#recursiveTreeMachine.tree.collect",
+                "actions": []
+              }
+            }
+          }
+        },
+        "done": {
+          "type": "final"
+        },
+        "collect": {
+          "entry": {
+            "type": "updateOutput"
+          },
+          "exit": {
+            "type": "advanceIteration"
+          },
+          "always": {
+            "target": "prepare",
+            "actions": []
+          }
+        }
+      },
+      "onDone": {
+        "target": "finished",
+        "actions": []
+      }
+    },
+    "finished": {
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "id": "Mapping Machine",
+  "initial": "Idle",
+  "states": {
+    "Idle": {
+      "on": {
+        "StartDiscovering": [
+          {
+            "target": "Discovering",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Discovering": {
+      "on": {
+        "ErrorsDiscovered": [
+          {
+            "target": "Error",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "NoErrorsDiscovered": [
+          {
+            "target": "OK",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Error": {
+      "on": {
+        "StartFixing": [
+          {
+            "target": "Fixing",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "OK": {
+      "on": {
+        "StartReviewing": [
+          {
+            "target": "Reviewing",
+            "actions": []
+          }
+        ],
+        "StartDeleting": [
+          {
+            "target": "Deleting",
+            "actions": []
+          }
+        ],
+        "StartCreating": [
+          {
+            "target": "Creating",
+            "actions": []
+          }
+        ],
+        "StartUpdating": [
+          {
+            "target": "Updating",
+            "actions": []
+          }
+        ],
+        "StartReading": [
+          {
+            "target": "Reading",
+            "actions": []
+          }
+        ]
+      },
+      "type": "final"
+    },
+    "Fixing": {
+      "on": {
+        "EndFixing": [
+          {
+            "target": "Discovering",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Reviewing": {
+      "on": {
+        "EndReviewing": [
+          {
+            "target": "Discovering",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Deleting": {
+      "on": {
+        "EndDeleting": [
+          {
+            "target": "Discovering",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Creating": {
+      "on": {
+        "EndCreating": [
+          {
+            "target": "Discovering",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Updating": {
+      "on": {
+        "EndUpdating": [
+          {
+            "target": "Discovering",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Reading": {
+      "on": {
+        "EndReading": [
+          {
+            "target": "Discovering",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

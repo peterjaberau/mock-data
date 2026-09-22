@@ -1,0 +1,209 @@
+{
+  "id": "placementManager",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "START": [
+          {
+            "target": "loadingPersistentState",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "loadingPersistentState": {
+      "on": {
+        "LOADED": [
+          {
+            "target": "schedulingInitial",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "stopped": {
+      "on": {
+        "START": [
+          {
+            "target": "loadingPersistentState",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "schedulingInitial": {
+      "on": {
+        "INITIAL_ENQUEUED": [
+          {
+            "target": "running",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "failed": {
+      "on": {
+        "START": [
+          {
+            "target": "loadingPersistentState",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "stopping": {
+      "on": {
+        "STOPPED": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "running": {
+      "states": {
+        "clusterMetrics": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "CLUSTER_METRICS_STARTED": [
+                  {
+                    "target": "processing",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "processing": {
+              "on": {
+                "CLUSTER_METRICS_SUCCEEDED": [
+                  {
+                    "target": "idle",
+                    "actions": []
+                  }
+                ],
+                "CLUSTER_METRICS_FAILED": [
+                  {
+                    "target": "failed",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "failed": {
+              "on": {
+                "CLUSTER_METRICS_STARTED": [
+                  {
+                    "target": "processing",
+                    "actions": []
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "repoRebalance": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "REBALANCE_STARTED": [
+                  {
+                    "target": "processing",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "processing": {
+              "on": {
+                "REBALANCE_SUCCEEDED": [
+                  {
+                    "target": "idle",
+                    "actions": []
+                  }
+                ],
+                "REBALANCE_FAILED": [
+                  {
+                    "target": "failed",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "failed": {
+              "on": {
+                "REBALANCE_STARTED": [
+                  {
+                    "target": "processing",
+                    "actions": []
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      },
+      "type": "parallel"
+    }
+  }
+}

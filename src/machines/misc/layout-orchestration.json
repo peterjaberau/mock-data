@@ -1,0 +1,857 @@
+{
+  "id": "event:layout_orchestration",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "launch_standalone_webcast": [
+          {
+            "target": "webcast:launching",
+            "actions": [
+              {
+                "type": "setLaunchWebcastId"
+              }
+            ]
+          }
+        ],
+        "launch_vt": [
+          {
+            "target": "vt:launching",
+            "actions": [
+              {
+                "type": "setLaunchVtId"
+              }
+            ]
+          }
+        ],
+        "launch_meeting": [
+          {
+            "target": "meeting:launching",
+            "actions": [
+              {
+                "type": "setLaunchMeetingId"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "webcast:launching": {
+      "invoke": {
+        "input": {},
+        "src": "fetchWebcast",
+        "onDone": [
+          {
+            "target": "webcast:launched",
+            "actions": [
+              {
+                "type": "clearLaunchWebcastId"
+              },
+              {
+                "type": "setWebcast"
+              },
+              {
+                "type": "hookWebcast"
+              }
+            ]
+          }
+        ]
+      },
+      "tags": "webcast:launching"
+    },
+    "vt:launching": {
+      "invoke": {
+        "input": {},
+        "src": "fetchVirtualTable",
+        "onDone": [
+          {
+            "target": "vt:connecting",
+            "actions": [
+              {
+                "type": "clearLaunchVtId"
+              },
+              {
+                "type": "setMeeting"
+              },
+              {
+                "type": "hookVirtualTable"
+              }
+            ]
+          }
+        ]
+      },
+      "tags": "vt:launching"
+    },
+    "meeting:launching": {
+      "invoke": {
+        "input": {},
+        "src": "fetchMeeting",
+        "onDone": [
+          {
+            "target": "meeting:connecting",
+            "actions": [
+              {
+                "type": "clearLaunchMeetingId"
+              },
+              {
+                "type": "setMeeting"
+              },
+              {
+                "type": "hookMeeting"
+              }
+            ]
+          }
+        ]
+      },
+      "tags": "meeting:launching"
+    },
+    "webcast:launched": {
+      "tags": "webcast",
+      "states": {
+        "mode": {
+          "initial": "default",
+          "states": {
+            "default": {
+              "always": [
+                {
+                  "target": "vod",
+                  "guard": "isArchived",
+                  "actions": []
+                },
+                {
+                  "target": "live",
+                  "actions": []
+                }
+              ]
+            },
+            "vod": {
+              "tags": "webcast:vod",
+              "type": "final"
+            },
+            "live": {
+              "tags": "webcast:live",
+              "type": "final"
+            }
+          }
+        },
+        "presentation": {
+          "initial": "main",
+          "states": {
+            "main": {
+              "tags": [
+                "webcast:main",
+                "main"
+              ],
+              "on": {
+                "toggle": [
+                  {
+                    "target": "pip",
+                    "actions": []
+                  }
+                ],
+                "blur": [
+                  {
+                    "target": "#event:layout_orchestration.webcast:closing",
+                    "guard": "isArchived",
+                    "actions": []
+                  },
+                  {
+                    "target": "pip",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "pip": {
+              "entry": {
+                "type": "toneDownWebcastVolume"
+              },
+              "tags": [
+                "webcast:pip",
+                "pip"
+              ],
+              "on": {
+                "toggle": [
+                  {
+                    "target": "main",
+                    "actions": []
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "close_webcast": [
+          {
+            "target": "webcast:closing",
+            "actions": []
+          }
+        ],
+        "terminate": [
+          {
+            "target": "webcast:closing",
+            "actions": []
+          }
+        ],
+        "launch_standalone_webcast": [
+          {
+            "target": "webcast:closing",
+            "actions": [
+              {
+                "type": "setLaunchWebcastId"
+              }
+            ]
+          }
+        ],
+        "launch_vt": [
+          {
+            "target": "webcast:closing",
+            "actions": [
+              {
+                "type": "setLaunchVtId"
+              }
+            ]
+          }
+        ],
+        "launch_meeting": [
+          {
+            "target": "webcast:closing",
+            "actions": [
+              {
+                "type": "setLaunchMeetingId"
+              }
+            ]
+          }
+        ]
+      },
+      "type": "parallel"
+    },
+    "vt:connecting": {
+      "tags": [
+        "vt",
+        "vt:main",
+        "main",
+        "vt:connecting"
+      ],
+      "on": {
+        "connected": [
+          {
+            "target": "vt:connected",
+            "actions": []
+          }
+        ],
+        "disconnect": [
+          {
+            "target": "vt:disconnecting",
+            "actions": []
+          }
+        ],
+        "terminate": [
+          {
+            "target": "vt:disconnecting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "meeting:connecting": {
+      "tags": [
+        "meeting",
+        "meeting:main",
+        "main",
+        "meeting:connecting"
+      ],
+      "on": {
+        "connected": [
+          {
+            "target": "meeting:connected",
+            "actions": []
+          }
+        ],
+        "disconnect": [
+          {
+            "target": "meeting:disconnecting",
+            "actions": []
+          }
+        ],
+        "terminate": [
+          {
+            "target": "meeting:disconnecting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "webcast:closing": {
+      "after": {
+        "250": [
+          {
+            "target": "#event:layout_orchestration.webcast:closed",
+            "actions": []
+          }
+        ]
+      },
+      "tags": "webcast:terminating"
+    },
+    "vt:connected": {
+      "tags": "vt",
+      "initial": "main",
+      "states": {
+        "main": {
+          "tags": [
+            "vt:main",
+            "main"
+          ],
+          "on": {
+            "toggle": [
+              {
+                "target": "pip",
+                "actions": []
+              }
+            ],
+            "blur": [
+              {
+                "target": "pip",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "pip": {
+          "entry": {
+            "type": "toneDownMeetingVolume"
+          },
+          "tags": [
+            "vt:pip",
+            "pip"
+          ],
+          "on": {
+            "toggle": [
+              {
+                "target": "main",
+                "actions": []
+              }
+            ]
+          }
+        }
+      },
+      "on": {
+        "disconnect": [
+          {
+            "target": "vt:disconnecting",
+            "actions": []
+          }
+        ],
+        "launch_webcast": [
+          {
+            "target": "[vt:connected, webcast:launching]",
+            "actions": [
+              {
+                "type": "setLaunchWebcastId"
+              }
+            ]
+          }
+        ],
+        "launch_standalone_webcast": [
+          {
+            "target": "vt:disconnecting",
+            "actions": [
+              {
+                "type": "setLaunchWebcastId"
+              }
+            ]
+          }
+        ],
+        "launch_meeting": [
+          {
+            "target": "vt:disconnecting",
+            "actions": [
+              {
+                "type": "setLaunchMeetingId"
+              }
+            ]
+          }
+        ],
+        "launch_vt": [
+          {
+            "target": "vt:disconnecting",
+            "actions": [
+              {
+                "type": "setLaunchVtId"
+              }
+            ]
+          }
+        ],
+        "terminate": [
+          {
+            "target": "vt:disconnecting",
+            "actions": []
+          }
+        ],
+        "update_vt": [
+          {
+            "actions": [
+              {
+                "type": "updateVirtualMeeting"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "vt:disconnecting": {
+      "after": {
+        "250": [
+          {
+            "target": "#event:layout_orchestration.vt:disconnected",
+            "actions": []
+          }
+        ]
+      },
+      "tags": "vt:terminating"
+    },
+    "meeting:connected": {
+      "tags": "meeting",
+      "initial": "main",
+      "states": {
+        "main": {
+          "tags": [
+            "meeting:main",
+            "main"
+          ],
+          "on": {
+            "toggle": [
+              {
+                "target": "pip",
+                "actions": []
+              }
+            ],
+            "pip": [
+              {
+                "target": "pip",
+                "actions": []
+              }
+            ],
+            "blur": [
+              {
+                "target": "pip",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "pip": {
+          "entry": {
+            "type": "toneDownMeetingVolume"
+          },
+          "tags": [
+            "meeting:pip",
+            "pip"
+          ],
+          "on": {
+            "toggle": [
+              {
+                "target": "main",
+                "actions": []
+              }
+            ]
+          }
+        }
+      },
+      "on": {
+        "disconnect": [
+          {
+            "target": "meeting:disconnecting",
+            "actions": []
+          }
+        ],
+        "launch_standalone_webcast": [
+          {
+            "target": "meeting:disconnecting",
+            "actions": [
+              {
+                "type": "setLaunchWebcastId"
+              }
+            ]
+          }
+        ],
+        "launch_vt": [
+          {
+            "target": "meeting:disconnecting",
+            "actions": [
+              {
+                "type": "setLaunchVtId"
+              }
+            ]
+          }
+        ],
+        "launch_meeting": [
+          {
+            "target": "meeting:disconnecting",
+            "actions": [
+              {
+                "type": "setLaunchMeetingId"
+              }
+            ]
+          }
+        ],
+        "terminate": [
+          {
+            "target": "meeting:disconnecting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "meeting:disconnecting": {
+      "after": {
+        "250": [
+          {
+            "target": "#event:layout_orchestration.meeting:disconnected",
+            "actions": []
+          }
+        ]
+      },
+      "tags": "meeting:terminating"
+    },
+    "webcast:closed": {
+      "entry": {
+        "type": "clearWebcast"
+      },
+      "tags": "webcast:terminated",
+      "always": {
+        "target": "terminus",
+        "actions": []
+      }
+    },
+    "[vt:connected, webcast:launching]": {
+      "invoke": {
+        "input": {},
+        "src": "fetchWebcast",
+        "onDone": [
+          {
+            "target": "[vt:connected, webcast:launched]",
+            "actions": [
+              {
+                "type": "clearLaunchWebcastId"
+              },
+              {
+                "type": "setWebcast"
+              },
+              {
+                "type": "hookWebcast"
+              }
+            ]
+          }
+        ]
+      },
+      "tags": [
+        "vt",
+        "vt:main",
+        "main",
+        "webcast:launching"
+      ]
+    },
+    "vt:disconnected": {
+      "entry": {
+        "type": "clearMeeting"
+      },
+      "tags": "vt:terminated",
+      "always": {
+        "target": "terminus",
+        "actions": []
+      }
+    },
+    "meeting:disconnected": {
+      "entry": {
+        "type": "clearMeeting"
+      },
+      "tags": "meeting:terminated",
+      "always": {
+        "target": "terminus",
+        "actions": []
+      }
+    },
+    "terminus": {
+      "always": [
+        {
+          "target": "vt:launching",
+          "guard": "shouldLaunchVirtualTable",
+          "actions": []
+        },
+        {
+          "target": "webcast:launching",
+          "guard": "shouldLaunchWebcast",
+          "actions": []
+        },
+        {
+          "target": "meeting:launching",
+          "guard": "shouldLaunchMeeting",
+          "actions": []
+        },
+        {
+          "target": "idle",
+          "actions": []
+        }
+      ]
+    },
+    "[vt:connected, webcast:launched]": {
+      "tags": [
+        "vt",
+        "webcast"
+      ],
+      "initial": "[vt:main, webcast:pip]",
+      "states": {
+        "[vt:main, webcast:pip]": {
+          "entry": {
+            "type": "toneDownWebcastVolume"
+          },
+          "tags": [
+            "vt:main",
+            "webcast:pip",
+            "pip",
+            "main",
+            "webcast:live"
+          ],
+          "on": {
+            "toggle": [
+              {
+                "target": "[vt:pip, webcast:main]",
+                "actions": []
+              }
+            ],
+            "blur": [
+              {
+                "target": "[vt:pip, webcast:standby]",
+                "actions": []
+              }
+            ],
+            "focus_webcast": [
+              {
+                "target": "[vt:pip, webcast:main]",
+                "guard": "matchesCurrentWebcast",
+                "actions": [
+                  {
+                    "type": "muteVirtualTableMic"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "[vt:pip, webcast:main]": {
+          "entry": {
+            "type": "toneDownMeetingVolume"
+          },
+          "tags": [
+            "vt:pip",
+            "webcast:main",
+            "pip",
+            "main",
+            "webcast:live"
+          ],
+          "on": {
+            "toggle": [
+              {
+                "target": "[vt:main, webcast:pip]",
+                "actions": []
+              }
+            ],
+            "blur": [
+              {
+                "target": "[vt:pip, webcast:standby]",
+                "actions": []
+              }
+            ],
+            "focus_vt": [
+              {
+                "target": "[vt:main, webcast:pip]",
+                "guard": "matchesCurrentMeeting",
+                "actions": [
+                  {
+                    "type": "muteWebcast"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "[vt:pip, webcast:standby]": {
+          "tags": [
+            "vt:pip",
+            "webcast:standby",
+            "pip"
+          ],
+          "on": {
+            "toggle": [
+              {
+                "target": "[vt:pip, webcast:main]",
+                "actions": []
+              }
+            ],
+            "focus_webcast": [
+              {
+                "target": "[vt:pip, webcast:main]",
+                "guard": "matchesCurrentWebcast",
+                "actions": [
+                  {
+                    "type": "muteVirtualTableMic"
+                  }
+                ]
+              }
+            ],
+            "focus_vt": [
+              {
+                "target": "[vt:main, webcast:pip]",
+                "guard": "matchesCurrentMeeting",
+                "actions": [
+                  {
+                    "type": "muteWebcast"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "on": {
+        "end_webcast": [
+          {
+            "target": "[vt:connected, webcast:closing]",
+            "actions": []
+          }
+        ],
+        "launch_webcast": [
+          {
+            "target": "[vt:connected, webcast:closing]",
+            "actions": [
+              {
+                "type": "setLaunchWebcastId"
+              }
+            ]
+          }
+        ],
+        "launch_vt": [
+          {
+            "target": "[vt:disconnecting, webcast:closing]",
+            "actions": [
+              {
+                "type": "setLaunchVtId"
+              }
+            ]
+          }
+        ],
+        "launch_meeting": [
+          {
+            "target": "[vt:disconnecting, webcast:closing]",
+            "actions": [
+              {
+                "type": "setLaunchMeetingId"
+              }
+            ]
+          }
+        ],
+        "launch_standalone_webcast": [
+          {
+            "target": "[vt:disconnecting, webcast:closing]",
+            "actions": [
+              {
+                "type": "setLaunchWebcastId"
+              }
+            ]
+          }
+        ],
+        "disconnect": [
+          {
+            "target": "[vt:disconnecting, webcast:closing]",
+            "actions": []
+          }
+        ],
+        "terminate": [
+          {
+            "target": "[vt:disconnecting, webcast:closing]",
+            "actions": []
+          }
+        ],
+        "update_vt": [
+          {
+            "actions": [
+              {
+                "type": "updateVirtualMeeting"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "[vt:connected, webcast:closing]": {
+      "after": {
+        "250": [
+          {
+            "target": "#event:layout_orchestration.[vt:connected, webcast:closed]",
+            "actions": []
+          }
+        ]
+      },
+      "tags": [
+        "vt",
+        "vt:main",
+        "webcast:terminating",
+        "main"
+      ]
+    },
+    "[vt:disconnecting, webcast:closing]": {
+      "after": {
+        "250": [
+          {
+            "target": "#event:layout_orchestration.[vt:disconnected, webcast:closed]",
+            "actions": []
+          }
+        ]
+      },
+      "tags": "webcast:terminating"
+    },
+    "[vt:connected, webcast:closed]": {
+      "entry": {
+        "type": "clearWebcast"
+      },
+      "tags": [
+        "vt",
+        "vt:main",
+        "webcast:terminated",
+        "main"
+      ],
+      "always": [
+        {
+          "target": "[vt:connected, webcast:launching]",
+          "guard": "shouldLaunchWebcast",
+          "actions": []
+        },
+        {
+          "target": "vt:connected",
+          "actions": []
+        }
+      ]
+    },
+    "[vt:disconnected, webcast:closed]": {
+      "entry": [
+        {
+          "type": "clearMeeting"
+        },
+        {
+          "type": "clearWebcast"
+        }
+      ],
+      "tags": [
+        "webcast:terminated",
+        "vt:terminated"
+      ],
+      "always": {
+        "target": "terminus",
+        "actions": []
+      }
+    }
+  }
+}

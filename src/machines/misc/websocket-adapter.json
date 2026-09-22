@@ -1,0 +1,61 @@
+{
+  "id": "Web socket adapter",
+  "initial": "CONNECTING",
+  "states": {
+    "CONNECTING": {
+      "on": {
+        "open": [
+          {
+            "target": "CONNECTED",
+            "actions": []
+          }
+        ],
+        "error": [
+          {
+            "target": "CLOSING",
+            "guard": "isTimeoutExceeded",
+            "actions": []
+          }
+        ],
+        "close": [
+          {
+            "actions": [
+              {
+                "type": "setCloseTimestamp"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CONNECTED": {
+      "on": {
+        "error": [
+          {
+            "target": "CLOSING",
+            "actions": []
+          }
+        ],
+        "close": [
+          {
+            "target": "CLOSING",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "CLOSING": {
+      "always": {
+        "target": "CLOSED",
+        "actions": []
+      }
+    },
+    "CLOSED": {
+      "always": {
+        "target": "TORN DOWN",
+        "actions": []
+      }
+    },
+    "TORN DOWN": {}
+  }
+}

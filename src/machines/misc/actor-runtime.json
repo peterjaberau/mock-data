@@ -1,0 +1,248 @@
+{
+  "id": "actorRuntime",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "description": "Actor is not currently engaged in any tasks.",
+      "on": {
+        "start-task": [
+          {
+            "target": "starting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "starting": {
+      "description": "Actor is preparing to receive a new task.",
+      "on": {
+        "task-received": [
+          {
+            "target": "receivingTask",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "receivingTask": {
+      "description": "Actor is receiving and interpreting a task request.",
+      "on": {
+        "interpret-complete": [
+          {
+            "target": "interpretingRequest",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "interpretingRequest": {
+      "description": "Actor is interpreting the task request to understand requirements.",
+      "on": {
+        "interpret-success": [
+          {
+            "target": "thinking",
+            "actions": []
+          }
+        ],
+        "interpret-failure": [
+          {
+            "target": "errored",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "thinking": {
+      "description": "Actor is reasoning about the task and planning the approach.",
+      "on": {
+        "plan-complete": [
+          {
+            "target": "planning",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "errored": {
+      "description": "Actor encountered an error and cannot proceed.",
+      "on": {
+        "retry": [
+          {
+            "target": "retrying",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "cancelling",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "planning": {
+      "description": "Actor is decomposing work and selecting necessary skills.",
+      "on": {
+        "plan-success": [
+          {
+            "target": "decomposingWork",
+            "actions": []
+          }
+        ],
+        "plan-failure": [
+          {
+            "target": "retrying",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "retrying": {
+      "description": "Actor is retrying a failed task.",
+      "on": {
+        "retry-success": [
+          {
+            "target": "planning",
+            "actions": []
+          }
+        ],
+        "retry-failure": [
+          {
+            "target": "errored",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "cancelling": {
+      "description": "Actor is cancelling the current task.",
+      "on": {
+        "cancel-complete": [
+          {
+            "target": "cancelled",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "decomposingWork": {
+      "description": "Actor is breaking down the task into manageable components.",
+      "on": {
+        "decompose-complete": [
+          {
+            "target": "selectingSkills",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "cancelled": {
+      "description": "Actor has cancelled the task.",
+      "type": "final"
+    },
+    "selectingSkills": {
+      "description": "Actor selects skills needed to perform the task.",
+      "on": {
+        "skills-selected": [
+          {
+            "target": "gatheringContext",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "gatheringContext": {
+      "description": "Actor gathers necessary context and information to proceed.",
+      "on": {
+        "context-gathered": [
+          {
+            "target": "creatingArtifact",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "creatingArtifact": {
+      "description": "Actor is creating a new artifact as part of the task.",
+      "on": {
+        "artifact-created": [
+          {
+            "target": "requestingReview",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "requestingReview": {
+      "description": "Actor requests a review of the created artifact.",
+      "on": {
+        "review-requested": [
+          {
+            "target": "waitingForReview",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "waitingForReview": {
+      "description": "Actor is waiting for a review to be completed.",
+      "on": {
+        "review-complete": [
+          {
+            "target": "reviewing",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "reviewing": {
+      "description": "Actor reviews feedback and decides on next steps.",
+      "on": {
+        "review-success": [
+          {
+            "target": "validatingOutput",
+            "actions": []
+          }
+        ],
+        "review-failure": [
+          {
+            "target": "revisingArtifact",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "validatingOutput": {
+      "description": "Actor validates the output of the task.",
+      "on": {
+        "validation-success": [
+          {
+            "target": "completed",
+            "actions": []
+          }
+        ],
+        "validation-failure": [
+          {
+            "target": "revisingArtifact",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "revisingArtifact": {
+      "description": "Actor revises the artifact based on feedback.",
+      "on": {
+        "revision-complete": [
+          {
+            "target": "requestingReview",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "completed": {
+      "description": "Actor has successfully completed the task.",
+      "type": "final"
+    }
+  }
+}

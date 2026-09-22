@@ -1,0 +1,379 @@
+{
+  "context": {
+    "openSub": null,
+    "subSearch": "",
+    "editingIdx": null,
+    "mainSearch": "",
+    "operatorIdx": null,
+    "openSubResource": null,
+    "subMenuSelectMode": false,
+    "subResourceSearch": ""
+  },
+  "id": "advancedFiltersUI",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "OPEN_MAIN_MENU": [
+          {
+            "target": "mainMenu",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "OPEN_VALUE_EDITOR": [
+          {
+            "target": "subMenuOnly",
+            "actions": [
+              {
+                "type": "setEditingIdx"
+              }
+            ]
+          }
+        ],
+        "OPEN_OPERATOR_MENU": [
+          {
+            "target": "operatorMenu",
+            "actions": [
+              {
+                "type": "setOperatorIdx"
+              }
+            ]
+          }
+        ],
+        "OPEN_STRING_EDITOR": [
+          {
+            "target": "stringEditor",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "OPEN_DATE_EDITOR": [
+          {
+            "target": "dateEditor",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "OPEN_DISPLAY": [
+          {
+            "target": "displayPopover",
+            "actions": []
+          }
+        ],
+        "OPEN_PRESET_MODAL": [
+          {
+            "target": "presetModal",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "mainMenu": {
+      "on": {
+        "CLOSE": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "OPEN_SUB": [
+          {
+            "actions": [
+              {
+                "type": "setSub"
+              }
+            ]
+          }
+        ],
+        "CLOSE_SUB": [
+          {
+            "actions": [
+              {
+                "type": "clearSub"
+              }
+            ]
+          }
+        ],
+        "OPEN_SUB_RESOURCE": [
+          {
+            "actions": [
+              {
+                "type": "setSubResource"
+              }
+            ]
+          }
+        ],
+        "CLOSE_SUB_RESOURCE": [
+          {
+            "actions": [
+              {
+                "type": "clearSubResource"
+              }
+            ]
+          }
+        ],
+        "ENTER_MULTI_SELECT": [
+          {
+            "actions": [
+              {
+                "type": "enterMultiSelect"
+              }
+            ]
+          }
+        ],
+        "SET_MAIN_SEARCH": [
+          {
+            "actions": [
+              {
+                "type": "setMainSearch"
+              }
+            ]
+          }
+        ],
+        "SET_SUB_SEARCH": [
+          {
+            "actions": [
+              {
+                "type": "setSubSearch"
+              }
+            ]
+          }
+        ],
+        "SET_SUB_RESOURCE_SEARCH": [
+          {
+            "actions": [
+              {
+                "type": "setSubResourceSearch"
+              }
+            ]
+          }
+        ],
+        "SELECT_SINGLE": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "FINALIZE": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "OPEN_STRING_EDITOR": [
+          {
+            "target": "stringEditor",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "OPEN_DATE_EDITOR": [
+          {
+            "target": "dateEditor",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "subMenuOnly": {
+      "on": {
+        "CLOSE": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "OPEN_SUB_RESOURCE": [
+          {
+            "actions": [
+              {
+                "type": "setSubResource"
+              }
+            ]
+          }
+        ],
+        "CLOSE_SUB_RESOURCE": [
+          {
+            "actions": [
+              {
+                "type": "clearSubResource"
+              }
+            ]
+          }
+        ],
+        "ENTER_MULTI_SELECT": [
+          {
+            "actions": [
+              {
+                "type": "enterMultiSelect"
+              }
+            ]
+          }
+        ],
+        "SET_SUB_SEARCH": [
+          {
+            "actions": [
+              {
+                "type": "setSubSearch"
+              }
+            ]
+          }
+        ],
+        "SET_SUB_RESOURCE_SEARCH": [
+          {
+            "actions": [
+              {
+                "type": "setSubResourceSearch"
+              }
+            ]
+          }
+        ],
+        "SELECT_SINGLE": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "FINALIZE": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "OPEN_STRING_EDITOR": [
+          {
+            "target": "stringEditor",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "operatorMenu": {
+      "on": {
+        "CLOSE": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ],
+        "CHOOSE_OPERATOR": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetMenuState"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "stringEditor": {
+      "on": {
+        "CLOSE": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ],
+        "SAVE": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "dateEditor": {
+      "on": {
+        "CLOSE": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ],
+        "SAVE": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "displayPopover": {
+      "on": {
+        "CLOSE": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "presetModal": {
+      "on": {
+        "CLOSE": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ],
+        "SAVE": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

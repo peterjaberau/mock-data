@@ -1,0 +1,562 @@
+{
+  "context": {
+    "error": null,
+    "cacheHit": false,
+    "rowCount": 0,
+    "requestId": null,
+    "stopReason": null,
+    "sourceCount": 0,
+    "sourceStrategy": null,
+    "streamBatchCount": 0,
+    "loadedSourceCount": 0
+  },
+  "id": "runtimeTraversal",
+  "description": "One runtime-traversal query run, from source resolution through planning, traversal, Oxigraph loading, progressive streaming, caching, and completion.",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "description": "No query run is active.",
+      "on": {
+        "RUN": [
+          {
+            "target": "active",
+            "actions": [
+              {
+                "type": "initializeRun"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "active": {
+      "description": "The active request. ABORT, AUTH_REQUIRED, and ERROR are handled consistently from every child state.",
+      "initial": "resolvingSources",
+      "states": {
+        "resolvingSources": {
+          "description": "Infer explicit/container/WebID input, enforce authentication, consult the resolution cache, and optionally discover container members.",
+          "invoke": {
+            "input": {},
+            "src": "resolveSources",
+            "id": "sourceResolver"
+          },
+          "on": {
+            "SOURCES_RESOLVED": [
+              {
+                "target": "planning",
+                "actions": [
+                  {
+                    "type": "assignResolvedSources"
+                  },
+                  {
+                    "type": "emitSourcesResolvedProfile"
+                  }
+                ]
+              }
+            ],
+            "NO_SOURCES": [
+              {
+                "target": "#runtimeTraversal.failed",
+                "actions": [
+                  {
+                    "type": "recordNoSourcesError"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "planning": {
+          "description": "Run the query-planner plugin and normalize the executable query plan.",
+          "invoke": {
+            "input": {},
+            "src": "planQuery",
+            "id": "queryPlanner"
+          },
+          "on": {
+            "PLAN_READY": [
+              {
+                "target": "checkingCache",
+                "actions": [
+                  {
+                    "type": "assignExecutionPlan"
+                  },
+                  {
+                    "type": "emitPlanProfile"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "checkingCache": {
+          "description": "Create the auth-scoped result key and read the runtime result cache when enabled.",
+          "invoke": {
+            "input": {},
+            "src": "readResultCache",
+            "id": "resultCacheReader"
+          },
+          "on": {
+            "CACHE_HIT": [
+              {
+                "target": "deliveringCachedResult",
+                "actions": [
+                  {
+                    "type": "assignCachedResult"
+                  },
+                  {
+                    "type": "recordCacheHit"
+                  }
+                ]
+              }
+            ],
+            "CACHE_MISS": [
+              {
+                "target": "routingExecution",
+                "actions": [
+                  {
+                    "type": "recordCacheMiss"
+                  }
+                ]
+              }
+            ],
+            "CACHE_DISABLED": [
+              {
+                "target": "routingExecution",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "deliveringCachedResult": {
+          "description": "Replay cached batches when streaming is enabled, without traversal or WASM execution.",
+          "entry": {
+            "type": "emitCachedBatches"
+          },
+          "on": {
+            "CACHED_RESULT_DELIVERED": [
+              {
+                "target": "completed",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "routingExecution": {
+          "description": "Choose whether raw traversal seeds need frontier discovery before RDF documents can be loaded.",
+          "always": [
+            {
+              "target": "discoveringFrontier",
+              "guard": "requiresFrontierTraversal",
+              "actions": []
+            },
+            {
+              "target": "initializingWasm",
+              "actions": []
+            }
+          ]
+        },
+        "completed": {
+          "description": "Internal execution completed and produced a normalized result.",
+          "type": "final"
+        },
+        "discoveringFrontier": {
+          "description": "Run selective or store-backed frontier traversal with cache, prefix, depth, document, duration, idle, and abort limits.",
+          "invoke": {
+            "input": {},
+            "src": "crawlFrontier",
+            "id": "frontierCrawler"
+          },
+          "on": {
+            "FRONTIER_RESOLVED": [
+              {
+                "target": "initializingWasm",
+                "actions": [
+                  {
+                    "type": "assignDiscoveredSources"
+                  },
+                  {
+                    "type": "recordTraversalStopReason"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "initializingWasm": {
+          "description": "Load the Oxigraph WASM module, create the per-run store, and normalize the planned SELECT queries.",
+          "invoke": {
+            "input": {},
+            "src": "initializeOxigraph",
+            "id": "wasmInitializer"
+          },
+          "on": {
+            "WASM_READY": [
+              {
+                "target": "loadingSources",
+                "actions": [
+                  {
+                    "type": "assignStore"
+                  },
+                  {
+                    "type": "assignQueryPlans"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "loadingSources": {
+          "description": "Fetch RDF concurrently, but serialize store mutation and scheduling through this parent run actor.",
+          "invoke": {
+            "input": {},
+            "src": "loadSources",
+            "id": "sourceLoader"
+          },
+          "on": {
+            "SOURCE_LOADED": [
+              {
+                "actions": [
+                  {
+                    "type": "loadDocumentIntoStore"
+                  },
+                  {
+                    "type": "incrementLoadedSourceCount"
+                  },
+                  {
+                    "type": "emitFetchProfile"
+                  }
+                ]
+              }
+            ],
+            "SOURCE_SKIPPED": [
+              {
+                "actions": [
+                  {
+                    "type": "recordSkippedSource"
+                  },
+                  {
+                    "type": "emitFetchProfile"
+                  }
+                ]
+              }
+            ],
+            "SOURCE_FAILED": [
+              {
+                "guard": "isRecoverableSourceError",
+                "actions": [
+                  {
+                    "type": "recordRecoverableSourceError"
+                  },
+                  {
+                    "type": "emitFetchProfile"
+                  }
+                ]
+              },
+              {
+                "target": "#runtimeTraversal.failed",
+                "actions": [
+                  {
+                    "type": "recordError"
+                  }
+                ]
+              }
+            ],
+            "PROGRESSIVE_QUERY_DUE": [
+              {
+                "target": "runningProgressiveQuery",
+                "actions": []
+              }
+            ],
+            "ALL_SOURCES_LOADED": [
+              {
+                "target": "runningFinalQuery",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "runningProgressiveQuery": {
+          "description": "Query the store-so-far, diff duplicate occurrences, and stream only newly matchable rows.",
+          "invoke": {
+            "input": {},
+            "src": "runQueryPass",
+            "id": "progressiveQueryPass"
+          },
+          "on": {
+            "QUERY_PASS_COMPLETE": [
+              {
+                "target": "loadingSources",
+                "actions": [
+                  {
+                    "type": "mergeQueryPass"
+                  },
+                  {
+                    "type": "emitStreamBatch"
+                  },
+                  {
+                    "type": "recordQueryTiming"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "runningFinalQuery": {
+          "description": "Run all planned SELECT queries over the fully loaded store and flush the final stream batch.",
+          "invoke": {
+            "input": {},
+            "src": "runQueryPass",
+            "id": "finalQueryPass"
+          },
+          "on": {
+            "QUERY_COMPLETE": [
+              {
+                "target": "retainingStore",
+                "actions": [
+                  {
+                    "type": "mergeQueryPass"
+                  },
+                  {
+                    "type": "flushFinalBatch"
+                  },
+                  {
+                    "type": "assignResult"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "retainingStore": {
+          "description": "Expose a bounded-lifetime store handle for follow-up detail SELECT queries when requested.",
+          "entry": {
+            "type": "publishStoreHandle"
+          },
+          "always": [
+            {
+              "target": "writingCache",
+              "guard": "shouldWriteResultCache",
+              "actions": []
+            },
+            {
+              "target": "completed",
+              "actions": []
+            }
+          ]
+        },
+        "writingCache": {
+          "description": "Persist the normalized completed result through the configured cache plugin.",
+          "invoke": {
+            "input": {},
+            "src": "writeResultCache",
+            "id": "resultCacheWriter"
+          },
+          "on": {
+            "CACHE_WRITTEN": [
+              {
+                "target": "completed",
+                "actions": [
+                  {
+                    "type": "recordCacheWrite"
+                  }
+                ]
+              }
+            ],
+            "CACHE_WRITE_SKIPPED": [
+              {
+                "target": "completed",
+                "actions": []
+              }
+            ]
+          }
+        }
+      },
+      "on": {
+        "ABORT": [
+          {
+            "target": "aborted",
+            "actions": [
+              {
+                "type": "abortInvokedActors"
+              },
+              {
+                "type": "recordAbort"
+              }
+            ]
+          }
+        ],
+        "AUTH_REQUIRED": [
+          {
+            "target": "authRequired",
+            "actions": [
+              {
+                "type": "recordAuthenticationRequirement"
+              }
+            ]
+          }
+        ],
+        "ERROR": [
+          {
+            "target": "failed",
+            "actions": [
+              {
+                "type": "recordError"
+              }
+            ]
+          }
+        ]
+      },
+      "onDone": [
+        {
+          "target": "success",
+          "guard": "resultHasRows",
+          "actions": [
+            {
+              "type": "emitDataReady"
+            },
+            {
+              "type": "emitSuccessState"
+            }
+          ]
+        },
+        {
+          "target": "empty",
+          "actions": [
+            {
+              "type": "emitDataReady"
+            },
+            {
+              "type": "emitEmptyState"
+            }
+          ]
+        }
+      ]
+    },
+    "aborted": {
+      "description": "The active request and all of its invoked actors were cancelled.",
+      "on": {
+        "RUN": [
+          {
+            "target": "active",
+            "actions": [
+              {
+                "type": "initializeRun"
+              }
+            ]
+          }
+        ],
+        "RESET": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "clearRun"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "authRequired": {
+      "description": "The requested source requires authentication. A fresh run begins after the session becomes ready.",
+      "on": {
+        "AUTHENTICATED": [
+          {
+            "target": "active",
+            "actions": [
+              {
+                "type": "prepareRetry"
+              }
+            ]
+          }
+        ],
+        "RESET": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "clearRun"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "failed": {
+      "description": "The run failed with a normalized engine or transport error.",
+      "on": {
+        "RETRY": [
+          {
+            "target": "active",
+            "actions": [
+              {
+                "type": "prepareRetry"
+              }
+            ]
+          }
+        ],
+        "RESET": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "clearRun"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "success": {
+      "description": "The run completed with one or more result bindings.",
+      "on": {
+        "RUN": [
+          {
+            "target": "active",
+            "actions": [
+              {
+                "type": "initializeRun"
+              }
+            ]
+          }
+        ],
+        "RESET": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "clearRun"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "empty": {
+      "description": "The run completed successfully with no result bindings.",
+      "on": {
+        "RUN": [
+          {
+            "target": "active",
+            "actions": [
+              {
+                "type": "initializeRun"
+              }
+            ]
+          }
+        ],
+        "RESET": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "clearRun"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "context": {
+    "error": null,
+    "themes": [],
+    "customTheme": null,
+    "currentTheme": null
+  },
+  "id": "themeManager",
+  "initial": "loading",
+  "states": {
+    "loading": {
+      "description": "Initial state for fetching themes from an API or local storage.",
+      "invoke": {
+        "input": {},
+        "src": "loadThemes",
+        "onDone": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:themeManager.loading#done.invoke.themeManager.loading:invocation[0][-1]#transition[0]"
+              }
+            ],
+            "meta": {}
+          }
+        ],
+        "onError": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:themeManager.loading#error.platform.themeManager.loading:invocation[0][-1]#transition[0]"
+              }
+            ],
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "idle": {
+      "description": "Base state where theme selection happens, and the user can choose from available themes.",
+      "on": {
+        "select_theme": [
+          {
+            "actions": [
+              {
+                "type": "inline:themeManager.idle#select_theme[-1]#transition[0]"
+              }
+            ],
+            "meta": {}
+          }
+        ],
+        "customize_theme": [
+          {
+            "target": "customizing",
+            "actions": [
+              {
+                "type": "inline:themeManager.idle#customize_theme[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "import_theme": [
+          {
+            "actions": [
+              {
+                "type": "inline:themeManager.idle#import_theme[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "customizing": {
+      "description": "Active when editing a custom theme, allowing updates to color properties.",
+      "on": {
+        "update_color": [
+          {
+            "actions": [
+              {
+                "type": "inline:themeManager.customizing#update_color[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "save_custom_theme": [
+          {
+            "target": "saving",
+            "actions": []
+          }
+        ],
+        "reset_customizations": [
+          {
+            "actions": [
+              {
+                "type": "inline:themeManager.customizing#reset_customizations[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "preview_custom_theme": [
+          {
+            "actions": [
+              {
+                "type": "applyTheme"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "saving": {
+      "description": "Handles persisting custom themes to local storage or a database.",
+      "invoke": {
+        "input": {},
+        "src": "saveCustomTheme",
+        "onDone": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:themeManager.saving#done.invoke.themeManager.saving:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:themeManager.saving#error.platform.themeManager.saving:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

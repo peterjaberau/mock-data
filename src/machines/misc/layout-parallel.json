@@ -1,0 +1,281 @@
+{
+  "context": {
+    "meeting": null,
+    "webcast": null
+  },
+  "id": "layout parallel",
+  "states": {
+    "webcast": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "launch_webcast": [
+              {
+                "target": "launchingWebcast",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "launchingWebcast": {
+          "description": "State for launching a webcast.",
+          "invoke": {
+            "input": {},
+            "src": "fetchWebcast",
+            "onDone": [
+              {
+                "target": "webcastAsPip",
+                "guard": "vtIsMain",
+                "actions": []
+              },
+              {
+                "target": "webcastAsMain",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "webcastAsPip": {
+          "description": "Webcast is active in picture-in-picture mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "webcastAsMain",
+                "actions": [
+                  {
+                    "type": "setVirtualTableAsPip"
+                  }
+                ]
+              }
+            ],
+            "close_webcast": [
+              {
+                "target": "closingWebcast",
+                "actions": []
+              }
+            ],
+            "webcast_main": [
+              {
+                "target": "webcastAsMain",
+                "actions": [
+                  {
+                    "type": "setVirtualTableAsPip"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "webcastAsMain": {
+          "description": "Webcast is active in fullscreen mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "webcastAsPip",
+                "actions": [
+                  {
+                    "type": "setVirtualTableAsMain"
+                  }
+                ]
+              }
+            ],
+            "close_webcast": [
+              {
+                "target": "closingWebcast",
+                "actions": []
+              }
+            ],
+            "webcast_": [
+              {
+                "target": "webcastAsPip",
+                "actions": [
+                  {
+                    "type": "setVirtualTableAsMain"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "closingWebcast": {
+          "description": "State for closing a webcast.",
+          "after": {
+            "500": [
+              {
+                "target": "#layout parallel.webcast.idle",
+                "actions": [
+                  {
+                    "type": "clearWebcast"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "meeting": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "launch_meeting": [
+              {
+                "target": "launchingMeeting",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "launchingMeeting": {
+          "description": "State for launching a meeting.",
+          "invoke": {
+            "input": {},
+            "src": "fetchMeeting",
+            "onDone": [
+              {
+                "target": "virtualTableAsMain",
+                "guard": "isVirtualTable",
+                "actions": []
+              },
+              {
+                "target": "meetingAsMain",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "virtualTableAsMain": {
+          "description": "Virtual table meeting is active in fullscreen mode.",
+          "on": {
+            "disconnect_meeting": [
+              {
+                "target": "disconnectingVirtualTagle",
+                "actions": []
+              }
+            ],
+            "toggle": [
+              {
+                "target": "virtualTableAsPip",
+                "actions": [
+                  {
+                    "type": "setWebcastAsMain"
+                  }
+                ]
+              }
+            ],
+            "vt_pip": [
+              {
+                "target": "virtualTableAsPip",
+                "actions": [
+                  {
+                    "type": "setWebcastAsMain"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "meetingAsMain": {
+          "description": "Meeting is active in fullscreen mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "meetingAsPip",
+                "actions": []
+              }
+            ],
+            "disconnect_meeting": [
+              {
+                "target": "disconnectingMeeting",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "disconnectingVirtualTagle": {
+          "after": {
+            "500": [
+              {
+                "target": "#layout parallel.meeting.idle",
+                "actions": [
+                  {
+                    "type": "clearMeeting"
+                  },
+                  {
+                    "type": "closeWebcast"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "virtualTableAsPip": {
+          "description": "Virtual table meeting is active in picture-in-picture mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "virtualTableAsMain",
+                "actions": [
+                  {
+                    "type": "setWebcastAsPip"
+                  }
+                ]
+              }
+            ],
+            "disconnect_meeting": [
+              {
+                "target": "disconnectingVirtualTagle",
+                "actions": []
+              }
+            ],
+            "vt_main": [
+              {
+                "target": "virtualTableAsMain",
+                "actions": [
+                  {
+                    "type": "setWebcastAsPip"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "meetingAsPip": {
+          "description": "Meeting is active in picture-in-picture mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "meetingAsMain",
+                "actions": []
+              }
+            ],
+            "disconnect_meeting": [
+              {
+                "target": "disconnectingMeeting",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "disconnectingMeeting": {
+          "description": "State for disconnecting from a meeting.",
+          "after": {
+            "500": [
+              {
+                "target": "#layout parallel.meeting.idle",
+                "actions": [
+                  {
+                    "type": "clearMeeting"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "type": "parallel"
+}

@@ -1,0 +1,91 @@
+{
+  "context": {
+    "index": 0,
+    "queue": [],
+    "tasks": {}
+  },
+  "id": "Task queue",
+  "initial": "Idle",
+  "states": {
+    "Idle": {
+      "always": {
+        "target": "Processing",
+        "guard": "A task is available for processing",
+        "actions": [
+          {
+            "type": "Take task from queue"
+          }
+        ],
+        "meta": {}
+      }
+    },
+    "Processing": {
+      "entry": {
+        "type": "Mark task as being processed"
+      },
+      "invoke": {
+        "input": {},
+        "src": "Process task",
+        "onDone": [
+          {
+            "target": "Idle",
+            "guard": "New guard",
+            "actions": [
+              {
+                "type": "Mark task as done"
+              },
+              {
+                "type": "Reset currently processed task id"
+              }
+            ],
+            "meta": {}
+          }
+        ],
+        "onError": [
+          {
+            "target": "Idle",
+            "actions": [
+              {
+                "type": "Mark task as failed"
+              },
+              {
+                "type": "Reset currently processed task id"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "on": {
+    "Add task to queue": [
+      {
+        "actions": [
+          {
+            "type": "Push task to queue"
+          },
+          {
+            "type": "Reorder queue"
+          }
+        ],
+        "meta": {},
+        "reenter": false
+      }
+    ],
+    "Update task's priority": [
+      {
+        "guard": "Task is in queue",
+        "actions": [
+          {
+            "type": "Assign new task's priority"
+          },
+          {
+            "type": "Reorder queue"
+          }
+        ],
+        "meta": {},
+        "reenter": false
+      }
+    ]
+  }
+}

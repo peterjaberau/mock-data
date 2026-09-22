@@ -1,0 +1,123 @@
+{
+  "context": {
+    "error": null,
+    "store": null,
+    "snapshot": null
+  },
+  "id": "datastore",
+  "initial": "Initializing",
+  "states": {
+    "Initializing": {
+      "description": "The datastore is initializing, attempting to load a snapshot from local storage and fetch data from the API.",
+      "on": {
+        "loadSnapshot": [
+          {
+            "target": "CheckingSnapshot",
+            "actions": [
+              {
+                "type": "saveSnapshotToContext"
+              }
+            ]
+          }
+        ],
+        "fetchData": [
+          {
+            "target": "FetchingData",
+            "actions": [
+              {
+                "type": "fetchDataFromApi"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CheckingSnapshot": {
+      "description": "The system is checking if a snapshot from local storage exists and is valid.",
+      "always": [
+        {
+          "target": "StoreReady",
+          "guard": "snapshotExists",
+          "actions": [
+            {
+              "type": "initializeStoreWithSnapshot"
+            }
+          ]
+        },
+        {
+          "target": "FetchingData",
+          "actions": []
+        }
+      ]
+    },
+    "FetchingData": {
+      "description": "The datastore is fetching data from the API to initialize or refresh the store.",
+      "invoke": {
+        "input": {},
+        "src": "fetchDataFromApi",
+        "onDone": [
+          {
+            "target": "StoreReady",
+            "actions": [
+              {
+                "type": "updateStoreWithApiData"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "Error",
+            "actions": [
+              {
+                "type": "setError"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "StoreReady": {
+      "description": "The datastore is ready and usable. It can still refresh data in the background.",
+      "initial": "idle",
+      "states": {
+        "idle": {},
+        "fetching": {
+          "invoke": {
+            "input": {},
+            "src": "fetchDataFromApi"
+          }
+        },
+        "error": {
+          "on": {
+            "retry": [
+              {
+                "target": "fetching",
+                "actions": []
+              }
+            ]
+          }
+        }
+      },
+      "on": {
+        "refetch": [
+          {
+            "target": ".fetching",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Error": {
+      "description": "An error has occurred during the initialization or refreshing of the datastore.",
+      "on": {
+        "retry": [
+          {
+            "target": "Initializing",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

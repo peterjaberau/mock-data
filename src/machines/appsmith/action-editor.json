@@ -1,0 +1,155 @@
+{
+  "id": "Action editor",
+  "initial": "Idle",
+  "states": {
+    "Idle": {
+      "description": "The action list, with a `+` button\n",
+      "initial": "Expanded",
+      "states": {
+        "Expanded": {
+          "on": {
+            "Collapse action": [
+              {
+                "target": "Collapsed",
+                "actions": [],
+                "meta": {},
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Collapsed": {
+          "description": "![](https://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_21_2x.png)",
+          "on": {
+            "Expand action": [
+              {
+                "target": "Expanded",
+                "actions": [],
+                "description": "Show all the properties of the action",
+                "meta": {},
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "hist": {
+          "history": "shallow",
+          "type": "history"
+        },
+        "This is a state": {
+          "initial": "with a really really really really long name HELLO!",
+          "states": {
+            "with a really really really really long name HELLO!": {}
+          }
+        }
+      },
+      "on": {
+        "❌ Delete action": [
+          {
+            "target": "Idle",
+            "actions": [],
+            "meta": {},
+            "reenter": false
+          }
+        ],
+        "Reorder action": [
+          {
+            "target": "Idle",
+            "actions": [],
+            "meta": {},
+            "reenter": false
+          }
+        ],
+        "Duplicate action": [
+          {
+            "target": "Idle",
+            "actions": [],
+            "description": "![](https://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_21_2x.png)",
+            "meta": {},
+            "reenter": false
+          }
+        ],
+        "Add action": [
+          {
+            "target": "Selecting action",
+            "actions": [],
+            "meta": {},
+            "reenter": true
+          }
+        ],
+        "Edit action": [
+          {
+            "target": "Editing action",
+            "actions": [],
+            "meta": {},
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Selecting action": {
+      "description": "A user can start typing to select an action",
+      "on": {
+        "Select action": [
+          {
+            "target": "Editing action",
+            "actions": [
+              {
+                "type": "Add action to actions"
+              }
+            ],
+            "meta": {},
+            "reenter": true
+          }
+        ],
+        "Cancel creating an action": [
+          {
+            "target": "Idle",
+            "actions": [],
+            "meta": {},
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Editing action": {
+      "description": "A user can edit the properties of an existing action",
+      "on": {
+        "Edit action property": [
+          {
+            "target": "Editing action",
+            "actions": [],
+            "meta": {},
+            "reenter": false
+          }
+        ],
+        "Cancel editing an action": [
+          {
+            "target": "Idle",
+            "actions": [],
+            "description": "Reset action to previous values",
+            "meta": {},
+            "reenter": true
+          }
+        ],
+        "Commit an action": [
+          {
+            "target": "#Action editor.Idle.hist",
+            "guard": "Action is valid",
+            "actions": [],
+            "meta": {},
+            "reenter": true
+          }
+        ],
+        "❌ Delete action": [
+          {
+            "target": "Idle",
+            "actions": [],
+            "meta": {},
+            "reenter": true
+          }
+        ]
+      }
+    }
+  }
+}

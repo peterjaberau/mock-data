@@ -1,0 +1,75 @@
+{
+  "context": {
+    "requestListeners": [],
+    "responseListeners": []
+  },
+  "id": "EventBus",
+  "initial": "READY",
+  "states": {
+    "READY": {
+      "on": {
+        "listen.request": [
+          {
+            "target": "ADD_REQUEST_LISTENER",
+            "actions": [],
+            "meta": {}
+          }
+        ],
+        "request.*": [
+          {
+            "target": "SEND_REQUEST",
+            "actions": []
+          }
+        ],
+        "response.*": [
+          {
+            "target": "SEND_RESPONSE",
+            "actions": []
+          }
+        ],
+        "listen.response": [
+          {
+            "target": "ADD_RESPONSE_LISTENER",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "ADD_REQUEST_LISTENER": {
+      "entry": {
+        "type": "addListener"
+      },
+      "always": {
+        "target": "READY",
+        "actions": []
+      }
+    },
+    "SEND_REQUEST": {
+      "entry": {
+        "type": "broadcast"
+      },
+      "always": {
+        "target": "READY",
+        "actions": []
+      }
+    },
+    "SEND_RESPONSE": {
+      "entry": {
+        "type": "broadcast"
+      },
+      "always": {
+        "target": "READY",
+        "actions": []
+      }
+    },
+    "ADD_RESPONSE_LISTENER": {
+      "entry": {
+        "type": "addListener"
+      },
+      "always": {
+        "target": "READY",
+        "actions": []
+      }
+    }
+  }
+}

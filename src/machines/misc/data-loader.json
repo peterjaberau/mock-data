@@ -1,0 +1,124 @@
+{
+  "context": {
+    "items": [],
+    "limit": 10,
+    "allIds": [],
+    "nextIndex": 0
+  },
+  "id": "dataLoader",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "description": "The machine is in an idle state, waiting to start the bootstrap process.",
+      "on": {
+        "bootstrap": [
+          {
+            "target": "bootstrapLoading",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "bootstrapLoading": {
+      "description": "The machine is loading the initial data set. Transition to ready on success, or bootstrapError on failure.",
+      "on": {
+        "bootstrapSuccess": [
+          {
+            "target": "ready",
+            "actions": [
+              {
+                "type": "inline:dataLoader.bootstrapLoading#bootstrapSuccess[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "bootstrapFail": [
+          {
+            "target": "bootstrapError",
+            "actions": [
+              {
+                "type": "inline:dataLoader.bootstrapLoading#bootstrapFail[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ready": {
+      "description": "The machine is ready with initial data loaded and can load more if needed.",
+      "on": {
+        "loadMore": [
+          {
+            "target": "loadingMore",
+            "actions": []
+          }
+        ],
+        "reset": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "bootstrapError": {
+      "description": "An error occurred during the bootstrap loading process. Allows retrying the bootstrap.",
+      "on": {
+        "bootstrap": [
+          {
+            "target": "bootstrapLoading",
+            "actions": []
+          }
+        ],
+        "reset": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "loadingMore": {
+      "description": "The machine is loading more data. Transition to ready on success, or loadMoreError on failure.",
+      "on": {
+        "loadMoreSuccess": [
+          {
+            "target": "ready",
+            "actions": [
+              {
+                "type": "inline:dataLoader.loadingMore#loadMoreSuccess[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "loadMoreFail": [
+          {
+            "target": "loadMoreError",
+            "actions": [
+              {
+                "type": "inline:dataLoader.loadingMore#loadMoreFail[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "loadMoreError": {
+      "description": "An error occurred while loading more data. Allows retrying the load more process.",
+      "on": {
+        "loadMore": [
+          {
+            "target": "loadingMore",
+            "actions": []
+          }
+        ],
+        "reset": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

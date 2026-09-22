@@ -1,0 +1,85 @@
+{
+  "context": "{{({ input }) => ({\n        event: input.event,\n        orgId: input.orgId,\n        phases: input.phases,\n        dropReason: undefined,\n        onPublished: input.onPublished,\n        onDropped: input.onDropped,\n    })}}",
+  "id": "event",
+  "initial": "parsing",
+  "states": {
+    "parsing": {
+      "invoke": {
+        "input": {},
+        "src": "parseEvent",
+        "onDone": [
+          {
+            "target": "operationChain",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "dropped",
+            "actions": [
+              {
+                "type": "inline:event.parsing#error.platform.event.parsing:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "operationChain": {
+      "invoke": {
+        "input": {},
+        "src": "runOperations",
+        "onDone": [
+          {
+            "target": "publishing",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "dropped",
+            "actions": [
+              {
+                "type": "inline:event.operationChain#error.platform.event.operationChain:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "dropped": {
+      "entry": {
+        "type": "inline:event.dropped#entry[0]"
+      },
+      "type": "final"
+    },
+    "publishing": {
+      "invoke": {
+        "input": {},
+        "src": "publishEvent",
+        "onDone": [
+          {
+            "target": "published",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "dropped",
+            "actions": [
+              {
+                "type": "inline:event.publishing#error.platform.event.publishing:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "published": {
+      "entry": {
+        "type": "inline:event.published#entry[0]"
+      },
+      "type": "final"
+    }
+  }
+}

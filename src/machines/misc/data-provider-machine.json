@@ -1,0 +1,399 @@
+{
+  "context": {
+    "cache": {
+      "ttl": 60000,
+      "enabled": true,
+      "strategy": "memory",
+      "lastUpdated": null
+    },
+    "error": null,
+    "rawData": null,
+    "isLoading": false,
+    "dataSchema": null,
+    "providerId": null,
+    "autoRefresh": false,
+    "dataFilters": [],
+    "isConnected": false,
+    "queryParams": {},
+    "providerType": null,
+    "pollingConfig": {
+      "active": false,
+      "enabled": false,
+      "interval": 30000
+    },
+    "processedData": null,
+    "pendingRequests": 0,
+    "transformations": [],
+    "connectionConfig": null,
+    "dataSubscriptions": [],
+    "lastRefreshParams": null
+  },
+  "id": "dataProvider",
+  "initial": "initializing",
+  "states": {
+    "initializing": {
+      "entry": {
+        "type": "initializeProvider"
+      },
+      "on": {
+        "INITIALIZED": [
+          {
+            "target": "configuring",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "configuring": {
+      "entry": {
+        "type": "configureDataSource"
+      },
+      "on": {
+        "CONFIGURED": [
+          {
+            "target": "connecting",
+            "actions": []
+          }
+        ],
+        "CONFIGURATION_ERROR": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "connecting": {
+      "entry": {
+        "type": "connectToDataSource"
+      },
+      "on": {
+        "CONNECTION_ESTABLISHED": [
+          {
+            "target": "connected",
+            "actions": [
+              {
+                "type": "inline:dataProvider.connecting#CONNECTION_ESTABLISHED[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "CONNECTION_ERROR": [
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "inline:dataProvider.connecting#CONNECTION_ERROR[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "error": {
+      "on": {
+        "RETRY_CONNECTION": [
+          {
+            "target": "connecting",
+            "actions": []
+          }
+        ],
+        "RECONFIGURE": [
+          {
+            "target": "configuring",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "connected": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "FETCH_DATA": [
+              {
+                "target": "fetching",
+                "actions": [
+                  {
+                    "type": "prepareDataFetch"
+                  }
+                ]
+              }
+            ],
+            "SUBSCRIPTION_ADDED": [
+              {
+                "actions": [
+                  {
+                    "type": "addSubscription"
+                  }
+                ]
+              }
+            ],
+            "SUBSCRIPTION_REMOVED": [
+              {
+                "actions": [
+                  {
+                    "type": "removeSubscription"
+                  }
+                ]
+              }
+            ],
+            "SET_FILTERS": [
+              {
+                "actions": [
+                  {
+                    "type": "setDataFilters"
+                  },
+                  {
+                    "type": "checkAutoRefresh"
+                  }
+                ]
+              }
+            ],
+            "SET_QUERY_PARAMS": [
+              {
+                "actions": [
+                  {
+                    "type": "setQueryParams"
+                  },
+                  {
+                    "type": "checkAutoRefresh"
+                  }
+                ]
+              }
+            ],
+            "START_POLLING": [
+              {
+                "target": "polling",
+                "actions": [
+                  {
+                    "type": "inline:dataProvider.connected.idle#START_POLLING[-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "fetching": {
+          "entry": {
+            "type": "inline:dataProvider.connected.fetching#entry[0]"
+          },
+          "exit": {
+            "type": "inline:dataProvider.connected.fetching#exit[0]"
+          },
+          "on": {
+            "DATA_RECEIVED": [
+              {
+                "target": "processing",
+                "actions": [
+                  {
+                    "type": "inline:dataProvider.connected.fetching#DATA_RECEIVED[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "FETCH_ERROR": [
+              {
+                "target": "idle",
+                "actions": [
+                  {
+                    "type": "inline:dataProvider.connected.fetching#FETCH_ERROR[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "FETCH_CANCELLED": [
+              {
+                "target": "idle",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "polling": {
+          "entry": {
+            "type": "startPolling"
+          },
+          "exit": {
+            "type": "stopPolling"
+          },
+          "on": {
+            "POLL_TRIGGERED": [
+              {
+                "target": "fetching",
+                "actions": [
+                  {
+                    "type": "prepareDataFetch"
+                  }
+                ]
+              }
+            ],
+            "STOP_POLLING": [
+              {
+                "target": "idle",
+                "actions": [
+                  {
+                    "type": "inline:dataProvider.connected.polling#STOP_POLLING[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "UPDATE_POLLING_INTERVAL": [
+              {
+                "actions": [
+                  {
+                    "type": "inline:dataProvider.connected.polling#UPDATE_POLLING_INTERVAL[-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "processing": {
+          "entry": {
+            "type": "processData"
+          },
+          "on": {
+            "PROCESSING_COMPLETE": [
+              {
+                "target": "caching",
+                "actions": [
+                  {
+                    "type": "inline:dataProvider.connected.processing#PROCESSING_COMPLETE[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "PROCESSING_ERROR": [
+              {
+                "target": "idle",
+                "actions": [
+                  {
+                    "type": "inline:dataProvider.connected.processing#PROCESSING_ERROR[-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "caching": {
+          "entry": {
+            "type": "cacheData"
+          },
+          "on": {
+            "CACHE_COMPLETE": [
+              {
+                "target": "distributing",
+                "actions": [
+                  {
+                    "type": "inline:dataProvider.connected.caching#CACHE_COMPLETE[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "CACHE_ERROR": [
+              {
+                "target": "distributing",
+                "actions": [
+                  {
+                    "type": "inline:dataProvider.connected.caching#CACHE_ERROR[-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "distributing": {
+          "entry": {
+            "type": "distributeData"
+          },
+          "on": {
+            "DISTRIBUTION_COMPLETE": [
+              {
+                "target": "idle",
+                "actions": []
+              }
+            ]
+          }
+        }
+      },
+      "on": {
+        "DISCONNECT": [
+          {
+            "target": "disconnecting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "disconnecting": {
+      "entry": {
+        "type": "disconnectFromDataSource"
+      },
+      "on": {
+        "DISCONNECTED": [
+          {
+            "target": "disconnected",
+            "actions": [
+              {
+                "type": "inline:dataProvider.disconnecting#DISCONNECTED[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "disconnected": {
+      "on": {
+        "RECONNECT": [
+          {
+            "target": "connecting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "disposing": {
+      "entry": {
+        "type": "disposeProvider"
+      },
+      "type": "final"
+    }
+  },
+  "on": {
+    "SET_TRANSFORMATION": [
+      {
+        "actions": [
+          {
+            "type": "updateTransformation"
+          }
+        ]
+      }
+    ],
+    "CLEAR_CACHE": [
+      {
+        "actions": [
+          {
+            "type": "clearCache"
+          }
+        ]
+      }
+    ],
+    "SET_AUTO_REFRESH": [
+      {
+        "actions": [
+          {
+            "type": "inline:dataProvider#SET_AUTO_REFRESH[-1]#transition[0]"
+          }
+        ]
+      }
+    ],
+    "DISPOSE": [
+      {
+        "target": ".disposing",
+        "actions": []
+      }
+    ]
+  }
+}

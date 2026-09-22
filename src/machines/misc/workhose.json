@@ -1,0 +1,228 @@
+{
+  "id": "WorkhorseMachine3",
+  "invoke": {
+    "input": {},
+    "src": "doCommandActor"
+  },
+  "initial": "Idle",
+  "states": {
+    "Idle": {
+      "always": {
+        "target": "Ready",
+        "actions": []
+      }
+    },
+    "Ready": {
+      "states": {
+        "Poller": {
+          "initial": "Disabled",
+          "states": {
+            "Disabled": {
+              "on": {
+                "poller.enable.*": [
+                  {
+                    "target": "Enabled",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "Enabled": {
+              "initial": "ManualReady",
+              "states": {
+                "ManualReady": {
+                  "on": {
+                    "poller.enable.auto": [
+                      {
+                        "target": "AutoReady",
+                        "actions": []
+                      }
+                    ],
+                    "poller.command.*": [
+                      {
+                        "target": "ManualBusy",
+                        "actions": []
+                      }
+                    ]
+                  }
+                },
+                "AutoReady": {
+                  "always": {
+                    "target": "AutoBusy",
+                    "actions": []
+                  }
+                },
+                "ManualBusy": {
+                  "entry": {
+                    "type": "sendPollEvent"
+                  }
+                },
+                "AutoBusy": {
+                  "entry": [
+                    {
+                      "type": "sendPollEvent"
+                    },
+                    {
+                      "type": "sendRequeueEvent"
+                    }
+                  ],
+                  "after": {
+                    "500": [
+                      {
+                        "target": "#WorkhorseMachine3.Ready.Poller.Enabled.AutoReady",
+                        "actions": []
+                      }
+                    ]
+                  }
+                }
+              },
+              "on": {
+                "poller.disable": [
+                  {
+                    "target": "Disabled",
+                    "actions": []
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "Error": {
+          "on": {
+            "onError": [
+              {
+                "target": "Error",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "QueueReady": {
+          "initial": "Initial",
+          "states": {
+            "Initial": {
+              "on": {
+                "queue.request.*": [
+                  {
+                    "target": "SendRequest",
+                    "actions": []
+                  }
+                ],
+                "queue.command.*": [
+                  {
+                    "target": "FireAndForget",
+                    "actions": []
+                  }
+                ],
+                "queue.response.*": [
+                  {
+                    "target": "HandleResponse",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "SendRequest": {
+              "always": {
+                "target": "HandleResponse",
+                "actions": []
+              }
+            },
+            "FireAndForget": {
+              "entry": {
+                "type": "sendQueueEvent"
+              },
+              "always": {
+                "target": "Initial",
+                "actions": []
+              },
+              "on": {
+                "response": [
+                  {
+                    "target": "Done",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "HandleResponse": {
+              "on": {
+                "response": [
+                  {
+                    "target": "Done",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "Done": {
+              "type": "final"
+            }
+          },
+          "on": {
+            "onDone": [
+              {
+                "target": "QueueResponse",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "QueueResponse": {
+          "entry": {
+            "type": "storeResult"
+          },
+          "always": {
+            "target": "QueueReady",
+            "actions": []
+          }
+        }
+      },
+      "on": {
+        "shutDown": [
+          {
+            "target": "ShuttingDown",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "Error",
+            "actions": []
+          }
+        ]
+      },
+      "type": "parallel"
+    },
+    "ShuttingDown": {
+      "invoke": {
+        "input": {},
+        "src": "freeResources",
+        "onDone": [
+          {
+            "target": "Shutdown",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "Error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Error": {
+      "entry": {
+        "type": "errorAction"
+      },
+      "always": {
+        "target": "Shutdown",
+        "actions": []
+      }
+    },
+    "Shutdown": {
+      "type": "final"
+    }
+  }
+}

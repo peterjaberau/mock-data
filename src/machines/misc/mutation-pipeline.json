@@ -1,0 +1,113 @@
+{
+  "context": "{{({ input }) => ({\n        bql: {\n            raw: input.raw,\n            current: {} as FilledBQLMutationBlock,\n        },\n        schema: input.schema,\n        config: input.config,\n        handles: input.handles,\n    })}}",
+  "id": "mutationPipeline",
+  "initial": "enrich",
+  "states": {
+    "enrich": {
+      "invoke": {
+        "input": {},
+        "src": "enrich",
+        "onDone": [
+          {
+            "target": "preQuery",
+            "guard": "requiresPrequery",
+            "actions": []
+          },
+          {
+            "target": "attributesPrehook",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "failure",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "preQuery": {
+      "invoke": {
+        "input": {},
+        "src": "preQuery",
+        "onDone": [
+          {
+            "target": "attributesPrehook",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "failure",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "attributesPrehook": {
+      "invoke": {
+        "input": {},
+        "src": "attributesPrehook",
+        "onDone": [
+          {
+            "target": "parallelMutations",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "failure",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "failure": {
+      "type": "final"
+    },
+    "parallelMutations": {
+      "states": {
+        "runTypeDBMutation": {
+          "invoke": {
+            "input": {},
+            "src": "runTypeDBMutation",
+            "onDone": [
+              {
+                "target": "#mutationPipeline.success",
+                "actions": []
+              }
+            ],
+            "onError": [
+              {
+                "target": "#mutationPipeline.failure",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "runSurrealDBMutation": {
+          "invoke": {
+            "input": {},
+            "src": "runSurrealDBMutation",
+            "onDone": [
+              {
+                "target": "#mutationPipeline.success",
+                "actions": []
+              }
+            ],
+            "onError": [
+              {
+                "target": "#mutationPipeline.failure",
+                "actions": []
+              }
+            ]
+          }
+        }
+      },
+      "type": "parallel"
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

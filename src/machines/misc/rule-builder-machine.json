@@ -1,0 +1,388 @@
+{
+  "context": "{{({ input }) => initialContext(input)}}",
+  "id": "ruleBuilder",
+  "states": {
+    "main": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "SESSION.START": [
+              {
+                "target": "active",
+                "actions": [
+                  {
+                    "type": "hydrateSession"
+                  },
+                  {
+                    "type": "loadTenantBaseline"
+                  },
+                  {
+                    "type": "auditSessionStart"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "active": {
+          "entry": [
+            {
+              "type": "persistStateEntry"
+            },
+            {
+              "type": "startInactivityTimer"
+            }
+          ],
+          "exit": {
+            "type": "cancelInactivityTimer"
+          },
+          "initial": "understanding",
+          "states": {
+            "understanding": {
+              "initial": "extracting",
+              "states": {
+                "extracting": {
+                  "entry": {
+                    "type": "invokeC01"
+                  },
+                  "on": {
+                    "EXTRACT.DONE": [
+                      {
+                        "target": "resolvingTerms",
+                        "actions": [
+                          {
+                            "type": "storeMentions"
+                          }
+                        ]
+                      }
+                    ],
+                    "EXTRACT.FAIL": [
+                      {
+                        "target": "#ruleBuilder.main.active.failed",
+                        "actions": []
+                      }
+                    ]
+                  }
+                },
+                "resolvingTerms": {
+                  "type": "parallel",
+                  "onDone": {
+                    "target": "#ruleBuilder.main.active.reasoning",
+                    "actions": []
+                  }
+                }
+              }
+            },
+            "reasoning": {
+              "entry": {
+                "type": "resetRetryBudget"
+              },
+              "initial": "mapping",
+              "states": {
+                "mapping": {
+                  "entry": {
+                    "type": "invokeC02"
+                  },
+                  "on": {
+                    "MAP.DONE": [
+                      {
+                        "target": "validating",
+                        "actions": [
+                          {
+                            "type": "storeMapping"
+                          }
+                        ]
+                      }
+                    ],
+                    "MAP.FAIL": [
+                      {
+                        "target": "#ruleBuilder.main.active.failed",
+                        "actions": []
+                      }
+                    ]
+                  }
+                },
+                "validating": {
+                  "entry": {
+                    "type": "invokeC11"
+                  },
+                  "on": {
+                    "VALIDATE.PASS": [
+                      {
+                        "target": "#ruleBuilder.main.active.output",
+                        "actions": []
+                      }
+                    ],
+                    "VALIDATE.LOCAL_VIOLATION": [
+                      {
+                        "target": "mapping",
+                        "guard": "hasMappingRetryBudget",
+                        "actions": [
+                          {
+                            "type": "decrementMappingRetry"
+                          },
+                          {
+                            "type": "attachConstraints"
+                          }
+                        ]
+                      },
+                      {
+                        "target": "#ruleBuilder.main.active.output",
+                        "actions": [
+                          {
+                            "type": "markFindingsForUser"
+                          }
+                        ]
+                      }
+                    ],
+                    "VALIDATE.CONTEXT_GAP": [
+                      {
+                        "target": "#ruleBuilder.main.waitingUser",
+                        "actions": [
+                          {
+                            "type": "composeContextGapClarification"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "output": {
+              "initial": "composingDraft",
+              "states": {
+                "composingDraft": {
+                  "entry": {
+                    "type": "invokeC07"
+                  },
+                  "on": {
+                    "DRAFT.EMITTED": [
+                      {
+                        "target": "awaitingUserCommit",
+                        "actions": [
+                          {
+                            "type": "storeDraft"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "awaitingUserCommit": {
+                  "on": {
+                    "DRAFT.SUBMIT_OBSERVED": [
+                      {
+                        "target": "#ruleBuilder.main.completed",
+                        "actions": []
+                      }
+                    ],
+                    "DRAFT.DISCARD_OBSERVED": [
+                      {
+                        "target": "#ruleBuilder.main.abandoned",
+                        "actions": []
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "failed": {
+              "type": "final"
+            }
+          },
+          "on": {
+            "USER.CANCEL": [
+              {
+                "target": "failed",
+                "actions": [
+                  {
+                    "type": "auditUserCancel"
+                  }
+                ]
+              }
+            ],
+            "TIMER.INACTIVITY": [
+              {
+                "target": "suspended",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "failed": {
+          "entry": [
+            {
+              "type": "persistOutcomeForC24"
+            },
+            {
+              "type": "auditSessionFailed"
+            }
+          ],
+          "type": "final"
+        },
+        "suspended": {
+          "entry": [
+            {
+              "type": "releaseComputeResources"
+            },
+            {
+              "type": "startGraceTimer"
+            }
+          ],
+          "exit": {
+            "type": "reacquireComputeResources"
+          },
+          "on": {
+            "USER.INPUT": [
+              {
+                "actions": []
+              }
+            ],
+            "USER.CLARIFY": [
+              {
+                "actions": [
+                  {
+                    "type": "mergeClarification"
+                  }
+                ]
+              }
+            ],
+            "TIMER.GRACE_EXPIRED": [
+              {
+                "target": "abandoned",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "abandoned": {
+          "entry": [
+            {
+              "type": "persistOutcomeForC24"
+            },
+            {
+              "type": "auditSessionAbandoned"
+            }
+          ],
+          "type": "final"
+        },
+        "waitingUser": {
+          "entry": [
+            {
+              "type": "persistClarificationOpen"
+            },
+            {
+              "type": "startInactivityTimer"
+            }
+          ],
+          "exit": [
+            {
+              "type": "cancelInactivityTimer"
+            },
+            {
+              "type": "recordUserResponseLatency"
+            }
+          ],
+          "on": {
+            "USER.CLARIFY": [
+              {
+                "actions": [
+                  {
+                    "type": "mergeClarification"
+                  }
+                ]
+              }
+            ],
+            "USER.CANCEL": [
+              {
+                "target": "abandoned",
+                "actions": []
+              }
+            ],
+            "TIMER.INACTIVITY": [
+              {
+                "target": "suspended",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "completed": {
+          "entry": [
+            {
+              "type": "persistOutcomeForC24"
+            },
+            {
+              "type": "auditSessionComplete"
+            }
+          ],
+          "type": "final"
+        }
+      }
+    },
+    "phiPerimeter": {
+      "meta": {
+        "q4_pending": true
+      },
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "USER.INPUT": [
+              {
+                "target": "scrubbing",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "scrubbing": {
+          "entry": {
+            "type": "invokePhiScrubber"
+          },
+          "on": {
+            "PHI.SCRUB_DONE": [
+              {
+                "target": "clean",
+                "actions": [
+                  {
+                    "type": "storeRedactedInput"
+                  }
+                ]
+              }
+            ],
+            "PHI.SCRUB_FAIL": [
+              {
+                "target": "blocked",
+                "actions": [
+                  {
+                    "type": "auditPhiBlock"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "clean": {
+          "on": {
+            "USER.INPUT": [
+              {
+                "target": "scrubbing",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "blocked": {
+          "entry": {
+            "type": "inline:ruleBuilder.phiPerimeter.blocked#entry[0]"
+          },
+          "type": "final"
+        }
+      }
+    }
+  },
+  "type": "parallel"
+}

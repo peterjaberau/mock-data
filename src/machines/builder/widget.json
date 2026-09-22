@@ -1,0 +1,450 @@
+{
+  "context": {
+    "data": null,
+    "size": {
+      "width": 2,
+      "height": 2
+    },
+    "error": null,
+    "config": null,
+    "filters": [],
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "widgetId": null,
+    "isLoading": false,
+    "isVisible": true,
+    "sortOrder": null,
+    "dataFields": [],
+    "widgetType": null,
+    "renderState": null,
+    "dataBindings": {},
+    "interactions": {
+      "allowSorting": false,
+      "allowDrillDown": false,
+      "allowFiltering": false,
+      "allowSelection": false
+    },
+    "selectedItems": [],
+    "widgetEditMode": false,
+    "isDashboardEditMode": false
+  },
+  "id": "widget",
+  "initial": "initializing",
+  "states": {
+    "initializing": {
+      "entry": {
+        "type": "initializeWidget"
+      },
+      "on": {
+        "INITIALIZED": [
+          {
+            "target": "configuring",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "configuring": {
+      "entry": {
+        "type": "loadWidgetConfiguration"
+      },
+      "on": {
+        "CONFIGURED": [
+          {
+            "target": "loadingData",
+            "actions": []
+          }
+        ],
+        "CONFIGURATION_ERROR": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "loadingData": {
+      "entry": {
+        "type": "inline:widget.loadingData#entry[0]"
+      },
+      "exit": {
+        "type": "inline:widget.loadingData#exit[0]"
+      },
+      "on": {
+        "DATA_LOADED": [
+          {
+            "target": "rendering",
+            "actions": [
+              {
+                "type": "inline:widget.loadingData#DATA_LOADED[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "DATA_LOADING_ERROR": [
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "inline:widget.loadingData#DATA_LOADING_ERROR[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "error": {
+      "on": {
+        "RETRY": [
+          {
+            "target": "loadingData",
+            "actions": []
+          }
+        ],
+        "RECONFIGURE": [
+          {
+            "target": "configuring",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "rendering": {
+      "entry": {
+        "type": "renderWidget"
+      },
+      "on": {
+        "RENDERED": [
+          {
+            "target": "ready",
+            "actions": []
+          }
+        ],
+        "RENDERING_ERROR": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "ready": {
+      "states": {
+        "data": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "REFRESH_DATA": [
+                  {
+                    "target": "refreshing",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "refreshing": {
+              "entry": {
+                "type": "inline:widget.ready.data.refreshing#entry[0]"
+              },
+              "exit": {
+                "type": "inline:widget.ready.data.refreshing#exit[0]"
+              },
+              "on": {
+                "DATA_LOADED": [
+                  {
+                    "target": "idle",
+                    "actions": [
+                      {
+                        "type": "inline:widget.ready.data.refreshing#DATA_LOADED[-1]#transition[0]"
+                      },
+                      {
+                        "type": "renderWidget"
+                      }
+                    ]
+                  }
+                ],
+                "DATA_LOADING_ERROR": [
+                  {
+                    "target": "idle",
+                    "actions": [
+                      {
+                        "type": "inline:widget.ready.data.refreshing#DATA_LOADING_ERROR[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "interaction": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "ITEM_SELECTED": [
+                  {
+                    "target": "itemSelected",
+                    "guard": "isSelectionEnabled",
+                    "actions": [
+                      {
+                        "type": "handleItemSelection"
+                      }
+                    ]
+                  }
+                ],
+                "APPLY_FILTER": [
+                  {
+                    "guard": "isFilteringEnabled",
+                    "actions": [
+                      {
+                        "type": "applyFilter"
+                      },
+                      {
+                        "type": "renderWidget"
+                      }
+                    ]
+                  }
+                ],
+                "CLEAR_FILTER": [
+                  {
+                    "guard": "isFilteringEnabled",
+                    "actions": [
+                      {
+                        "type": "clearFilter"
+                      },
+                      {
+                        "type": "renderWidget"
+                      }
+                    ]
+                  }
+                ],
+                "APPLY_SORT": [
+                  {
+                    "guard": "isSortingEnabled",
+                    "actions": [
+                      {
+                        "type": "applySorting"
+                      },
+                      {
+                        "type": "renderWidget"
+                      }
+                    ]
+                  }
+                ],
+                "CLEAR_SORT": [
+                  {
+                    "guard": "isSortingEnabled",
+                    "actions": [
+                      {
+                        "type": "clearSorting"
+                      },
+                      {
+                        "type": "renderWidget"
+                      }
+                    ]
+                  }
+                ],
+                "DRILL_DOWN": [
+                  {
+                    "target": "drillingDown",
+                    "guard": "isDrillDownEnabled",
+                    "actions": [
+                      {
+                        "type": "initiateDrillDown"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "itemSelected": {
+              "on": {
+                "ITEM_SELECTED": [
+                  {
+                    "actions": [
+                      {
+                        "type": "handleItemSelection"
+                      }
+                    ]
+                  }
+                ],
+                "CLEAR_SELECTION": [
+                  {
+                    "target": "idle",
+                    "actions": [
+                      {
+                        "type": "inline:widget.ready.interaction.itemSelected#CLEAR_SELECTION[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "drillingDown": {
+              "on": {
+                "DRILL_DOWN_COMPLETE": [
+                  {
+                    "target": "idle",
+                    "actions": [
+                      {
+                        "type": "handleDrillDownResult"
+                      },
+                      {
+                        "type": "renderWidget"
+                      }
+                    ]
+                  }
+                ],
+                "CANCEL_DRILL_DOWN": [
+                  {
+                    "target": "idle",
+                    "actions": []
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "mode": {
+          "initial": "view",
+          "states": {
+            "view": {
+              "on": {
+                "ENTER_EDIT_MODE": [
+                  {
+                    "target": "edit",
+                    "guard": "isDashboardInEditMode",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "edit": {
+              "on": {
+                "EXIT_EDIT_MODE": [
+                  {
+                    "target": "view",
+                    "actions": []
+                  }
+                ],
+                "UPDATE_CONFIG": [
+                  {
+                    "actions": [
+                      {
+                        "type": "updateWidgetConfig"
+                      },
+                      {
+                        "type": "renderWidget"
+                      }
+                    ]
+                  }
+                ],
+                "UPDATE_DATA_BINDING": [
+                  {
+                    "actions": [
+                      {
+                        "type": "updateDataBinding"
+                      },
+                      {
+                        "type": "renderWidget"
+                      }
+                    ]
+                  }
+                ],
+                "UPDATE_SIZE": [
+                  {
+                    "actions": [
+                      {
+                        "type": "inline:widget.ready.mode.edit#UPDATE_SIZE[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ],
+                "UPDATE_POSITION": [
+                  {
+                    "actions": [
+                      {
+                        "type": "inline:widget.ready.mode.edit#UPDATE_POSITION[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ],
+                "UPDATE_INTERACTIONS": [
+                  {
+                    "actions": [
+                      {
+                        "type": "inline:widget.ready.mode.edit#UPDATE_INTERACTIONS[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "visibility": {
+          "initial": "visible",
+          "states": {
+            "visible": {
+              "on": {
+                "HIDE_WIDGET": [
+                  {
+                    "target": "hidden",
+                    "actions": [
+                      {
+                        "type": "inline:widget.ready.visibility.visible#HIDE_WIDGET[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "hidden": {
+              "on": {
+                "SHOW_WIDGET": [
+                  {
+                    "target": "visible",
+                    "actions": [
+                      {
+                        "type": "inline:widget.ready.visibility.hidden#SHOW_WIDGET[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "type": "parallel"
+    },
+    "disposing": {
+      "entry": {
+        "type": "disposeWidget"
+      },
+      "type": "final"
+    }
+  },
+  "on": {
+    "DASHBOARD_MODE_CHANGED": [
+      {
+        "actions": [
+          {
+            "type": "inline:widget#DASHBOARD_MODE_CHANGED[-1]#transition[0]"
+          }
+        ],
+        "meta": {}
+      }
+    ],
+    "DISPOSE": [
+      {
+        "target": ".disposing",
+        "actions": []
+      }
+    ]
+  }
+}

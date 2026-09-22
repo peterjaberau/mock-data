@@ -1,0 +1,126 @@
+{
+  "id": "repoRuntime",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "CONNECT": [
+          {
+            "target": "starting",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "starting": {
+      "on": {
+        "READY": [
+          {
+            "target": "running",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ],
+        "DRAIN": [
+          {
+            "target": "draining",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "stopped": {
+      "on": {
+        "CONNECT": [
+          {
+            "target": "starting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "running": {
+      "on": {
+        "DRAIN": [
+          {
+            "target": "draining",
+            "actions": []
+          }
+        ],
+        "LEADERSHIP_LOST": [
+          {
+            "target": "draining",
+            "actions": []
+          }
+        ],
+        "IDLE_STOP": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "failed": {
+      "on": {
+        "STOP": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ],
+        "CONNECT": [
+          {
+            "target": "starting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "draining": {
+      "on": {
+        "STOP": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

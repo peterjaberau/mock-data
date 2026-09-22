@@ -1,0 +1,61 @@
+{
+  "id": "block editor",
+  "initial": "editing",
+  "states": {
+    "editing": {
+      "on": {
+        "edit": [
+          {
+            "target": "editing",
+            "actions": [],
+            "meta": {}
+          }
+        ],
+        "Command key /": [
+          {
+            "target": "cmd popup",
+            "actions": [],
+            "meta": {}
+          }
+        ],
+        "esc": [
+          {
+            "target": "editing",
+            "actions": []
+          }
+        ],
+        "accept": [
+          {
+            "target": "finished",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "cmd popup": {
+      "on": {
+        "normal char": [
+          {
+            "target": "cmd popup",
+            "actions": []
+          }
+        ],
+        "esc": [
+          {
+            "target": "editing",
+            "actions": []
+          }
+        ],
+        "accept": [
+          {
+            "target": "editing",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "finished": {
+      "type": "final"
+    }
+  }
+}

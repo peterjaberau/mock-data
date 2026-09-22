@@ -1,0 +1,54 @@
+{
+  "context": {
+    "retries": 0
+  },
+  "id": "fetch-with-event-action",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "fetch": [
+          {
+            "target": "loading",
+            "actions": [],
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "loading": {
+      "on": {
+        "reject": [
+          {
+            "target": "failure",
+            "actions": [],
+            "meta": {}
+          }
+        ],
+        "resolve": [
+          {
+            "target": "success",
+            "actions": [],
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "failure": {
+      "on": {
+        "retry": [
+          {
+            "target": "loading",
+            "actions": [
+              {
+                "type": "assign"
+              }
+            ],
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "success": {}
+  }
+}

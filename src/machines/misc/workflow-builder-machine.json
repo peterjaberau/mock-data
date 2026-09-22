@@ -1,0 +1,179 @@
+{
+  "context": {
+    "actionType": null,
+    "emailConfig": null,
+    "triggerType": null,
+    "actionConfig": null,
+    "selectedNode": null,
+    "triggerConfig": null
+  },
+  "id": "workflowBuilder",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "SELECT_TRIGGER": [
+          {
+            "target": "triggerSelected",
+            "actions": [
+              {
+                "type": "setSelectedNode"
+              }
+            ]
+          }
+        ],
+        "SELECT_ACTION": [
+          {
+            "target": "actionSelected",
+            "actions": [
+              {
+                "type": "setSelectedNode"
+              }
+            ]
+          }
+        ],
+        "SELECT_SEND_EMAIL": [
+          {
+            "target": "sendEmailSelected",
+            "actions": [
+              {
+                "type": "setSelectedNode"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "triggerSelected": {
+      "initial": "confirmation",
+      "states": {
+        "confirmation": {
+          "on": {
+            "CONFIRM_TRIGGER": [
+              {
+                "target": "configuring",
+                "actions": [
+                  {
+                    "type": "setTriggerType"
+                  }
+                ]
+              }
+            ],
+            "CANCEL": [
+              {
+                "target": "#workflowBuilder.idle",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "configuring": {
+          "on": {
+            "SAVE_TRIGGER": [
+              {
+                "target": "#workflowBuilder.idle",
+                "actions": [
+                  {
+                    "type": "saveTriggerConfig"
+                  }
+                ]
+              }
+            ],
+            "BACK": [
+              {
+                "target": "confirmation",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "actionSelected": {
+      "initial": "confirmation",
+      "states": {
+        "confirmation": {
+          "on": {
+            "CONFIRM_ACTION": [
+              {
+                "target": "configuring",
+                "actions": [
+                  {
+                    "type": "setActionType"
+                  }
+                ]
+              }
+            ],
+            "CANCEL": [
+              {
+                "target": "#workflowBuilder.idle",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "configuring": {
+          "on": {
+            "SAVE_ACTION": [
+              {
+                "target": "#workflowBuilder.idle",
+                "actions": [
+                  {
+                    "type": "saveActionConfig"
+                  }
+                ]
+              }
+            ],
+            "BACK": [
+              {
+                "target": "confirmation",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "sendEmailSelected": {
+      "initial": "confirmation",
+      "states": {
+        "confirmation": {
+          "on": {
+            "CONFIRM_EMAIL": [
+              {
+                "target": "configuring",
+                "actions": []
+              }
+            ],
+            "CANCEL": [
+              {
+                "target": "#workflowBuilder.idle",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "configuring": {
+          "on": {
+            "SAVE_EMAIL": [
+              {
+                "target": "#workflowBuilder.idle",
+                "actions": [
+                  {
+                    "type": "saveEmailConfig"
+                  }
+                ]
+              }
+            ],
+            "BACK": [
+              {
+                "target": "confirmation",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

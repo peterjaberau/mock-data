@@ -1,0 +1,158 @@
+{
+  "context": {
+    "error": null,
+    "filter": {
+      "tags": [],
+      "query": "",
+      "sortBy": "lastUpdated",
+      "sortOrder": "desc"
+    },
+    "dashboards": [],
+    "pagination": {
+      "page": 1,
+      "total": 0,
+      "pageSize": 10
+    },
+    "currentDashboardId": null
+  },
+  "id": "dashboardRegistry",
+  "initial": "loading",
+  "states": {
+    "loading": {
+      "invoke": {
+        "input": {},
+        "src": "fetchDashboards",
+        "onDone": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:dashboardRegistry.loading#done.invoke.dashboardRegistry.loading:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:dashboardRegistry.loading#error.platform.dashboardRegistry.loading:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "idle": {
+      "on": {
+        "SELECT_DASHBOARD": [
+          {
+            "actions": [
+              {
+                "type": "inline:dashboardRegistry.idle#SELECT_DASHBOARD[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "CREATE_DASHBOARD": [
+          {
+            "target": "creating",
+            "actions": []
+          }
+        ],
+        "DELETE_DASHBOARD": [
+          {
+            "target": "deleting",
+            "actions": []
+          }
+        ],
+        "UPDATE_FILTER": [
+          {
+            "actions": [
+              {
+                "type": "inline:dashboardRegistry.idle#UPDATE_FILTER[-1]#transition[0]"
+              },
+              {
+                "type": "loadDashboards"
+              }
+            ]
+          }
+        ],
+        "CHANGE_PAGE": [
+          {
+            "actions": [
+              {
+                "type": "inline:dashboardRegistry.idle#CHANGE_PAGE[-1]#transition[0]"
+              },
+              {
+                "type": "loadDashboards"
+              }
+            ]
+          }
+        ],
+        "RELOAD": [
+          {
+            "target": "loading",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "creating": {
+      "invoke": {
+        "input": {},
+        "src": "createDashboard",
+        "onDone": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:dashboardRegistry.creating#done.invoke.dashboardRegistry.creating:invocation[0][-1]#transition[0]"
+              },
+              {
+                "type": "navigateToDashboard"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:dashboardRegistry.creating#error.platform.dashboardRegistry.creating:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "deleting": {
+      "invoke": {
+        "input": {},
+        "src": "deleteDashboard",
+        "onDone": [
+          {
+            "target": "loading",
+            "actions": [
+              {
+                "type": "inline:dashboardRegistry.deleting#done.invoke.dashboardRegistry.deleting:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:dashboardRegistry.deleting#error.platform.dashboardRegistry.deleting:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,328 @@
+{
+  "context": {
+    "agents": []
+  },
+  "id": "ParallelWorkflowBuilder",
+  "initial": "start",
+  "states": {
+    "start": {
+      "always": {
+        "target": "AllQuestions",
+        "actions": [],
+        "meta": {}
+      }
+    },
+    "AllQuestions": {
+      "states": {
+        "riskLevelAssessment": {
+          "description": "Risk Level Assessment",
+          "initial": "riskLevelQuestion",
+          "states": {
+            "riskLevelQuestion": {
+              "description": "Risk level close to threshold value?",
+              "on": {
+                "yesRiskLevelQuestion": [
+                  {
+                    "target": "cvrmFrequent",
+                    "actions": [],
+                    "description": "yes"
+                  }
+                ],
+                "noRiskLevelQuestion": [
+                  {
+                    "target": "cvrmNormal",
+                    "actions": [],
+                    "description": "no"
+                  }
+                ]
+              }
+            },
+            "cvrmFrequent": {
+              "description": "\"Check CVRM risk more often\"",
+              "entry": {
+                "type": "appendAgent",
+                "params": {
+                  "type": "intervalScheduler",
+                  "timing": "every 6 months",
+                  "description": "Frequent CVRM checks"
+                }
+              },
+              "always": {
+                "target": "answered",
+                "actions": []
+              }
+            },
+            "cvrmNormal": {
+              "description": "\"Check CVRM risk every 5 years\"",
+              "entry": {
+                "type": "appendAgent",
+                "params": {
+                  "type": "intervalScheduler",
+                  "timing": "every 5 years",
+                  "description": "Normal-interval CVRM checks"
+                }
+              },
+              "always": {
+                "target": "answered",
+                "actions": []
+              }
+            },
+            "answered": {
+              "type": "final"
+            }
+          }
+        },
+        "bpLevelAsessment": {
+          "description": "BP Level Assessment",
+          "initial": "bpLevelQuestion",
+          "states": {
+            "bpLevelQuestion": {
+              "description": "BP at good level and no side effects?",
+              "on": {
+                "yesBpLevelQuestion": [
+                  {
+                    "target": "bpCheckNormal",
+                    "actions": [],
+                    "description": "yes"
+                  }
+                ],
+                "noBpLevelQuestion": [
+                  {
+                    "target": "bpCheckFrequent",
+                    "actions": [],
+                    "description": "no"
+                  }
+                ]
+              }
+            },
+            "bpCheckNormal": {
+              "description": "\"Check blood pressure 1-2 x per year\"",
+              "entry": {
+                "type": "appendAgent",
+                "params": {
+                  "type": "intervalScheduler",
+                  "timing": "every 12 months",
+                  "description": "Regular BP Level Checks"
+                }
+              },
+              "always": {
+                "target": "answered",
+                "actions": []
+              }
+            },
+            "bpCheckFrequent": {
+              "description": "\"Check BP 3-4 x per year\"",
+              "entry": {
+                "type": "appendAgent",
+                "params": {
+                  "type": "intervalScheduler",
+                  "timing": "every 3 months",
+                  "description": "More Frequent Level Checks"
+                }
+              },
+              "always": {
+                "target": "answered",
+                "actions": []
+              }
+            },
+            "answered": {
+              "type": "final"
+            }
+          }
+        },
+        "diabetes": {
+          "description": "Diabetes",
+          "initial": "diabetesQuestion",
+          "states": {
+            "diabetesQuestion": {
+              "description": "Does the patient have diabetes?",
+              "on": {
+                "yesDiabetesQuestion": [
+                  {
+                    "target": "checksWhenDiabetes",
+                    "actions": [],
+                    "description": "yes"
+                  }
+                ],
+                "noDiabetesQuestion": [
+                  {
+                    "target": "checksNoDiabetes",
+                    "actions": [],
+                    "description": "no"
+                  }
+                ]
+              }
+            },
+            "checksWhenDiabetes": {
+              "description": "\"Check glucose and ACR every year\"",
+              "entry": {
+                "type": "appendAgent",
+                "params": {
+                  "type": "intervalScheduler",
+                  "timing": "every 12 months",
+                  "description": "Annual Glucose/ACR Checks"
+                }
+              },
+              "always": {
+                "target": "done",
+                "actions": []
+              }
+            },
+            "checksNoDiabetes": {
+              "description": "\"Check glucose and ACR every 3 years\"",
+              "entry": {
+                "type": "appendAgent",
+                "params": {
+                  "type": "intervalScheduler",
+                  "timing": "every 3 years",
+                  "description": "Normal Glucose/ACR Checks"
+                }
+              },
+              "always": {
+                "target": "done",
+                "actions": []
+              }
+            },
+            "done": {
+              "type": "final"
+            }
+          }
+        },
+        "glucoseACR": {
+          "description": "Glucose and ACR",
+          "initial": "cholMedChangeQuestion",
+          "states": {
+            "cholMedChangeQuestion": {
+              "description": "Cholesterol medication change?",
+              "on": {
+                "noCholMedChangeQuestion": [
+                  {
+                    "target": "scheduleLab",
+                    "actions": [],
+                    "description": "no"
+                  }
+                ],
+                "yesCholMedChangeQuestion": [
+                  {
+                    "target": "answered",
+                    "actions": [],
+                    "description": "yes"
+                  }
+                ]
+              }
+            },
+            "scheduleLab": {
+              "description": "\"Go to lab after 3 months\"",
+              "entry": {
+                "type": "appendAgent",
+                "params": {
+                  "type": "onceOffScheduler",
+                  "timing": "within 3 months",
+                  "description": "Lab Appointment"
+                }
+              },
+              "always": {
+                "target": "answered",
+                "actions": []
+              }
+            },
+            "answered": {
+              "type": "final"
+            }
+          }
+        },
+        "other": {
+          "description": "Other medications, extra indications",
+          "initial": "medicationsQuestion",
+          "states": {
+            "medicationsQuestion": {
+              "description": "On diuretics, ACE inhibitor or ARB medication?",
+              "on": {
+                "yesMedicationsQuestion": [
+                  {
+                    "target": "extraIndicationsQuestion",
+                    "actions": [],
+                    "description": "yes",
+                    "meta": {}
+                  }
+                ],
+                "noMedicationsQuestion": [
+                  {
+                    "target": "answered",
+                    "actions": [],
+                    "description": "no",
+                    "meta": {}
+                  }
+                ]
+              }
+            },
+            "extraIndicationsQuestion": {
+              "description": "Extra indications like heart failure, frailness, kidney failure?",
+              "on": {
+                "noExtraIndicationsQuestion": [
+                  {
+                    "target": "labFrequent",
+                    "actions": [],
+                    "description": "yes",
+                    "meta": {}
+                  }
+                ],
+                "yesExtraIndicationsQuestion": [
+                  {
+                    "target": "labInfrequent",
+                    "actions": [],
+                    "description": "no",
+                    "meta": {}
+                  }
+                ]
+              }
+            },
+            "answered": {
+              "type": "final"
+            },
+            "labFrequent": {
+              "description": "\"Go to lab every 3 months\"",
+              "entry": {
+                "type": "appendAgent",
+                "params": {
+                  "type": "intervalScheduler",
+                  "timing": "every 3 months",
+                  "description": "Frequent Lab Checks (extra indications)"
+                }
+              },
+              "always": {
+                "target": "answered",
+                "actions": [],
+                "meta": {}
+              }
+            },
+            "labInfrequent": {
+              "description": "\"Go to lab every year\"",
+              "entry": {
+                "type": "appendAgent",
+                "params": {
+                  "type": "intervalScheduler",
+                  "timing": "every 12 months",
+                  "description": "Annual Lab Checks (no extra indications)"
+                }
+              },
+              "always": {
+                "target": "answered",
+                "actions": [],
+                "meta": {}
+              }
+            }
+          }
+        }
+      },
+      "type": "parallel",
+      "onDone": {
+        "target": "finished",
+        "actions": []
+      }
+    },
+    "finished": {
+      "type": "final"
+    }
+  }
+}

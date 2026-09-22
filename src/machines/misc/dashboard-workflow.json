@@ -1,0 +1,155 @@
+{
+  "id": "dashboardWorkflow",
+  "initial": "Initialization",
+  "states": {
+    "Initialization": {
+      "description": "User accesses the UI Builder environment. This is the entry point to the workflow with no previous state dependencies. The system loads the component library index and user permissions.",
+      "on": {
+        "navigate_library": [
+          {
+            "target": "Component library navigation",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Component library navigation": {
+      "description": "User browses available components. Involves filtering, searching, and categorization operations. Components are presented according to permission-based visibility rules. Each component has associated metadata (type, constraints, data requirements).",
+      "on": {
+        "select_component": [
+          {
+            "target": "Component selection",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Component selection": {
+      "description": "User identifies and selects a specific component. Selection triggers component metadata loading. The system validates component accessibility based on user permissions. Preparation for canvas integration begins.",
+      "on": {
+        "integrate_component": [
+          {
+            "target": "Canvas integration",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Canvas integration": {
+      "description": "Component is positioned in the workspace. Spatial coordinates are assigned. The layout engine evaluates placement validity. The component enters an unpopulated/unconfigured state.",
+      "on": {
+        "configure_properties": [
+          {
+            "target": "Property configuration",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Property configuration": {
+      "description": "Component attributes are defined. Properties are categorized by function (visual, behavioral, data-related). Default values may be pre-populated. Validation rules are applied per property. This is a highly iterative state with frequent revisitation.",
+      "on": {
+        "connect_data": [
+          {
+            "target": "Data connection",
+            "actions": []
+          }
+        ],
+        "revisit_properties": [
+          {
+            "target": "Property configuration",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Data connection": {
+      "description": "Data sources are mapped to the component. Data binding operations occur between component properties and data models. Transformations can be defined for data preprocessing. The system validates data type compatibility.",
+      "on": {
+        "preview_component": [
+          {
+            "target": "Preview",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Preview": {
+      "description": "Component functionality is tested. The rendering engine generates a visual representation. Interactive elements become operational. Data integration is simulated.",
+      "on": {
+        "evaluate_requirements": [
+          {
+            "target": "Requirements evaluation",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Requirements evaluation": {
+      "description": "Component is assessed against requirements. Decision point: meets requirements or requires modification. Failed evaluation creates a feedback loop to Property Configuration State. Success advances workflow to next stage.",
+      "on": {
+        "requirements_passed": [
+          {
+            "target": "Dashboard preservation",
+            "actions": []
+          }
+        ],
+        "modify_requirements": [
+          {
+            "target": "Property configuration",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Dashboard preservation": {
+      "description": "Current state is persisted. Configuration data is serialized. The version control system records the state snapshot. Dependencies are documented.",
+      "on": {
+        "validate_dashboard": [
+          {
+            "target": "Validation",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Validation": {
+      "description": "Comprehensive dashboard evaluation occurs. Component interactions are assessed. Data flow is verified. Performance metrics are evaluated. Accessibility compliance is checked.",
+      "on": {
+        "resolve_issues": [
+          {
+            "target": "Resolution",
+            "actions": []
+          }
+        ],
+        "validation_passed": [
+          {
+            "target": "Publication",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Resolution": {
+      "description": "Issues identified during validation are addressed. Recursive process until validation passes. May involve returning to earlier states for specific components.",
+      "on": {
+        "return_to_validation": [
+          {
+            "target": "Validation",
+            "actions": []
+          }
+        ],
+        "modify_component": [
+          {
+            "target": "Property configuration",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Publication": {
+      "description": "Dashboard is finalized and made available. Access controls are applied. Resource allocation occurs. Monitoring systems are activated. Distribution mechanisms are triggered.",
+      "type": "final"
+    }
+  }
+}

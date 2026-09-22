@@ -1,0 +1,181 @@
+{
+  "context": {
+    "brickId": "",
+    "newBrickId": "",
+    "showSaveBrickModal": false,
+    "showUpdateBrickUsageModal": false
+  },
+  "id": "Brick Editor - logic",
+  "initial": "empty_view",
+  "states": {
+    "empty_view": {
+      "on": {
+        "LOAD_BRICK": [
+          {
+            "target": "view_brick",
+            "guard": "brickId != null",
+            "actions": [
+              {
+                "type": "setBrickId"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "view_brick": {
+      "entry": {
+        "type": "loadBrick"
+      },
+      "on": {
+        "AMEND_BRICK": [
+          {
+            "target": "amended_brick",
+            "actions": [],
+            "meta": {}
+          }
+        ],
+        "LOAD_BRICK": [
+          {
+            "target": "view_brick",
+            "actions": [
+              {
+                "type": "setBrickId"
+              }
+            ]
+          }
+        ],
+        "RESET_VIEW": [
+          {
+            "target": "empty_view",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "amended_brick": {
+      "on": {
+        "UNDO_CHANGES": [
+          {
+            "target": "view_brick",
+            "actions": []
+          }
+        ],
+        "LOAD_BRICK": [
+          {
+            "target": "save_brick",
+            "guard": "brickId != newBrickId",
+            "actions": [
+              {
+                "type": "setBrickId"
+              }
+            ]
+          }
+        ],
+        "SAVE_BRICK": [
+          {
+            "target": "update_brick_usage",
+            "guard": "iskBrickInUse",
+            "actions": []
+          },
+          {
+            "target": "view_brick",
+            "actions": [
+              {
+                "type": "saveBrick"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "save_brick": {
+      "entry": {
+        "type": "saveBrickModal",
+        "params": {
+          "show": true
+        }
+      },
+      "exit": {
+        "type": "saveBrickModal",
+        "params": {
+          "show": false
+        }
+      },
+      "invoke": {
+        "input": {
+          "ws": ""
+        },
+        "src": "inv_1"
+      },
+      "on": {
+        "CANCEL": [
+          {
+            "target": "amended_brick",
+            "actions": []
+          }
+        ],
+        "YES": [
+          {
+            "target": "update_brick_usage",
+            "guard": "iskBrickInUse",
+            "actions": []
+          },
+          {
+            "target": "view_brick",
+            "actions": [
+              {
+                "type": "saveBrick"
+              }
+            ]
+          }
+        ],
+        "NO": [
+          {
+            "target": "view_brick",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "update_brick_usage": {
+      "entry": {
+        "type": "updateBrickUsageModal",
+        "params": {
+          "show": true
+        }
+      },
+      "exit": {
+        "type": "updateBrickUsageModal",
+        "params": {
+          "show": false
+        }
+      },
+      "on": {
+        "UPDATE": [
+          {
+            "target": "view_brick",
+            "actions": [
+              {
+                "type": "saveBrick"
+              },
+              {
+                "type": "updateUsages"
+              }
+            ]
+          }
+        ],
+        "CANCEL": [
+          {
+            "target": "view_brick",
+            "actions": [
+              {
+                "type": "saveBrick"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

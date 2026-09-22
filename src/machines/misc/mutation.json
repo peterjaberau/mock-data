@@ -1,0 +1,115 @@
+{
+  "context": {
+    "transactionId": null,
+    "pendingMutations": []
+  },
+  "id": "mutationMachine",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "description": "The machine is in an idle state, waiting for mutations to be created.",
+      "on": {
+        "create_mutation": [
+          {
+            "target": "optimisticUpdate",
+            "actions": [
+              {
+                "type": "assignTransactionId"
+              },
+              {
+                "type": "lockFields"
+              },
+              {
+                "type": "addPendingMutation"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "optimisticUpdate": {
+      "description": "Mutations are applied optimistically on the client and sent to the backend.",
+      "on": {
+        "mutation_sent": [
+          {
+            "target": "waitingForAcknowledgment",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "waitingForAcknowledgment": {
+      "description": "Waiting for the backend to acknowledge the mutation and sync it back to the client.",
+      "on": {
+        "acknowledgment_received": [
+          {
+            "target": "syncComplete",
+            "actions": [
+              {
+                "type": "removePendingMutation"
+              },
+              {
+                "type": "unlockFields"
+              },
+              {
+                "type": "storeAcknowledgment"
+              }
+            ]
+          }
+        ],
+        "retry": [
+          {
+            "target": "optimisticUpdate",
+            "actions": [
+              {
+                "type": "assignTransactionId"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "syncComplete": {
+      "description": "The mutation has been acknowledged by the backend and synced back to the client.",
+      "on": {
+        "create_mutation": [
+          {
+            "target": "optimisticUpdate",
+            "actions": [
+              {
+                "type": "assignTransactionId"
+              },
+              {
+                "type": "lockFields"
+              },
+              {
+                "type": "addPendingMutation"
+              }
+            ],
+            "meta": {}
+          }
+        ],
+        "go_offline": [
+          {
+            "target": "offline",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "offline": {
+      "description": "The client is offline. If there were any acknowledged transactions, they are dropped.",
+      "entry": {
+        "type": "dropAcknowledgedTransactions"
+      },
+      "on": {
+        "go_online": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

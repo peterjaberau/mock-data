@@ -1,0 +1,342 @@
+{
+  "context": "{{({ input }: any) => ({\n        ...DEFAULT_CONTEXT,\n        provider: input.provider, // Inyectamos el provider desde el input\n    })}}",
+  "id": "Orchestrator",
+  "initial": "initializing",
+  "states": {
+    "initializing": {
+      "entry": {
+        "type": "inline:Orchestrator.initializing#entry[0]"
+      },
+      "always": {
+        "target": "waiting_layout",
+        "actions": []
+      }
+    },
+    "waiting_layout": {
+      "on": {
+        "LAYOUT_SELECTED": [
+          {
+            "target": "waiting_file",
+            "actions": [
+              {
+                "type": "inline:Orchestrator.waiting_layout#LAYOUT_SELECTED[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "waiting_file": {
+      "on": {
+        "FILE_SELECTED": [
+          {
+            "target": "importing",
+            "actions": [
+              {
+                "type": "inline:Orchestrator.waiting_file#FILE_SELECTED[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "importing": {
+      "invoke": {
+        "input": {},
+        "src": "importFile",
+        "id": "import-file",
+        "onDone": [
+          {
+            "target": "mapping",
+            "actions": [
+              {
+                "type": "inline:Orchestrator.importing#done.invoke.import-file[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "mapping": {
+      "invoke": {
+        "input": {},
+        "src": "mapping",
+        "id": "mapping",
+        "onDone": [
+          {
+            "target": "persisting",
+            "actions": [
+              {
+                "type": "inline:Orchestrator.mapping#done.invoke.mapping[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "error": {
+      "on": {
+        "RESET": [
+          {
+            "target": "initializing",
+            "actions": [
+              {
+                "type": "inline:Orchestrator.error#RESET[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "persisting": {
+      "invoke": {
+        "input": {},
+        "src": "persisting",
+        "id": "persisting"
+      }
+    },
+    "handling_global_step": {
+      "invoke": {
+        "input": {},
+        "src": "handlingGlobalStep",
+        "id": "handling_global_step",
+        "onDone": [
+          {
+            "target": "initializing_user_view",
+            "actions": [
+              {
+                "type": "inline:Orchestrator.handling_global_step#done.invoke.handling_global_step[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "initializing_user_view": {
+      "entry": {
+        "type": "inline:Orchestrator.initializing_user_view#entry[0]"
+      },
+      "initial": "loading_rows",
+      "states": {
+        "loading_rows": {
+          "invoke": {
+            "input": {},
+            "src": "loadingRows",
+            "id": "loading_rows",
+            "onDone": [
+              {
+                "target": "user_view_initialized",
+                "actions": [
+                  {
+                    "type": "inline:Orchestrator.initializing_user_view.loading_rows#done.invoke.loading_rows[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "onError": [
+              {
+                "target": "#Orchestrator.error",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "user_view_initialized": {
+          "type": "final"
+        }
+      },
+      "onDone": {
+        "target": "waiting_user_interaction",
+        "actions": []
+      }
+    },
+    "waiting_user_interaction": {
+      "on": {
+        "CHANGE_PAGE": [
+          {
+            "target": "initializing_user_view",
+            "actions": [
+              {
+                "type": "inline:Orchestrator.waiting_user_interaction#CHANGE_PAGE[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "EDIT_ROW": [
+          {
+            "target": "editing_row",
+            "actions": [
+              {
+                "type": "inline:Orchestrator.waiting_user_interaction#EDIT_ROW[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "REMOVE_ROW": [
+          {
+            "target": "removing_row",
+            "actions": [
+              {
+                "type": "inline:Orchestrator.waiting_user_interaction#REMOVE_ROW[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "EXPORT": [
+          {
+            "target": "exporting",
+            "actions": [
+              {
+                "type": "inline:Orchestrator.waiting_user_interaction#EXPORT[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "editing_row": {
+      "initial": "editing_data",
+      "states": {
+        "editing_data": {
+          "invoke": {
+            "input": {},
+            "src": "editingData",
+            "onDone": [
+              {
+                "target": "local_step_pipe",
+                "actions": []
+              }
+            ],
+            "onError": [
+              {
+                "target": "#Orchestrator.error",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "local_step_pipe": {
+          "invoke": {
+            "input": {},
+            "src": "localStepPipe",
+            "onDone": [
+              {
+                "target": "persisting",
+                "actions": [
+                  {
+                    "type": "inline:Orchestrator.editing_row.local_step_pipe#done.invoke.Orchestrator.editing_row.local_step_pipe:invocation[0][-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "onError": [
+              {
+                "target": "#Orchestrator.error",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "persisting": {
+          "invoke": {
+            "input": {},
+            "src": "persisting",
+            "onDone": [
+              {
+                "target": "global_step_pipe",
+                "actions": []
+              }
+            ],
+            "onError": [
+              {
+                "target": "#Orchestrator.error",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "global_step_pipe": {
+          "invoke": {
+            "input": {},
+            "src": "globalStepPipeByRow",
+            "onDone": [
+              {
+                "target": "cleaning",
+                "actions": []
+              }
+            ],
+            "onError": [
+              {
+                "target": "#Orchestrator.error",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "cleaning": {
+          "entry": {
+            "type": "inline:Orchestrator.editing_row.cleaning#entry[0]"
+          },
+          "always": {
+            "target": "#Orchestrator.waiting_user_interaction",
+            "actions": []
+          }
+        }
+      }
+    },
+    "removing_row": {
+      "invoke": {
+        "input": {},
+        "src": "removingRow",
+        "onDone": [
+          {
+            "target": "initializing_user_view",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "exporting": {
+      "invoke": {
+        "input": {},
+        "src": "exporting",
+        "onDone": [
+          {
+            "target": "waiting_user_interaction",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "id": "quality-engineering-pipeline",
+  "initial": "Idle",
+  "states": {
+    "Idle": {
+      "description": "The pipeline is at its initial waiting boundary and remains inactive until a new quality engineering run is started.",
+      "on": {
+        "start": [
+          {
+            "target": "Fetching ticket",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Fetching ticket": {
+      "description": "The pipeline retrieves and verifies the work ticket that defines the scope and acceptance criteria for the quality engineering run.",
+      "on": {
+        "ticket fetched": [
+          {
+            "target": "Detecting mode",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Failed": {
+      "description": "The quality engineering pipeline terminated unsuccessfully because of an unrecoverable failure or an explicit cancellation from any non-terminal stage.",
+      "type": "final"
+    },
+    "Detecting mode": {
+      "description": "The pipeline determines the execution mode and testing strategy required by the fetched ticket and its repository or environment.",
+      "on": {
+        "mode detected": [
+          {
+            "target": "Analysing",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Analysing": {
+      "description": "The pipeline analyses the requested change, relevant risks, existing coverage, and technical constraints before creating a test plan.",
+      "on": {
+        "analysis complete": [
+          {
+            "target": "Planning",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Planning": {
+      "description": "The pipeline creates an actionable quality plan covering test scope, validation criteria, execution order, and expected evidence.",
+      "on": {
+        "plan ready": [
+          {
+            "target": "Awaiting approval",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Awaiting approval": {
+      "description": "The pipeline is paused at a human approval gate and cannot continue until an authorized human explicitly approves the quality plan.",
+      "on": {
+        "approve": [
+          {
+            "target": "Preparing test data",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Preparing test data": {
+      "description": "The pipeline prepares deterministic fixtures, datasets, mocks, credentials, and environment inputs required for test generation and execution.",
+      "on": {
+        "test data prepared": [
+          {
+            "target": "Generating",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Generating": {
+      "description": "The pipeline generates the planned tests, checks, configuration, and supporting artifacts needed to validate the requested change.",
+      "on": {
+        "generation complete": [
+          {
+            "target": "Validating",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Validating": {
+      "description": "The pipeline validates the generated artifacts for correctness, completeness, consistency with the plan, and readiness for runtime execution.",
+      "on": {
+        "validation passed": [
+          {
+            "target": "Runtime validation",
+            "actions": []
+          }
+        ],
+        "retry": [
+          {
+            "target": "Generating",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Runtime validation": {
+      "description": "The pipeline runs the generated quality checks against the target runtime and evaluates observed results against the defined acceptance criteria.",
+      "on": {
+        "runtime validation passed": [
+          {
+            "target": "Reporting",
+            "actions": []
+          }
+        ],
+        "retry": [
+          {
+            "target": "Generating",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Reporting": {
+      "description": "The pipeline consolidates execution results, validation evidence, diagnostics, and quality conclusions into the final engineering report.",
+      "on": {
+        "report generated": [
+          {
+            "target": "Done",
+            "actions": []
+          }
+        ],
+        "fail": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "Failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Done": {
+      "description": "The quality engineering pipeline completed successfully, and its final report and validation evidence are available to downstream stakeholders.",
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "context": {
+    "queryData": {
+      "data": null,
+      "status": "idle"
+    },
+    "components": [],
+    "hasChanges": false
+  },
+  "id": "retoolBuilder",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "START_EDIT": [
+          {
+            "target": "editing",
+            "actions": []
+          }
+        ],
+        "PREVIEW": [
+          {
+            "target": "previewing",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "editing": {
+      "entry": {
+        "type": "inline:retoolBuilder.editing#entry[0]"
+      },
+      "on": {
+        "ADD_COMPONENT": [
+          {
+            "actions": [
+              {
+                "type": "inline:retoolBuilder.editing#ADD_COMPONENT[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "START_DRAG": [
+          {
+            "actions": [
+              {
+                "type": "inline:retoolBuilder.editing#START_DRAG[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "DROP_COMPONENT": [
+          {
+            "target": "previewing",
+            "guard": "inline:retoolBuilder.editing#DROP_COMPONENT[-1]#guard",
+            "actions": [
+              {
+                "type": "inline:retoolBuilder.editing#DROP_COMPONENT[-1]#transition[0]"
+              },
+              {
+                "type": "autoRunQuery"
+              }
+            ]
+          },
+          {
+            "actions": [
+              {
+                "type": "inline:retoolBuilder.editing#DROP_COMPONENT[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "PREVIEW": [
+          {
+            "target": "previewing",
+            "actions": []
+          }
+        ],
+        "DEPLOY": [
+          {
+            "target": "deploying",
+            "guard": "inline:retoolBuilder.editing#DEPLOY[-1]#guard",
+            "actions": []
+          }
+        ],
+        "CANCEL": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "previewing": {
+      "states": {
+        "query": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "RUN_QUERY": [
+                  {
+                    "target": "loading",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "loading": {
+              "invoke": {
+                "input": {},
+                "src": "inline:retoolBuilder.previewing.query.loading#actor[0]",
+                "id": "runQuery",
+                "onDone": [
+                  {
+                    "target": "success",
+                    "actions": [
+                      {
+                        "type": "inline:retoolBuilder.previewing.query.loading#done.invoke.runQuery[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ],
+                "onError": [
+                  {
+                    "target": "error",
+                    "actions": [
+                      {
+                        "type": "inline:retoolBuilder.previewing.query.loading#error.platform.runQuery[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "success": {
+              "on": {
+                "RUN_QUERY": [
+                  {
+                    "target": "loading",
+                    "actions": []
+                  }
+                ],
+                "RETRY_QUERY": [
+                  {
+                    "target": "loading",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "error": {
+              "on": {
+                "RETRY_QUERY": [
+                  {
+                    "target": "loading",
+                    "actions": []
+                  }
+                ],
+                "RESET": [
+                  {
+                    "target": "idle",
+                    "actions": []
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "START_EDIT": [
+          {
+            "target": "editing",
+            "actions": []
+          }
+        ],
+        "DEPLOY": [
+          {
+            "target": "deploying",
+            "actions": []
+          }
+        ],
+        "RESET": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:retoolBuilder.previewing#RESET[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "RUN_QUERY": [
+          {
+            "target": ".query.loading",
+            "actions": []
+          }
+        ]
+      },
+      "type": "parallel"
+    },
+    "deploying": {
+      "invoke": {
+        "input": {},
+        "src": "inline:retoolBuilder.deploying#actor[0]",
+        "id": "saveApp",
+        "onDone": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "onSaveSuccess"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "onSaveError"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "error": {
+      "on": {
+        "RESET": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:retoolBuilder.error#RESET[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

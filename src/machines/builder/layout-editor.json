@@ -1,0 +1,404 @@
+{
+  "context": {
+    "layout": null,
+    "gridSize": {
+      "cols": 12,
+      "rows": 12
+    },
+    "showGrid": true,
+    "clipboard": null,
+    "redoStack": [],
+    "undoStack": [],
+    "snapToGrid": true,
+    "autoArrange": false,
+    "draggedItemId": null,
+    "resizedItemId": null,
+    "selectedItems": [],
+    "dropTargetArea": null,
+    "originalLayout": null,
+    "currentBreakpoint": "lg",
+    "responsiveBreakpoints": {
+      "lg": 992,
+      "md": 768,
+      "sm": 576,
+      "xl": 1200
+    }
+  },
+  "id": "layoutEditor",
+  "initial": "inactive",
+  "states": {
+    "inactive": {
+      "on": {
+        "ACTIVATE": [
+          {
+            "target": "active",
+            "actions": [
+              {
+                "type": "initializeEditor"
+              },
+              {
+                "type": "backupLayout"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "active": {
+      "states": {
+        "mode": {
+          "initial": "select",
+          "states": {
+            "select": {
+              "on": {
+                "SELECT_ITEM": [
+                  {
+                    "actions": [
+                      {
+                        "type": "selectItem"
+                      }
+                    ]
+                  }
+                ],
+                "DESELECT_ITEM": [
+                  {
+                    "actions": [
+                      {
+                        "type": "deselectItem"
+                      }
+                    ]
+                  }
+                ],
+                "DESELECT_ALL": [
+                  {
+                    "actions": [
+                      {
+                        "type": "inline:layoutEditor.active.mode.select#DESELECT_ALL[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ],
+                "SELECT_ALL": [
+                  {
+                    "actions": [
+                      {
+                        "type": "selectAllItems"
+                      }
+                    ]
+                  }
+                ],
+                "ENTER_DRAG_MODE": [
+                  {
+                    "target": "drag",
+                    "actions": [
+                      {
+                        "type": "inline:layoutEditor.active.mode.select#ENTER_DRAG_MODE[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ],
+                "ENTER_RESIZE_MODE": [
+                  {
+                    "target": "resize",
+                    "actions": [
+                      {
+                        "type": "inline:layoutEditor.active.mode.select#ENTER_RESIZE_MODE[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "drag": {
+              "on": {
+                "DRAG_MOVE": [
+                  {
+                    "actions": [
+                      {
+                        "type": "updateDragPosition"
+                      },
+                      {
+                        "type": "identifyDropTarget"
+                      }
+                    ]
+                  }
+                ],
+                "DROP": [
+                  {
+                    "target": "select",
+                    "actions": [
+                      {
+                        "type": "finalizeItemPosition"
+                      },
+                      {
+                        "type": "pushToUndoStack"
+                      },
+                      {
+                        "type": "clearDragState"
+                      }
+                    ]
+                  }
+                ],
+                "CANCEL_DRAG": [
+                  {
+                    "target": "select",
+                    "actions": [
+                      {
+                        "type": "clearDragState"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "resize": {
+              "on": {
+                "RESIZE_MOVE": [
+                  {
+                    "actions": [
+                      {
+                        "type": "updateItemSize"
+                      }
+                    ]
+                  }
+                ],
+                "RESIZE_END": [
+                  {
+                    "target": "select",
+                    "actions": [
+                      {
+                        "type": "finalizeItemSize"
+                      },
+                      {
+                        "type": "pushToUndoStack"
+                      },
+                      {
+                        "type": "clearResizeState"
+                      }
+                    ]
+                  }
+                ],
+                "CANCEL_RESIZE": [
+                  {
+                    "target": "select",
+                    "actions": [
+                      {
+                        "type": "clearResizeState"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "operations": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "DELETE_SELECTED": [
+                  {
+                    "actions": [
+                      {
+                        "type": "deleteSelectedItems"
+                      },
+                      {
+                        "type": "pushToUndoStack"
+                      }
+                    ]
+                  }
+                ],
+                "COPY_SELECTED": [
+                  {
+                    "actions": [
+                      {
+                        "type": "copySelectedItems"
+                      }
+                    ]
+                  }
+                ],
+                "PASTE": [
+                  {
+                    "actions": [
+                      {
+                        "type": "pasteItems"
+                      },
+                      {
+                        "type": "pushToUndoStack"
+                      }
+                    ]
+                  }
+                ],
+                "UNDO": [
+                  {
+                    "guard": "canUndo",
+                    "actions": [
+                      {
+                        "type": "undoLastOperation"
+                      },
+                      {
+                        "type": "pushToRedoStack"
+                      }
+                    ]
+                  }
+                ],
+                "REDO": [
+                  {
+                    "guard": "canRedo",
+                    "actions": [
+                      {
+                        "type": "redoOperation"
+                      },
+                      {
+                        "type": "pushToUndoStack"
+                      }
+                    ]
+                  }
+                ],
+                "TOGGLE_GRID": [
+                  {
+                    "actions": [
+                      {
+                        "type": "inline:layoutEditor.active.operations.idle#TOGGLE_GRID[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ],
+                "TOGGLE_SNAP": [
+                  {
+                    "actions": [
+                      {
+                        "type": "inline:layoutEditor.active.operations.idle#TOGGLE_SNAP[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ],
+                "TOGGLE_AUTO_ARRANGE": [
+                  {
+                    "actions": [
+                      {
+                        "type": "inline:layoutEditor.active.operations.idle#TOGGLE_AUTO_ARRANGE[-1]#transition[0]"
+                      },
+                      {
+                        "type": "applyAutoArrange"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responsive": {
+          "initial": "defaultBreakpoint",
+          "states": {
+            "defaultBreakpoint": {
+              "on": {
+                "CHANGE_BREAKPOINT": [
+                  {
+                    "actions": [
+                      {
+                        "type": "saveCurrentBreakpointLayout"
+                      },
+                      {
+                        "type": "switchBreakpoint"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "editingBreakpoint": {
+              "on": {
+                "CHANGE_BREAKPOINT": [
+                  {
+                    "actions": [
+                      {
+                        "type": "saveCurrentBreakpointLayout"
+                      },
+                      {
+                        "type": "switchBreakpoint"
+                      }
+                    ]
+                  }
+                ],
+                "RESET_BREAKPOINT": [
+                  {
+                    "actions": [
+                      {
+                        "type": "resetBreakpointToDefault"
+                      },
+                      {
+                        "type": "pushToUndoStack"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "ADD_WIDGET": [
+          {
+            "actions": [
+              {
+                "type": "addWidgetToLayout"
+              },
+              {
+                "type": "pushToUndoStack"
+              }
+            ]
+          }
+        ],
+        "UPDATE_GRID_SIZE": [
+          {
+            "actions": [
+              {
+                "type": "updateGridSize"
+              },
+              {
+                "type": "recalculateLayout"
+              },
+              {
+                "type": "pushToUndoStack"
+              }
+            ]
+          }
+        ],
+        "SAVE_LAYOUT": [
+          {
+            "actions": [
+              {
+                "type": "saveLayout"
+              }
+            ]
+          }
+        ],
+        "CANCEL_EDIT": [
+          {
+            "target": "inactive",
+            "actions": [
+              {
+                "type": "restoreOriginalLayout"
+              }
+            ]
+          }
+        ],
+        "APPLY_LAYOUT": [
+          {
+            "target": "inactive",
+            "actions": [
+              {
+                "type": "finalizeLayout"
+              }
+            ]
+          }
+        ]
+      },
+      "type": "parallel"
+    }
+  }
+}

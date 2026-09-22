@@ -1,0 +1,88 @@
+{
+  "context": {
+    "data": null,
+    "error": null
+  },
+  "id": "tanstackQuery",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "description": "The query is idle and not actively fetching data.",
+      "on": {
+        "fetch": [
+          {
+            "target": "loading",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "loading": {
+      "description": "The query is actively fetching data from a remote source.",
+      "on": {
+        "success": [
+          {
+            "target": "success",
+            "actions": [
+              {
+                "type": "inline:tanstackQuery.loading#success[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "failure": [
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "inline:tanstackQuery.loading#failure[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "success": {
+      "description": "The query has successfully fetched the data.",
+      "on": {
+        "refetch": [
+          {
+            "target": "loading",
+            "actions": []
+          }
+        ],
+        "reset": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:tanstackQuery.success#reset[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "error": {
+      "description": "The query encountered an error during the data fetching process.",
+      "on": {
+        "retry": [
+          {
+            "target": "loading",
+            "actions": []
+          }
+        ],
+        "reset": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:tanstackQuery.error#reset[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

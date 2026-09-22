@@ -1,0 +1,89 @@
+{
+  "context": {
+    "events": []
+  },
+  "id": "eventDispatcher",
+  "initial": "initializing",
+  "states": {
+    "initializing": {
+      "description": "The machine is initializing and preparing to dispatch events.",
+      "on": {
+        "initialize_complete": [
+          {
+            "target": "waitingForEvents",
+            "actions": [
+              {
+                "type": "inline:eventDispatcher.initializing#initialize_complete[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "waitingForEvents": {
+      "description": "The machine is waiting for incoming events to process.",
+      "on": {
+        "receive_event": [
+          {
+            "target": "processingEvent",
+            "actions": [
+              {
+                "type": "inline:eventDispatcher.waitingForEvents#receive_event[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "error_occurred": [
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "inline:eventDispatcher.waitingForEvents#error_occurred[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "processingEvent": {
+      "description": "The machine is processing an event.",
+      "on": {
+        "process_complete": [
+          {
+            "target": "waitingForEvents",
+            "actions": [
+              {
+                "type": "inline:eventDispatcher.processingEvent#process_complete[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "process_failed": [
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "inline:eventDispatcher.processingEvent#process_failed[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "error": {
+      "description": "The machine encountered an error and will handle it appropriately.",
+      "on": {
+        "reset": [
+          {
+            "target": "initializing",
+            "actions": [
+              {
+                "type": "inline:eventDispatcher.error#reset[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

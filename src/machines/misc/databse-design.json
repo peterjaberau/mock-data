@@ -1,0 +1,255 @@
+{
+  "id": "databaseDesign",
+  "initial": "requirementAnalysis",
+  "states": {
+    "requirementAnalysis": {
+      "description": "Define scope, user roles, and business rules",
+      "meta": {
+        "description": "Define scope, user roles, and business rules"
+      },
+      "on": {
+        "SCOPE_CLEAR": [
+          {
+            "target": "identifyEntities",
+            "actions": []
+          }
+        ],
+        "SCOPE_UNCLEAR": [
+          {
+            "target": "requirementAnalysis",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "identifyEntities": {
+      "description": "Extract nouns from requirements as table candidates",
+      "meta": {
+        "description": "Extract nouns from requirements as table candidates"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "defineAttributes",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "defineAttributes": {
+      "description": "Define columns, data types, nullable constraints",
+      "meta": {
+        "description": "Define columns, data types, nullable constraints"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "designERD",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "designERD": {
+      "description": "Map entities, relationships, and cardinality",
+      "meta": {
+        "description": "Map entities, relationships, and cardinality"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "mapRelationships",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "mapRelationships": {
+      "description": "Define 1:1, 1:N, M:N and bridge tables",
+      "meta": {
+        "description": "Define 1:1, 1:N, M:N and bridge tables"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "designKeys",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "designKeys": {
+      "description": "Design PK (UUID vs serial) and FK referential integrity",
+      "meta": {
+        "description": "Design PK (UUID vs serial) and FK referential integrity"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "checkBadDesign",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "checkBadDesign": {
+      "description": "Identify redundancy and anomalies in flat tables",
+      "meta": {
+        "description": "Identify redundancy and anomalies in flat tables"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "applyFirstNF",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "applyFirstNF": {
+      "description": "Atomic values, no repeating groups",
+      "meta": {
+        "description": "Atomic values, no repeating groups"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "applySecondNF",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "applySecondNF": {
+      "description": "Eliminate partial dependencies",
+      "meta": {
+        "description": "Eliminate partial dependencies"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "applyThirdNF",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "applyThirdNF": {
+      "description": "Eliminate transitive dependencies",
+      "meta": {
+        "description": "Eliminate transitive dependencies"
+      },
+      "on": {
+        "SCHEMA_NORMALIZED": [
+          {
+            "target": "writeDDL",
+            "actions": []
+          }
+        ],
+        "SCHEMA_NOT_NORMALIZED": [
+          {
+            "target": "checkBadDesign",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "writeDDL": {
+      "description": "CREATE TABLE statements in PostgreSQL",
+      "meta": {
+        "description": "CREATE TABLE statements in PostgreSQL"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "applyConstraints",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "applyConstraints": {
+      "description": "NOT NULL, UNIQUE, CHECK, FK, Composite PK",
+      "meta": {
+        "description": "NOT NULL, UNIQUE, CHECK, FK, Composite PK"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "seedTestData",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "seedTestData": {
+      "description": "Insert realistic data for query testing",
+      "meta": {
+        "description": "Insert realistic data for query testing"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "writeQueries",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "writeQueries": {
+      "description": "CRUD, JOIN, aggregation, reporting queries",
+      "meta": {
+        "description": "CRUD, JOIN, aggregation, reporting queries"
+      },
+      "on": {
+        "PERFORMANCE_OK": [
+          {
+            "target": "designTransactions",
+            "actions": []
+          }
+        ],
+        "PERFORMANCE_SLOW": [
+          {
+            "target": "addIndexes",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "designTransactions": {
+      "description": "BEGIN, atomic operations, COMMIT / ROLLBACK",
+      "meta": {
+        "description": "BEGIN, atomic operations, COMMIT / ROLLBACK"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "readyForReview",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "addIndexes": {
+      "description": "FK columns, high-frequency WHERE & JOIN, verify with EXPLAIN ANALYZE",
+      "meta": {
+        "description": "FK columns, high-frequency WHERE & JOIN, verify with EXPLAIN ANALYZE"
+      },
+      "on": {
+        "DONE": [
+          {
+            "target": "writeQueries",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "readyForReview": {
+      "description": "Schema documented and ready for mentor review",
+      "meta": {
+        "description": "Schema documented and ready for mentor review"
+      },
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "id": "JSON Parser",
+  "initial": "begin",
+  "states": {
+    "begin": {
+      "on": {
+        "char": [
+          {
+            "target": "openObject",
+            "guard": "openBrace",
+            "actions": [],
+            "meta": {}
+          },
+          {
+            "target": "openArray",
+            "guard": "openBracket",
+            "actions": []
+          },
+          {
+            "target": "begin",
+            "guard": "whiteSpace",
+            "actions": []
+          },
+          {
+            "target": "begin",
+            "actions": [
+              {
+                "type": "error",
+                "params": {
+                  "msg": "Non-whitespace before {[."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "openObject": {
+      "on": {
+        "char": [
+          {
+            "target": "openObject",
+            "guard": "whiteSpace",
+            "actions": []
+          },
+          {
+            "target": "closeObject",
+            "guard": "closeBrace",
+            "actions": [
+              {
+                "type": "emit",
+                "params": {
+                  "event": "openObject"
+                }
+              },
+              {
+                "type": "emit",
+                "params": {
+                  "event": "closeObject"
+                }
+              }
+            ]
+          },
+          {
+            "target": "key",
+            "guard": "doubleQuote",
+            "actions": [
+              {
+                "type": "pushStack",
+                "params": {
+                  "state": "closeObject"
+                }
+              }
+            ]
+          },
+          {
+            "target": "openObject",
+            "actions": [
+              {
+                "type": "error",
+                "params": {
+                  "msg": "Malformed object key should start with \""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "openArray": {},
+    "closeObject": {
+      "on": {
+        "char": [
+          {
+            "target": "closeObject",
+            "guard": "whiteSpace",
+            "actions": []
+          },
+          {
+            "target": "closeObject",
+            "guard": "colon",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "key": {}
+  }
+}

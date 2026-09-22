@@ -1,0 +1,167 @@
+{
+  "id": "EventQueueConnector",
+  "initial": "INITIALIZING",
+  "states": {
+    "INITIALIZING": {
+      "description": "Configuring the module and validating parameters for connection.",
+      "on": {
+        "INIT_COMPLETE": [
+          {
+            "target": "CONNECTING",
+            "actions": [
+              {
+                "type": "initializeSetup"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CONNECTING": {
+      "description": "Attempting to establish an initial connection to the server.",
+      "on": {
+        "SUCCESS": [
+          {
+            "target": "CONNECTED",
+            "actions": [
+              {
+                "type": "onConnect"
+              }
+            ]
+          }
+        ],
+        "FAILURE": [
+          {
+            "target": "DISCONNECTED",
+            "actions": [
+              {
+                "type": "onConnectFailure"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CONNECTED": {
+      "description": "Connected and ready to process events from the server.",
+      "on": {
+        "DISCONNECT": [
+          {
+            "target": "DISCONNECTED",
+            "actions": [
+              {
+                "type": "onDisconnect"
+              }
+            ]
+          }
+        ],
+        "PAUSE_PROCESSING": [
+          {
+            "target": "PROCESSING_PAUSED",
+            "actions": [
+              {
+                "type": "pauseProcessing"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "DISCONNECTED": {
+      "description": "No active connection. May attempt reconnecting based on conditions.",
+      "on": {
+        "RETRY": [
+          {
+            "target": "CONNECTING",
+            "guard": "hasAttemptsRemaining",
+            "actions": [
+              {
+                "type": "retryConnection"
+              }
+            ]
+          },
+          {
+            "target": "DISCONNECTED",
+            "guard": "shouldWaitBeforeRetry",
+            "actions": [
+              {
+                "type": "waitBeforeRetry"
+              }
+            ]
+          },
+          {
+            "target": "DISCONNECTED",
+            "guard": "shouldWaitForCommand",
+            "actions": [
+              {
+                "type": "waitForCommand"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "PROCESSING_PAUSED": {
+      "description": "Connected but temporarily paused from processing events.",
+      "on": {
+        "RESUME_PROCESSING": [
+          {
+            "target": "CONNECTED",
+            "actions": [
+              {
+                "type": "resumeProcessing"
+              }
+            ]
+          }
+        ],
+        "DISCONNECT": [
+          {
+            "target": "DISCONNECTED",
+            "actions": [
+              {
+                "type": "onDisconnect"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ERROR": {
+      "description": "Handles critical issues or diagnostic purposes after multiple failures.",
+      "after": {
+        "5000": [
+          {
+            "target": "#EventQueueConnector.DISCONNECTED",
+            "guard": "automaticRetryEnabled",
+            "actions": [
+              {
+                "type": "logRetryAttempt"
+              }
+            ]
+          }
+        ]
+      },
+      "on": {
+        "RETRY": [
+          {
+            "target": "CONNECTING",
+            "guard": "automaticRetryEnabled",
+            "actions": [
+              {
+                "type": "retryAfterError"
+              }
+            ]
+          },
+          {
+            "target": "ERROR",
+            "actions": [
+              {
+                "type": "logError"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

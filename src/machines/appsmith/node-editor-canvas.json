@@ -1,0 +1,583 @@
+{
+  "context": {
+    "altKey": "false",
+    "cloning": "false",
+    "ctrlKey": "false",
+    "panning": "false",
+    "dragging": "false",
+    "shiftKey": "false",
+    "pressedNode": "null",
+    "shiftCounter": "0",
+    "selectionType": "replace",
+    "cloningDistance": "0",
+    "selectionBorder": "dotted",
+    "distanceUnderLMB": "0",
+    "draggingDistance": "0",
+    "contextMenuDistance": "0",
+    "circularMenuPosition": {}
+  },
+  "id": "NodeEditorCanvas",
+  "states": {
+    "Dragging": {
+      "initial": "Inactive",
+      "states": {
+        "Inactive": {
+          "entry": [
+            {
+              "type": "clearPressedNodeAssignment"
+            },
+            {
+              "type": "clearDraggingDistance"
+            }
+          ],
+          "exit": {
+            "type": "storeCurrentDraggingStartPosition"
+          },
+          "on": {
+            "PRESS_LMB_ON_DISABLED_NODE": [
+              {
+                "target": "Active",
+                "guard": "shouldInstantSelectNode",
+                "actions": [
+                  {
+                    "type": "unselectNodes"
+                  },
+                  {
+                    "type": "selectNode"
+                  }
+                ],
+                "meta": {},
+                "reenter": true
+              }
+            ],
+            "PRESS_LMB_ON_ENABLED_NODE": [
+              {
+                "target": "Active",
+                "actions": [
+                  {
+                    "type": "assignPressedNode"
+                  }
+                ],
+                "meta": {},
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Active": {
+          "entry": {
+            "type": "inline:NodeEditorCanvas.Dragging.Active#entry[0]"
+          },
+          "exit": {
+            "type": "inline:NodeEditorCanvas.Dragging.Active#exit[0]"
+          },
+          "always": {
+            "target": "Paused",
+            "guard": "draggingPaused",
+            "actions": [],
+            "reenter": true
+          },
+          "on": {
+            "RELEASE_LMB": [
+              {
+                "target": "Inactive",
+                "guard": "changeSelectionAvailable",
+                "actions": [
+                  {
+                    "type": "selectSingleNode"
+                  }
+                ],
+                "reenter": true
+              },
+              {
+                "target": "Inactive",
+                "actions": [],
+                "reenter": true
+              }
+            ],
+            "MOVE": [
+              {
+                "target": "Active",
+                "actions": [
+                  {
+                    "type": "updateCurrentDragPosition"
+                  },
+                  {
+                    "type": "incrementDragDistance"
+                  }
+                ],
+                "meta": {},
+                "reenter": false
+              }
+            ]
+          }
+        },
+        "Paused": {
+          "entry": {
+            "type": "resetCurrentDragPosition"
+          },
+          "always": {
+            "target": "Active",
+            "guard": "draggingActive",
+            "actions": [],
+            "reenter": true
+          },
+          "on": {
+            "RELEASE_LMB": [
+              {
+                "target": "Inactive",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Panning": {
+      "initial": "Inactive",
+      "states": {
+        "Inactive": {
+          "on": {
+            "PRESS_RMB": [
+              {
+                "target": "Active",
+                "actions": [],
+                "reenter": true
+              }
+            ],
+            "PRESS_MMB": [
+              {
+                "target": "Active",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Active": {
+          "entry": {
+            "type": "inline:NodeEditorCanvas.Panning.Active#entry[0]"
+          },
+          "exit": {
+            "type": "inline:NodeEditorCanvas.Panning.Active#exit[0]"
+          },
+          "on": {
+            "MOVE": [
+              {
+                "target": "Active",
+                "actions": [
+                  {
+                    "type": "panCanvas"
+                  }
+                ],
+                "meta": {},
+                "reenter": false
+              }
+            ],
+            "RELEASE_RMB": [
+              {
+                "target": "Inactive",
+                "actions": [],
+                "reenter": true
+              }
+            ],
+            "RELEASE_MMB": [
+              {
+                "target": "Inactive",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "SelectMultiple": {
+      "initial": "Inactive",
+      "states": {
+        "Inactive": {
+          "entry": {
+            "type": "cancelSelection"
+          },
+          "on": {
+            "PRESS_LMB_ON_CANVAS": [
+              {
+                "target": "Active",
+                "actions": [
+                  {
+                    "type": "beginSelection"
+                  }
+                ],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Active": {
+          "states": {
+            "Type": {
+              "initial": "Replace",
+              "states": {
+                "Replace": {
+                  "entry": {
+                    "type": "setSelectionTypeToReplace"
+                  },
+                  "always": [
+                    {
+                      "target": "Add",
+                      "guard": "addToSelectionActive",
+                      "actions": [],
+                      "reenter": true
+                    },
+                    {
+                      "target": "Remove",
+                      "guard": "removeFromSelectionActive",
+                      "actions": [],
+                      "reenter": true
+                    }
+                  ]
+                },
+                "Add": {
+                  "entry": {
+                    "type": "setSelectionTypeToAdd"
+                  },
+                  "always": [
+                    {
+                      "target": "Replace",
+                      "guard": "addToSelectionInactive",
+                      "actions": [],
+                      "reenter": true
+                    },
+                    {
+                      "target": "Intersect",
+                      "guard": "intersectSelectionActive",
+                      "actions": [],
+                      "reenter": true
+                    }
+                  ]
+                },
+                "Remove": {
+                  "entry": {
+                    "type": "setSelectionTypeToRemove"
+                  },
+                  "always": [
+                    {
+                      "target": "Replace",
+                      "guard": "removeFromSelectionInactive",
+                      "actions": [],
+                      "reenter": true
+                    },
+                    {
+                      "target": "Intersect",
+                      "guard": "intersectSelectionActive",
+                      "actions": [],
+                      "reenter": true
+                    }
+                  ]
+                },
+                "Intersect": {
+                  "entry": {
+                    "type": "setSelectionTypeToIntersect"
+                  },
+                  "always": {
+                    "target": "Replace",
+                    "guard": "intersectSelectionInactive",
+                    "actions": [],
+                    "reenter": true
+                  }
+                }
+              }
+            },
+            "Range": {
+              "initial": "Contain",
+              "states": {
+                "Contain": {
+                  "entry": {
+                    "type": "setSelectionRangeToContain"
+                  },
+                  "always": {
+                    "target": "Touching",
+                    "guard": "touchingRangeActive",
+                    "actions": [],
+                    "reenter": true
+                  }
+                },
+                "Touching": {
+                  "entry": {
+                    "type": "setSelectionRangeToTouching"
+                  },
+                  "always": {
+                    "target": "Contain",
+                    "guard": "touchingRangeInactive",
+                    "actions": [],
+                    "reenter": true
+                  }
+                }
+              }
+            }
+          },
+          "on": {
+            "RELEASE_LMB": [
+              {
+                "target": "Inactive",
+                "actions": [
+                  {
+                    "type": "confirmSelection"
+                  }
+                ],
+                "reenter": true
+              }
+            ],
+            "MOVE": [
+              {
+                "target": "Active",
+                "actions": [
+                  {
+                    "type": "updateSelectionRange"
+                  }
+                ],
+                "meta": {},
+                "reenter": false
+              }
+            ],
+            "PRESS_ESC_KEY": [
+              {
+                "target": "Inactive",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          },
+          "type": "parallel"
+        }
+      }
+    },
+    "Connection": {
+      "initial": "Inactive",
+      "states": {
+        "Inactive": {
+          "on": {
+            "SELECT_CONNECTION_POINT": [
+              {
+                "target": "Active",
+                "actions": [],
+                "reenter": true
+              }
+            ],
+            "INPUT_SOCKET_SELECTED": [
+              {
+                "target": "Active",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Active": {
+          "on": {
+            "JOINING_RELEASED": [
+              {
+                "target": "Inactive",
+                "actions": [],
+                "reenter": true
+              }
+            ],
+            "MOVE": [
+              {
+                "target": "Active",
+                "actions": [
+                  {
+                    "type": "dragEdges"
+                  }
+                ],
+                "reenter": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "CtrKey": {
+      "initial": "Inactive",
+      "states": {
+        "Inactive": {
+          "on": {
+            "PRESS_CTRL_KEY": [
+              {
+                "target": "Active",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Active": {
+          "entry": {
+            "type": "inline:NodeEditorCanvas.CtrKey.Active#entry[0]"
+          },
+          "exit": {
+            "type": "inline:NodeEditorCanvas.CtrKey.Active#exit[0]"
+          },
+          "on": {
+            "RELEASE_CTRL_KEY": [
+              {
+                "target": "Inactive",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "AltKey": {
+      "initial": "Inactive",
+      "states": {
+        "Inactive": {
+          "on": {
+            "PRESS_ALT_KEY": [
+              {
+                "target": "Active",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Active": {
+          "entry": {
+            "type": "inline:NodeEditorCanvas.AltKey.Active#entry[0]"
+          },
+          "exit": {
+            "type": "inline:NodeEditorCanvas.AltKey.Active#exit[0]"
+          },
+          "on": {
+            "RELEASE_ALT_KEY": [
+              {
+                "target": "Inactive",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "ShiftKey": {
+      "initial": "Inactive",
+      "states": {
+        "Inactive": {
+          "on": {
+            "PRESS_SHIFT_KEY": [
+              {
+                "target": "Active",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Active": {
+          "entry": {
+            "type": "inline:NodeEditorCanvas.ShiftKey.Active#entry[0]"
+          },
+          "exit": {
+            "type": "inline:NodeEditorCanvas.ShiftKey.Active#exit[0]"
+          },
+          "on": {
+            "RELEASE_SHIFT_KEY": [
+              {
+                "target": "Inactive",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Clonning": {
+      "initial": "Inactive",
+      "states": {
+        "Inactive": {
+          "exit": {
+            "type": "storeCurrentClonningStartPosition"
+          },
+          "always": {
+            "target": "Active",
+            "guard": "cloningEnabled",
+            "actions": [],
+            "meta": {},
+            "reenter": true
+          }
+        },
+        "Active": {
+          "entry": {
+            "type": "inline:NodeEditorCanvas.Clonning.Active#entry[0]"
+          },
+          "exit": {
+            "type": "inline:NodeEditorCanvas.Clonning.Active#exit[0]"
+          },
+          "always": {
+            "target": "Inactive",
+            "guard": "cloningDisabled",
+            "actions": [],
+            "reenter": true
+          }
+        }
+      }
+    },
+    "SelectSingle": {
+      "initial": "SingleSelect",
+      "states": {
+        "SingleSelect": {
+          "always": {
+            "target": "ToggleSelection",
+            "guard": "togglingSelectionActive",
+            "actions": [],
+            "reenter": true
+          },
+          "on": {
+            "CLICK_ON_NODE": [
+              {
+                "target": "SingleSelect",
+                "actions": [
+                  {
+                    "type": "resetNodesSelection"
+                  },
+                  {
+                    "type": "selectNode"
+                  }
+                ],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "ToggleSelection": {
+          "always": {
+            "target": "SingleSelect",
+            "guard": "togglingSelectionInactive",
+            "actions": [],
+            "reenter": true
+          },
+          "on": {
+            "CLICK_ON_NODE": [
+              {
+                "target": "ToggleSelection",
+                "actions": [
+                  {
+                    "type": "toggleNodeSelection"
+                  }
+                ],
+                "reenter": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "type": "parallel"
+}

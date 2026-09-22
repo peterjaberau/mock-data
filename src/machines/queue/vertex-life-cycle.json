@@ -1,0 +1,102 @@
+{
+  "id": "vertexLifecycle",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "START": [
+          {
+            "target": "starting",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "starting": {
+      "on": {
+        "STARTED": [
+          {
+            "target": "running",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "stopped": {
+      "on": {
+        "START": [
+          {
+            "target": "starting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "running": {
+      "on": {
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "stopping": {
+      "on": {
+        "STOPPED": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "failed": {
+      "on": {
+        "START": [
+          {
+            "target": "starting",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

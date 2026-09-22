@@ -1,0 +1,291 @@
+{
+  "context": "{{createInitialContext()}}",
+  "id": "workerRuntime",
+  "initial": "stopped",
+  "states": {
+    "stopped": {
+      "entry": {
+        "type": "writeStoppedBoard"
+      },
+      "on": {
+        "START": [
+          {
+            "target": "pollSearch",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "pollSearch": {
+      "entry": [
+        {
+          "type": "writePollSearchBoard"
+        },
+        {
+          "type": "clearError"
+        }
+      ],
+      "initial": "query",
+      "states": {
+        "query": {
+          "invoke": {
+            "input": {},
+            "src": "pollSearchTask",
+            "onDone": [
+              {
+                "target": "#workerRuntime.runSearch",
+                "guard": "searchTaskFound",
+                "actions": [
+                  {
+                    "type": "cacheSearchTask"
+                  },
+                  {
+                    "type": "setSearchPollInstruction"
+                  }
+                ]
+              },
+              {
+                "target": "backoff",
+                "guard": "searchRetryableIssue",
+                "actions": [
+                  {
+                    "type": "setRetryableIssueInstructionFromSearchPoll"
+                  }
+                ]
+              },
+              {
+                "target": "backoff",
+                "actions": []
+              }
+            ],
+            "onError": [
+              {
+                "target": "#workerRuntime.error",
+                "actions": [
+                  {
+                    "type": "setErrorMessage"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "backoff": {
+          "after": {
+            "POLL_BACKOFF": [
+              {
+                "target": "#workerRuntime.pollResume",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "runSearch": {
+      "entry": [
+        {
+          "type": "writeRunSearchBoard"
+        },
+        {
+          "type": "clearError"
+        }
+      ],
+      "invoke": {
+        "input": {},
+        "src": "runSearchTask",
+        "onDone": [
+          {
+            "target": "pollResume",
+            "actions": [
+              {
+                "type": "applyRunSearchResult"
+              },
+              {
+                "type": "clearActiveSearchTask"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "setErrorMessage"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "pollResume": {
+      "entry": [
+        {
+          "type": "writePollResumeBoard"
+        },
+        {
+          "type": "clearError"
+        }
+      ],
+      "initial": "query",
+      "states": {
+        "query": {
+          "invoke": {
+            "input": {},
+            "src": "pollResumeTask",
+            "onDone": [
+              {
+                "target": "#workerRuntime.runResume",
+                "guard": "resumeTaskFound",
+                "actions": [
+                  {
+                    "type": "cacheResumeTask"
+                  },
+                  {
+                    "type": "setResumePollInstruction"
+                  }
+                ]
+              },
+              {
+                "target": "backoff",
+                "guard": "resumeRetryableIssue",
+                "actions": [
+                  {
+                    "type": "setRetryableIssueInstructionFromResumePoll"
+                  }
+                ]
+              },
+              {
+                "target": "backoff",
+                "actions": []
+              }
+            ],
+            "onError": [
+              {
+                "target": "#workerRuntime.error",
+                "actions": [
+                  {
+                    "type": "setErrorMessage"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "backoff": {
+          "after": {
+            "POLL_BACKOFF": [
+              {
+                "target": "#workerRuntime.pollSearch",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "runResume": {
+      "entry": [
+        {
+          "type": "writeRunResumeBoard"
+        },
+        {
+          "type": "clearError"
+        }
+      ],
+      "invoke": {
+        "input": {},
+        "src": "runResumeTask",
+        "onDone": [
+          {
+            "target": "pollResume",
+            "actions": [
+              {
+                "type": "applyRunResumeResult"
+              },
+              {
+                "type": "clearActiveResumeTask"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "error",
+            "actions": [
+              {
+                "type": "setErrorMessage"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "error": {
+      "entry": [
+        {
+          "type": "writeErrorBoard"
+        },
+        {
+          "type": "clearActiveTasks"
+        }
+      ],
+      "on": {
+        "START": [
+          {
+            "target": "pollSearch",
+            "actions": []
+          }
+        ]
+      }
+    }
+  },
+  "on": {
+    "STOP": [
+      {
+        "target": ".stopped",
+        "actions": [
+          {
+            "type": "terminateEverything"
+          },
+          {
+            "type": "clearActiveTasks"
+          }
+        ]
+      }
+    ],
+    "RESET": [
+      {
+        "target": ".stopped",
+        "actions": [
+          {
+            "type": "terminateEverything"
+          },
+          {
+            "type": "clearSharedBoard"
+          },
+          {
+            "type": "clearActiveTasks"
+          }
+        ]
+      }
+    ],
+    "SERVICE_WORKER_RESTART": [
+      {
+        "target": ".stopped",
+        "actions": [
+          {
+            "type": "terminateEverything"
+          },
+          {
+            "type": "clearSharedBoard"
+          },
+          {
+            "type": "clearActiveTasks"
+          }
+        ]
+      }
+    ]
+  }
+}

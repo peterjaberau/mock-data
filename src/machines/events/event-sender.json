@@ -1,0 +1,264 @@
+{
+  "context": "{{({ input }) => ({\n        app: input.app,\n        events: [],\n        selectedEvent: null,\n        jsonText: \"\",\n        jsonError: \"\",\n        savedExamples: [],\n        status: null,\n        saveFileName: \"\",\n        searchQuery: \"\",\n    })}}",
+  "id": "eventSender",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "EVENTS_LOADED": [
+          {
+            "target": "selecting",
+            "actions": [
+              {
+                "type": "inline:eventSender.idle#EVENTS_LOADED[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "selecting": {
+      "on": {
+        "SELECT_EVENT": [
+          {
+            "target": "generatingPayload",
+            "actions": [
+              {
+                "type": "inline:eventSender.selecting#SELECT_EVENT[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "SEARCH_CHANGE": [
+          {
+            "actions": [
+              {
+                "type": "inline:eventSender.selecting#SEARCH_CHANGE[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "generatingPayload": {
+      "invoke": {
+        "input": {},
+        "src": "generatePayload",
+        "onDone": [
+          {
+            "target": "editing",
+            "actions": [
+              {
+                "type": "inline:eventSender.generatingPayload#done.invoke.eventSender.generatingPayload:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "selecting",
+            "actions": [
+              {
+                "type": "inline:eventSender.generatingPayload#error.platform.eventSender.generatingPayload:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "editing": {
+      "on": {
+        "BACK": [
+          {
+            "target": "selecting",
+            "actions": [
+              {
+                "type": "inline:eventSender.editing#BACK[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "JSON_CHANGE": [
+          {
+            "actions": [
+              {
+                "type": "inline:eventSender.editing#JSON_CHANGE[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "FORMAT_JSON": [
+          {
+            "actions": [
+              {
+                "type": "inline:eventSender.editing#FORMAT_JSON[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "SEND": [
+          {
+            "target": "sending",
+            "guard": "isValidJson",
+            "actions": [
+              {
+                "type": "inline:eventSender.editing#SEND[-1]#transition[0]"
+              }
+            ]
+          },
+          {
+            "actions": [
+              {
+                "type": "inline:eventSender.editing#SEND[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "OPEN_SAVE_DIALOG": [
+          {
+            "target": "saving",
+            "actions": [
+              {
+                "type": "inline:eventSender.editing#OPEN_SAVE_DIALOG[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "LOAD_EXAMPLE": [
+          {
+            "target": "loadingExample",
+            "actions": [
+              {
+                "type": "inline:eventSender.editing#LOAD_EXAMPLE[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "REGENERATE": [
+          {
+            "target": "generatingPayload",
+            "actions": [
+              {
+                "type": "inline:eventSender.editing#REGENERATE[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "sending": {
+      "invoke": {
+        "input": {},
+        "src": "sendEvent",
+        "onDone": [
+          {
+            "target": "editing",
+            "actions": [
+              {
+                "type": "inline:eventSender.sending#done.invoke.eventSender.sending:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "editing",
+            "actions": [
+              {
+                "type": "inline:eventSender.sending#error.platform.eventSender.sending:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "saving": {
+      "entry": {
+        "type": "inline:eventSender.saving#entry[0]"
+      },
+      "on": {
+        "CLOSE_SAVE_DIALOG": [
+          {
+            "target": "editing",
+            "actions": []
+          }
+        ],
+        "SAVE_FILENAME_CHANGE": [
+          {
+            "actions": [
+              {
+                "type": "inline:eventSender.saving#SAVE_FILENAME_CHANGE[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "SAVE_CONFIRM": [
+          {
+            "target": "savingInProgress",
+            "guard": "canSave",
+            "actions": []
+          },
+          {
+            "actions": [
+              {
+                "type": "inline:eventSender.saving#SAVE_CONFIRM[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "loadingExample": {
+      "invoke": {
+        "input": {},
+        "src": "loadExample",
+        "onDone": [
+          {
+            "target": "editing",
+            "actions": [
+              {
+                "type": "inline:eventSender.loadingExample#done.invoke.eventSender.loadingExample:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "editing",
+            "actions": [
+              {
+                "type": "inline:eventSender.loadingExample#error.platform.eventSender.loadingExample:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "savingInProgress": {
+      "invoke": {
+        "input": {},
+        "src": "saveExample",
+        "onDone": [
+          {
+            "target": "editing",
+            "actions": [
+              {
+                "type": "inline:eventSender.savingInProgress#done.invoke.eventSender.savingInProgress:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "saving",
+            "actions": [
+              {
+                "type": "inline:eventSender.savingInProgress#error.platform.eventSender.savingInProgress:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

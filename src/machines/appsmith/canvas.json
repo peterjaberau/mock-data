@@ -1,0 +1,308 @@
+{
+  "context": {
+    "cyRef": null,
+    "edgeType": null,
+    "relation": null,
+    "setPortals": null,
+    "ctxAwareRef": null,
+    "undoRedoRef": null,
+    "droppedItemType": null,
+    "enqueueSnackbar": null,
+    "bindingComponent": null,
+    "setTooltipPortals": null,
+    "edgeCreationStarted": null,
+    "nodeWithEdgeHandles": null,
+    "PatternServiceFormCore": null,
+    "edgeHandleTooltipManager": null
+  },
+  "id": "CanvasMachine",
+  "initial": "initializing",
+  "states": {
+    "initializing": {
+      "on": {
+        "*": [
+          {
+            "target": "initialized",
+            "guard": "inline:CanvasMachine.initializing#*[-1]#guard",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.initializing#*[-1]#transition[0]"
+              }
+            ]
+          },
+          {
+            "target": "initializing",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "initialized": {
+      "on": {
+        "CLEAR": [
+          {
+            "target": "updating_canvas",
+            "actions": []
+          }
+        ],
+        "RENDER": [
+          {
+            "target": "rendering",
+            "actions": []
+          }
+        ],
+        "MODIFY": [
+          {
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.initialized#MODIFY[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "DROP": [
+          {
+            "target": "processing_dropped_item",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.initialized#DROP[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "EDGE_CREATION_STARTED": [
+          {
+            "target": "creating_edge",
+            "actions": []
+          }
+        ],
+        "EDGE_CREATED": [
+          {
+            "target": "processing_create_edge",
+            "guard": "isBindingNodeCreated",
+            "actions": []
+          },
+          {
+            "target": "processing_binded_item",
+            "actions": []
+          }
+        ],
+        "EDGE_CREATION_STOPPED": [
+          {
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.initialized#EDGE_CREATION_STOPPED[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "DELETED": [
+          {
+            "target": "processing_delete",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.initialized#DELETED[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "PASTED": [
+          {
+            "target": "processing_paste",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.initialized#PASTED[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "updating_canvas": {
+      "invoke": {
+        "input": {},
+        "src": "inline:CanvasMachine.updating_canvas#actor[0]",
+        "id": "updatecvs",
+        "onDone": [
+          {
+            "target": "initialized",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "initialized",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "rendering": {
+      "invoke": {
+        "input": {},
+        "src": "inline:CanvasMachine.rendering#actor[0]",
+        "id": "renderer",
+        "onDone": [
+          {
+            "target": "initialized",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.rendering#done.invoke.renderer[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "initialized",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.rendering#error.platform.renderer[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "processing_dropped_item": {
+      "invoke": {
+        "input": {},
+        "src": "inline:CanvasMachine.processing_dropped_item#actor[0]",
+        "id": "drop",
+        "onDone": [
+          {
+            "target": "initialized",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.processing_dropped_item#done.invoke.drop[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "initialized",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.processing_dropped_item#error.platform.drop[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "creating_edge": {
+      "entry": {
+        "type": "inline:CanvasMachine.creating_edge#entry[0]"
+      },
+      "always": {
+        "target": "initialized",
+        "actions": []
+      }
+    },
+    "processing_create_edge": {
+      "exit": {
+        "type": "inline:CanvasMachine.processing_create_edge#exit[0]"
+      },
+      "invoke": {
+        "input": {},
+        "src": "inline:CanvasMachine.processing_create_edge#actor[0]",
+        "id": "create_edge",
+        "onDone": [
+          {
+            "target": "initialized",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.processing_create_edge#done.invoke.create_edge[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.processing_create_edge#error.platform.create_edge[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "processing_binded_item": {
+      "invoke": {
+        "input": {},
+        "src": "inline:CanvasMachine.processing_binded_item#actor[0]",
+        "onDone": [
+          {
+            "target": "processing_create_edge",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "initialized",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.processing_binded_item#error.platform.CanvasMachine.processing_binded_item:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "processing_delete": {
+      "invoke": {
+        "input": {},
+        "src": "inline:CanvasMachine.processing_delete#actor[0]",
+        "onDone": [
+          {
+            "target": "initialized",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "initialized",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.processing_delete#error.platform.CanvasMachine.processing_delete:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "processing_paste": {
+      "invoke": {
+        "input": {},
+        "src": "inline:CanvasMachine.processing_paste#actor[0]",
+        "onDone": [
+          {
+            "target": "initialized",
+            "actions": []
+          }
+        ],
+        "onError": [
+          {
+            "target": "initialized",
+            "actions": [
+              {
+                "type": "inline:CanvasMachine.processing_paste#error.platform.CanvasMachine.processing_paste:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      },
+      "on": {
+        "EDGE_PASTED": [
+          {
+            "target": "processing_create_edge",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "error": {}
+  }
+}

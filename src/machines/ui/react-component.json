@@ -1,0 +1,87 @@
+{
+  "id": "React Component",
+  "description": "made by @erikras",
+  "initial": "Mounted",
+  "states": {
+    "Mounted": {
+      "entry": [
+        {
+          "type": "constructor"
+        },
+        {
+          "type": "getDerivedStateFromProps"
+        },
+        {
+          "type": "render"
+        },
+        {
+          "type": "componentDidMount"
+        }
+      ],
+      "initial": "Rendered",
+      "states": {
+        "Rendered": {}
+      },
+      "on": {
+        "Unmount": [
+          {
+            "target": "Unmounted",
+            "actions": [
+              {
+                "type": "componentWillUnmount"
+              }
+            ]
+          }
+        ],
+        "New Props": [
+          {
+            "target": ".Rendered",
+            "guard": "shouldComponentUpdate",
+            "actions": [
+              {
+                "type": "getDerivedStateFromProps"
+              },
+              {
+                "type": "render"
+              },
+              {
+                "type": "componentDidUpdate"
+              }
+            ],
+            "meta": {}
+          }
+        ],
+        "Set State": [
+          {
+            "target": ".Rendered",
+            "guard": "shouldComponentUpdate",
+            "actions": [
+              {
+                "type": "render"
+              },
+              {
+                "type": "componentDidUpdate"
+              }
+            ]
+          }
+        ],
+        "Force Update": [
+          {
+            "target": ".Rendered",
+            "actions": [
+              {
+                "type": "render"
+              },
+              {
+                "type": "componentDidUpdate"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Unmounted": {
+      "type": "final"
+    }
+  }
+}

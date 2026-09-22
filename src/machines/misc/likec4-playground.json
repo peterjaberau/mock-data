@@ -1,0 +1,227 @@
+{
+  "context": "{{({ input }) => ({\n        workspaceId: input.workspaceId,\n        workspaceTitle: input.title,\n        activeFilename: input.activeFilename,\n        files: { ...input.files },\n        originalFiles: { ...input.files },\n        shareHistory: [...input.shareHistory ?? []],\n        likec4model: null,\n        shareRequest: null,\n        viewStates: {},\n        activeViewId: null,\n        diagnosticErrors: [],\n    })}}",
+  "id": "playground",
+  "initial": "initializing",
+  "states": {
+    "initializing": {
+      "on": {
+        "workspace.switch": [
+          {
+            "actions": [
+              {
+                "type": "reset workspace"
+              }
+            ]
+          }
+        ],
+        "workspace.ready": [
+          {
+            "target": "ready",
+            "actions": []
+          }
+        ],
+        "likec4.lsp.onDidChangeModel": [
+          {
+            "target": "ready",
+            "actions": [
+              {
+                "type": "update LikeC4Model and view states"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ready": {
+      "on": {
+        "workspace.switch": [
+          {
+            "target": "initializing",
+            "actions": [
+              {
+                "type": "persist to storage"
+              },
+              {
+                "type": "reset workspace"
+              }
+            ]
+          }
+        ],
+        "monaco.onTextChanged": [
+          {
+            "actions": [
+              {
+                "type": "inline:playground.ready#monaco.onTextChanged[-1]#transition[0]"
+              },
+              {
+                "type": "inline:playground.ready#monaco.onTextChanged[-1]#transition[1]"
+              },
+              {
+                "type": "inline:playground.ready#monaco.onTextChanged[-1]#transition[2]"
+              }
+            ]
+          }
+        ],
+        "workspace.changeActiveFile": [
+          {
+            "actions": [
+              {
+                "type": "persist to storage"
+              },
+              {
+                "type": "inline:playground.ready#workspace.changeActiveFile[-1]#transition[1]"
+              }
+            ]
+          }
+        ],
+        "workspace.applyViewChanges": [
+          {
+            "actions": [
+              {
+                "type": "inline:playground.ready#workspace.applyViewChanges[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "workspace.changeActiveView": [
+          {
+            "actions": [
+              {
+                "type": "change activeViewId"
+              }
+            ]
+          }
+        ],
+        "likec4.lsp.onDidChangeModel": [
+          {
+            "actions": [
+              {
+                "type": "update LikeC4Model and view states"
+              }
+            ]
+          }
+        ],
+        "workspace.openSources": [
+          {
+            "actions": [
+              {
+                "type": "inline:playground.ready#workspace.openSources[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "likec4.lsp.onLayoutDone": [
+          {
+            "actions": [
+              {
+                "type": "update view state"
+              }
+            ]
+          }
+        ],
+        "likec4.lsp.onLayoutError": [
+          {
+            "actions": [
+              {
+                "type": "update view state"
+              }
+            ]
+          }
+        ],
+        "likec4.lsp.onDiagnostic": [
+          {
+            "actions": [
+              {
+                "type": "inline:playground.ready#likec4.lsp.onDiagnostic[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "workspace.persist": [
+          {
+            "actions": [
+              {
+                "type": "persist to storage"
+              }
+            ]
+          }
+        ],
+        "workspace.share": [
+          {
+            "target": "sharing",
+            "actions": [
+              {
+                "type": "inline:playground.ready#workspace.share[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "sharing": {
+      "initial": "wait-layouted-data",
+      "states": {
+        "wait-layouted-data": {
+          "entry": {
+            "type": "inline:playground.sharing.wait-layouted-data#entry[0]"
+          },
+          "on": {
+            "likec4.lsp.onLayoutedModel": [
+              {
+                "target": "call-api",
+                "guard": "inline:playground.sharing.wait-layouted-data#likec4.lsp.onLayoutedModel[-1]#guard",
+                "actions": [
+                  {
+                    "type": "inline:playground.sharing.wait-layouted-data#likec4.lsp.onLayoutedModel[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "likec4.lsp.onLayoutedModelError": [
+              {
+                "target": "#playground.ready",
+                "actions": [
+                  {
+                    "type": "inline:playground.sharing.wait-layouted-data#likec4.lsp.onLayoutedModelError[-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "call-api": {
+          "entry": {
+            "type": "inline:playground.sharing.call-api#entry[0]"
+          },
+          "invoke": {
+            "input": {},
+            "src": "call-share-api",
+            "onDone": [
+              {
+                "target": "#playground.ready",
+                "actions": [
+                  {
+                    "type": "update share request on success"
+                  },
+                  {
+                    "type": "persist to storage"
+                  }
+                ]
+              }
+            ],
+            "onError": [
+              {
+                "target": "#playground.ready",
+                "actions": [
+                  {
+                    "type": "inline:playground.sharing.call-api#error.platform.playground.sharing.call-api:invocation[0][-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

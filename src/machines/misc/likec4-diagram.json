@@ -1,0 +1,639 @@
+{
+  "context": "{{({ input, self, spawn }) => ({\n        ...input,\n        xyedges: [],\n        xynodes: [],\n        features: { ...AllDisabled },\n        toggledFeatures: DiagramToggledFeaturesPersistence.read() ?? {\n            enableReadOnly: true,\n        },\n        initialized: {\n            xydata: false,\n            xyflow: false,\n        },\n        viewportChangedManually: false,\n        lastOnNavigate: null,\n        lastClickedNode: null,\n        focusedNode: null,\n        activeElementDetails: null,\n        viewportBeforeFocus: null,\n        navigationHistory: {\n            currentIndex: 0,\n            history: [],\n        },\n        viewport: { x: 0, y: 0, zoom: 1 },\n        xyflow: null,\n        syncLayoutActorRef: null,\n        activeWalkthrough: null,\n    })}}",
+  "id": "diagram-machine",
+  "exit": [
+    {
+      "type": "stopSyncLayout"
+    },
+    {
+      "type": "inline:(machine)#exit[1]"
+    },
+    {
+      "type": "inline:(machine)#exit[2]"
+    },
+    {
+      "type": "inline:(machine)#exit[3]"
+    }
+  ],
+  "initial": "initializing",
+  "states": {
+    "initializing": {
+      "on": {
+        "xyflow.init": [
+          {
+            "target": "isReady",
+            "actions": [
+              {
+                "type": "inline:(machine).initializing#xyflow.init[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "update.view": [
+          {
+            "target": "isReady",
+            "actions": [
+              {
+                "type": "inline:(machine).initializing#update.view[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "isReady": {
+      "always": [
+        {
+          "target": "ready",
+          "guard": "isReady",
+          "actions": [
+            {
+              "type": "xyflow:fitDiagram",
+              "params": {
+                "duration": 0
+              }
+            },
+            {
+              "type": "inline:(machine).isReady#always[-1]#transition[1]"
+            },
+            {
+              "type": "startSyncLayout"
+            }
+          ]
+        },
+        {
+          "target": "initializing",
+          "actions": []
+        }
+      ]
+    },
+    "ready": {
+      "exit": {
+        "type": "inline:(machine).ready#exit[0]"
+      },
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "xyflow.nodeClick": [
+              {
+                "target": "focused",
+                "guard": "inline:(machine).ready.idle#xyflow.nodeClick[-1]#guard",
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.idle#xyflow.nodeClick[-1]#transition[0]"
+                  }
+                ]
+              },
+              {
+                "actions": [
+                  {
+                    "type": "assign lastClickedNode"
+                  },
+                  {
+                    "type": "open source of focused or last clicked node"
+                  }
+                ]
+              }
+            ],
+            "xyflow.paneClick": [
+              {
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.idle#xyflow.paneClick[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "xyflow.paneDblClick": [
+              {
+                "actions": [
+                  {
+                    "type": "xyflow:fitDiagram"
+                  },
+                  {
+                    "type": "trigger:OpenSource"
+                  }
+                ]
+              }
+            ],
+            "focus.node": [
+              {
+                "target": "focused",
+                "guard": "enabled: FocusMode",
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.idle#focus.node[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "xyflow.edgeClick": [
+              {
+                "guard": "inline:(machine).ready.idle#xyflow.edgeClick[-1]#guard",
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.idle#xyflow.edgeClick[-1]#transition[0]"
+                  }
+                ]
+              },
+              {
+                "guard": "inline:(machine).ready.idle#xyflow.edgeClick[-1]#guard",
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.idle#xyflow.edgeClick[-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "focused": {
+          "entry": [
+            {
+              "type": "inline:(machine).ready.focused#entry[0]"
+            },
+            {
+              "type": "open source of focused or last clicked node"
+            },
+            {
+              "type": "inline:(machine).ready.focused#entry[2]"
+            },
+            {
+              "type": "xyflow:fitFocusedBounds"
+            }
+          ],
+          "exit": {
+            "type": "inline:(machine).ready.focused#exit[0]"
+          },
+          "on": {
+            "xyflow.nodeClick": [
+              {
+                "target": "idle",
+                "guard": "click: focused node",
+                "actions": []
+              },
+              {
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.focused#xyflow.nodeClick[-1]#transition[0]"
+                  },
+                  {
+                    "type": "inline:(machine).ready.focused#xyflow.nodeClick[-1]#transition[1]"
+                  }
+                ]
+              }
+            ],
+            "focus.node": [
+              {
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.focused#focus.node[-1]#transition[0]"
+                  },
+                  {
+                    "type": "inline:(machine).ready.focused#focus.node[-1]#transition[1]"
+                  },
+                  {
+                    "type": "open source of focused or last clicked node"
+                  },
+                  {
+                    "type": "xyflow:fitFocusedBounds"
+                  }
+                ]
+              }
+            ],
+            "key.esc": [
+              {
+                "target": "idle",
+                "actions": []
+              }
+            ],
+            "xyflow.paneClick": [
+              {
+                "target": "idle",
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.focused#xyflow.paneClick[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "notations.unhighlight": [
+              {
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.focused#notations.unhighlight[-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "walkthrough": {
+          "entry": [
+            {
+              "type": "inline:(machine).ready.walkthrough#entry[0]"
+            },
+            {
+              "type": "inline:(machine).ready.walkthrough#entry[1]"
+            },
+            {
+              "type": "inline:(machine).ready.walkthrough#entry[2]"
+            },
+            {
+              "type": "xyflow:fitFocusedBounds"
+            }
+          ],
+          "exit": {
+            "type": "inline:(machine).ready.walkthrough#exit[0]"
+          },
+          "on": {
+            "key.esc": [
+              {
+                "target": "idle",
+                "actions": []
+              }
+            ],
+            "key.arrow.left": [
+              {
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.walkthrough#key.arrow.left[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "key.arrow.right": [
+              {
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.walkthrough#key.arrow.right[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "walkthrough.step": [
+              {
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.walkthrough#walkthrough.step[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "xyflow.edgeClick": [
+              {
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.walkthrough#xyflow.edgeClick[-1]#transition[0]"
+                  },
+                  {
+                    "type": "inline:(machine).ready.walkthrough#xyflow.edgeClick[-1]#transition[1]"
+                  },
+                  {
+                    "type": "xyflow:fitFocusedBounds"
+                  }
+                ]
+              }
+            ],
+            "notations.unhighlight": [
+              {
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.walkthrough#notations.unhighlight[-1]#transition[0]"
+                  }
+                ]
+              }
+            ],
+            "walkthrough.end": [
+              {
+                "target": "idle",
+                "actions": []
+              }
+            ],
+            "xyflow.paneDblClick": [
+              {
+                "target": "idle",
+                "actions": []
+              }
+            ],
+            "update.view": [
+              {
+                "target": "idle",
+                "guard": "is another view",
+                "actions": [
+                  {
+                    "type": "inline:(machine).ready.walkthrough#update.view[-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "on": {
+        "navigate.to": [
+          {
+            "target": "navigating",
+            "guard": "is another view",
+            "actions": [
+              {
+                "type": "inline:(machine).ready#navigate.to[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "navigate.back": [
+          {
+            "target": "navigating",
+            "guard": "inline:(machine).ready#navigate.back[-1]#guard",
+            "actions": [
+              {
+                "type": "inline:(machine).ready#navigate.back[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "navigate.forward": [
+          {
+            "target": "navigating",
+            "guard": "inline:(machine).ready#navigate.forward[-1]#guard",
+            "actions": [
+              {
+                "type": "inline:(machine).ready#navigate.forward[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "layout.align": [
+          {
+            "guard": "not readonly",
+            "actions": [
+              {
+                "type": "layout.align"
+              },
+              {
+                "type": "inline:(machine).ready#layout.align[-1]#transition[1]"
+              }
+            ]
+          }
+        ],
+        "layout.resetEdgeControlPoints": [
+          {
+            "guard": "not readonly",
+            "actions": [
+              {
+                "type": "inline:(machine).ready#layout.resetEdgeControlPoints[-1]#transition[0]"
+              },
+              {
+                "type": "inline:(machine).ready#layout.resetEdgeControlPoints[-1]#transition[1]"
+              }
+            ]
+          }
+        ],
+        "xyflow.resized": [
+          {
+            "guard": "inline:(machine).ready#xyflow.resized[-1]#guard",
+            "actions": [
+              {
+                "type": "inline:(machine).ready#xyflow.resized[-1]#transition[0]"
+              },
+              {
+                "type": "inline:(machine).ready#xyflow.resized[-1]#transition[1]"
+              }
+            ]
+          }
+        ],
+        "open.elementDetails": [
+          {
+            "actions": [
+              {
+                "type": "inline:(machine).ready#open.elementDetails[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "open.relationshipsBrowser": [
+          {
+            "actions": [
+              {
+                "type": "inline:(machine).ready#open.relationshipsBrowser[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "open.relationshipDetails": [
+          {
+            "actions": [
+              {
+                "type": "inline:(machine).ready#open.relationshipDetails[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "open.source": [
+          {
+            "actions": [
+              {
+                "type": "trigger:OpenSource"
+              }
+            ]
+          }
+        ],
+        "walkthrough.start": [
+          {
+            "target": ".walkthrough",
+            "guard": "is dynamic view",
+            "actions": []
+          }
+        ],
+        "toggle.feature": [
+          {
+            "actions": [
+              {
+                "type": "inline:(machine).ready#toggle.feature[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "xyflow.nodeMouseEnter": [
+          {
+            "actions": [
+              {
+                "type": "onNodeMouseEnter"
+              }
+            ]
+          }
+        ],
+        "xyflow.nodeMouseLeave": [
+          {
+            "actions": [
+              {
+                "type": "onNodeMouseLeave"
+              }
+            ]
+          }
+        ],
+        "xyflow.edgeMouseEnter": [
+          {
+            "actions": [
+              {
+                "type": "onEdgeMouseEnter"
+              }
+            ]
+          }
+        ],
+        "xyflow.edgeMouseLeave": [
+          {
+            "actions": [
+              {
+                "type": "onEdgeMouseLeave"
+              }
+            ]
+          }
+        ],
+        "notations.highlight": [
+          {
+            "actions": [
+              {
+                "type": "notations.highlight"
+              }
+            ]
+          }
+        ],
+        "notations.unhighlight": [
+          {
+            "actions": [
+              {
+                "type": "inline:(machine).ready#notations.unhighlight[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "saveManualLayout.*": [
+          {
+            "guard": "not readonly",
+            "actions": [
+              {
+                "type": "inline:(machine).ready#saveManualLayout.*[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "navigating": {
+      "entry": [
+        {
+          "type": "closeAllOverlays"
+        },
+        {
+          "type": "stopSyncLayout"
+        },
+        {
+          "type": "trigger:NavigateTo"
+        }
+      ],
+      "on": {
+        "update.view": [
+          {
+            "target": "#diagram-machine.ready.idle",
+            "actions": [
+              {
+                "type": "inline:(machine).navigating#update.view[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "on": {
+    "xyflow.applyNodeChanges": [
+      {
+        "actions": [
+          {
+            "type": "inline:(machine)#xyflow.applyNodeChanges[-1]#transition[0]"
+          }
+        ]
+      }
+    ],
+    "xyflow.applyEdgeChanges": [
+      {
+        "actions": [
+          {
+            "type": "inline:(machine)#xyflow.applyEdgeChanges[-1]#transition[0]"
+          }
+        ]
+      }
+    ],
+    "xyflow.viewportMoved": [
+      {
+        "actions": [
+          {
+            "type": "inline:(machine)#xyflow.viewportMoved[-1]#transition[0]"
+          }
+        ]
+      }
+    ],
+    "fitDiagram": [
+      {
+        "guard": "enabled: FitView",
+        "actions": [
+          {
+            "type": "xyflow:fitDiagram"
+          }
+        ]
+      }
+    ],
+    "update.nodeData": [
+      {
+        "actions": [
+          {
+            "type": "inline:(machine)#update.nodeData[-1]#transition[0]"
+          }
+        ]
+      }
+    ],
+    "update.edgeData": [
+      {
+        "actions": [
+          {
+            "type": "inline:(machine)#update.edgeData[-1]#transition[0]"
+          }
+        ]
+      }
+    ],
+    "update.view": [
+      {
+        "actions": [
+          {
+            "type": "inline:(machine)#update.view[-1]#transition[0]"
+          },
+          {
+            "type": "inline:(machine)#update.view[-1]#transition[1]"
+          }
+        ]
+      }
+    ],
+    "update.inputs": [
+      {
+        "actions": [
+          {
+            "type": "inline:(machine)#update.inputs[-1]#transition[0]"
+          }
+        ]
+      }
+    ],
+    "update.features": [
+      {
+        "actions": [
+          {
+            "type": "updateFeatures"
+          }
+        ],
+        "meta": {}
+      }
+    ]
+  }
+}

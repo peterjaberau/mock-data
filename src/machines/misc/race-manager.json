@@ -1,0 +1,135 @@
+{
+  "context": {
+    "devices": {},
+    "raceUpdates": []
+  },
+  "id": "Race Manager",
+  "initial": "Idle",
+  "states": {
+    "Idle": {
+      "on": {
+        "addDevice": [
+          {
+            "target": "Idle",
+            "actions": [
+              {
+                "type": "inline:Race Manager.Idle#addDevice[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "loadRace": [
+          {
+            "target": "LoadingRace",
+            "actions": [
+              {
+                "type": "inline:Race Manager.Idle#loadRace[-1]#transition[0]"
+              },
+              {
+                "type": "inline:Race Manager.Idle#loadRace[-1]#transition[1]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "LoadingRace": {
+      "on": {
+        "deviceReady": [
+          {
+            "target": "DeviceReady",
+            "actions": [
+              {
+                "type": "inline:Race Manager.LoadingRace#deviceReady[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "DeviceReady": {
+      "always": [
+        {
+          "target": "RaceReady",
+          "guard": "allDevicesReady",
+          "actions": []
+        },
+        {
+          "target": "LoadingRace",
+          "actions": []
+        }
+      ]
+    },
+    "RaceReady": {
+      "on": {
+        "startRace": [
+          {
+            "target": "MonitoringRace",
+            "actions": [
+              {
+                "type": "inline:Race Manager.RaceReady#startRace[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MonitoringRace": {
+      "on": {
+        "falseStart": [
+          {
+            "target": "FalseStart",
+            "actions": [
+              {
+                "type": "inline:Race Manager.MonitoringRace#falseStart[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "raceUpdate": [
+          {
+            "target": "RaceUpdate",
+            "actions": [
+              {
+                "type": "inline:Race Manager.MonitoringRace#raceUpdate[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "FalseStart": {
+      "on": {
+        "reset": [
+          {
+            "target": "RaceReady",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "RaceUpdate": {
+      "always": [
+        {
+          "target": "RaceFinished",
+          "guard": "allRacersFinished",
+          "actions": []
+        },
+        {
+          "target": "MonitoringRace",
+          "actions": []
+        }
+      ]
+    },
+    "RaceFinished": {
+      "on": {
+        "reset": [
+          {
+            "target": "Idle",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

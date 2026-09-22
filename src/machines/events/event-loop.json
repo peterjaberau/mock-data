@@ -1,0 +1,103 @@
+{
+  "context": {
+    "dom": "Counter=0",
+    "time": 0,
+    "screen": "Counter=0",
+    "current": "",
+    "lastPaint": 0,
+    "taskQueue": [],
+    "microQueue": []
+  },
+  "id": "eventLoop",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "STEP": [
+          {
+            "target": "macrotask",
+            "guard": "hasTask",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "macrotask": {
+      "entry": {
+        "type": "runNextTask"
+      },
+      "always": {
+        "target": "microtasks",
+        "actions": []
+      }
+    },
+    "microtasks": {
+      "on": {
+        "STEP": [
+          {
+            "guard": "hasMicrotask",
+            "actions": [
+              {
+                "type": "runNextMicro"
+              }
+            ]
+          },
+          {
+            "target": "renderOpportunity",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "renderOpportunity": {
+      "always": [
+        {
+          "target": "idle",
+          "guard": "paintDue",
+          "actions": [
+            {
+              "type": "paint"
+            }
+          ]
+        },
+        {
+          "target": "idle",
+          "actions": [
+            {
+              "type": "skipPaint"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "on": {
+    "ENQUEUE_TASK": [
+      {
+        "actions": [
+          {
+            "type": "enqueueTask"
+          }
+        ]
+      }
+    ],
+    "ENQUEUE_MICROTASK": [
+      {
+        "actions": [
+          {
+            "type": "enqueueMicro"
+          }
+        ]
+      }
+    ],
+    "TICK": [
+      {
+        "actions": [
+          {
+            "type": "advanceClock"
+          }
+        ]
+      }
+    ]
+  }
+}

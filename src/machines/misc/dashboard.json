@@ -1,0 +1,367 @@
+{
+  "context": {
+    "deviceType": "desktop",
+    "currentMode": "view",
+    "dataProviders": [],
+    "isDataLoading": false,
+    "dashboardConfig": null,
+    "userPermissions": {
+      "canEdit": false,
+      "canShare": false,
+      "canExport": false
+    },
+    "widgetInstances": [],
+    "selectedWidgetId": null,
+    "dataLoadingErrors": [],
+    "interWidgetConnections": []
+  },
+  "id": "dashboard",
+  "initial": "initializing",
+  "states": {
+    "initializing": {
+      "entry": {
+        "type": "detectDeviceType"
+      },
+      "on": {
+        "CONFIG_LOADED": [
+          {
+            "target": "configuringWidgets",
+            "actions": [
+              {
+                "type": "inline:dashboard.initializing#CONFIG_LOADED[-1]#transition[0]"
+              }
+            ],
+            "meta": {}
+          }
+        ],
+        "INITIALIZATION_ERROR": [
+          {
+            "target": "error",
+            "actions": [],
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "configuringWidgets": {
+      "entry": {
+        "type": "initializeWidgets"
+      },
+      "on": {
+        "WIDGETS_CONFIGURED": [
+          {
+            "target": "loadingData",
+            "actions": []
+          }
+        ],
+        "CONFIGURATION_ERROR": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "error": {
+      "on": {
+        "RETRY": [
+          {
+            "target": "initializing",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "loadingData": {
+      "entry": {
+        "type": "inline:dashboard.loadingData#entry[0]"
+      },
+      "exit": {
+        "type": "inline:dashboard.loadingData#exit[0]"
+      },
+      "on": {
+        "DATA_LOADED": [
+          {
+            "target": "operational",
+            "actions": [
+              {
+                "type": "distributeDataToWidgets"
+              }
+            ]
+          }
+        ],
+        "DATA_LOADING_ERROR": [
+          {
+            "target": "operational",
+            "actions": [
+              {
+                "type": "inline:dashboard.loadingData#DATA_LOADING_ERROR[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "operational": {
+      "states": {
+        "mode": {
+          "initial": "view",
+          "states": {
+            "view": {
+              "entry": {
+                "type": "inline:dashboard.operational.mode.view#entry[0]"
+              },
+              "on": {
+                "ENTER_EDIT_MODE": [
+                  {
+                    "target": "edit",
+                    "guard": "canEditDashboard",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "edit": {
+              "entry": {
+                "type": "inline:dashboard.operational.mode.edit#entry[0]"
+              },
+              "on": {
+                "EXIT_EDIT_MODE": [
+                  {
+                    "target": "view",
+                    "actions": []
+                  }
+                ],
+                "LAYOUT_CHANGED": [
+                  {
+                    "actions": [
+                      {
+                        "type": "updateLayout"
+                      }
+                    ]
+                  }
+                ],
+                "WIDGET_ADDED": [
+                  {
+                    "actions": [
+                      {
+                        "type": "addWidget"
+                      },
+                      {
+                        "type": "updateLayout"
+                      }
+                    ]
+                  }
+                ],
+                "WIDGET_REMOVED": [
+                  {
+                    "actions": [
+                      {
+                        "type": "removeWidget"
+                      },
+                      {
+                        "type": "updateLayout"
+                      }
+                    ]
+                  }
+                ],
+                "WIDGET_CONFIGURED": [
+                  {
+                    "actions": [
+                      {
+                        "type": "updateWidgetConfig"
+                      }
+                    ]
+                  }
+                ],
+                "CONNECTION_CREATED": [
+                  {
+                    "actions": [
+                      {
+                        "type": "createWidgetConnection"
+                      }
+                    ]
+                  }
+                ],
+                "CONNECTION_REMOVED": [
+                  {
+                    "actions": [
+                      {
+                        "type": "removeWidgetConnection"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responsive": {
+          "initial": "desktop",
+          "states": {
+            "desktop": {
+              "on": {
+                "SWITCH_TO_MOBILE": [
+                  {
+                    "target": "mobile",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "mobile": {
+              "on": {
+                "SWITCH_TO_DESKTOP": [
+                  {
+                    "target": "desktop",
+                    "actions": []
+                  }
+                ]
+              }
+            }
+          },
+          "on": {
+            "RESIZE": [
+              {
+                "actions": [
+                  {
+                    "type": "detectDeviceType"
+                  },
+                  {
+                    "type": "applyResponsiveLayout"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "interaction": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "SELECT_WIDGET": [
+                  {
+                    "target": "widgetSelected",
+                    "actions": [
+                      {
+                        "type": "inline:dashboard.operational.interaction.idle#SELECT_WIDGET[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "widgetSelected": {
+              "on": {
+                "DESELECT_WIDGET": [
+                  {
+                    "target": "idle",
+                    "actions": [
+                      {
+                        "type": "inline:dashboard.operational.interaction.widgetSelected#DESELECT_WIDGET[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ],
+                "SELECT_WIDGET": [
+                  {
+                    "target": "widgetSelected",
+                    "actions": [
+                      {
+                        "type": "inline:dashboard.operational.interaction.widgetSelected#SELECT_WIDGET[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "dataRefresh": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "REFRESH_DATA": [
+                  {
+                    "target": "refreshing",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "refreshing": {
+              "entry": {
+                "type": "inline:dashboard.operational.dataRefresh.refreshing#entry[0]"
+              },
+              "exit": {
+                "type": "inline:dashboard.operational.dataRefresh.refreshing#exit[0]"
+              },
+              "on": {
+                "REFRESH_COMPLETE": [
+                  {
+                    "target": "idle",
+                    "actions": [
+                      {
+                        "type": "distributeDataToWidgets"
+                      }
+                    ]
+                  }
+                ],
+                "REFRESH_ERROR": [
+                  {
+                    "target": "idle",
+                    "actions": [
+                      {
+                        "type": "inline:dashboard.operational.dataRefresh.refreshing#REFRESH_ERROR[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "EXPORT_DASHBOARD": [
+          {
+            "guard": "canExportDashboard",
+            "actions": [
+              {
+                "type": "exportDashboard"
+              }
+            ]
+          }
+        ],
+        "SHARE_DASHBOARD": [
+          {
+            "guard": "canShareDashboard",
+            "actions": [
+              {
+                "type": "shareDashboard"
+              }
+            ]
+          }
+        ],
+        "WIDGET_EVENT": [
+          {
+            "actions": [
+              {
+                "type": "handleWidgetEvent"
+              }
+            ]
+          }
+        ],
+        "RESET_DASHBOARD": [
+          {
+            "target": "initializing",
+            "actions": []
+          }
+        ]
+      },
+      "type": "parallel"
+    }
+  }
+}

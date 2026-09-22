@@ -1,0 +1,228 @@
+{
+  "id": "dataModel",
+  "initial": "fetchingDataModel",
+  "states": {
+    "fetchingDataModel": {
+      "description": "The UI is currently fetching the data model from the server.",
+      "on": {
+        "dataFetched": [
+          {
+            "target": "viewingDataModel",
+            "actions": []
+          }
+        ],
+        "fetchFailed": [
+          {
+            "target": "error",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "viewingDataModel": {
+      "description": "The data model has been successfully fetched and is now being viewed. Users can choose to CRUD tables or manage joins.",
+      "on": {
+        "createTable": [
+          {
+            "target": "creatingTable",
+            "actions": []
+          }
+        ],
+        "readTable": [
+          {
+            "target": "readingTable",
+            "actions": []
+          }
+        ],
+        "updateTable": [
+          {
+            "target": "updatingTable",
+            "actions": []
+          }
+        ],
+        "deleteTable": [
+          {
+            "target": "deletingTable",
+            "actions": []
+          }
+        ],
+        "manageJoins": [
+          {
+            "target": "managingJoins",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "error": {
+      "description": "An error occurred during the fetching of the data model.",
+      "on": {
+        "retry": [
+          {
+            "target": "fetchingDataModel",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "creatingTable": {
+      "description": "A new table is being created in the data model.",
+      "on": {
+        "tableCreated": [
+          {
+            "target": "viewingDataModel",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "viewingDataModel",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "readingTable": {
+      "description": "A table is being read or viewed. This may involve displaying table details or data.",
+      "on": {
+        "doneViewing": [
+          {
+            "target": "viewingDataModel",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "updatingTable": {
+      "description": "An existing table is being updated with new information or changes.",
+      "on": {
+        "tableUpdated": [
+          {
+            "target": "viewingDataModel",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "viewingDataModel",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "deletingTable": {
+      "description": "A table is being deleted from the data model.",
+      "on": {
+        "tableDeleted": [
+          {
+            "target": "viewingDataModel",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "viewingDataModel",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "managingJoins": {
+      "description": "The user is managing the joins between tables, which may involve creating, reading, updating, or deleting joins.",
+      "on": {
+        "createJoin": [
+          {
+            "target": "creatingJoin",
+            "actions": []
+          }
+        ],
+        "readJoin": [
+          {
+            "target": "readingJoin",
+            "actions": []
+          }
+        ],
+        "updateJoin": [
+          {
+            "target": "updatingJoin",
+            "actions": []
+          }
+        ],
+        "deleteJoin": [
+          {
+            "target": "deletingJoin",
+            "actions": []
+          }
+        ],
+        "doneManagingJoins": [
+          {
+            "target": "viewingDataModel",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "creatingJoin": {
+      "description": "A new join is being created between tables.",
+      "on": {
+        "joinCreated": [
+          {
+            "target": "managingJoins",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "managingJoins",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "readingJoin": {
+      "description": "A join is being read or viewed. This may involve displaying join details.",
+      "on": {
+        "doneViewing": [
+          {
+            "target": "managingJoins",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "updatingJoin": {
+      "description": "An existing join is being updated with new information or changes.",
+      "on": {
+        "joinUpdated": [
+          {
+            "target": "managingJoins",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "managingJoins",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "deletingJoin": {
+      "description": "A join is being deleted from the data model.",
+      "on": {
+        "joinDeleted": [
+          {
+            "target": "managingJoins",
+            "actions": []
+          }
+        ],
+        "cancel": [
+          {
+            "target": "managingJoins",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

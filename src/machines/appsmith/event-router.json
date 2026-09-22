@@ -1,0 +1,183 @@
+{
+  "id": "eventrouter",
+  "description": "See if drop/dragleave are followed by pointerenter\nWhat about focus?",
+  "entry": {
+    "type": "addEnterListener"
+  },
+  "exit": {
+    "type": "removeEnterListeners"
+  },
+  "initial": "Active",
+  "states": {
+    "Active": {
+      "states": {
+        "EventForwarder": {
+          "on": {
+            "*": [
+              {
+                "target": "EventForwarder",
+                "actions": [],
+                "meta": {},
+                "reenter": false
+              }
+            ]
+          }
+        },
+        "EventRegisterer": {
+          "initial": "PointerOutOfCanvas",
+          "states": {
+            "PointerOutOfCanvas": {
+              "on": {
+                "pointerenter": [
+                  {
+                    "target": "PointerInCanvas",
+                    "actions": [
+                      {
+                        "type": "forwardEvent"
+                      }
+                    ],
+                    "description": "",
+                    "meta": {},
+                    "reenter": true
+                  }
+                ],
+                "dragenter": [
+                  {
+                    "target": "DragDropping",
+                    "actions": [
+                      {
+                        "type": "forwardEvent"
+                      }
+                    ],
+                    "meta": {},
+                    "reenter": true
+                  }
+                ]
+              }
+            },
+            "PointerInCanvas": {
+              "entry": {
+                "type": "addCanvasListeners"
+              },
+              "exit": {
+                "type": "removeCanvasListeners"
+              },
+              "on": {
+                "pointerleave": [
+                  {
+                    "target": "PointerOutOfCanvas",
+                    "actions": [
+                      {
+                        "type": "clearAllKeyState"
+                      },
+                      {
+                        "type": "forwardEvent"
+                      }
+                    ],
+                    "description": "",
+                    "meta": {},
+                    "reenter": true
+                  }
+                ],
+                "*": [
+                  {
+                    "target": "PointerInCanvas",
+                    "actions": [
+                      {
+                        "type": "forwardEvent"
+                      }
+                    ],
+                    "reenter": false
+                  }
+                ],
+                "keydown": [
+                  {
+                    "target": "PointerInCanvas",
+                    "actions": [
+                      {
+                        "type": "setKeyState"
+                      },
+                      {
+                        "type": "forwardEvent"
+                      }
+                    ],
+                    "reenter": false
+                  }
+                ],
+                "keyup": [
+                  {
+                    "target": "PointerInCanvas",
+                    "actions": [
+                      {
+                        "type": "clearKeyState"
+                      },
+                      {
+                        "type": "forwardEvent"
+                      }
+                    ],
+                    "reenter": false
+                  }
+                ]
+              }
+            },
+            "DragDropping": {
+              "entry": {
+                "type": "addDragdropListeners"
+              },
+              "exit": {
+                "type": "removeDragdropListeners"
+              },
+              "on": {
+                "dragleave": [
+                  {
+                    "target": "PointerOutOfCanvas",
+                    "actions": [
+                      {
+                        "type": "forwardEvent"
+                      }
+                    ],
+                    "meta": {},
+                    "reenter": true
+                  }
+                ],
+                "drop": [
+                  {
+                    "target": "PointerOutOfCanvas",
+                    "actions": [
+                      {
+                        "type": "forwardEvent"
+                      }
+                    ],
+                    "reenter": true
+                  }
+                ],
+                "*": [
+                  {
+                    "target": "DragDropping",
+                    "actions": [
+                      {
+                        "type": "forwardEvent"
+                      }
+                    ],
+                    "reenter": false
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "abort": [
+          {
+            "target": "Inactive",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      },
+      "type": "parallel"
+    },
+    "Inactive": {}
+  }
+}

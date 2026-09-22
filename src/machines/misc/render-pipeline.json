@@ -1,0 +1,126 @@
+{
+  "id": "Render pipeline",
+  "initial": "Missing assets",
+  "states": {
+    "Missing assets": {
+      "on": {
+        "Upload to S3": [
+          {
+            "target": "Ready for test",
+            "actions": [],
+            "description": "",
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "Ready for test": {
+      "on": {
+        "Request Test Render": [
+          {
+            "target": "Queued for Test Render",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Queued for Test Render": {
+      "initial": "Queued",
+      "states": {
+        "Queued": {
+          "on": {
+            "Start Render": [
+              {
+                "target": "In Progress",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "In Progress": {
+          "on": {
+            "Finish Render": [
+              {
+                "target": "Complete",
+                "guard": "Success",
+                "actions": []
+              },
+              {
+                "target": "Failed",
+                "guard": "Fail",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "Complete": {
+          "on": {
+            "Notify of test render completion": [
+              {
+                "target": "#Render pipeline.Test Render Available",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "Failed": {
+          "on": {
+            "Notify of test render completion": [
+              {
+                "target": "#Render pipeline.Test Render Failed",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Test Render Available": {
+      "on": {
+        "Submit for client review": [
+          {
+            "target": "Ready for Client Review",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Test Render Failed": {
+      "on": {
+        "Request Test Render": [
+          {
+            "target": "Queued for Test Render",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Ready for Client Review": {
+      "on": {
+        "APPROVE": [
+          {
+            "target": "Asset ready",
+            "actions": []
+          }
+        ],
+        "REJECT": [
+          {
+            "target": "Asset Rejected",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "Asset ready": {},
+    "Asset Rejected": {
+      "on": {
+        "Upload to S3": [
+          {
+            "target": "Ready for test",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

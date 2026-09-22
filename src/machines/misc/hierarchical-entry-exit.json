@@ -1,0 +1,74 @@
+{
+  "id": "Hierarchical entry/exit boundaries",
+  "initial": "Outside",
+  "states": {
+    "Outside": {
+      "entry": {
+        "type": "enterOutside"
+      },
+      "exit": {
+        "type": "exitOutside"
+      },
+      "on": {
+        "enter": [
+          {
+            "target": "Parent",
+            "actions": [],
+            "meta": {}
+          }
+        ]
+      }
+    },
+    "Parent": {
+      "entry": {
+        "type": "enterParent"
+      },
+      "exit": {
+        "type": "exitParent"
+      },
+      "initial": "ChildA",
+      "states": {
+        "ChildA": {
+          "entry": {
+            "type": "enterChildA"
+          },
+          "exit": {
+            "type": "exitChildA"
+          },
+          "on": {
+            "next": [
+              {
+                "target": "ChildB",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "ChildB": {
+          "entry": {
+            "type": "enterChildB"
+          },
+          "exit": {
+            "type": "exitChildB"
+          },
+          "on": {
+            "leave": [
+              {
+                "target": "#Hierarchical entry/exit boundaries.Outside",
+                "actions": []
+              }
+            ]
+          }
+        }
+      },
+      "on": {
+        "reset": [
+          {
+            "target": ".ChildA",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

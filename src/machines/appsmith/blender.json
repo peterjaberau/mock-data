@@ -1,0 +1,110 @@
+{
+  "id": "blender",
+  "states": {
+    "main": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "leftMouseDown": [
+              {
+                "target": "dragging box",
+                "actions": [],
+                "reenter": true
+              }
+            ],
+            "middleMouseDown": [
+              {
+                "target": "controlling camera",
+                "actions": [],
+                "reenter": true
+              }
+            ],
+            "rightMouseDown": [
+              {
+                "target": "Show context menu",
+                "actions": [],
+                "reenter": true
+              }
+            ],
+            "mousemove": [
+              {
+                "target": "idle",
+                "actions": [
+                  {
+                    "type": "updateHoveredObject"
+                  }
+                ],
+                "reenter": false
+              }
+            ],
+            "hotkey": [
+              {
+                "target": "Run tool for hotkey",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "dragging box": {
+          "on": {
+            "mouseUp": [
+              {
+                "target": "idle",
+                "actions": [
+                  {
+                    "type": "selectBoxedObjects"
+                  }
+                ],
+                "meta": {},
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "controlling camera": {
+          "on": {
+            "mouseUp": [
+              {
+                "target": "idle",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Show context menu": {
+          "on": {
+            "mouseUp": [
+              {
+                "target": "idle",
+                "actions": [
+                  {
+                    "type": "doContextAction"
+                  }
+                ],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Run tool for hotkey": {
+          "invoke": {
+            "input": {},
+            "src": "run tool",
+            "onDone": [
+              {
+                "target": "idle",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Another state": {}
+  },
+  "type": "parallel"
+}

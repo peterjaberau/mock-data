@@ -1,0 +1,281 @@
+{
+  "context": {
+    "deviceStatusBuffer": {
+      "sieOne": "",
+      "printer": "",
+      "scanners": ""
+    }
+  },
+  "id": "1 - mainCoordinationMachine",
+  "description": "This is the main machine that coordinates all the sub machines.\\\nIt is the highest level machine and transfers messages between the different actors.",
+  "invoke": [
+    {
+      "input": {},
+      "src": "sieOneActor",
+      "id": "sieOneActor"
+    },
+    {
+      "input": {},
+      "src": "scannerManagerActor",
+      "id": "scannerManagerActor"
+    },
+    {
+      "input": {},
+      "src": "sessionActor",
+      "id": "sessionActor"
+    },
+    {
+      "input": {},
+      "src": "printerActor",
+      "id": "printerActor"
+    },
+    {
+      "input": {},
+      "src": "sessionManagerActor",
+      "id": "sessionManagerActor"
+    },
+    {
+      "input": {},
+      "src": "dispatchActor",
+      "id": "dispatchActor"
+    }
+  ],
+  "initial": "System booting",
+  "states": {
+    "System booting": {
+      "description": "In this state the machine waits for the different hardware components to send their 'connected' status",
+      "always": {
+        "target": "System operationnal",
+        "guard": "allDevicesAvailable",
+        "actions": []
+      },
+      "on": {
+        "printer.available": [
+          {
+            "target": "System booting",
+            "actions": [
+              {
+                "type": "updateDeviceStatus",
+                "params": {
+                  "device": "printer",
+                  "status": "available"
+                }
+              }
+            ]
+          }
+        ],
+        "scannerManager.available": [
+          {
+            "target": "System booting",
+            "actions": [
+              {
+                "type": "updateDeviceStatus",
+                "params": {
+                  "device": "scanners",
+                  "status": "available"
+                }
+              }
+            ]
+          }
+        ],
+        "sieOne.available": [
+          {
+            "target": "System booting",
+            "actions": [
+              {
+                "type": "updateDeviceStatus",
+                "params": {
+                  "device": "sieOne",
+                  "status": "available"
+                }
+              }
+            ]
+          }
+        ],
+        "main.sendToActor": [
+          {
+            "target": "System booting",
+            "actions": [
+              {
+                "type": "sendEventToActor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "System operationnal": {
+      "description": "This is the main operating state when all the systems are operationnal.",
+      "initial": "Idle",
+      "states": {
+        "Idle": {
+          "description": "We are waiting for user input",
+          "on": {
+            "sieOne.activation": [
+              {
+                "target": "Package Cycle",
+                "actions": []
+              }
+            ],
+            "dispatch.newPackage": [
+              {
+                "target": "Idle",
+                "actions": [
+                  {
+                    "type": "dispatchPackage"
+                  }
+                ]
+              }
+            ],
+            "main.sendToActor": [
+              {
+                "target": "Idle",
+                "actions": [
+                  {
+                    "type": "sendEventToActor"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Package Cycle": {
+          "description": "In this state we analyse the package that has been introduced into the machine",
+          "entry": [
+            {
+              "type": "refreshSession"
+            },
+            {
+              "type": "activateScanners"
+            }
+          ],
+          "exit": {
+            "type": "deactivateScanners"
+          },
+          "invoke": {
+            "input": {},
+            "src": "packageValidationActor",
+            "id": "packageValidationActor"
+          },
+          "initial": "Waiting For Scan",
+          "states": {
+            "Waiting For Scan": {
+              "description": "We wait for a potential scan from the scanners",
+              "on": {
+                "scannerManager.newScan": [
+                  {
+                    "target": "Waiting For API Result",
+                    "actions": [
+                      {
+                        "type": "sendCodeForValidation"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "Waiting For API Result": {
+              "description": "We check the scanned uuid with the API",
+              "on": {
+                "package.accept": [
+                  {
+                    "target": "Waiting For Machine Deactivation",
+                    "actions": [
+                      {
+                        "type": "addPackageToSession"
+                      },
+                      {
+                        "type": "sendAcceptToSieOne"
+                      }
+                    ]
+                  }
+                ],
+                "package.refuse": [
+                  {
+                    "target": "Waiting For Machine Deactivation",
+                    "actions": [
+                      {
+                        "type": "sendRefuseToSieOne"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "Waiting For Machine Deactivation": {
+              "description": "We wait for the end-of-package-cycle signal that is either sent by the machine or occurs afer a timeout",
+              "entry": {
+                "type": "refreshSession"
+              },
+              "type": "final"
+            }
+          },
+          "on": {
+            "sieOne.deactivation": [
+              {
+                "target": "Idle",
+                "actions": []
+              }
+            ],
+            "main.sendToActor": [
+              {
+                "target": "Package Cycle",
+                "actions": [
+                  {
+                    "type": "sendEventToActor"
+                  }
+                ],
+                "meta": {},
+                "reenter": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "on": {
+    "sieOne.error": [
+      {
+        "target": ".System booting",
+        "actions": [
+          {
+            "type": "updateDeviceStatus",
+            "params": {
+              "device": "sieOne",
+              "status": "error"
+            }
+          }
+        ]
+      }
+    ],
+    "scannerManager.error": [
+      {
+        "target": ".System booting",
+        "actions": [
+          {
+            "type": "updateDeviceStatus",
+            "params": {
+              "device": "scanners",
+              "status": "error"
+            }
+          }
+        ]
+      }
+    ],
+    "printer.error": [
+      {
+        "target": ".System booting",
+        "actions": [
+          {
+            "type": "updateDeviceStatus",
+            "params": {
+              "device": "printer",
+              "status": "error"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

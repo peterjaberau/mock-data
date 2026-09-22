@@ -1,0 +1,61 @@
+{
+  "id": "renderer",
+  "initial": "idle",
+  "states": {
+    "idle": {},
+    "rendering": {
+      "initial": "pending",
+      "states": {
+        "pending": {
+          "on": {
+            "done": [
+              {
+                "target": "success",
+                "actions": [],
+                "meta": {}
+              }
+            ],
+            "threw": [
+              {
+                "target": "failure",
+                "actions": [],
+                "meta": {}
+              }
+            ],
+            "suspended": [
+              {
+                "target": "failure",
+                "actions": [],
+                "meta": {}
+              }
+            ]
+          }
+        },
+        "success": {
+          "type": "final"
+        },
+        "failure": {
+          "type": "final"
+        }
+      },
+      "onDone": {
+        "target": "idle",
+        "actions": [],
+        "meta": {}
+      }
+    }
+  },
+  "on": {
+    "render": [
+      {
+        "target": ".rendering",
+        "actions": [
+          {
+            "type": "assign"
+          }
+        ],
+        "meta": {}
+      }
+    ]
+  }
+}

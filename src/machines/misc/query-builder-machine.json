@@ -1,0 +1,267 @@
+{
+  "id": "queryBuilder",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "BUILD_QUERY": [
+          {
+            "target": "validating",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "validating": {
+      "description": "Проверка существования и активности модели данных",
+      "invoke": {
+        "input": {},
+        "src": "validateDataModel",
+        "id": "validateDataModel",
+        "onDone": [
+          {
+            "target": "resolvingSources",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.validating#done.invoke.validateDataModel[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.validating#error.platform.validateDataModel[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "resolvingSources": {
+      "description": "Определение активных источников и корневого источника",
+      "invoke": {
+        "input": {},
+        "src": "resolveSources",
+        "id": "resolveSources",
+        "onDone": [
+          {
+            "target": "resolvingColumns",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.resolvingSources#done.invoke.resolveSources[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "failed": {
+      "on": {
+        "RETRY": [
+          {
+            "target": "validating",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "resolvingColumns": {
+      "description": "Определение необходимых колонок (выходные + зависимые + фильтры)",
+      "invoke": {
+        "input": {},
+        "src": "resolveColumns",
+        "id": "resolveColumns",
+        "onDone": [
+          {
+            "target": "buildingBaseQuery",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.resolvingColumns#done.invoke.resolveColumns[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "buildingBaseQuery": {
+      "description": "Построение базового SELECT с источниками без JOIN",
+      "invoke": {
+        "input": {},
+        "src": "buildBaseQuery",
+        "id": "buildBaseQuery",
+        "onDone": [
+          {
+            "target": "applyingJoins",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.buildingBaseQuery#done.invoke.buildBaseQuery[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "applyingJoins": {
+      "description": "Применение JOIN по иерархии связей",
+      "invoke": {
+        "input": {},
+        "src": "applyJoins",
+        "id": "applyJoins",
+        "onDone": [
+          {
+            "target": "applyingFilters",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.applyingJoins#done.invoke.applyJoins[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "applyingFilters": {
+      "description": "Применение WHERE (RLS + модель + виджет)",
+      "invoke": {
+        "input": {},
+        "src": "applyFilters",
+        "id": "applyFilters",
+        "onDone": [
+          {
+            "target": "applyingFormulas",
+            "guard": "inline:queryBuilder.applyingFilters#done.invoke.applyFilters[-1]#guard",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.applyingFilters#done.invoke.applyFilters[-1]#transition[0]"
+              }
+            ]
+          },
+          {
+            "target": "applyingAggregation",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.applyingFilters#done.invoke.applyFilters[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "applyingFormulas": {
+      "description": "Обёртывание в подзапросы для вычисляемых полей по уровням",
+      "invoke": {
+        "input": {},
+        "src": "applyFormulaLevel",
+        "id": "applyFormulaLevel",
+        "onDone": [
+          {
+            "target": "applyingFormulas",
+            "guard": "inline:queryBuilder.applyingFormulas#done.invoke.applyFormulaLevel[-1]#guard",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.applyingFormulas#done.invoke.applyFormulaLevel[-1]#transition[0]"
+              }
+            ]
+          },
+          {
+            "target": "applyingAggregation",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.applyingFormulas#done.invoke.applyFormulaLevel[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "applyingAggregation": {
+      "description": "Добавление GROUP BY если есть агрегации",
+      "invoke": {
+        "input": {},
+        "src": "applyAggregation",
+        "id": "applyAggregation",
+        "onDone": [
+          {
+            "target": "finalizing",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.applyingAggregation#done.invoke.applyAggregation[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "finalizing": {
+      "description": "Формирование финального SQL (preview/debug обёртки, LIMIT)",
+      "invoke": {
+        "input": {},
+        "src": "finalize",
+        "id": "finalize",
+        "onDone": [
+          {
+            "target": "success",
+            "actions": [
+              {
+                "type": "inline:queryBuilder.finalizing#done.invoke.finalize[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

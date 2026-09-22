@@ -1,0 +1,311 @@
+{
+  "id": "processTracker",
+  "initial": "created",
+  "states": {
+    "created": {
+      "description": "The process has been created but hasn't started yet.",
+      "states": {
+        "child": {
+          "initial": "created",
+          "states": {
+            "created": {
+              "description": "The child process has been created but hasn't started yet.",
+              "on": {
+                "queue": [
+                  {
+                    "target": "queued",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "queued": {
+              "description": "The child process is in the queue, waiting to be started.",
+              "on": {
+                "start": [
+                  {
+                    "target": "started",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "started": {
+              "description": "The child process has started execution.",
+              "on": {
+                "finish": [
+                  {
+                    "target": "finished",
+                    "actions": []
+                  }
+                ],
+                "error": [
+                  {
+                    "target": "errored",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "finished": {
+              "description": "The child process has finished successfully."
+            },
+            "errored": {
+              "description": "The child process encountered an error during execution."
+            }
+          }
+        }
+      },
+      "on": {
+        "queue": [
+          {
+            "target": "queued",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "queued": {
+      "description": "The process is in the queue, waiting to be started.",
+      "states": {
+        "child": {
+          "initial": "created",
+          "states": {
+            "created": {
+              "description": "The child process has been created but hasn't started yet.",
+              "on": {
+                "queue": [
+                  {
+                    "target": "queued",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "queued": {
+              "description": "The child process is in the queue, waiting to be started.",
+              "on": {
+                "start": [
+                  {
+                    "target": "started",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "started": {
+              "description": "The child process has started execution.",
+              "on": {
+                "finish": [
+                  {
+                    "target": "finished",
+                    "actions": []
+                  }
+                ],
+                "error": [
+                  {
+                    "target": "errored",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "finished": {
+              "description": "The child process has finished successfully."
+            },
+            "errored": {
+              "description": "The child process encountered an error during execution."
+            }
+          }
+        }
+      },
+      "on": {
+        "start": [
+          {
+            "target": "started",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "started": {
+      "description": "The process has started execution.",
+      "states": {
+        "child": {
+          "initial": "created",
+          "states": {
+            "created": {
+              "description": "The child process has been created but hasn't started yet.",
+              "on": {
+                "queue": [
+                  {
+                    "target": "queued",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "queued": {
+              "description": "The child process is in the queue, waiting to be started.",
+              "on": {
+                "start": [
+                  {
+                    "target": "started",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "started": {
+              "description": "The child process has started execution.",
+              "on": {
+                "finish": [
+                  {
+                    "target": "finished",
+                    "actions": []
+                  }
+                ],
+                "error": [
+                  {
+                    "target": "errored",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "finished": {
+              "description": "The child process has finished successfully."
+            },
+            "errored": {
+              "description": "The child process encountered an error during execution."
+            }
+          }
+        }
+      },
+      "on": {
+        "finish": [
+          {
+            "target": "finished",
+            "actions": []
+          }
+        ],
+        "error": [
+          {
+            "target": "errored",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "finished": {
+      "description": "The process has finished successfully.",
+      "states": {
+        "child": {
+          "initial": "created",
+          "states": {
+            "created": {
+              "description": "The child process has been created but hasn't started yet.",
+              "on": {
+                "queue": [
+                  {
+                    "target": "queued",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "queued": {
+              "description": "The child process is in the queue, waiting to be started.",
+              "on": {
+                "start": [
+                  {
+                    "target": "started",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "started": {
+              "description": "The child process has started execution.",
+              "on": {
+                "finish": [
+                  {
+                    "target": "finished",
+                    "actions": []
+                  }
+                ],
+                "error": [
+                  {
+                    "target": "errored",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "finished": {
+              "description": "The child process has finished successfully."
+            },
+            "errored": {
+              "description": "The child process encountered an error during execution."
+            }
+          }
+        }
+      }
+    },
+    "errored": {
+      "description": "The process encountered an error during execution.",
+      "states": {
+        "child": {
+          "initial": "created",
+          "states": {
+            "created": {
+              "description": "The child process has been created but hasn't started yet.",
+              "on": {
+                "queue": [
+                  {
+                    "target": "queued",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "queued": {
+              "description": "The child process is in the queue, waiting to be started.",
+              "on": {
+                "start": [
+                  {
+                    "target": "started",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "started": {
+              "description": "The child process has started execution.",
+              "on": {
+                "finish": [
+                  {
+                    "target": "finished",
+                    "actions": []
+                  }
+                ],
+                "error": [
+                  {
+                    "target": "errored",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "finished": {
+              "description": "The child process has finished successfully."
+            },
+            "errored": {
+              "description": "The child process encountered an error during execution."
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "context": "{{({ input }) => ({\n        model: input.model,\n    })}}",
+  "id": "blockController",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "block.select": [
+          {
+            "target": "selected",
+            "actions": []
+          }
+        ],
+        "block.siblingEdit": [
+          {
+            "target": "softEdit",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "selected": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "block.edit": [
+              {
+                "target": "edit",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "edit": {
+          "entry": {
+            "type": "inline:blockController.selected.edit#entry[0]"
+          },
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "block.blur": [
+                  {
+                    "target": "#blockController.idle",
+                    "actions": []
+                  }
+                ],
+                "block.siblingEdit": [
+                  {
+                    "target": "#blockController.softEdit",
+                    "actions": [
+                      {
+                        "type": "inline:blockController.selected.edit.idle#block.siblingEdit[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "block.blur": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "softEdit": {
+      "on": {
+        "block.select": [
+          {
+            "target": "#blockController.selected.edit",
+            "actions": [
+              {
+                "type": "inline:blockController.softEdit#block.select[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

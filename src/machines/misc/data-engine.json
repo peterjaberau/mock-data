@@ -1,0 +1,303 @@
+{
+  "context": "{{({ input }) => ({ wal: 0, memtable: 0, threshold: input.threshold, l0: 0, l1: 0, l2: 0, ttlClock: 0 })}}",
+  "id": "engineData",
+  "invoke": {
+    "input": {},
+    "src": "ttl"
+  },
+  "states": {
+    "writePath": {
+      "initial": "awaitingRecord",
+      "states": {
+        "awaitingRecord": {
+          "on": {
+            "RECORD": [
+              {
+                "target": "routing",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "routing": {
+          "after": {
+            "150": [
+              {
+                "target": "#engineData.writePath.walFsync",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "walFsync": {
+          "entry": {
+            "type": "walFsync"
+          },
+          "after": {
+            "200": [
+              {
+                "target": "#engineData.writePath.memtableInsert",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "memtableInsert": {
+          "entry": {
+            "type": "memInsert"
+          },
+          "after": {
+            "150": [
+              {
+                "target": "#engineData.writePath.acked",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "acked": {
+          "after": {
+            "100": [
+              {
+                "target": "#engineData.writePath.awaitingRecord",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "memtable": {
+      "initial": "accepting",
+      "states": {
+        "accepting": {
+          "always": {
+            "target": "sealed",
+            "guard": "memtableFull",
+            "actions": []
+          }
+        },
+        "sealed": {
+          "after": {
+            "300": [
+              {
+                "target": "#engineData.memtable.flushing",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "flushing": {
+          "after": {
+            "700": [
+              {
+                "target": "#engineData.memtable.accepting",
+                "actions": [
+                  {
+                    "type": "emitBlock"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "compaction": {
+      "initial": "stable",
+      "states": {
+        "stable": {
+          "always": [
+            {
+              "target": "planning",
+              "guard": "lowLevelFull",
+              "actions": []
+            },
+            {
+              "target": "reclaiming",
+              "guard": "ttlExceeded",
+              "actions": []
+            }
+          ]
+        },
+        "planning": {
+          "after": {
+            "300": [
+              {
+                "target": "#engineData.compaction.merging",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "reclaiming": {
+          "after": {
+            "300": [
+              {
+                "target": "#engineData.compaction.stable",
+                "actions": [
+                  {
+                    "type": "reclaim"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "merging": {
+          "after": {
+            "500": [
+              {
+                "target": "#engineData.compaction.writingOutput",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "writingOutput": {
+          "after": {
+            "300": [
+              {
+                "target": "#engineData.compaction.installing",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "installing": {
+          "after": {
+            "200": [
+              {
+                "target": "#engineData.compaction.stable",
+                "actions": [
+                  {
+                    "type": "promote"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "readPath": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "QUERY": [
+              {
+                "target": "parsing",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "parsing": {
+          "after": {
+            "200": [
+              {
+                "target": "#engineData.readPath.planning",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "planning": {
+          "after": {
+            "250": [
+              {
+                "target": "#engineData.readPath.locating",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "locating": {
+          "after": {
+            "300": [
+              {
+                "target": "#engineData.readPath.fetching",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "fetching": {
+          "after": {
+            "400": [
+              {
+                "target": "#engineData.readPath.merging",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "merging": {
+          "after": {
+            "250": [
+              {
+                "target": "#engineData.readPath.returning",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "returning": {
+          "after": {
+            "300": [
+              {
+                "target": "#engineData.readPath.idle",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "recovery": {
+      "initial": "consistent",
+      "states": {
+        "consistent": {
+          "on": {
+            "CRASH": [
+              {
+                "target": "volatileLost",
+                "actions": [
+                  {
+                    "type": "loseVolatile"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "volatileLost": {
+          "on": {
+            "REPLAY": [
+              {
+                "target": "replaying",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "replaying": {
+          "after": {
+            "800": [
+              {
+                "target": "#engineData.recovery.consistent",
+                "actions": [
+                  {
+                    "type": "replayWal"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "type": "parallel"
+}

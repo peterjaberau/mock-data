@@ -1,0 +1,209 @@
+{
+  "id": "appQueue",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "START": [
+          {
+            "target": "starting",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "starting": {
+      "on": {
+        "LISTENING": [
+          {
+            "target": "schedulingInitial",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "stopped": {
+      "on": {
+        "START": [
+          {
+            "target": "starting",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "schedulingInitial": {
+      "on": {
+        "INITIAL_ENQUEUED": [
+          {
+            "target": "running",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "failed": {
+      "on": {
+        "START": [
+          {
+            "target": "starting",
+            "actions": []
+          }
+        ],
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "stopping": {
+      "on": {
+        "STOPPED": [
+          {
+            "target": "stopped",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "running": {
+      "states": {
+        "telemetry": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "TELEMETRY_STARTED": [
+                  {
+                    "target": "processing",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "processing": {
+              "on": {
+                "TELEMETRY_SUCCEEDED": [
+                  {
+                    "target": "idle",
+                    "actions": []
+                  }
+                ],
+                "TELEMETRY_FAILED": [
+                  {
+                    "target": "failed",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "failed": {
+              "on": {
+                "TELEMETRY_STARTED": [
+                  {
+                    "target": "processing",
+                    "actions": []
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tailscalePeers": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "on": {
+                "TAILSCALE_PEERS_STARTED": [
+                  {
+                    "target": "processing",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "processing": {
+              "on": {
+                "TAILSCALE_PEERS_SUCCEEDED": [
+                  {
+                    "target": "idle",
+                    "actions": []
+                  }
+                ],
+                "TAILSCALE_PEERS_FAILED": [
+                  {
+                    "target": "failed",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "failed": {
+              "on": {
+                "TAILSCALE_PEERS_STARTED": [
+                  {
+                    "target": "processing",
+                    "actions": []
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "STOP": [
+          {
+            "target": "stopping",
+            "actions": []
+          }
+        ],
+        "FAIL": [
+          {
+            "target": "failed",
+            "actions": []
+          }
+        ]
+      },
+      "type": "parallel"
+    }
+  }
+}

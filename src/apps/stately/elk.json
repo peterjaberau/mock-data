@@ -1,0 +1,43 @@
+{
+  "context": "{{elkModel.initialContext}}",
+  "id": "elkMachine",
+  "initial": "loading",
+  "states": {
+    "loading": {
+      "entry": {
+        "type": "notifyLayoutPending"
+      },
+      "invoke": {
+        "input": {},
+        "src": "inline:elkMachine.loading#actor[0]",
+        "onDone": [
+          {
+            "target": "success",
+            "actions": [
+              {
+                "type": "inline:(machine).loading#done.invoke.(machine).loading:invocation[0][-1]#transition[0]"
+              },
+              {
+                "type": "notifyLayoutReady"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "success": {
+      "on": {
+        "GRAPH_UPDATED": [
+          {
+            "target": "loading",
+            "actions": [
+              {
+                "type": "inline:(machine).success#GRAPH_UPDATED[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "id": "likesMachine",
+  "entry": {
+    "type": "inline:likes#entry[0]"
+  },
+  "initial": "waitingForSourceData",
+  "states": {
+    "waitingForSourceData": {
+      "tags": "hidden"
+    },
+    "liked": {
+      "tags": "liked",
+      "on": {
+        "LIKE_BUTTON_TOGGLED": [
+          {
+            "target": "unliking",
+            "guard": "isLoggedIn",
+            "actions": []
+          },
+          {
+            "actions": [
+              {
+                "type": "reportLoggedOutUserTriedToLike"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "notLiked": {
+      "tags": "notLiked",
+      "on": {
+        "LIKE_BUTTON_TOGGLED": [
+          {
+            "target": "liking",
+            "guard": "isLoggedIn",
+            "actions": []
+          },
+          {
+            "actions": [
+              {
+                "type": "reportLoggedOutUserTriedToLike"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "liking": {
+      "invoke": {
+        "input": {},
+        "src": "like",
+        "onDone": [
+          {
+            "target": "liked",
+            "actions": [
+              {
+                "type": "inline:likes.liking#done.invoke.likes.liking:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "notLiked",
+            "actions": [
+              {
+                "type": "inline:likes.liking#error.platform.likes.liking:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      },
+      "tags": [
+        "liked",
+        "pending"
+      ]
+    },
+    "unliking": {
+      "invoke": {
+        "input": {},
+        "src": "unlike",
+        "onDone": [
+          {
+            "target": "notLiked",
+            "actions": [
+              {
+                "type": "inline:likes.unliking#done.invoke.likes.unliking:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "liked",
+            "actions": [
+              {
+                "type": "inline:likes.unliking#error.platform.likes.unliking:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      },
+      "tags": [
+        "notLiked",
+        "pending"
+      ]
+    }
+  },
+  "on": {
+    "SOURCE_DATA_CHANGED": [
+      {
+        "target": ".waitingForSourceData",
+        "guard": "inline:likes#SOURCE_DATA_CHANGED[-1]#guard",
+        "actions": []
+      },
+      {
+        "target": ".liked",
+        "guard": "inline:likes#SOURCE_DATA_CHANGED[-1]#guard",
+        "actions": [
+          {
+            "type": "inline:likes#SOURCE_DATA_CHANGED[-1]#transition[0]"
+          }
+        ]
+      },
+      {
+        "target": ".notLiked",
+        "actions": [
+          {
+            "type": "inline:likes#SOURCE_DATA_CHANGED[-1]#transition[0]"
+          }
+        ]
+      }
+    ]
+  }
+}

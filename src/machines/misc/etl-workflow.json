@@ -1,0 +1,318 @@
+{
+  "context": "{{makeInitialContext()}}",
+  "id": "etl-workflow",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "START": [
+          {
+            "target": "loadingProduct",
+            "actions": [
+              {
+                "type": "recordWorkflowStart"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "loadingProduct": {
+      "entry": {
+        "type": "markEntityLoading",
+        "params": {
+          "entity": "product"
+        }
+      },
+      "invoke": {
+        "input": {},
+        "src": "streamEntity"
+      },
+      "on": {
+        "ENTITY_EVENT": [
+          {
+            "actions": [
+              {
+                "type": "appendEntityLog",
+                "params": {
+                  "entity": "product"
+                }
+              }
+            ]
+          }
+        ],
+        "ENTITY_DONE": [
+          {
+            "target": "loadingHierarchy",
+            "actions": [
+              {
+                "type": "markEntityCompleted",
+                "params": {
+                  "entity": "product"
+                }
+              }
+            ]
+          }
+        ],
+        "ENTITY_ERROR": [
+          {
+            "target": "failed",
+            "actions": [
+              {
+                "type": "markEntityFailed",
+                "params": {
+                  "entity": "product"
+                }
+              }
+            ]
+          }
+        ],
+        "CANCEL": [
+          {
+            "target": "cancelled",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "loadingHierarchy": {
+      "entry": {
+        "type": "markEntityLoading",
+        "params": {
+          "entity": "hierarchy"
+        }
+      },
+      "invoke": {
+        "input": {},
+        "src": "streamEntity"
+      },
+      "on": {
+        "ENTITY_EVENT": [
+          {
+            "actions": [
+              {
+                "type": "appendEntityLog",
+                "params": {
+                  "entity": "hierarchy"
+                }
+              }
+            ]
+          }
+        ],
+        "ENTITY_DONE": [
+          {
+            "target": "loadingBridgeHierarchy",
+            "actions": [
+              {
+                "type": "markEntityCompleted",
+                "params": {
+                  "entity": "hierarchy"
+                }
+              }
+            ]
+          }
+        ],
+        "ENTITY_ERROR": [
+          {
+            "target": "failed",
+            "actions": [
+              {
+                "type": "markEntityFailed",
+                "params": {
+                  "entity": "hierarchy"
+                }
+              }
+            ]
+          }
+        ],
+        "CANCEL": [
+          {
+            "target": "cancelled",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "failed": {
+      "on": {
+        "RESET": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetContext"
+              }
+            ]
+          }
+        ],
+        "START": [
+          {
+            "target": "loadingProduct",
+            "actions": [
+              {
+                "type": "recordWorkflowStart"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "cancelled": {
+      "on": {
+        "RESET": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetContext"
+              }
+            ]
+          }
+        ],
+        "START": [
+          {
+            "target": "loadingProduct",
+            "actions": [
+              {
+                "type": "recordWorkflowStart"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "loadingBridgeHierarchy": {
+      "entry": {
+        "type": "markEntityLoading",
+        "params": {
+          "entity": "bridgeHierarchy"
+        }
+      },
+      "invoke": {
+        "input": {},
+        "src": "streamEntity"
+      },
+      "on": {
+        "ENTITY_EVENT": [
+          {
+            "actions": [
+              {
+                "type": "appendEntityLog",
+                "params": {
+                  "entity": "bridgeHierarchy"
+                }
+              }
+            ]
+          }
+        ],
+        "ENTITY_DONE": [
+          {
+            "target": "loadingSupplier",
+            "actions": [
+              {
+                "type": "markEntityCompleted",
+                "params": {
+                  "entity": "bridgeHierarchy"
+                }
+              }
+            ]
+          }
+        ],
+        "ENTITY_ERROR": [
+          {
+            "target": "failed",
+            "actions": [
+              {
+                "type": "markEntityFailed",
+                "params": {
+                  "entity": "bridgeHierarchy"
+                }
+              }
+            ]
+          }
+        ],
+        "CANCEL": [
+          {
+            "target": "cancelled",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "loadingSupplier": {
+      "entry": {
+        "type": "markEntityLoading",
+        "params": {
+          "entity": "supplier"
+        }
+      },
+      "invoke": {
+        "input": {},
+        "src": "streamEntity"
+      },
+      "on": {
+        "ENTITY_EVENT": [
+          {
+            "actions": [
+              {
+                "type": "appendEntityLog",
+                "params": {
+                  "entity": "supplier"
+                }
+              }
+            ]
+          }
+        ],
+        "ENTITY_DONE": [
+          {
+            "target": "completed",
+            "actions": [
+              {
+                "type": "markEntityCompleted",
+                "params": {
+                  "entity": "supplier"
+                }
+              }
+            ]
+          }
+        ],
+        "ENTITY_ERROR": [
+          {
+            "target": "failed",
+            "actions": [
+              {
+                "type": "markEntityFailed",
+                "params": {
+                  "entity": "supplier"
+                }
+              }
+            ]
+          }
+        ],
+        "CANCEL": [
+          {
+            "target": "cancelled",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "completed": {
+      "entry": {
+        "type": "recordWorkflowCompleted"
+      },
+      "on": {
+        "RESET": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "resetContext"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

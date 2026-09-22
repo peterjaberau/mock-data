@@ -1,0 +1,331 @@
+{
+  "id": "jsonEditor",
+  "initial": "Idle",
+  "states": {
+    "Idle": {
+      "on": {
+        "findVehicleByVin": [
+          {
+            "target": "SearchingVehicleByVIN",
+            "actions": []
+          }
+        ],
+        "findVehicleByPlate": [
+          {
+            "target": "SearcingVehicleByPlate",
+            "actions": []
+          }
+        ],
+        "findVehicleByDatEcode": [
+          {
+            "target": "SearchingVehicleByDatEcode",
+            "actions": []
+          }
+        ],
+        "form.changeVehicleSelect": [
+          {
+            "target": "changingVehicleSelects",
+            "actions": []
+          }
+        ],
+        "form.changeEquipmentSelects": [
+          {
+            "target": "EquipmentSelectsFilled",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "SearchingVehicleByVIN": {
+      "invoke": {
+        "input": {},
+        "src": "fetchVehicleByVin",
+        "id": "fetchVehicleByVin",
+        "onDone": [
+          {
+            "target": "VIN Found",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "SearcingVehicleByPlate": {
+      "invoke": {
+        "input": {},
+        "src": "fetchVehicleByPlate",
+        "id": "fetchVehicleByPlate",
+        "onDone": [
+          {
+            "target": "SearchingVehicleByVIN",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "SearchingVehicleByDatEcode": {
+      "invoke": {
+        "input": {},
+        "src": "fetchVehicleByDatEcode",
+        "id": "fetchVehicleByDatEcode",
+        "onDone": [
+          {
+            "target": "FillingForm",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "changingVehicleSelects": {
+      "initial": "selectChanged",
+      "states": {
+        "selectChanged": {
+          "always": [
+            {
+              "target": "getManufacturers",
+              "guard": "vehicleTypeChanged",
+              "actions": []
+            },
+            {
+              "target": "getVehicleBaseModels",
+              "guard": "manufacturerChanged",
+              "actions": []
+            },
+            {
+              "target": "getVehicleSubModels",
+              "guard": "modelChanged",
+              "actions": []
+            },
+            {
+              "target": "doneChanging",
+              "guard": "submodelChanged",
+              "actions": []
+            }
+          ]
+        },
+        "getManufacturers": {
+          "invoke": {
+            "input": {},
+            "src": "fetchManufacturers",
+            "id": "fetchManufacturers",
+            "onDone": [
+              {
+                "target": "oneManufacturerFound",
+                "guard": "oneManufactuerFound",
+                "actions": []
+              },
+              {
+                "target": "doneChanging",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "getVehicleBaseModels": {
+          "invoke": {
+            "input": {},
+            "src": "fectchVehicleBaseModels",
+            "id": "fetchVehicleBaseModels",
+            "onDone": [
+              {
+                "target": "oneBaseModelFound",
+                "guard": "oneBaseModel",
+                "actions": []
+              },
+              {
+                "target": "doneChanging",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "getVehicleSubModels": {
+          "invoke": {
+            "input": {},
+            "src": "fetchVehicleSubmodels",
+            "id": "fetchVehicleSubmodels",
+            "onDone": [
+              {
+                "target": "oneSubModelFound",
+                "guard": "oneSubmodel",
+                "actions": []
+              },
+              {
+                "target": "doneChanging",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "doneChanging": {
+          "type": "final"
+        },
+        "oneManufacturerFound": {
+          "on": {
+            "form.changeVehicleSelect": [
+              {
+                "target": "selectChanged",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "oneBaseModelFound": {
+          "on": {
+            "form.changeVehicleSelect": [
+              {
+                "target": "selectChanged",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "oneSubModelFound": {
+          "on": {
+            "form.changeVehicleSelect": [
+              {
+                "target": "selectChanged",
+                "actions": []
+              }
+            ]
+          }
+        }
+      },
+      "onDone": [
+        {
+          "target": "fetchingVehicleEquipmentCategories",
+          "guard": "vehicleSelectsFilled",
+          "actions": []
+        },
+        {
+          "target": "Idle",
+          "actions": []
+        }
+      ]
+    },
+    "EquipmentSelectsFilled": {
+      "always": [
+        {
+          "target": "fetchingEquipmentsFromCategories",
+          "guard": "selectedEquipmentsChanged",
+          "actions": []
+        },
+        {
+          "target": "Idle",
+          "actions": []
+        }
+      ]
+    },
+    "VIN Found": {
+      "invoke": {
+        "input": {},
+        "src": "fetchClaimsWithSameVin",
+        "id": "fetchClaimsWithSameVin",
+        "onDone": [
+          {
+            "target": "ClaimWithSameVINFound",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "FillingForm": {
+      "on": {
+        "form.fillingDone": [
+          {
+            "target": "FormFilled",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "fetchingVehicleEquipmentCategories": {
+      "invoke": {
+        "input": {},
+        "src": "fetchVehicleEquipmentCategories",
+        "id": "fetchVehicleEquipmentCategories",
+        "onDone": [
+          {
+            "target": "fetchingEquipmentsFromCategories",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "fetchingEquipmentsFromCategories": {
+      "invoke": {
+        "input": {},
+        "src": "fetchEquipments",
+        "id": "fetchEquipments",
+        "onDone": [
+          {
+            "target": "equipmentReceived",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "ClaimWithSameVINFound": {
+      "always": {
+        "target": "PromptingUserToRecoverOrNewVIN",
+        "actions": []
+      }
+    },
+    "FormFilled": {
+      "always": {
+        "target": "Idle",
+        "actions": []
+      }
+    },
+    "equipmentReceived": {
+      "always": {
+        "target": "fillingEquipmentSelectsForm",
+        "guard": "hasEquipmentsWithOneOption",
+        "actions": []
+      }
+    },
+    "PromptingUserToRecoverOrNewVIN": {
+      "on": {
+        "respondToPrompt": [
+          {
+            "target": "RequestingNewVin",
+            "guard": "newVinRequest",
+            "actions": []
+          },
+          {
+            "target": "RecoveringClaimWithSameVin",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "fillingEquipmentSelectsForm": {
+      "on": {
+        "form.changeEquipmentSelects": [
+          {
+            "target": "EquipmentSelectsFilled",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "RequestingNewVin": {
+      "invoke": {
+        "input": {},
+        "src": "fetchingVehicleByVin",
+        "id": "fetchingVehicleByVin",
+        "onDone": [
+          {
+            "target": "SearchingVehicleByDatEcode",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "RecoveringClaimWithSameVin": {
+      "always": {
+        "target": "FillingForm",
+        "actions": []
+      }
+    }
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "context": {
+    "meeting": null,
+    "webcast": null
+  },
+  "id": "layout",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "description": "The initial state where no components are active.",
+      "on": {
+        "launch_webcast": [
+          {
+            "target": "#layout.webcast.launchingWebcast",
+            "actions": [
+              {
+                "type": "clearMeeting"
+              }
+            ]
+          }
+        ],
+        "launch_meeting": [
+          {
+            "target": "#layout.meeting.launchingMeeting",
+            "actions": [
+              {
+                "type": "clearWebcast"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "webcast": {
+      "initial": "inactive",
+      "states": {
+        "inactive": {},
+        "launchingWebcast": {
+          "description": "State for launching a webcast.",
+          "on": {
+            "success": [
+              {
+                "target": "webcastFullScreen",
+                "actions": [
+                  {
+                    "type": "setWebcastFullScreen"
+                  }
+                ]
+              }
+            ],
+            "failure": [
+              {
+                "target": "#layout.idle",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "webcastFullScreen": {
+          "description": "Webcast is active in fullscreen mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "webcastPip",
+                "actions": [
+                  {
+                    "type": "setWebcastPip"
+                  }
+                ]
+              }
+            ],
+            "close_webcast": [
+              {
+                "target": "closingWebcast",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "webcastPip": {
+          "description": "Webcast is active in picture-in-picture mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "webcastFullScreen",
+                "actions": [
+                  {
+                    "type": "setWebcastFullScreen"
+                  }
+                ]
+              }
+            ],
+            "close_webcast": [
+              {
+                "target": "closingWebcast",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "closingWebcast": {
+          "description": "State for closing a webcast.",
+          "on": {
+            "success": [
+              {
+                "target": "inactive",
+                "actions": [
+                  {
+                    "type": "clearWebcast"
+                  }
+                ]
+              }
+            ],
+            "failure": [
+              {
+                "target": "webcastFullScreen",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "meeting": {
+      "initial": "inactive",
+      "states": {
+        "inactive": {},
+        "launchingMeeting": {
+          "description": "State for launching a meeting.",
+          "on": {
+            "success": [
+              {
+                "target": "meetingFullScreen",
+                "guard": "isNotVirtualTable",
+                "actions": [
+                  {
+                    "type": "setMeetingFullScreen"
+                  }
+                ]
+              },
+              {
+                "target": "meetingFullScreenVirtualTable",
+                "guard": "isVirtualTable",
+                "actions": [
+                  {
+                    "type": "setMeetingFullScreen"
+                  }
+                ]
+              }
+            ],
+            "failure": [
+              {
+                "target": "#layout.idle",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "meetingFullScreen": {
+          "description": "Meeting is active in fullscreen mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "meetingPip",
+                "actions": [
+                  {
+                    "type": "setMeetingPip"
+                  }
+                ]
+              }
+            ],
+            "disconnect_meeting": [
+              {
+                "target": "disconnectingMeeting",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "meetingPip": {
+          "description": "Meeting is active in picture-in-picture mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "meetingFullScreen",
+                "actions": [
+                  {
+                    "type": "setMeetingFullScreen"
+                  }
+                ]
+              }
+            ],
+            "disconnect_meeting": [
+              {
+                "target": "disconnectingMeeting",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "meetingFullScreenVirtualTable": {
+          "description": "Virtual table meeting is active in fullscreen mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "meetingPipVirtualTable",
+                "actions": [
+                  {
+                    "type": "setMeetingPip"
+                  }
+                ]
+              }
+            ],
+            "launch_webcast": [
+              {
+                "target": "#layout.webcast.launchingWebcast",
+                "actions": []
+              }
+            ],
+            "disconnect_meeting": [
+              {
+                "target": "disconnectingMeeting",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "meetingPipVirtualTable": {
+          "description": "Virtual table meeting is active in picture-in-picture mode.",
+          "on": {
+            "toggle": [
+              {
+                "target": "meetingFullScreenVirtualTable",
+                "actions": [
+                  {
+                    "type": "setMeetingFullScreen"
+                  }
+                ]
+              }
+            ],
+            "launch_webcast": [
+              {
+                "target": "#layout.webcast.launchingWebcast",
+                "actions": []
+              }
+            ],
+            "disconnect_meeting": [
+              {
+                "target": "disconnectingMeeting",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "disconnectingMeeting": {
+          "description": "State for disconnecting from a meeting.",
+          "on": {
+            "success": [
+              {
+                "target": "inactive",
+                "actions": [
+                  {
+                    "type": "clearMeeting"
+                  }
+                ]
+              }
+            ],
+            "failure": [
+              {
+                "target": "meetingFullScreen",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

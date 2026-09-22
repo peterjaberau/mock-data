@@ -1,0 +1,511 @@
+{
+  "id": "Designer Guide",
+  "initial": "My Project",
+  "states": {
+    "My Project": {
+      "on": {
+        "create breakpoints": [
+          {
+            "target": "create own Breakpoints",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "create font families": [
+          {
+            "target": "creat own font famlies",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "create font config": [
+          {
+            "target": "create own font-config",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "create colors": [
+          {
+            "target": "MAP - colors",
+            "actions": [],
+            "meta": {},
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "create own Breakpoints": {
+      "on": {
+        "yes": [
+          {
+            "target": "MAP - breakpoints",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "no (use Fallback)": [
+          {
+            "target": "MAP - breakpoints - Fallback",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "creat own font famlies": {
+      "on": {
+        "yes": [
+          {
+            "target": "Map - font-family",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "no (use Fallback)": [
+          {
+            "target": "Map - font-family - fallback",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "create own font-config": {
+      "on": {
+        "yes": [
+          {
+            "target": "Map - font-config",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "no (use fallback)": [
+          {
+            "target": "Map - font-config - fallback",
+            "actions": [],
+            "meta": {},
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "MAP - colors": {
+      "description": "map-get($colors, $key-name);",
+      "invoke": {
+        "input": {},
+        "src": "$colors:",
+        "id": "\"name\": hexcode"
+      },
+      "initial": "new-color",
+      "states": {
+        "new-color": {
+          "invoke": {
+            "input": {},
+            "src": "\"name\": hexcode"
+          },
+          "on": {
+            "set name": [
+              {
+                "target": "name",
+                "actions": [],
+                "reenter": true
+              }
+            ],
+            "set hexcode": [
+              {
+                "target": "hexcode",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "name": {
+          "on": {
+            "remove all spaced": [
+              {
+                "target": "new-color",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "hexcode": {
+          "on": {
+            "push": [
+              {
+                "target": "new-color",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        }
+      },
+      "on": {
+        "Get the color": [
+          {
+            "target": "#Designer Guide.MAP - fonts.MAP - Tag",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "push colors": [
+          {
+            "target": "Finshed Project",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "MAP - breakpoints": {
+      "exit": [
+        {
+          "type": "\"xs\" : 0"
+        },
+        {
+          "type": "\"sm\" : 576"
+        },
+        {
+          "type": "\"md\" : 992"
+        },
+        {
+          "type": "\"lg\" : 1200"
+        }
+      ],
+      "on": {
+        "use map": [
+          {
+            "target": "map-get($breakpoints, $key);",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "MAP - breakpoints - Fallback": {
+      "exit": [
+        {
+          "type": "\"xs\" : 0"
+        },
+        {
+          "type": "\"sm\" : 576"
+        },
+        {
+          "type": "\"md\" : 992"
+        },
+        {
+          "type": "\"lg\" : 1200"
+        }
+      ],
+      "on": {
+        "use fallback map": [
+          {
+            "target": "map-get($breakpoints, $key);",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Map - font-family": {
+      "exit": [
+        {
+          "type": "\"headline\" : 'headline Custom'"
+        },
+        {
+          "type": "\"baseline\": 'baseline Custom'"
+        }
+      ],
+      "on": {
+        "add alternative fonts": [
+          {
+            "target": "add alternative fonts",
+            "actions": [],
+            "description": "needed if current font cant load or not on the server",
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Map - font-family - fallback": {
+      "exit": [
+        {
+          "type": "\"headline\" : 'system-ui,-apple-system,\"Segoe UI\",Roboto,\"Helvetica Neue\",\"Noto Sans\",\"Liberation Sans\",Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\",\"Noto Color Emoji\"'"
+        },
+        {
+          "type": "\"baseline\": 'system-ui,-apple-system,\"Segoe UI\",Roboto,\"Helvetica Neue\",\"Noto Sans\",\"Liberation Sans\",Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\",\"Noto Color Emoji\"'"
+        }
+      ],
+      "on": {
+        "use fallback map": [
+          {
+            "target": "map-get($font-family, $key);",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Map - font-config": {
+      "exit": [
+        {
+          "type": "\"headline-cap\" : 20 "
+        },
+        {
+          "type": "\"baseline-cap\": 16"
+        },
+        {
+          "type": "\"small\": 12"
+        },
+        {
+          "type": "\"baseline-weight\": 400"
+        },
+        {
+          "type": "\"headline-weight\": 700"
+        },
+        {
+          "type": "\"breakpoint-calc\": 0.8"
+        },
+        {
+          "type": "\"line-height-normal\": 1.4"
+        },
+        {
+          "type": "\"line-height-big\": 1.2"
+        },
+        {
+          "type": "\"line-height-cap\": 30"
+        }
+      ],
+      "on": {
+        "use map": [
+          {
+            "target": "map-get($font-config, $key)",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Map - font-config - fallback": {
+      "exit": [
+        {
+          "type": "\"headline-cap\" : 20 "
+        },
+        {
+          "type": "\"baseline-cap\": 16"
+        },
+        {
+          "type": "\"small\": 12"
+        },
+        {
+          "type": "\"baseline-weight\": 400"
+        },
+        {
+          "type": "\"headline-weight\": 700"
+        },
+        {
+          "type": "\"breakpoint-calc\": 0.8"
+        },
+        {
+          "type": "\"line-height-normal\": 1.4"
+        },
+        {
+          "type": "\"line-height-big\": 1.2"
+        },
+        {
+          "type": "\"line-height-cap\": 30"
+        }
+      ],
+      "on": {
+        "use fallback map": [
+          {
+            "target": "map-get($font-config, $key)",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "Finshed Project": {
+      "on": {
+        "Event 1": [
+          {
+            "target": "New state 1",
+            "actions": []
+          }
+        ]
+      },
+      "type": "final"
+    },
+    "map-get($breakpoints, $key);": {
+      "on": {
+        "get breakpoint for the size Array": [
+          {
+            "target": "#Designer Guide.MAP - fonts.MAP - Tag",
+            "actions": [],
+            "reenter": true
+          }
+        ],
+        "push breakpoints": [
+          {
+            "target": "Finshed Project",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "add alternative fonts": {
+      "exit": [
+        {
+          "type": "\"headline\" : 'headline Custom' + 'alternative';  "
+        },
+        {
+          "type": "\"baseline\" : 'baseline Custom' + 'alternative';  "
+        }
+      ],
+      "on": {
+        "use map": [
+          {
+            "target": "map-get($font-family, $key);",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "map-get($font-family, $key);": {
+      "on": {
+        "push to font": [
+          {
+            "target": "#Designer Guide.MAP - fonts.MAP - Tag",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "map-get($font-config, $key)": {
+      "on": {
+        "push to font": [
+          {
+            "target": "#Designer Guide.MAP - fonts.MAP - Tag",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "New state 1": {},
+    "MAP - fonts": {
+      "description": "map-get($[tag], '');\nz.B: map-get($headline-1 , 'font-weight');",
+      "invoke": {
+        "input": {},
+        "src": "$[tag-name]:",
+        "id": "\"key\": value"
+      },
+      "initial": "new map",
+      "states": {
+        "new map": {
+          "on": {
+            "create tag map": [
+              {
+                "target": "Font tag's",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "Font tag's": {
+          "exit": [
+            {
+              "type": "h1"
+            },
+            {
+              "type": "h2"
+            },
+            {
+              "type": "h3"
+            },
+            {
+              "type": "h4"
+            },
+            {
+              "type": "h5"
+            },
+            {
+              "type": "h6"
+            },
+            {
+              "type": "p"
+            },
+            {
+              "type": "strong, b"
+            },
+            {
+              "type": "a"
+            },
+            {
+              "type": "subscript"
+            },
+            {
+              "type": "superscript"
+            }
+          ],
+          "on": {
+            "each to single map": [
+              {
+                "target": "MAP - Tag",
+                "actions": [],
+                "reenter": true
+              }
+            ]
+          }
+        },
+        "MAP - Tag": {
+          "description": "z.b.: map-get($h1, $key);",
+          "exit": [
+            {
+              "type": "\"font-family\" : map-ger($font-family, \"headline\");"
+            },
+            {
+              "type": "\"font-weight\" 700;"
+            },
+            {
+              "type": "\"font-size\" : (40,auto,auto,auto);"
+            },
+            {
+              "type": "\"color\": get-map($colors, $key);"
+            },
+            {
+              "type": "\"background-color\" : false"
+            },
+            {
+              "type": "\"padding\" : false"
+            },
+            {
+              "type": "\"margin\" : false"
+            },
+            {
+              "type": "\"text-decoration\" : false"
+            }
+          ]
+        }
+      },
+      "on": {
+        "push all fonts into the config": [
+          {
+            "target": "Finshed Project",
+            "actions": [],
+            "reenter": true
+          }
+        ]
+      }
+    }
+  }
+}
