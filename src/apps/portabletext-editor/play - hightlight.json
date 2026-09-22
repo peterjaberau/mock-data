@@ -1,0 +1,71 @@
+{
+  "context": "{{({ input }) => ({\n        code: input.code,\n        pendingCode: input.code,\n        variant: input.variant,\n    })}}",
+  "id": "play - highlight",
+  "initial": "highlighting code",
+  "states": {
+    "highlighting code": {
+      "invoke": {
+        "input": {},
+        "src": "highlight code",
+        "onDone": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:play - highlight.highlighting code#done.invoke.play - highlight.highlighting code:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "onError": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "inline:play - highlight.highlighting code#error.platform.play - highlight.highlighting code:invocation[0][-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      },
+      "on": {
+        "update code": [
+          {
+            "actions": [
+              {
+                "type": "inline:play - highlight.highlighting code#update code[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "idle": {
+      "after": {
+        "250": [
+          {
+            "target": "#play - highlight.highlighting code",
+            "guard": "inline:play - highlight.idle#xstate.after(250)#play - highlight.idle[-1]#guard",
+            "actions": [
+              {
+                "type": "inline:play - highlight.idle#xstate.after(250)#play - highlight.idle[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      },
+      "on": {
+        "update code": [
+          {
+            "actions": [
+              {
+                "type": "inline:play - highlight.idle#update code[-1]#transition[0]"
+              }
+            ],
+            "reenter": true
+          }
+        ]
+      }
+    }
+  }
+}

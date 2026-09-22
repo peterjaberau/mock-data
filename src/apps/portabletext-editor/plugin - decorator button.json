@@ -1,0 +1,102 @@
+{
+  "context": "{{({ input }) => ({\n        editor: input.editor,\n        schemaType: input.schemaType,\n    })}}",
+  "id": "plugin - decorator button",
+  "invoke": [
+    {
+      "input": {},
+      "src": "disable listener"
+    },
+    {
+      "input": {},
+      "src": "active listener"
+    }
+  ],
+  "initial": "disabled",
+  "states": {
+    "disabled": {
+      "initial": "inactive",
+      "states": {
+        "inactive": {
+          "on": {
+            "enable": [
+              {
+                "target": "#plugin - decorator button.enabled.inactive",
+                "actions": []
+              }
+            ],
+            "set active": [
+              {
+                "target": "active",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "active": {
+          "on": {
+            "enable": [
+              {
+                "target": "#plugin - decorator button.enabled.active",
+                "actions": []
+              }
+            ],
+            "set inactive": [
+              {
+                "target": "inactive",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "enabled": {
+      "initial": "inactive",
+      "states": {
+        "inactive": {
+          "on": {
+            "disable": [
+              {
+                "target": "#plugin - decorator button.disabled.inactive",
+                "actions": []
+              }
+            ],
+            "set active": [
+              {
+                "target": "active",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "active": {
+          "on": {
+            "disable": [
+              {
+                "target": "#plugin - decorator button.disabled.active",
+                "actions": []
+              }
+            ],
+            "set inactive": [
+              {
+                "target": "inactive",
+                "actions": []
+              }
+            ]
+          }
+        }
+      },
+      "on": {
+        "toggle": [
+          {
+            "actions": [
+              {
+                "type": "toggle"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

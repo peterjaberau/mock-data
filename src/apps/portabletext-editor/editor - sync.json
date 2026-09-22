@@ -1,0 +1,231 @@
+{
+  "context": "{{({ input }) => ({\n        initialValue: input.initialValue,\n        initialValueSynced: false,\n        keyGenerator: input.keyGenerator,\n        schema: input.schema,\n        readOnly: input.readOnly,\n        editorEngine: input.editorEngine,\n        pendingValue: undefined,\n        previousValue: undefined,\n    })}}",
+  "id": "editor - sync",
+  "entry": {
+    "type": "inline:sync#entry[0]"
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "entry": {
+        "type": "inline:sync.idle#entry[0]"
+      },
+      "exit": {
+        "type": "inline:sync.idle#exit[0]"
+      },
+      "on": {
+        "update value": [
+          {
+            "guard": "inline:sync.idle#update value[-1]#guard",
+            "actions": [
+              {
+                "type": "assign initial value synced"
+              },
+              {
+                "type": "emit done syncing value"
+              }
+            ]
+          },
+          {
+            "guard": "inline:sync.idle#update value[-1]#guard",
+            "actions": [
+              {
+                "type": "assign initial value synced"
+              },
+              {
+                "type": "inline:sync.idle#update value[-1]#transition[1]"
+              },
+              {
+                "type": "emit done syncing value"
+              }
+            ]
+          },
+          {
+            "target": "busy",
+            "guard": "inline:sync.idle#update value[-1]#guard",
+            "actions": [
+              {
+                "type": "assign pending value"
+              }
+            ]
+          },
+          {
+            "target": "syncing",
+            "guard": "is new value",
+            "actions": [
+              {
+                "type": "assign pending value"
+              }
+            ]
+          },
+          {
+            "guard": "inline:sync.idle#update value[-1]#guard",
+            "actions": [
+              {
+                "type": "inline:sync.idle#update value[-1]#transition[0]"
+              },
+              {
+                "type": "assign initial value synced"
+              },
+              {
+                "type": "emit done syncing value"
+              }
+            ]
+          },
+          {
+            "actions": [
+              {
+                "type": "inline:sync.idle#update value[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "busy": {
+      "entry": {
+        "type": "inline:sync.busy#entry[0]"
+      },
+      "exit": {
+        "type": "inline:sync.busy#exit[0]"
+      },
+      "after": {
+        "1000": [
+          {
+            "guard": "is busy",
+            "actions": [
+              {
+                "type": "inline:sync.busy#xstate.after(1000)#sync.busy[-1]#transition[0]"
+              }
+            ],
+            "reenter": true
+          },
+          {
+            "target": "#editor - sync.syncing",
+            "actions": []
+          }
+        ]
+      },
+      "on": {
+        "update value": [
+          {
+            "guard": "is new value",
+            "actions": [
+              {
+                "type": "assign pending value"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "syncing": {
+      "entry": [
+        {
+          "type": "inline:sync.syncing#entry[0]"
+        },
+        {
+          "type": "emit syncing value"
+        }
+      ],
+      "exit": [
+        {
+          "type": "inline:sync.syncing#exit[0]"
+        },
+        {
+          "type": "emit done syncing value"
+        }
+      ],
+      "invoke": {
+        "input": {},
+        "src": "sync value",
+        "id": "sync value"
+      },
+      "on": {
+        "update value": [
+          {
+            "guard": "is new value",
+            "actions": [
+              {
+                "type": "assign pending value"
+              }
+            ]
+          }
+        ],
+        "patch": [
+          {
+            "actions": [
+              {
+                "type": "inline:sync.syncing#patch[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "invalid value": [
+          {
+            "actions": [
+              {
+                "type": "inline:sync.syncing#invalid value[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "value changed": [
+          {
+            "actions": [
+              {
+                "type": "inline:sync.syncing#value changed[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "done syncing": [
+          {
+            "target": "syncing",
+            "guard": "value changed while syncing",
+            "actions": [
+              {
+                "type": "assign previous value"
+              },
+              {
+                "type": "record synced value on engine"
+              },
+              {
+                "type": "assign initial value synced"
+              }
+            ],
+            "reenter": true
+          },
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "clear pending value"
+              },
+              {
+                "type": "assign previous value"
+              },
+              {
+                "type": "record synced value on engine"
+              },
+              {
+                "type": "assign initial value synced"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "on": {
+    "update readOnly": [
+      {
+        "actions": [
+          {
+            "type": "assign readOnly"
+          }
+        ]
+      }
+    ]
+  }
+}

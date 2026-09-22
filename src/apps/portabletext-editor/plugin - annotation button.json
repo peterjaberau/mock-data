@@ -1,0 +1,140 @@
+{
+  "context": "{{({ input }) => ({\n        editor: input.editor,\n        schemaType: input.schemaType,\n    })}}",
+  "id": "plugin - annotation button",
+  "invoke": [
+    {
+      "input": {},
+      "src": "active listener"
+    },
+    {
+      "input": {},
+      "src": "disable listener"
+    }
+  ],
+  "initial": "disabled",
+  "states": {
+    "disabled": {
+      "initial": "inactive",
+      "states": {
+        "inactive": {
+          "on": {
+            "enable": [
+              {
+                "target": "#plugin - annotation button.enabled.inactive",
+                "actions": []
+              }
+            ],
+            "set active": [
+              {
+                "target": "active",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "active": {
+          "on": {
+            "enable": [
+              {
+                "target": "#plugin - annotation button.enabled.active",
+                "actions": []
+              }
+            ],
+            "set inactive": [
+              {
+                "target": "inactive",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "enabled": {
+      "initial": "inactive",
+      "states": {
+        "inactive": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "invoke": {
+                "input": {},
+                "src": "keyboard shortcut.show insert dialog"
+              },
+              "on": {
+                "open dialog": [
+                  {
+                    "target": "showing dialog",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "showing dialog": {
+              "on": {
+                "close dialog": [
+                  {
+                    "target": "idle",
+                    "actions": []
+                  }
+                ]
+              }
+            }
+          },
+          "on": {
+            "disable": [
+              {
+                "target": "#plugin - annotation button.disabled.inactive",
+                "actions": []
+              }
+            ],
+            "set active": [
+              {
+                "target": "active",
+                "actions": []
+              }
+            ],
+            "add": [
+              {
+                "actions": [
+                  {
+                    "type": "add annotation"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "active": {
+          "invoke": {
+            "input": {},
+            "src": "keyboard shortcut.remove"
+          },
+          "on": {
+            "set inactive": [
+              {
+                "target": "inactive",
+                "actions": []
+              }
+            ],
+            "disable": [
+              {
+                "target": "#plugin - annotation button.disabled.active",
+                "actions": []
+              }
+            ],
+            "remove": [
+              {
+                "actions": [
+                  {
+                    "type": "remove annotation"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

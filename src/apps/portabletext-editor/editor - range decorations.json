@@ -1,0 +1,113 @@
+{
+  "context": "{{({ input }) => ({\n        readOnly: input.readOnly,\n        pendingRangeDecorations: input.rangeDecorations,\n        decoratedRanges: [],\n        skipSetup: input.skipSetup,\n        schema: input.schema,\n        editorEngine: input.editorEngine,\n        decorate: {\n            fn: createDecorate(input.schema, input.editorEngine),\n        },\n    })}}",
+  "id": "editor - range decorations",
+  "invoke": {
+    "input": {},
+    "src": "engine operation listener"
+  },
+  "initial": "setting up",
+  "states": {
+    "setting up": {
+      "always": [
+        {
+          "target": "ready",
+          "guard": "inline:range decorations.setting up#always[-1]#guard",
+          "actions": [
+            {
+              "type": "set up initial range decorations"
+            },
+            {
+              "type": "update decorate"
+            }
+          ]
+        },
+        {
+          "target": "ready",
+          "guard": "should skip setup",
+          "actions": []
+        }
+      ],
+      "on": {
+        "range decorations updated": [
+          {
+            "actions": [
+              {
+                "type": "update pending range decorations"
+              }
+            ]
+          }
+        ],
+        "ready": [
+          {
+            "target": "ready",
+            "guard": "has pending range decorations",
+            "actions": [
+              {
+                "type": "set up initial range decorations"
+              },
+              {
+                "type": "update decorate"
+              }
+            ]
+          },
+          {
+            "target": "ready",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "ready": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "engine operation": [
+              {
+                "target": "moving range decorations",
+                "guard": "inline:range decorations.ready.idle#engine operation[-1]#guard",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "moving range decorations": {
+          "entry": {
+            "type": "move range decorations"
+          },
+          "always": {
+            "target": "idle",
+            "actions": []
+          }
+        }
+      },
+      "on": {
+        "range decorations updated": [
+          {
+            "target": ".idle",
+            "guard": "has different decorations",
+            "actions": [
+              {
+                "type": "update range decorations"
+              },
+              {
+                "type": "update decorate"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "on": {
+    "update read only": [
+      {
+        "actions": [
+          {
+            "type": "assign readOnly"
+          }
+        ]
+      }
+    ]
+  }
+}
