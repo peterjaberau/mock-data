@@ -1,0 +1,760 @@
+{
+  "success": true,
+  "messenger": {
+    "fibi": {
+      "autoClose": {
+        "enabled": true,
+        "days": 0,
+        "hours": 0,
+        "minutes": 7
+      },
+      "trainingDataSources": {
+        "changelog": true,
+        "feedback": true,
+        "helpCenter": true
+      },
+      "enabled": true,
+      "allowHumanHandoff": true,
+      "name": "Fibi Bot",
+      "avatarUrl": "",
+      "spamFilter": {
+        "enabled": true,
+        "sensitivity": "standard",
+        "allowAutoResponders": false,
+        "guidance": [],
+        "_id": "6a8c97c6c56fc3f9a0f75f3a"
+      }
+    },
+    "organizationId": "6a8c97c5c56fc3f9a0f75df2",
+    "defaultLocale": "en",
+    "workflowAutoClose": {
+      "timeoutMinutes": 15,
+      "triggers": [],
+      "_id": "6a8c97c6c56fc3f9a0f75f38"
+    },
+    "config": {
+      "content": {
+        "enabledLocales": [
+          "en"
+        ],
+        "defaultLocale": "en",
+        "modules": {
+          "visitors": {
+            "orderedModules": [
+              "Home",
+              "Messages",
+              "Help",
+              "Changelog"
+            ],
+            "enabledModules": {
+              "Home": true,
+              "Messages": true,
+              "Help": true,
+              "Changelog": true
+            }
+          },
+          "users": {
+            "orderedModules": [
+              "Home",
+              "Messages",
+              "Help",
+              "Changelog"
+            ],
+            "enabledModules": {
+              "Home": true,
+              "Messages": true,
+              "Help": true,
+              "Changelog": true
+            }
+          }
+        },
+        "welcomeMessage": {
+          "greeting": {
+            "en": "Hi, {{name}} 👋"
+          },
+          "introduction": {
+            "en": "How can we help you today?"
+          }
+        },
+        "conversationButtonText": {
+          "visitors": {
+            "en": "Send us a message"
+          },
+          "users": {
+            "en": "Send us a message"
+          }
+        },
+        "conversationPreferences": {
+          "showReplyTimes": true,
+          "teamIntroduction": {
+            "en": "Ask us anything, or share your thoughts."
+          },
+          "specialNotice": {
+            "en": ""
+          },
+          "specialNoticeEnabled": false
+        },
+        "homeCards": {
+          "visitors": [
+            {
+              "visibleBy": "",
+              "type": "new_conversation"
+            },
+            {
+              "visibleBy": "",
+              "type": "article_search",
+              "articleIds": []
+            },
+            {
+              "visibleBy": "",
+              "type": "latest_updates"
+            }
+          ],
+          "users": [
+            {
+              "visibleBy": "",
+              "type": "new_conversation"
+            },
+            {
+              "visibleBy": "",
+              "type": "article_search",
+              "articleIds": []
+            },
+            {
+              "visibleBy": "",
+              "type": "latest_updates"
+            }
+          ]
+        }
+      },
+      "style": {
+        "logo": {
+          "imageUrl": "https://6a8c97c5c56fc3f9a0f75df2.featurebase-attachments.com/c/static/01a038f0-b2b1-78c0-a341-1df6fdc9de8f/kj5jw4nhnq.png"
+        },
+        "avatars": {
+          "show": false
+        },
+        "header": {
+          "background": {
+            "type": "color",
+            "color": "#005cde",
+            "foreground": "#ffffff"
+          },
+          "backgroundDark": {
+            "type": "color",
+            "color": "#005cde",
+            "foreground": "#ffffff"
+          }
+        },
+        "compiledTheme": "--background: 0 0% 100%;--foreground: 0 0% 31.372549019607842%;--border: 0 0% 90.98039215686275%;--secondary: 0 0% 100%;--secondary-foreground: 0 0% 13.725490196078432%;--secondary-active-foreground: 0 0% 13.725490196078432%;--darker-background: 0 0% 76.07843137254902%;--active-foreground: 0 0% 15.294117647058824%;--background-foreground: 0 0% 15.294117647058824%;--footer-primary: 224.5054945054945 97.8494623655914% 63.52941176470588%;--primary: 215.13513513513513 100% 43.529411764705884%;--primary-foreground: 0 0% 100%;--accent: 225.49019607843138 100% 70%;--accent-foreground: 221.7721518987342 100% 84.50980392156863%;",
+        "compiledThemeDark": "--background: 228 45.45454545454545% 4.313725490196078%;--foreground: 225.00000000000006 5.1282051282051295% 69.41176470588235%;--border: 229.99999999999994 7.692307692307692% 15.294117647058824%;--secondary: 230 10.000000000000005% 11.76470588235294%;--secondary-foreground: 232.50000000000003 6.666666666666665% 76.47058823529412%;--secondary-active-foreground: 0 0% 100%;--darker-background: 230 46.15384615384615% 5.098039215686274%;--active-foreground: 0 0% 100%;--background-foreground: 226.6666666666667 31.034482758620722% 94.31372549019608%;--footer-primary: 224.5054945054945 97.8494623655914% 63.52941176470588%;--primary: 215.13513513513513 100% 43.529411764705884%;--primary-foreground: 0 0% 100%;--accent: 225.49019607843138 100% 70%;--accent-foreground: 224.5054945054945 97.8494623655914% 63.52941176470588%;",
+        "launcher": {
+          "spacing": {
+            "bottom": 20,
+            "side": 20
+          },
+          "position": "bottom-right",
+          "customImage": "https://6a8c97c5c56fc3f9a0f75df2.featurebase-attachments.com/c/static/01a038f5-1d4f-72bf-b9ff-6eb0591f31d6/8wmldue9fv.png"
+        }
+      },
+      "settings": {
+        "visitors": {
+          "inboundVolume": {
+            "canStartConversation": true,
+            "preventReplyingToClosedConversations": true
+          },
+          "privacyPolicy": {
+            "enabled": false,
+            "content": {
+              "en": ""
+            }
+          }
+        },
+        "users": {
+          "inboundVolume": {
+            "canStartConversation": true,
+            "preventReplyingToClosedConversations": false
+          },
+          "privacyPolicy": {
+            "enabled": false,
+            "content": {
+              "en": "<p></p>"
+            }
+          }
+        }
+      }
+    },
+    "createdAt": "2026-08-24T19:13:10.116Z",
+    "updatedAt": "2026-08-25T13:03:56.117Z",
+    "id": "6a8c97c6c56fc3f9a0f75f39"
+  },
+  "organization": {
+    "channelActivity": {
+      "feedbackWidget": "2026-09-23T13:59:05.096Z"
+    },
+    "supportEmailSignature": {
+      "enabled": true,
+      "contentJson": null,
+      "contentHtml": null,
+      "logoUrl": null,
+      "logoPosition": "left",
+      "logoWidth": 90,
+      "logoHeight": 90
+    },
+    "name": "statelyai",
+    "displayName": "Stately.ai",
+    "color": "#3489FF",
+    "migratedPostCategories": false,
+    "categories": [
+      "💡 Feature Request"
+    ],
+    "trialExtendCount": 0,
+    "widget": {
+      "cards": [],
+      "color": "#4F46E5",
+      "description": "How can we help?",
+      "title": "Hey {name|there}! 👋",
+      "options": {
+        "voteOnFeatures": true,
+        "showRoadmap": true,
+        "showChangelog": false,
+        "showMainPage": true
+      }
+    },
+    "owner": "6a8c972c423baf20ac128ef7",
+    "whitelabel": false,
+    "language": "en",
+    "settings": {
+      "anyoneCanUpvote": true,
+      "downvotesEnabled": false,
+      "anyoneCanSubmit": false,
+      "anyoneCanComment": false,
+      "hideChangelog": false,
+      "hideRoadmap": false,
+      "automaticContentTranslation": false,
+      "hasPublicTags": false,
+      "private": false,
+      "discordAuthEnabled": false,
+      "steamAuthEnabled": false,
+      "postModerationEnabled": false,
+      "commentModerationEnabled": false,
+      "hideFeedbackBoard": false,
+      "defaultSortingOrder": "recent",
+      "defaultTimeframe": "All posts",
+      "defaultTheme": "client",
+      "linearIntegrationEnabled": true,
+      "zendeskIntegrationEnabled": false,
+      "cursorIntegrationEnabled": false,
+      "autopushPostsToLinear": true,
+      "autopushTicketsToLinear": false,
+      "slackIntegrationEnabled": false,
+      "jiraIntegrationEnabled": false,
+      "devopsIntegrationEnabled": false,
+      "clickupIntegrationEnabled": false,
+      "githubIntegrationEnabled": false,
+      "hubspotIntegrationEnabled": false,
+      "salesforceIntegrationEnabled": false,
+      "onLinearDelete": "keep",
+      "onJiraDelete": "keep",
+      "onClickupDelete": "keep",
+      "hideCompletedAndCanceled": false,
+      "hideVoteCountUntilVoted": false,
+      "hideStatusFromPublic": false,
+      "onlyStatusRoadmap": false,
+      "hideAuthorInfo": false,
+      "disableChangelogCollaboration": false,
+      "disableChangelogEmails": false,
+      "notifications": {
+        "notifyAllComments": true
+      },
+      "customTheme": {
+        "enabled": false,
+        "graySaturation": 20,
+        "graySaturator": "#0b0f19",
+        "_id": "6a8cf47790052e8aff27f918"
+      },
+      "identityVerificationEnabled": true,
+      "identityVerificationSecurityWarningDismissed": false,
+      "identityVerificationForCompaniesEnabled": false,
+      "maximumWebhookCount": 10,
+      "disableScreenshotForFeedbackWidget": false,
+      "disableSuggestionsForFeedbackWidget": false,
+      "disablePortalLinkForFeedbackWidget": false,
+      "hideLeaderboard": false,
+      "excludedPagesFromIndexing": [],
+      "autoSubscribeNewUsersToChangelog": true,
+      "privateETAs": false,
+      "inboxTranslation": {
+        "enabled": false,
+        "defaultLanguage": "en",
+        "additionalLanguages": [],
+        "supportedLanguages": [],
+        "_id": "6a8c97c5c56fc3f9a0f75df3"
+      },
+      "requireAdminMfa": false,
+      "ipAllowlist": {
+        "enabled": false,
+        "entries": [],
+        "applyToApi": false,
+        "_id": "6a8c97c5c56fc3f9a0f75df4"
+      },
+      "convertInboundEmailsToTickets": false,
+      "defaultEmailTicketCategoryId": null,
+      "outbound": {
+        "defaultMessageHtml": "<p>Hey {{user.first_name | default: \"there\"}}, </p>",
+        "canSpamAddress": "",
+        "_id": "6a8c97c5c56fc3f9a0f75df5"
+      },
+      "memberDeactivationGraceDays": 14,
+      "changelogLocales": [
+        {
+          "_id": "6a8c97c5c56fc3f9a0f75df7",
+          "locale": "en",
+          "default": true
+        }
+      ],
+      "feedbackLocales": [
+        {
+          "_id": "6a8c97c5c56fc3f9a0f75df8",
+          "locale": "en",
+          "default": true
+        }
+      ],
+      "portalDisabled": false,
+      "feedbackWidgetDisabled": false,
+      "insightsEnabled": true,
+      "productAreasEnabled": false,
+      "id": "6a8c97c5c56fc3f9a0f75df6",
+      "trackerMatchingEnabled": true
+    },
+    "timeZoneName": "Etc/UTC",
+    "admins": [
+      "6a8c972c423baf20ac128ef7"
+    ],
+    "subscriptionStatus": "free",
+    "plan": "free",
+    "ticketPortalEnabled": false,
+    "setupSteps": {
+      "customize": {
+        "customizeBoard": false,
+        "categorizeFeedback": false
+      },
+      "configure": {
+        "managePermissions": false,
+        "inviteTeam": false,
+        "customDomain": false,
+        "restrictAccess": false
+      },
+      "share": {
+        "includeLink": false,
+        "shareSocialMedia": false
+      }
+    },
+    "trialEnded": false,
+    "roadmapStatuses": [
+      "In Review",
+      "In Progress",
+      "Completed"
+    ],
+    "translatedTypography": {
+      "feedback": {
+        "welcomeMessageTitle": {
+          "en": "Have something to say?"
+        },
+        "welcomeMessageDescription": {
+          "en": "Tell us how we could make the product more useful to you."
+        },
+        "feedbackCreationButtonText": {
+          "en": "Create A New Post"
+        }
+      },
+      "feedbackWidget": {
+        "title": {
+          "en": "Give us feedback"
+        },
+        "description": {
+          "en": "Tell us how we could make the product more useful for you."
+        }
+      },
+      "ticketPortal": {
+        "title": {
+          "en": "Support Tickets"
+        },
+        "description": {
+          "en": "Get help from our support team by creating a new ticket."
+        },
+        "buttonText": {
+          "en": "New Ticket"
+        }
+      },
+      "_id": "6a8c97c5c56fc3f9a0f75df0"
+    },
+    "enforceSso": false,
+    "scimExcludedAdminIds": [],
+    "allowedDomains": [],
+    "supportSenderNameMode": "teammate",
+    "supportSenderNameCustom": null,
+    "hasSavedViews": false,
+    "outboundEmails": {
+      "outboundEmailsApproved": true,
+      "approvalRequestPending": false,
+      "trustLevel": 0,
+      "_id": "6a8c97c5c56fc3f9a0f75df1",
+      "approvalRequestStatus": "approved",
+      "approvedAt": "2026-08-31T11:43:13.578Z"
+    },
+    "memberRoles": [],
+    "enabledFeatures": {
+      "supportModule": true,
+      "fibiNewStack": true,
+      "feedbackModule": true,
+      "helpCenterModule": true,
+      "changelogModule": true,
+      "outboundModule": true,
+      "surveysModule": true
+    },
+    "_roadmapMigrationCompleted": false,
+    "_segmentMigrationCompleted": false,
+    "showSupportMessengerFromModules": {
+      "helpCenter": true,
+      "feedback": true,
+      "changelog": true
+    },
+    "restrictedLoginMethods": [],
+    "apiVersion": "2026-08-19.orbit",
+    "picture": "https://6a8c97c5c56fc3f9a0f75df2.featurebase-attachments.com/c/static/01a03697-2272-707e-adef-11d19979d31f/mcxr176hr2.png",
+    "postCategories": [
+      {
+        "segmentIds": [],
+        "roles": [],
+        "hiddenFromRoles": [],
+        "customInputFields": [],
+        "iconSvg": null,
+        "allowedStatusIds": [],
+        "category": "Feature Request",
+        "icon": {
+          "type": "emoji",
+          "value": "💡"
+        },
+        "private": false,
+        "name": {
+          "en": "Feature Request"
+        },
+        "id": "6a8c97c5c56fc3f9a0f75dfc"
+      }
+    ],
+    "postTags": [
+      {
+        "name": "High Priority",
+        "private": false,
+        "color": "Red",
+        "id": "6a8c97c5c56fc3f9a0f75dfd"
+      },
+      {
+        "name": "Low Priority",
+        "private": false,
+        "color": "Indigo",
+        "id": "6a8c97c5c56fc3f9a0f75dfe"
+      }
+    ],
+    "sharedTags": [],
+    "postStatuses": [
+      {
+        "name": "In Review",
+        "color": "Sky",
+        "type": "reviewing",
+        "isDefault": true,
+        "id": "6a8c97c5c56fc3f9a0f75dff"
+      },
+      {
+        "name": "Planned",
+        "color": "Purple",
+        "type": "unstarted",
+        "isDefault": false,
+        "id": "6a8c97c5c56fc3f9a0f75e00"
+      },
+      {
+        "name": "In Progress",
+        "color": "Blue",
+        "type": "active",
+        "isDefault": false,
+        "id": "6a8c97c5c56fc3f9a0f75e01"
+      },
+      {
+        "name": "Completed",
+        "color": "Green",
+        "type": "completed",
+        "isDefault": false,
+        "id": "6a8c97c5c56fc3f9a0f75e02"
+      },
+      {
+        "name": "Rejected",
+        "color": "Red",
+        "type": "canceled",
+        "isDefault": false,
+        "id": "6a8c97c5c56fc3f9a0f75e03"
+      }
+    ],
+    "officeHoursInterval": [],
+    "roadmaps": [
+      {
+        "name": "Main Roadmap",
+        "description": "",
+        "slug": "main",
+        "color": "Blue",
+        "icon": null,
+        "baseFilter": "sortBy=upvotes%3Adesc&inReview=false",
+        "visibleBy": [
+          "everyone"
+        ],
+        "items": [
+          {
+            "title": "Backlog",
+            "color": "Gray",
+            "icon": {
+              "value": "ArchiveIcon",
+              "type": "predefined"
+            },
+            "filter": "s=6a8c97c5c56fc3f9a0f75dff",
+            "_id": "6a8c97c5c56fc3f9a0f75ef5"
+          },
+          {
+            "title": "Next up",
+            "color": "Purple",
+            "icon": {
+              "value": "FastForwardIcon",
+              "type": "predefined"
+            },
+            "filter": "s=6a8c97c5c56fc3f9a0f75e00",
+            "_id": "6a8c97c5c56fc3f9a0f75ef6"
+          },
+          {
+            "title": "In Progress",
+            "color": "Blue",
+            "icon": {
+              "value": "LightningBoltIcon",
+              "type": "predefined"
+            },
+            "filter": "s=6a8c97c5c56fc3f9a0f75e01",
+            "_id": "6a8c97c5c56fc3f9a0f75ef7"
+          },
+          {
+            "title": "Done",
+            "color": "Green",
+            "icon": {
+              "value": "CheckCircleIcon",
+              "type": "predefined"
+            },
+            "filter": "s=6a8c97c5c56fc3f9a0f75e02",
+            "_id": "6a8c97c5c56fc3f9a0f75ef8"
+          }
+        ],
+        "_id": "6a8c97c5c56fc3f9a0f75e27"
+      }
+    ],
+    "publicPortalMenu": [
+      {
+        "name": {
+          "en": "Feedback"
+        },
+        "link": "/",
+        "icon": {
+          "type": "predefined",
+          "value": "CollectionIcon"
+        },
+        "_id": "6a8c97c6c56fc3f9a0f75f48"
+      },
+      {
+        "name": {
+          "en": "Roadmap"
+        },
+        "link": "/roadmap",
+        "icon": {
+          "type": "predefined",
+          "value": "MapIcon"
+        },
+        "_id": "6a8c97c6c56fc3f9a0f75f49"
+      },
+      {
+        "name": {
+          "en": "Changelog"
+        },
+        "link": "/changelog",
+        "icon": {
+          "type": "predefined",
+          "value": "RefreshIcon"
+        },
+        "_id": "6a8c97c6c56fc3f9a0f75f4a"
+      },
+      {
+        "name": {
+          "en": "Help Center"
+        },
+        "link": "/help",
+        "icon": {
+          "type": "predefined",
+          "value": "BookOpenIcon"
+        },
+        "_id": "6a8c97c6c56fc3f9a0f75f4b"
+      }
+    ],
+    "changelogTags": [
+      "New",
+      "Improved",
+      "Fixed"
+    ],
+    "changelogCategories": [
+      {
+        "segmentIds": [],
+        "roles": [],
+        "name": "New",
+        "color": "Green",
+        "id": "6a8c97c5c56fc3f9a0f75e04"
+      },
+      {
+        "segmentIds": [],
+        "roles": [],
+        "name": "Improved",
+        "color": "Sky",
+        "id": "6a8c97c5c56fc3f9a0f75e05"
+      },
+      {
+        "segmentIds": [],
+        "roles": [],
+        "name": "Maintenance update",
+        "color": "Orange",
+        "id": "6a8c97c5c56fc3f9a0f75e06"
+      },
+      {
+        "segmentIds": [],
+        "roles": [],
+        "name": "Promotional",
+        "color": "Purple",
+        "id": "6a8c97c5c56fc3f9a0f75e07"
+      },
+      {
+        "segmentIds": [],
+        "roles": [],
+        "name": "Service",
+        "color": "Blue",
+        "id": "6a8c97c5c56fc3f9a0f75e08"
+      },
+      {
+        "segmentIds": [],
+        "roles": [],
+        "name": "Mobile",
+        "color": "Pink",
+        "id": "6a8c97c5c56fc3f9a0f75e09"
+      }
+    ],
+    "roles": [],
+    "customInputFields": [],
+    "members": [
+      {
+        "userId": "6a8c972c423baf20ac128ef7",
+        "roleId": "6a8c97c5c56fc3f9a0f75df9",
+        "seats": [
+          "full"
+        ],
+        "pendingScimSeats": [],
+        "_id": "6a8c97c5c56fc3f9a0f75e0d"
+      }
+    ],
+    "deactivatedMembers": [],
+    "createdAt": "2026-08-24T19:13:09.768Z",
+    "updatedAt": "2026-09-18T01:42:36.698Z",
+    "shortMailingId": "742ea137602f",
+    "ssoJitDefaultRoleId": "6a8c97c5c56fc3f9a0f75dfb",
+    "billing": {
+      "isLegacy": false,
+      "tierCode": "t1",
+      "status": "active",
+      "isOnTrial": false,
+      "addons": {
+        "removeBranding": {
+          "enabled": false,
+          "includedQuota": 0
+        },
+        "outbound": {
+          "enabled": false,
+          "includedQuota": 0
+        }
+      }
+    },
+    "activeHelpCenter": {
+      "helpCenterId": "xh1chg0nqlflfm6d",
+      "title": "Help Center",
+      "enabled": false,
+      "externalDomain": ""
+    },
+    "id": "6a8c97c5c56fc3f9a0f75df2",
+    "runtimeFeatureFlags": {
+      "attentionReportingEnabled": true,
+      "attentionReportingMode": "authoritative",
+      "reportingUiEnabled": true,
+      "spamFilterUiEnabled": true,
+      "workloadManagementEnabled": true,
+      "dashboardAiEnabled": false
+    },
+    "helpCenterId": "xh1chg0nqlflfm6d"
+  },
+  "hasTickets": false,
+  "activeTeam": [
+    {
+      "id": "6a8c972c423baf20ac128ef7",
+      "name": "David Khourshid",
+      "profilePicture": "https://6a8c97c5c56fc3f9a0f75df2.featurebase-attachments.com/c/static/01a03533-f6e7-7f05-b254-1d227b5f421f/b69q0h4cnb.png"
+    }
+  ],
+  "highlightedArticles": [],
+  "recentChangelogs": [],
+  "user": {
+    "id": "6ab285578f39e85c244428fb",
+    "userId": "01a0c958-dc31-781f-ba8e-9b5054b12b56",
+    "organizationId": "6a8c97c5c56fc3f9a0f75df2",
+    "companies": [],
+    "companyIds": [],
+    "name": "Lime Blender",
+    "profilePicture": "https://global.featurebase-attachments.com/a/shapes/8076_200_200.png",
+    "commentsCreated": 0,
+    "postsCreated": 0,
+    "lastActivity": "2026-09-23T14:09:59.523Z",
+    "subscribedToChangelog": false,
+    "manuallyOptedOutFromChangelog": false,
+    "roles": [],
+    "verified": false,
+    "privateOrgNonAdminSsoAccessOrganizationIds": [],
+    "type": "lead",
+    "description": "",
+    "createdAt": "2026-09-22T13:40:39.347Z",
+    "location": {
+      "cityName": "Sydney",
+      "timezone": "Australia/Sydney",
+      "countryCode": "AU",
+      "countryName": "Australia",
+      "continentCode": "OC",
+      "regionCode": "NSW",
+      "isInEU": false,
+      "latitude": -33.8715,
+      "longitude": 151.2006
+    },
+    "anonymousId": "01a0c958-dc31-781f-ba8e-9b5054b12b56"
+  },
+  "rtm": {
+    "endpoint": "https://ws.featurebase.app/user:6a8c97c5c56fc3f9a0f75df2",
+    "token": "eyJhbGciOiJFZERTQSIsImtpZCI6InByb2QtYjMyOTM2NzEtMDE2ZS00YTJkLWI5YTktOGVjYmIwNGZhMmFlIiwidHlwIjoiSldUIn0.eyJzdWIiOiI2YWIyODU1NzhmMzllODVjMjQ0NDI4ZmIiLCJ1dCI6ImxlYWQiLCJpYXQiOjE3OTAxNzUxNTUsImV4cCI6MTc5Mjc2NzE1NSwibmJmIjoxNzkwMTc1MDM1LCJpc3MiOiJwcm9kdWN0aW9uOmJhY2tlbmQiLCJhdWQiOiJ3cyIsInR0IjoiYWNjZXNzIiwidHYiOjAsIm9pZCI6IjZhOGM5N2M1YzU2ZmMzZjlhMGY3NWRmMiIsInNyYyI6InNzbyJ9.UeWH7mU1gAfM02tpN8jcbvKC1WAsITuASW0f7H9EL-H6D5YdZkjHHMXCtIUqb-IrDQT5gJFDtaKIj8SuJ3o5AQ",
+    "exp": 1792767155,
+    "ut": "lead"
+  },
+  "clientMatches": [],
+  "outboundClientMatches": [],
+  "outboundBanners": [],
+  "outboundSurveys": [],
+  "outboundCheckedAt": "2026-09-23T14:52:35.370Z",
+  "brand": {
+    "id": "6a8c97c6c56fc3f9a0f75f43",
+    "displayName": "Stately.ai",
+    "isDefault": true,
+    "helpCenterId": "xh1chg0nqlflfm6d"
+  }
+}

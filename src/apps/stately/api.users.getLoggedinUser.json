@@ -1,0 +1,57 @@
+[
+  {
+    "result": {
+      "data": {
+        "json": {
+          "id": "1a2da839-6332-497d-bd2b-fa450b45b886",
+          "email": "peterjaberau@gmail.com",
+          "avatarUrl": "https://lh3.googleusercontent.com/a/AGNmyxbyBSijBd33N2w5SdeiUKyp8iNUbnES2A_Zj4o_=s96-c",
+          "displayName": "Peter Jaber",
+          "consents": [],
+          "featureFlags": [],
+          "editorPreference": "legacy",
+          "editorBetaWelcomeShownAt": null,
+          "editorBetaBanner": {
+            "dismissedAt": null,
+            "dismissCount": 0
+          },
+          "hasPaidSubscription": false,
+          "hadProSubscriptionBefore": false,
+          "teamSubscription": null,
+          "isPartOfTeam": false,
+          "undecidedConsentsCount": 0,
+          "subscription": {
+            "id": "151916a3-26c1-4cc7-b697-c1be88c3db1e",
+            "endedAt": null,
+            "seats": 0,
+            "status": "active",
+            "stripeId": null,
+            "tier": "community",
+            "updatedAt": "2023-04-30T12:49:00.193Z"
+          },
+          "teams": [],
+          "teamInvitations": [],
+          "hasCreatedAProjectBefore": true,
+          "freeTierWall": null,
+          "draftsProject": {
+            "projectVersionId": "351d2e4f-1007-4c19-939c-e1674fdcfb2f",
+            "rootMachineId": "345dc23e-a565-4d21-ad16-e58982fac617",
+            "rootMachineFormat": "digraph"
+          },
+          "featurebaseJwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTJkYTgzOS02MzMyLTQ5N2QtYmQyYi1mYTQ1MGI0NWI4ODYiLCJlbWFpbCI6InBldGVyamFiZXJhdUBnbWFpbC5jb20iLCJuYW1lIjoiUGV0ZXIgSmFiZXIiLCJwcm9maWxlUGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGJ5QlNpakJkMzNOMnc1U2RlaVVLeXA4aU5VYm5FUzJBX1pqNG9fPXM5Ni1jIiwiaWF0IjoxNzkwMTc1MTU0fQ.l9VX-vrU58E0KMZcCSmtSoEnAQxhi28AdR9RXBx0Fu8",
+          "isStatelyAdmin": false
+        },
+        "meta": {
+          "values": {
+            "teamSubscription": [
+              "undefined"
+            ],
+            "subscription.updatedAt": [
+              "Date"
+            ]
+          }
+        }
+      }
+    }
+  }
+]

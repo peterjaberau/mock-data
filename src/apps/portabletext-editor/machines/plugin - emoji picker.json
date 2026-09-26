@@ -1,0 +1,202 @@
+{
+  "context": "{{({ input }) => ({\n        editor: input.editor,\n        keyword: \"\",\n        focusSpan: undefined,\n        matchEmojis: input.matchEmojis,\n        incompleteKeywordRegex: /^:[\\S]*$/,\n        matches: [],\n        selectedIndex: 0,\n    })}}",
+  "id": "plugin - emoji picker",
+  "invoke": {
+    "input": {},
+    "src": "emoji insert listener",
+    "id": "emoji insert listener"
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "entry": {
+        "type": "reset"
+      },
+      "invoke": {
+        "input": {},
+        "src": "trigger listener"
+      },
+      "on": {
+        "custom.trigger found": [
+          {
+            "target": "searching",
+            "actions": [
+              {
+                "type": "set focus span"
+              },
+              {
+                "type": "update keyword"
+              }
+            ]
+          }
+        ],
+        "custom.keyword found": [
+          {
+            "target": "idle",
+            "actions": [
+              {
+                "type": "set focus span"
+              },
+              {
+                "type": "update keyword"
+              },
+              {
+                "type": "update matches"
+              },
+              {
+                "type": "insert selected match"
+              }
+            ],
+            "reenter": true
+          }
+        ]
+      }
+    },
+    "searching": {
+      "invoke": [
+        {
+          "input": {},
+          "src": "submit listener",
+          "id": "submit listener"
+        },
+        {
+          "input": {},
+          "src": "escape listener"
+        },
+        {
+          "input": {},
+          "src": "selection listener"
+        },
+        {
+          "input": {},
+          "src": "text insertion listener",
+          "id": "text insertion listener"
+        }
+      ],
+      "initial": "no matches showing",
+      "states": {
+        "no matches showing": {
+          "entry": {
+            "type": "reset selected index"
+          },
+          "always": {
+            "target": "showing matches",
+            "guard": "has matches",
+            "actions": []
+          }
+        },
+        "showing matches": {
+          "invoke": {
+            "input": {},
+            "src": "arrow listener"
+          },
+          "always": {
+            "target": "no matches showing",
+            "guard": "no matches",
+            "actions": []
+          },
+          "on": {
+            "navigate down": [
+              {
+                "actions": [
+                  {
+                    "type": "increment selected index"
+                  },
+                  {
+                    "type": "update submit listener context"
+                  }
+                ]
+              }
+            ],
+            "navigate up": [
+              {
+                "actions": [
+                  {
+                    "type": "decrement selected index"
+                  },
+                  {
+                    "type": "update submit listener context"
+                  }
+                ]
+              }
+            ],
+            "navigate to": [
+              {
+                "actions": [
+                  {
+                    "type": "set selected index"
+                  },
+                  {
+                    "type": "update submit listener context"
+                  }
+                ]
+              }
+            ],
+            "insert selected match": [
+              {
+                "actions": [
+                  {
+                    "type": "insert selected match"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "always": [
+        {
+          "target": "idle",
+          "guard": "no focus span",
+          "actions": []
+        },
+        {
+          "target": "idle",
+          "guard": "keyword is malformed",
+          "actions": []
+        },
+        {
+          "target": "idle",
+          "guard": "keyword is direct match",
+          "actions": [
+            {
+              "type": "insert selected match"
+            }
+          ]
+        }
+      ],
+      "on": {
+        "dismiss": [
+          {
+            "target": "idle",
+            "actions": []
+          }
+        ],
+        "selection changed": [
+          {
+            "actions": [
+              {
+                "type": "update focus span"
+              },
+              {
+                "type": "update keyword"
+              },
+              {
+                "type": "update matches"
+              },
+              {
+                "type": "reset selected index"
+              },
+              {
+                "type": "update submit listener context"
+              },
+              {
+                "type": "update text insertion listener context"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

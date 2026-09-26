@@ -1,0 +1,492 @@
+{
+  "activeWorkspaceId": "68aac349352f000544daf8ed",
+  "applications": [
+    {
+      "id": "693c968ef5a6f206f717e894",
+      "modifiedBy": "peterjaberau@gmail.com",
+      "userPermissions": [
+        "export:applications",
+        "read:applications",
+        "create:pages",
+        "manageAutoCommit:applications",
+        "inviteUsers:applications",
+        "manage:applications",
+        "canComment:applications",
+        "delete:applicationPages",
+        "manageProtectedBranches:applications",
+        "manageDefaultBranches:applications",
+        "publish:applications",
+        "connectToGit:applications",
+        "delete:applications",
+        "makePublic:applications"
+      ],
+      "name": "List Lookup",
+      "workspaceId": "68aac349352f000544daf8ed",
+      "isPublic": false,
+      "pages": [
+        {
+          "id": "693c968ef5a6f206f717e898",
+          "isDefault": true,
+          "baseId": "693c968ef5a6f206f717e898"
+        }
+      ],
+      "appIsExample": false,
+      "unreadCommentThreads": 0,
+      "color": "#F5D1D1",
+      "icon": "cloud",
+      "slug": "list-lookup",
+      "unpublishedCustomJSLibs": [],
+      "publishedCustomJSLibs": [],
+      "evaluationVersion": 2,
+      "applicationVersion": 2,
+      "collapseInvisibleWidgets": true,
+      "isManualUpdate": true,
+      "forkedFromTemplateTitle": "List Lookup",
+      "baseId": "693c968ef5a6f206f717e894",
+      "artifactType": "APPLICATION",
+      "applicationDetail": {
+        "appPositioning": {
+          "type": "FIXED"
+        },
+        "navigationSetting": {},
+        "themeSetting": {
+          "sizing": 1,
+          "density": 1,
+          "appMaxWidth": "LARGE"
+        }
+      },
+      "modifiedAt": "2025-12-13T10:33:06.691Z",
+      "defaultPageId": "693c968ef5a6f206f717e898",
+      "defaultBasePageId": "693c968ef5a6f206f717e898",
+      "isFavorited": false
+    },
+    {
+      "id": "68aac34a352f000544daf8f3",
+      "modifiedBy": "peterjaberau@gmail.com",
+      "userPermissions": [
+        "export:applications",
+        "read:applications",
+        "create:pages",
+        "manageAutoCommit:applications",
+        "inviteUsers:applications",
+        "manage:applications",
+        "canComment:applications",
+        "delete:applicationPages",
+        "manageProtectedBranches:applications",
+        "manageDefaultBranches:applications",
+        "publish:applications",
+        "connectToGit:applications",
+        "delete:applications",
+        "makePublic:applications"
+      ],
+      "name": "My first application",
+      "workspaceId": "68aac349352f000544daf8ed",
+      "isPublic": false,
+      "pages": [
+        {
+          "id": "68aac34a352f000544daf8f5",
+          "isDefault": true,
+          "baseId": "68aac34a352f000544daf8f5"
+        }
+      ],
+      "appIsExample": false,
+      "unreadCommentThreads": 0,
+      "color": "#F1DEFF",
+      "slug": "my-first-application",
+      "unpublishedCustomJSLibs": [],
+      "publishedCustomJSLibs": [],
+      "evaluationVersion": 2,
+      "applicationVersion": 2,
+      "collapseInvisibleWidgets": true,
+      "baseId": "68aac34a352f000544daf8f3",
+      "unpublishedThemeId": "652537478e5dc0069e62989e",
+      "publishedThemeId": "652537478e5dc0069e62989e",
+      "artifactType": "APPLICATION",
+      "appLayout": {
+        "type": "TABLET_LARGE"
+      },
+      "modifiedAt": "2025-08-25T15:51:44.040Z",
+      "defaultPageId": "68aac34a352f000544daf8f5",
+      "defaultBasePageId": "68aac34a352f000544daf8f5",
+      "isFavorited": false
+    },
+    {
+      "id": "693c96655dd3fb60b0042e71",
+      "modifiedBy": "peterjaberau@gmail.com",
+      "userPermissions": [
+        "export:applications",
+        "read:applications",
+        "create:pages",
+        "manageAutoCommit:applications",
+        "inviteUsers:applications",
+        "manage:applications",
+        "canComment:applications",
+        "delete:applicationPages",
+        "manageProtectedBranches:applications",
+        "manageDefaultBranches:applications",
+        "publish:applications",
+        "connectToGit:applications",
+        "delete:applications",
+        "makePublic:applications"
+      ],
+      "name": "Untitled application 1",
+      "workspaceId": "68aac349352f000544daf8ed",
+      "isPublic": false,
+      "pages": [
+        {
+          "id": "693c96655dd3fb60b0042e73",
+          "isDefault": true,
+          "baseId": "693c96655dd3fb60b0042e73"
+        }
+      ],
+      "appIsExample": false,
+      "unreadCommentThreads": 0,
+      "color": "#C7F3E3",
+      "icon": "help",
+      "slug": "untitled-application-1",
+      "unpublishedCustomJSLibs": [],
+      "publishedCustomJSLibs": [],
+      "evaluationVersion": 2,
+      "applicationVersion": 2,
+      "collapseInvisibleWidgets": true,
+      "baseId": "693c96655dd3fb60b0042e71",
+      "unpublishedThemeId": "652537478e5dc0069e62989e",
+      "publishedThemeId": "652537478e5dc0069e62989e",
+      "artifactType": "APPLICATION",
+      "applicationDetail": {
+        "appPositioning": {
+          "type": "FIXED"
+        },
+        "navigationSetting": {},
+        "themeSetting": {
+          "sizing": 1,
+          "density": 1,
+          "appMaxWidth": "LARGE"
+        }
+      },
+      "modifiedAt": "2025-12-12T22:25:41.684Z",
+      "defaultPageId": "693c96655dd3fb60b0042e73",
+      "defaultBasePageId": "693c96655dd3fb60b0042e73",
+      "isFavorited": false
+    }
+  ],
+  "packages": [],
+  "workflows": [],
+  "workspaces": [
+    {
+      "id": "68aac349352f000544daf8ed",
+      "userPermissions": [
+        "publish:workspaceApplications",
+        "delete:workspace",
+        "read:workspaceDatasources",
+        "create:workspacePackageInstances",
+        "read:workspaceEnvironments",
+        "read:workspacePackages",
+        "manage:workspacePackages",
+        "read:workspaces",
+        "makePublic:workspaceApplications",
+        "create:workflows",
+        "create:packages",
+        "execute:workspaceDatasources",
+        "manage:workspaces",
+        "delete:workspaceWorkflows",
+        "export:workspaceWorkflows",
+        "execute:workspaceEnvironments",
+        "manage:workspaceApplications",
+        "export:workspaceApplications",
+        "delete:workspaceDatasources",
+        "publish:workspacePackages",
+        "read:workspaceApplications",
+        "readHistory:workspaceWorkflows",
+        "manage:workspaceEnvironments",
+        "inviteUsers:workspace",
+        "read:workspacePackageInstances",
+        "manage:workspaceWorkflows",
+        "manage:workspaceDatasources",
+        "create:datasources",
+        "delete:workspaceApplications",
+        "delete:workspacePackages",
+        "create:environments",
+        "export:workspacePackages",
+        "delete:workspaceEnvironments",
+        "publish:workspaceWorkflows",
+        "create:applications"
+      ],
+      "name": "Peter's apps",
+      "email": "peterjaberau@gmail.com",
+      "plugins": [
+        {
+          "pluginId": "60f183893106c14e45586d98",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "683ebb1d170a4020892fb7e9",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "658aa4705f082e415f8a15c7",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "683823bd97d51c16ce6b6c86",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6554bcb66ed461189b1cf6fb",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "683ebb1d170a4020892fb7e8",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "5f92f9ec107018510ae540c0",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "658aa47d5f082e415f8a15c8",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "65a8a2a271f08f72be5011ea",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "61b87870869bd22f1428db09",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6791dc567229f458ba5e92a7",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "5f92f9e9107018510ae540be",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "613a26d921750e4b557a9241",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6867de1c497ffd7d0ba396c2",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "5ec3bccdd4b5eaa50ba6f583",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "60081f50ffab735a9dae84e7",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6572b13e7f7dd327b43df7fb",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6867de1c497ffd7d0ba396c3",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6777dde53765a83767567a2b",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "5f92f9ef107018510ae540c3",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6867de1c497ffd7d0ba396c4",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "61dbfd4b6bd5757f166ccc76",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6836c67063fab43c2c33b23e",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "5fbcc1c758377818ddaec444",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "60d1c008c238633f08e5f5c4",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "67bdf48124c40ff7d7e2d598",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "68382505d2828818a616cc49",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "60374b7d074f9b49cd68a036",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "627938600b47255c280c19da",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "5f92f9f1107018510ae540c5",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6287c0e37901344ba8d12776",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "65a8a29571f08f72be5011e9",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "5ca385dc81b37f0004b4db85",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "678df9d4d529794c86e43178",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "5e8dad9bf062d5125ddfd836",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "60910df653a4d211ac7dd678",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "657c1629c8356e4ca12cc9de",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "642a4177c5ccee14a368f798",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "683826c41be5672af2b7b220",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "680898a69633325a885dc4ac",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "681dd91c566f420c99165424",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6855317ba5632c6893ba5835",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "680898a69633325a885dc4ab",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "6320bc011da87f61107aa9e0",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "5f192a44a2d05225d010db9d",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "683ebb1d170a4020892fb7e7",
+          "status": "FREE"
+        },
+        {
+          "pluginId": "68c7b6ded93e164fa04a6835",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "683ebb1d170a4020892fb7e7",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "680898a69633325a885dc4ac",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "683823bd97d51c16ce6b6c86",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "680898a69633325a885dc4ab",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "68382505d2828818a616cc49",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "6777dde53765a83767567a2b",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "67bdf48124c40ff7d7e2d598",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "6867de1c497ffd7d0ba396c2",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "6867de1c497ffd7d0ba396c3",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "6867de1c497ffd7d0ba396c4",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "678df9d4d529794c86e43178",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "691ef765f8753a3a4bd57f41",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "691ef956511cd611ae047304",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "692feafdcac31c49a75ceb6f",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "692feff1d1af4414544bc09e",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "692feff1d1af4414544bc09f",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "692ff205cac31c49a75cedf0",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "6954fe47cfc2b01310fd4556",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "6954ff4d53efb17bb63cc295",
+          "status": "ACTIVATED"
+        },
+        {
+          "pluginId": "6955031d0026015b2b0a7c10",
+          "status": "ACTIVATED"
+        }
+      ],
+      "slug": "peter-s-apps",
+      "isAutoGeneratedWorkspace": true,
+      "organizationId": "68aac349352f000544daf8e5"
+    }
+  ]
+}

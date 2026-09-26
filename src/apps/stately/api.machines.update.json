@@ -1,0 +1,720 @@
+[
+  {
+    "result": {
+      "data": {
+        "json": {
+          "updatedMachine": {
+            "id": "28338ac0-680f-49e6-95f4-fc0a9e7f01e5",
+            "name": "admin",
+            "definition": {
+              "id": "28338ac0-680f-49e6-95f4-fc0a9e7f01e5",
+              "edges": [
+                {
+                  "id": "admin.idle#ACTIVATE[0]",
+                  "data": {
+                    "actions": [],
+                    "eventTypeData": {
+                      "type": "named",
+                      "eventType": "ACTIVATE"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.idle",
+                  "target": "admin.active",
+                  "position": {
+                    "x": 177,
+                    "y": 560
+                  },
+                  "uniqueId": "854ybuorolk"
+                },
+                {
+                  "id": "admin.active.deleting#done.invoke.deleteRoom[0]",
+                  "data": {
+                    "actions": [
+                      {
+                        "kind": "named",
+                        "action": {
+                          "type": "onDeleteSuccess",
+                          "params": {}
+                        }
+                      }
+                    ],
+                    "eventTypeData": {
+                      "type": "invocation.done",
+                      "invocationId": "deleteRoom"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active.deleting",
+                  "target": "admin.active.ready",
+                  "position": {
+                    "x": 729,
+                    "y": 677
+                  },
+                  "uniqueId": "xs3l2mzz5s"
+                },
+                {
+                  "id": "admin.active.deleting#error.platform.deleteRoom[0]",
+                  "data": {
+                    "actions": [
+                      {
+                        "kind": "named",
+                        "action": {
+                          "type": "onDeleteError",
+                          "params": {}
+                        }
+                      }
+                    ],
+                    "eventTypeData": {
+                      "type": "invocation.error",
+                      "invocationId": "deleteRoom"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active.deleting",
+                  "target": "admin.active.ready",
+                  "position": {
+                    "x": 740,
+                    "y": 541
+                  },
+                  "uniqueId": "8j6nonwf2b"
+                },
+                {
+                  "id": "admin.active#DEACTIVATE[0]",
+                  "data": {
+                    "actions": [],
+                    "eventTypeData": {
+                      "type": "named",
+                      "eventType": "DEACTIVATE"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active",
+                  "target": "admin.idle",
+                  "position": {
+                    "x": 168,
+                    "y": 390
+                  },
+                  "uniqueId": "vksuzs2d2b"
+                },
+                {
+                  "id": "admin.active#SET_SETTINGS[0]",
+                  "data": {
+                    "guard": {
+                      "kind": "named",
+                      "type": "isAdmin",
+                      "params": {}
+                    },
+                    "actions": [
+                      {
+                        "kind": "named",
+                        "action": {
+                          "type": "setSettings",
+                          "params": {}
+                        }
+                      },
+                      {
+                        "kind": "named",
+                        "action": {
+                          "type": "notify",
+                          "params": {}
+                        }
+                      }
+                    ],
+                    "eventTypeData": {
+                      "type": "named",
+                      "eventType": "SET_SETTINGS"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active",
+                  "position": {
+                    "x": 1317,
+                    "y": 911
+                  },
+                  "uniqueId": "bj7gbl08iqm"
+                },
+                {
+                  "id": "admin.active#ACTIVATE_SEGMENT[0]",
+                  "data": {
+                    "guard": {
+                      "kind": "named",
+                      "type": "isAdmin",
+                      "params": {}
+                    },
+                    "actions": [
+                      {
+                        "kind": "named",
+                        "action": {
+                          "type": "activateSegment",
+                          "params": {}
+                        }
+                      }
+                    ],
+                    "eventTypeData": {
+                      "type": "named",
+                      "eventType": "ACTIVATE_SEGMENT"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active",
+                  "position": {
+                    "x": 1317,
+                    "y": 230
+                  },
+                  "uniqueId": "ic251u435d"
+                },
+                {
+                  "id": "admin.active#INJECT_SEGMENT_TRACKS[0]",
+                  "data": {
+                    "guard": {
+                      "kind": "named",
+                      "type": "isAdmin",
+                      "params": {}
+                    },
+                    "actions": [
+                      {
+                        "kind": "named",
+                        "action": {
+                          "type": "injectSegmentTracks",
+                          "params": {}
+                        }
+                      }
+                    ],
+                    "eventTypeData": {
+                      "type": "named",
+                      "eventType": "INJECT_SEGMENT_TRACKS"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active",
+                  "position": {
+                    "x": 1317,
+                    "y": 1089
+                  },
+                  "uniqueId": "3is3lrxrjcz"
+                },
+                {
+                  "id": "admin.active#CLEAR_PLAYLIST[0]",
+                  "data": {
+                    "guard": {
+                      "kind": "named",
+                      "type": "isAdmin",
+                      "params": {}
+                    },
+                    "actions": [
+                      {
+                        "kind": "named",
+                        "action": {
+                          "type": "clearPlaylist",
+                          "params": {}
+                        }
+                      }
+                    ],
+                    "eventTypeData": {
+                      "type": "named",
+                      "eventType": "CLEAR_PLAYLIST"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active",
+                  "position": {
+                    "x": 1317,
+                    "y": 370
+                  },
+                  "uniqueId": "gtmxzyh9dm5"
+                },
+                {
+                  "id": "admin.active#DELETE_ROOM[0]",
+                  "data": {
+                    "guard": {
+                      "kind": "named",
+                      "type": "isRoomCreator",
+                      "params": {}
+                    },
+                    "actions": [],
+                    "eventTypeData": {
+                      "type": "named",
+                      "eventType": "DELETE_ROOM"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active",
+                  "target": "admin.active.deleting",
+                  "position": {
+                    "x": 396,
+                    "y": 510
+                  },
+                  "uniqueId": "gmvguxtob0l"
+                },
+                {
+                  "id": "admin.active#DEPUTIZE_DJ[0]",
+                  "data": {
+                    "guard": {
+                      "kind": "named",
+                      "type": "isAdmin",
+                      "params": {}
+                    },
+                    "actions": [
+                      {
+                        "kind": "named",
+                        "action": {
+                          "type": "deputizeDj",
+                          "params": {}
+                        }
+                      }
+                    ],
+                    "eventTypeData": {
+                      "type": "named",
+                      "eventType": "DEPUTIZE_DJ"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active",
+                  "position": {
+                    "x": 1317,
+                    "y": 90
+                  },
+                  "uniqueId": "2vynfacq9qw"
+                },
+                {
+                  "id": "admin.active#DESIGNATE_ADMIN[0]",
+                  "data": {
+                    "guard": {
+                      "kind": "named",
+                      "type": "isRoomCreator",
+                      "params": {}
+                    },
+                    "actions": [
+                      {
+                        "kind": "named",
+                        "action": {
+                          "type": "designateAdmin",
+                          "params": {}
+                        }
+                      }
+                    ],
+                    "eventTypeData": {
+                      "type": "named",
+                      "eventType": "DESIGNATE_ADMIN"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active",
+                  "position": {
+                    "x": 1317,
+                    "y": 535
+                  },
+                  "uniqueId": "xn0i9921cie"
+                },
+                {
+                  "id": "admin.active#TOGGLE_PERSONA[0]",
+                  "data": {
+                    "guard": {
+                      "kind": "named",
+                      "type": "isAdmin",
+                      "params": {}
+                    },
+                    "actions": [
+                      {
+                        "kind": "named",
+                        "action": {
+                          "type": "togglePersona",
+                          "params": {}
+                        }
+                      }
+                    ],
+                    "eventTypeData": {
+                      "type": "named",
+                      "eventType": "TOGGLE_PERSONA"
+                    }
+                  },
+                  "size": {
+                    "width": 0,
+                    "height": 0
+                  },
+                  "source": "admin.active",
+                  "position": {
+                    "x": 1317,
+                    "y": 771
+                  },
+                  "uniqueId": "na5y0hdxyi"
+                }
+              ],
+              "context": {},
+              "schemas": {
+                "tags": {},
+                "input": null,
+                "actors": {},
+                "delays": {},
+                "events": {
+                  "ACTIVATE": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "DEACTIVATE": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "DELETE_ROOM": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "DEPUTIZE_DJ": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "SET_SETTINGS": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "CLEAR_PLAYLIST": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "TOGGLE_PERSONA": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "DESIGNATE_ADMIN": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "ACTIVATE_SEGMENT": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "INJECT_SEGMENT_TRACKS": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                },
+                "guards": {},
+                "output": null,
+                "actions": {},
+                "context": {}
+              },
+              "rootNode": {
+                "id": "admin",
+                "data": {
+                  "key": "admin",
+                  "exit": [],
+                  "tags": [],
+                  "entry": [],
+                  "assets": [],
+                  "invoke": [],
+                  "initial": "idle"
+                },
+                "size": {
+                  "width": 0,
+                  "height": 0
+                },
+                "nodes": [
+                  {
+                    "id": "admin.idle",
+                    "data": {
+                      "key": "idle",
+                      "exit": [],
+                      "tags": [],
+                      "entry": [],
+                      "assets": [],
+                      "invoke": []
+                    },
+                    "size": {
+                      "width": 0,
+                      "height": 0
+                    },
+                    "nodes": [],
+                    "position": {
+                      "x": 60,
+                      "y": 396
+                    },
+                    "uniqueId": "kxgrfsqxbtl"
+                  },
+                  {
+                    "id": "admin.active",
+                    "data": {
+                      "key": "active",
+                      "exit": [],
+                      "tags": [],
+                      "entry": [],
+                      "assets": [],
+                      "invoke": [],
+                      "initial": "ready"
+                    },
+                    "size": {
+                      "width": 0,
+                      "height": 0
+                    },
+                    "nodes": [
+                      {
+                        "id": "admin.active.ready",
+                        "data": {
+                          "key": "ready",
+                          "exit": [],
+                          "tags": [],
+                          "entry": [],
+                          "assets": [],
+                          "invoke": []
+                        },
+                        "size": {
+                          "width": 0,
+                          "height": 0
+                        },
+                        "nodes": [],
+                        "position": {
+                          "x": 606,
+                          "y": 692
+                        },
+                        "uniqueId": "z1eemc2xia"
+                      },
+                      {
+                        "id": "admin.active.deleting",
+                        "data": {
+                          "key": "deleting",
+                          "exit": [],
+                          "tags": [],
+                          "entry": [],
+                          "assets": [],
+                          "invoke": [
+                            {
+                              "id": "deleteRoom",
+                              "src": "deleteRoom",
+                              "kind": "named",
+                              "input": {},
+                              "settings": {}
+                            }
+                          ]
+                        },
+                        "size": {
+                          "width": 0,
+                          "height": 0
+                        },
+                        "nodes": [],
+                        "position": {
+                          "x": 985,
+                          "y": 605
+                        },
+                        "uniqueId": "keta2xoxzyd"
+                      }
+                    ],
+                    "position": {
+                      "x": 348,
+                      "y": 462
+                    },
+                    "uniqueId": "y9ypfbj7i8"
+                  }
+                ],
+                "position": {
+                  "x": 12,
+                  "y": 42
+                },
+                "uniqueId": "k7dletu92ik"
+              },
+              "implementations": {
+                "actors": {
+                  "deleteRoom": {
+                    "id": "deleteRoom",
+                    "kind": "named",
+                    "name": "deleteRoom",
+                    "type": "actor",
+                    "input": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "output": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  }
+                },
+                "guards": {
+                  "isAdmin": {
+                    "id": "isAdmin",
+                    "name": "isAdmin",
+                    "type": "guard",
+                    "params": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  },
+                  "isRoomCreator": {
+                    "id": "isRoomCreator",
+                    "name": "isRoomCreator",
+                    "type": "guard",
+                    "params": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  }
+                },
+                "actions": {
+                  "notify": {
+                    "id": "notify",
+                    "name": "notify",
+                    "type": "action",
+                    "schema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  },
+                  "deputizeDj": {
+                    "id": "deputizeDj",
+                    "name": "deputizeDj",
+                    "type": "action",
+                    "schema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  },
+                  "setSettings": {
+                    "id": "setSettings",
+                    "name": "setSettings",
+                    "type": "action",
+                    "schema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  },
+                  "clearPlaylist": {
+                    "id": "clearPlaylist",
+                    "name": "clearPlaylist",
+                    "type": "action",
+                    "schema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  },
+                  "onDeleteError": {
+                    "id": "onDeleteError",
+                    "name": "onDeleteError",
+                    "type": "action",
+                    "schema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  },
+                  "togglePersona": {
+                    "id": "togglePersona",
+                    "name": "togglePersona",
+                    "type": "action",
+                    "schema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  },
+                  "designateAdmin": {
+                    "id": "designateAdmin",
+                    "name": "designateAdmin",
+                    "type": "action",
+                    "schema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  },
+                  "activateSegment": {
+                    "id": "activateSegment",
+                    "name": "activateSegment",
+                    "type": "action",
+                    "schema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  },
+                  "onDeleteSuccess": {
+                    "id": "onDeleteSuccess",
+                    "name": "onDeleteSuccess",
+                    "type": "action",
+                    "schema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  },
+                  "injectSegmentTracks": {
+                    "id": "injectSegmentTracks",
+                    "name": "injectSegmentTracks",
+                    "type": "action",
+                    "schema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "imports": []
+                  }
+                }
+              }
+            },
+            "format": "digraph",
+            "projectVersionId": "b1053c5c-e8a3-4496-a134-249e4220f608",
+            "forkParentId": null,
+            "lastEditedById": "1a2da839-6332-497d-bd2b-fa450b45b886",
+            "originalCode": "export const adminMachine = setup({\n  types: {\n    context: {} as AdminContext,\n    events: {} as AdminEvent,\n  },\n  actors: {\n    deleteRoom: deleteRoomLogic,\n  },\n  guards: {\n    isAdmin: () => {\n      return getIsAdmin()\n    },\n    isRoomCreator: () => {\n      const user = getCurrentUser()\n      const room = getCurrentRoom()\n      return !!user && !!room && user.userId === room.creator\n    },\n  },\n  actions: {\n    deputizeDj: ({ event }) => {\n      if (event.type !== \"DEPUTIZE_DJ\") return\n      emitToSocket(\"DEPUTIZE_DJ\", event.userId)\n    },\n    designateAdmin: ({ event }) => {\n      if (event.type !== \"DESIGNATE_ADMIN\") return\n      emitToSocket(\"DESIGNATE_ADMIN\", event.userId)\n    },\n    togglePersona: ({ event }) => {\n      if (event.type !== \"TOGGLE_PERSONA\") return\n      emitToSocket(\"TOGGLE_PERSONA\", { userId: event.userId, personaId: event.personaId })\n    },\n    setSettings: ({ event }) => {\n      if (event.type !== \"SET_SETTINGS\") return\n      emitToSocket(\"SET_ROOM_SETTINGS\", event.data)\n    },\n    activateSegment: ({ event }) => {\n      if (event.type !== \"ACTIVATE_SEGMENT\") return\n      emitToSocket(\"SET_ACTIVE_SEGMENT\", event.data)\n    },\n    injectSegmentTracks: ({ event }) => {\n      if (event.type !== \"INJECT_SEGMENT_TRACKS\") return\n      emitToSocket(\"INJECT_SEGMENT_TRACKS\", event.data)\n    },\n    clearPlaylist: () => {\n      emitToSocket(\"CLEAR_PLAYLIST\", {})\n    },\n    notify: () => {\n      toast({\n        title: \"Settings updated\",\n        status: \"success\",\n        duration: 3000,\n      })\n    },\n    onDeleteSuccess: () => {\n      toast({\n        title: \"Room deleted\",\n        description: \"Your room has been deleted\",\n        status: \"success\",\n      })\n      window.location.href = \"/\"\n    },\n    onDeleteError: () => {\n      toast({\n        title: \"Error deleting room\",\n        description: \"There was an error deleting your room\",\n        status: \"error\",\n      })\n    },\n  },\n}).createMachine({\n  id: \"admin\",\n  initial: \"idle\",\n  context: {},\n  states: {\n    // Idle state - not activated for room\n    idle: {\n      on: {\n        ACTIVATE: \"active\",\n      },\n    },\n    // Active state — emits admin actions only (no SERVER_EVENT handlers / socket sub)\n    active: {\n      on: {\n        DEACTIVATE: {\n          target: \"idle\",\n        },\n        SET_SETTINGS: { actions: [\"setSettings\", \"notify\"], guard: \"isAdmin\" },\n        ACTIVATE_SEGMENT: { actions: [\"activateSegment\"], guard: \"isAdmin\" },\n        INJECT_SEGMENT_TRACKS: { actions: [\"injectSegmentTracks\"], guard: \"isAdmin\" },\n        CLEAR_PLAYLIST: { actions: [\"clearPlaylist\"], guard: \"isAdmin\" },\n        DELETE_ROOM: { target: \".deleting\", guard: \"isRoomCreator\" },\n        DEPUTIZE_DJ: { actions: [\"deputizeDj\"], guard: \"isAdmin\" },\n        DESIGNATE_ADMIN: { actions: [\"designateAdmin\"], guard: \"isRoomCreator\" },\n        TOGGLE_PERSONA: { actions: [\"togglePersona\"], guard: \"isAdmin\" },\n      },\n      initial: \"ready\",\n      states: {\n        ready: {},\n        deleting: {\n          invoke: {\n            id: \"deleteRoom\",\n            src: \"deleteRoom\",\n            input: ({ event }) => {\n              if (event.type === \"DELETE_ROOM\") {\n                return { id: event.data.id }\n              }\n              return { id: \"\" }\n            },\n            onDone: {\n              target: \"ready\",\n              actions: [\"onDeleteSuccess\"],\n            },\n            onError: {\n              target: \"ready\",\n              actions: [\"onDeleteError\"],\n            },\n          },\n        },\n      },\n    },\n  },\n})\n",
+            "createdAt": "2026-09-23T14:30:07.441Z",
+            "updatedAt": "2026-09-23T14:52:39.134Z",
+            "fileId": null,
+            "fileIndex": null
+          },
+          "autoSavedVersion": null,
+          "editApplyError": null
+        },
+        "meta": {
+          "values": {
+            "updatedMachine.createdAt": [
+              "Date"
+            ],
+            "updatedMachine.updatedAt": [
+              "Date"
+            ],
+            "editApplyError": [
+              "undefined"
+            ]
+          }
+        }
+      }
+    }
+  }
+]

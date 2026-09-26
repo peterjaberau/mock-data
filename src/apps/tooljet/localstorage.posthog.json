@@ -1,0 +1,66 @@
+{
+  "distinct_id": "peterjaberau@gmail.com",
+  "$sesid": [
+    1790339676553,
+    "01a0d88e-87aa-789c-a151-df5ee0fe7d7f",
+    1790339614634
+  ],
+  "$epp": true,
+  "$initial_person_info": {
+    "r": "https://accounts.google.com/",
+    "u": "https://app.tooljet.ai/sso/google#state=%7B%22redirectTo%22:%22/home%22%7D&iss=https://accounts.google.com&id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxMGY4NzQwNWE5NzljMWRmMzZkZjI2NjA2NzM0ZjMzY2Q4NWMyNzEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMjk0MjA1ODM3NjAxLXVnZmdmZXNhcmo0dW0zdXV0bm04OWFwYnZoZDQ3bXY4LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMjk0MjA1ODM3NjAxLXVnZmdmZXNhcmo0dW0zdXV0bm04OWFwYnZoZDQ3bXY4LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAyOTYyMzE1MTU5MTI3NDA0MDQ5IiwiZW1haWwiOiJwZXRlcmphYmVyYXVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5vbmNlIjoiaUY0cXlwVHkzdyIsIm5iZiI6MTc5MDMzOTMxMiwiaWF0IjoxNzkwMzM5NjEyLCJleHAiOjE3OTAzNDMyMTIsImp0aSI6IjFlMDIxZDcxYmUxMTcxZWNlYTJhYmM4NTgyNDI3YmFmMGQxNzUyYjAifQ.dDqs4QONQhFh4fmlEB8_Fuq8kS3Lr0A4x422cj95d2kg-36GfzNVZqQ8cUDyjC4MF0Z9jdxOuMWl-_4cArDYKWqyQLzJsSqOPMHBIgFz0IMKCxAJ8JHTJGwKDJajll_w05IrEbSVgsURl-phSUC0oxDggxSFFvPClWMRSmM2MbZEoOWxDyZ53cibmybRsQp2u0Dp13DxD8U7z8J11n728E5eXzvnAtAmVILNHnnUGrYaAkE2F2oPpl2dfi"
+  },
+  "$initialization_time": "2026-09-25T12:34:14.390Z",
+  "$configured_session_timeout_ms": 1800000,
+  "$client_session_props": {
+    "sessionId": "01a0d88e-87aa-789c-a151-df5ee0fe7d7f",
+    "props": {
+      "r": "https://accounts.google.com/",
+      "u": "https://app.tooljet.ai/sso/google#state=%7B%22redirectTo%22:%22/home%22%7D&iss=https://accounts.google.com&id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxMGY4NzQwNWE5NzljMWRmMzZkZjI2NjA2NzM0ZjMzY2Q4NWMyNzEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMjk0MjA1ODM3NjAxLXVnZmdmZXNhcmo0dW0zdXV0bm04OWFwYnZoZDQ3bXY4LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMjk0MjA1ODM3NjAxLXVnZmdmZXNhcmo0dW0zdXV0bm04OWFwYnZoZDQ3bXY4LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAyOTYyMzE1MTU5MTI3NDA0MDQ5IiwiZW1haWwiOiJwZXRlcmphYmVyYXVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5vbmNlIjoiaUY0cXlwVHkzdyIsIm5iZiI6MTc5MDMzOTMxMiwiaWF0IjoxNzkwMzM5NjEyLCJleHAiOjE3OTAzNDMyMTIsImp0aSI6IjFlMDIxZDcxYmUxMTcxZWNlYTJhYmM4NTgyNDI3YmFmMGQxNzUyYjAifQ.dDqs4QONQhFh4fmlEB8_Fuq8kS3Lr0A4x422cj95d2kg-36GfzNVZqQ8cUDyjC4MF0Z9jdxOuMWl-_4cArDYKWqyQLzJsSqOPMHBIgFz0IMKCxAJ8JHTJGwKDJajll_w05IrEbSVgsURl-phSUC0oxDggxSFFvPClWMRSmM2MbZEoOWxDyZ53cibmybRsQp2u0Dp13DxD8U7z8J11n728E5eXzvnAtAmVILNHnnUGrYaAkE2F2oPpl2dfi"
+    }
+  },
+  "$device_id": "01a0d88e-87ab-79c9-85c2-6ed9db0d1ad4",
+  "$user_state": "identified",
+  "$user_id": "peterjaberau@gmail.com",
+  "$stored_person_properties": {
+    "name": "Peter Jaber",
+    "time": {}
+  },
+  "$capture_rate_limit": {
+    "tokens": 99,
+    "last": 1790339654538
+  },
+  "$session_recording_enabled_server_side": true,
+  "$console_log_recording_enabled_server_side": true,
+  "$session_recording_network_payload_capture": {
+    "capturePerformance": {
+      "network_timing": true,
+      "web_vitals": false,
+      "web_vitals_allowed_metrics": null
+    }
+  },
+  "$session_recording_masking": null,
+  "$session_recording_canvas_recording": {
+    "enabled": false,
+    "fps": null,
+    "quality": null
+  },
+  "$replay_sample_rate": null,
+  "$replay_minimum_duration": null,
+  "$replay_script_config": {
+    "script": "posthog-recorder"
+  },
+  "$autocapture_disabled_server_side": false,
+  "$heatmaps_enabled_server_side": false,
+  "$web_vitals_enabled_server_side": false,
+  "$web_vitals_allowed_metrics": null,
+  "$exception_capture_enabled_server_side": false,
+  "$error_tracking_suppression_rules": [],
+  "$dead_clicks_enabled_server_side": false,
+  "$active_feature_flags": [],
+  "$enabled_feature_flags": {},
+  "$feature_flag_payloads": {},
+  "$feature_flag_details": {},
+  "$feature_flag_request_id": "80c7361f-3555-4cf3-b1f5-27322ed4803a",
+  "user_created_at": {}
+}

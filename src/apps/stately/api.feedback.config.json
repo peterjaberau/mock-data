@@ -1,0 +1,78 @@
+{
+  "organization": {
+    "id": "6a8c97c5c56fc3f9a0f75df2",
+    "name": "statelyai",
+    "displayName": "Stately.ai",
+    "color": "#3489FF",
+    "whitelabel": false,
+    "customTheme": {
+      "enabled": false,
+      "graySaturation": 20,
+      "graySaturator": "#0b0f19",
+      "_id": "6a8cf47790052e8aff27f918"
+    },
+    "translatedTypography": {
+      "feedbackWidget": {
+        "title": {
+          "en": "Give us feedback"
+        },
+        "description": {
+          "en": "Tell us how we could make the product more useful for you."
+        }
+      },
+      "feedback": {
+        "welcomeMessageTitle": {
+          "en": "Have something to say?"
+        },
+        "welcomeMessageDescription": {
+          "en": "Tell us how we could make the product more useful to you."
+        },
+        "feedbackCreationButtonText": {
+          "en": "Create A New Post"
+        }
+      }
+    },
+    "settings": {
+      "anyoneCanSubmit": false,
+      "disableScreenshotForFeedbackWidget": false,
+      "disableSuggestionsForFeedbackWidget": false,
+      "disablePortalLinkForFeedbackWidget": false,
+      "feedbackWidgetDisabled": false,
+      "feedbackLocales": [
+        {
+          "_id": "6a8c97c5c56fc3f9a0f75df8",
+          "locale": "en",
+          "default": true
+        }
+      ],
+      "defaultTheme": "client",
+      "hideAuthorInfo": false
+    },
+    "portalUrl": "https://statelyai.featurebase.app",
+    "feedbackModuleEnabled": true,
+    "helpCenterModuleEnabled": true,
+    "widgetAvailable": true
+  },
+  "postCategories": [
+    {
+      "id": "6a8c97c5c56fc3f9a0f75dfc",
+      "category": "Feature Request",
+      "icon": {
+        "type": "emoji",
+        "value": "💡"
+      },
+      "customInputFields": [],
+      "translatedCategoryName": {
+        "en": "Feature Request"
+      }
+    }
+  ],
+  "user": null,
+  "auth": {
+    "anonymousId": "01a0c958-dc31-781f-ba8e-9b5054b12b56",
+    "accessToken": null
+  },
+  "access": {
+    "granted": true
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "context": "{{({ input }) => ({\n        editor: input.editor,\n        schemaType: input.schemaType,\n    })}}",
+  "id": "plugin - decorator keyboard shortcut",
+  "invoke": {
+    "input": {},
+    "src": "disable listener"
+  },
+  "initial": "disabled",
+  "states": {
+    "disabled": {
+      "on": {
+        "enable": [
+          {
+            "target": "enabled",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "enabled": {
+      "invoke": {
+        "input": {},
+        "src": "keyboard shortcut listener"
+      },
+      "on": {
+        "disable": [
+          {
+            "target": "disabled",
+            "actions": []
+          }
+        ]
+      }
+    }
+  }
+}

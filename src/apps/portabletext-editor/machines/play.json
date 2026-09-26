@@ -1,0 +1,311 @@
+{
+  "context": "{{({ input }) => ({\n        editorIdGenerator: input.editorIdGenerator,\n        featureFlags: defaultPlaygroundFeatureFlags,\n        value: undefined,\n        patchDerivedValue: undefined,\n        rangeDecorations: [],\n        editors: [],\n        patchFeed: [],\n    })}}",
+  "id": "play",
+  "entry": [
+    {
+      "type": "inline:play#entry[0]"
+    },
+    {
+      "type": "inline:play#entry[1]"
+    }
+  ],
+  "states": {
+    "value visibility": {
+      "initial": "shown",
+      "states": {
+        "shown": {
+          "on": {
+            "toggle value": [
+              {
+                "target": "hidden",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "hidden": {
+          "on": {
+            "toggle value": [
+              {
+                "target": "shown",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "patches visibility": {
+      "initial": "hidden",
+      "states": {
+        "hidden": {
+          "on": {
+            "toggle patches": [
+              {
+                "target": "shown",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "shown": {
+          "on": {
+            "toggle patches": [
+              {
+                "target": "hidden",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "inspector visibility": {
+      "initial": "shown",
+      "states": {
+        "shown": {
+          "on": {
+            "toggle inspector": [
+              {
+                "target": "hidden",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "hidden": {
+          "on": {
+            "toggle inspector": [
+              {
+                "target": "shown",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "copying value": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "copy value": [
+              {
+                "target": "copying",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "copying": {
+          "invoke": {
+            "input": {},
+            "src": "copy text to clipboard",
+            "onDone": [
+              {
+                "target": "copied",
+                "actions": []
+              }
+            ],
+            "onError": [
+              {
+                "target": "idle",
+                "actions": [
+                  {
+                    "type": "inline:play.copying value.copying#error.platform.play.copying value.copying:invocation[0][-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "copied": {
+          "after": {
+            "2000": [
+              {
+                "target": "#play.copying value.idle",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "copying patches": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "copy patches": [
+              {
+                "target": "copying",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "copying": {
+          "invoke": {
+            "input": {},
+            "src": "copy text to clipboard",
+            "onDone": [
+              {
+                "target": "copied",
+                "actions": []
+              }
+            ],
+            "onError": [
+              {
+                "target": "idle",
+                "actions": [
+                  {
+                    "type": "inline:play.copying patches.copying#error.platform.play.copying patches.copying:invocation[0][-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "copied": {
+          "after": {
+            "2000": [
+              {
+                "target": "#play.copying patches.idle",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "copying markdown": {
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "copy markdown": [
+              {
+                "target": "copying",
+                "actions": []
+              }
+            ]
+          }
+        },
+        "copying": {
+          "invoke": {
+            "input": {},
+            "src": "copy text to clipboard",
+            "onDone": [
+              {
+                "target": "copied",
+                "actions": []
+              }
+            ],
+            "onError": [
+              {
+                "target": "idle",
+                "actions": [
+                  {
+                    "type": "inline:play.copying markdown.copying#error.platform.play.copying markdown.copying:invocation[0][-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "copied": {
+          "after": {
+            "2000": [
+              {
+                "target": "#play.copying markdown.idle",
+                "actions": []
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "on": {
+    "add editor": [
+      {
+        "actions": [
+          {
+            "type": "add editor to context"
+          }
+        ]
+      }
+    ],
+    "editor.remove": [
+      {
+        "actions": [
+          {
+            "type": "stop editor"
+          },
+          {
+            "type": "remove editor from context"
+          }
+        ]
+      }
+    ],
+    "editor.mutation": [
+      {
+        "actions": [
+          {
+            "type": "broadcast patches"
+          },
+          {
+            "type": "update value"
+          },
+          {
+            "type": "update patch-derived value"
+          },
+          {
+            "type": "broadcast value"
+          },
+          {
+            "type": "add to patch feed"
+          }
+        ]
+      }
+    ],
+    "clear patches": [
+      {
+        "actions": [
+          {
+            "type": "clear patch feed"
+          }
+        ]
+      }
+    ],
+    "editor.add range decoration": [
+      {
+        "actions": [
+          {
+            "type": "add range decoration"
+          }
+        ]
+      }
+    ],
+    "editor.move range decoration": [
+      {
+        "actions": [
+          {
+            "type": "move range decoration"
+          }
+        ]
+      }
+    ],
+    "toggle feature flag": [
+      {
+        "actions": [
+          {
+            "type": "inline:play#toggle feature flag[-1]#transition[0]"
+          }
+        ]
+      }
+    ]
+  },
+  "type": "parallel"
+}

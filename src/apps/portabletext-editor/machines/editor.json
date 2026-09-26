@@ -1,0 +1,535 @@
+{
+  "context": "{{({ input }) => ({\n        behaviors: new Set(coreBehaviorsConfig),\n        behaviorsSorted: false,\n        initialConverters: input.converters ?? [],\n        keyGenerator: input.keyGenerator,\n        pendingEvents: [],\n        pendingIncomingPatchesEvents: [],\n        pendingRegistrations: [],\n        schema: input.schema,\n        initialReadOnly: input.readOnly ?? false,\n        initialValue: input.initialValue,\n    })}}",
+  "id": "editor",
+  "states": {
+    "edit mode": {
+      "initial": "read only",
+      "states": {
+        "read only": {
+          "initial": "determine initial edit mode",
+          "states": {
+            "determine initial edit mode": {
+              "entry": {
+                "type": "inline:editor.edit mode.read only.determine initial edit mode#entry[0]"
+              },
+              "exit": {
+                "type": "inline:editor.edit mode.read only.determine initial edit mode#exit[0]"
+              },
+              "on": {
+                "done syncing value": [
+                  {
+                    "target": "read only",
+                    "guard": "inline:editor.edit mode.read only.determine initial edit mode#done syncing value[-1]#guard",
+                    "actions": []
+                  },
+                  {
+                    "target": "#editor.edit mode.editable",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "read only": {
+              "entry": {
+                "type": "inline:editor.edit mode.read only.read only#entry[0]"
+              },
+              "exit": {
+                "type": "inline:editor.edit mode.read only.read only#exit[0]"
+              },
+              "on": {
+                "update readOnly": [
+                  {
+                    "target": "#editor.edit mode.editable",
+                    "guard": "inline:editor.edit mode.read only.read only#update readOnly[-1]#guard",
+                    "actions": [
+                      {
+                        "type": "emit editable"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "on": {
+            "behavior event": [
+              {
+                "guard": "inline:editor.edit mode.read only#behavior event[-1]#guard",
+                "actions": [
+                  {
+                    "type": "sort behaviors"
+                  },
+                  {
+                    "type": "handle behavior event"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "editable": {
+          "initial": "idle",
+          "states": {
+            "idle": {
+              "entry": {
+                "type": "inline:editor.edit mode.editable.idle#entry[0]"
+              },
+              "exit": {
+                "type": "inline:editor.edit mode.editable.idle#exit[0]"
+              },
+              "on": {
+                "dragstart": [
+                  {
+                    "target": "dragging internally",
+                    "actions": [
+                      {
+                        "type": "inline:editor.edit mode.editable.idle#dragstart[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "dragging internally": {
+              "entry": {
+                "type": "inline:editor.edit mode.editable.dragging internally#entry[0]"
+              },
+              "exit": [
+                {
+                  "type": "inline:editor.edit mode.editable.dragging internally#exit[0]"
+                },
+                {
+                  "type": "inline:editor.edit mode.editable.dragging internally#exit[1]"
+                },
+                {
+                  "type": "inline:editor.edit mode.editable.dragging internally#exit[2]"
+                },
+                {
+                  "type": "inline:editor.edit mode.editable.dragging internally#exit[3]"
+                }
+              ],
+              "tags": "dragging internally",
+              "on": {
+                "dragstart": [
+                  {
+                    "actions": [
+                      {
+                        "type": "inline:editor.edit mode.editable.dragging internally#dragstart[-1]#transition[0]"
+                      }
+                    ]
+                  }
+                ],
+                "dragend": [
+                  {
+                    "target": "idle",
+                    "actions": []
+                  }
+                ],
+                "drop": [
+                  {
+                    "target": "idle",
+                    "actions": []
+                  }
+                ]
+              }
+            },
+            "focusing": {
+              "initial": "checking if busy",
+              "states": {
+                "checking if busy": {
+                  "entry": {
+                    "type": "inline:editor.edit mode.editable.focusing.checking if busy#entry[0]"
+                  },
+                  "exit": {
+                    "type": "inline:editor.edit mode.editable.focusing.checking if busy#exit[0]"
+                  },
+                  "always": [
+                    {
+                      "target": "busy",
+                      "guard": "engine is busy",
+                      "actions": []
+                    },
+                    {
+                      "target": "#editor.edit mode.editable.idle",
+                      "actions": [
+                        {
+                          "type": "handle focus"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "busy": {
+                  "entry": {
+                    "type": "inline:editor.edit mode.editable.focusing.busy#entry[0]"
+                  },
+                  "exit": {
+                    "type": "inline:editor.edit mode.editable.focusing.busy#exit[0]"
+                  },
+                  "after": {
+                    "10": [
+                      {
+                        "target": "#editor.edit mode.editable.focusing.checking if busy",
+                        "actions": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "on": {
+            "update readOnly": [
+              {
+                "target": "#editor.edit mode.read only.read only",
+                "guard": "inline:editor.edit mode.editable#update readOnly[-1]#guard",
+                "actions": [
+                  {
+                    "type": "emit read only"
+                  }
+                ]
+              }
+            ],
+            "behavior event": [
+              {
+                "actions": [
+                  {
+                    "type": "sort behaviors"
+                  },
+                  {
+                    "type": "handle behavior event"
+                  }
+                ]
+              }
+            ],
+            "blur": [
+              {
+                "actions": [
+                  {
+                    "type": "handle blur"
+                  }
+                ]
+              }
+            ],
+            "focus": [
+              {
+                "target": ".focusing",
+                "actions": [
+                  {
+                    "type": "inline:editor.edit mode.editable#focus[-1]#transition[0]"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "setup": {
+      "initial": "setting up",
+      "states": {
+        "setting up": {
+          "entry": {
+            "type": "inline:editor.setup.setting up#entry[0]"
+          },
+          "exit": [
+            {
+              "type": "inline:editor.setup.setting up#exit[0]"
+            },
+            {
+              "type": "emit ready"
+            },
+            {
+              "type": "emit pending incoming patches"
+            },
+            {
+              "type": "clear pending incoming patches"
+            }
+          ],
+          "on": {
+            "internal.patch": [
+              {
+                "actions": [
+                  {
+                    "type": "defer event"
+                  }
+                ]
+              }
+            ],
+            "mutation": [
+              {
+                "actions": [
+                  {
+                    "type": "defer event"
+                  }
+                ]
+              }
+            ],
+            "done syncing value": [
+              {
+                "target": "set up",
+                "actions": []
+              }
+            ],
+            "patches": [
+              {
+                "actions": [
+                  {
+                    "type": "defer incoming patches"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "set up": {
+          "states": {
+            "value sync": {
+              "initial": "idle",
+              "states": {
+                "idle": {
+                  "entry": {
+                    "type": "inline:editor.setup.set up.value sync.idle#entry[0]"
+                  },
+                  "exit": {
+                    "type": "inline:editor.setup.set up.value sync.idle#exit[0]"
+                  },
+                  "on": {
+                    "patches": [
+                      {
+                        "actions": [
+                          {
+                            "type": "inline:editor.setup.set up.value sync.idle#patches[-1]#transition[0]"
+                          }
+                        ]
+                      }
+                    ],
+                    "syncing value": [
+                      {
+                        "target": "syncing value",
+                        "actions": []
+                      }
+                    ]
+                  }
+                },
+                "syncing value": {
+                  "entry": {
+                    "type": "inline:editor.setup.set up.value sync.syncing value#entry[0]"
+                  },
+                  "exit": [
+                    {
+                      "type": "inline:editor.setup.set up.value sync.syncing value#exit[0]"
+                    },
+                    {
+                      "type": "emit pending incoming patches"
+                    },
+                    {
+                      "type": "clear pending incoming patches"
+                    }
+                  ],
+                  "on": {
+                    "patches": [
+                      {
+                        "actions": [
+                          {
+                            "type": "defer incoming patches"
+                          }
+                        ]
+                      }
+                    ],
+                    "done syncing value": [
+                      {
+                        "target": "idle",
+                        "actions": []
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "writing": {
+              "initial": "pristine",
+              "states": {
+                "pristine": {
+                  "initial": "idle",
+                  "states": {
+                    "idle": {
+                      "entry": {
+                        "type": "inline:editor.setup.set up.writing.pristine.idle#entry[0]"
+                      },
+                      "exit": {
+                        "type": "inline:editor.setup.set up.writing.pristine.idle#exit[0]"
+                      },
+                      "on": {
+                        "internal.patch": [
+                          {
+                            "guard": "engine is normalizing node",
+                            "actions": [
+                              {
+                                "type": "defer event"
+                              }
+                            ]
+                          },
+                          {
+                            "target": "#editor.setup.set up.writing.dirty",
+                            "actions": [
+                              {
+                                "type": "defer event"
+                              }
+                            ]
+                          }
+                        ],
+                        "mutation": [
+                          {
+                            "guard": "engine is normalizing node",
+                            "actions": [
+                              {
+                                "type": "defer event"
+                              }
+                            ]
+                          },
+                          {
+                            "target": "#editor.setup.set up.writing.dirty",
+                            "actions": [
+                              {
+                                "type": "defer event"
+                              }
+                            ]
+                          }
+                        ],
+                        "patches": [
+                          {
+                            "actions": [
+                              {
+                                "type": "discard conflicting pending patches"
+                              }
+                            ]
+                          }
+                        ],
+                        "syncing value": [
+                          {
+                            "actions": [
+                              {
+                                "type": "discard all pending events"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "dirty": {
+                  "entry": [
+                    {
+                      "type": "inline:editor.setup.set up.writing.dirty#entry[0]"
+                    },
+                    {
+                      "type": "emit pending events"
+                    },
+                    {
+                      "type": "clear pending events"
+                    }
+                  ],
+                  "exit": {
+                    "type": "inline:editor.setup.set up.writing.dirty#exit[0]"
+                  },
+                  "on": {
+                    "internal.patch": [
+                      {
+                        "actions": [
+                          {
+                            "type": "emit patch event"
+                          }
+                        ]
+                      }
+                    ],
+                    "mutation": [
+                      {
+                        "actions": [
+                          {
+                            "type": "emit mutation event"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "type": "parallel"
+        }
+      }
+    }
+  },
+  "on": {
+    "add behavior": [
+      {
+        "actions": [
+          {
+            "type": "add behavior to context"
+          }
+        ]
+      }
+    ],
+    "remove behavior": [
+      {
+        "actions": [
+          {
+            "type": "remove behavior from context"
+          }
+        ]
+      }
+    ],
+    "add editor engine": [
+      {
+        "actions": [
+          {
+            "type": "add editor engine to context"
+          },
+          {
+            "type": "attach maps to editor engine"
+          }
+        ]
+      }
+    ],
+    "register": [
+      {
+        "actions": [
+          {
+            "type": "register"
+          }
+        ]
+      }
+    ],
+    "unregister": [
+      {
+        "actions": [
+          {
+            "type": "unregister"
+          }
+        ]
+      }
+    ],
+    "update selection": [
+      {
+        "actions": [
+          {
+            "type": "inline:editor#update selection[-1]#transition[0]"
+          }
+        ]
+      }
+    ],
+    "set drag ghost": [
+      {
+        "actions": [
+          {
+            "type": "inline:editor#set drag ghost[-1]#transition[0]"
+          }
+        ]
+      }
+    ]
+  },
+  "type": "parallel"
+}

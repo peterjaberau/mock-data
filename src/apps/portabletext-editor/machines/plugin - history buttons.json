@@ -1,0 +1,49 @@
+{
+  "context": "{{({ input }) => ({\n        editor: input.editor,\n    })}}",
+  "id": "plugin - history buttons",
+  "invoke": {
+    "input": {},
+    "src": "disable listener"
+  },
+  "initial": "disabled",
+  "states": {
+    "disabled": {
+      "on": {
+        "enable": [
+          {
+            "target": "enabled",
+            "actions": []
+          }
+        ]
+      }
+    },
+    "enabled": {
+      "on": {
+        "disable": [
+          {
+            "target": "disabled",
+            "actions": []
+          }
+        ],
+        "history.undo": [
+          {
+            "actions": [
+              {
+                "type": "inline:history buttons.enabled#history.undo[-1]#transition[0]"
+              }
+            ]
+          }
+        ],
+        "history.redo": [
+          {
+            "actions": [
+              {
+                "type": "inline:history buttons.enabled#history.redo[-1]#transition[0]"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

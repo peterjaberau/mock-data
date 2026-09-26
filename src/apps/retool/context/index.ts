@@ -1,112 +1,112 @@
 
 export const fromContext ={
-  locale: {
-    locale: 'en',
-    Pagination: {
-      'items_per_page': '\/ page',
-      'jump_to': 'Go to',
-      'jump_to_confirm': 'confirm',
-      page: '',
-      'prev_page': 'Previous Page',
-      'next_page': 'Next Page',
-      'prev_5': 'Previous 5 Pages',
-      'next_5': 'Next 5 Pages',
-      'prev_3': 'Previous 3 Pages',
-      'next_3': 'Next 3 Pages'
+  locale:{
+    "locale": "en",
+    "Pagination": {
+      "items_per_page": "/ page",
+      "jump_to": "Go to",
+      "jump_to_confirm": "confirm",
+      "page": "",
+      "prev_page": "Previous Page",
+      "next_page": "Next Page",
+      "prev_5": "Previous 5 Pages",
+      "next_5": "Next 5 Pages",
+      "prev_3": "Previous 3 Pages",
+      "next_3": "Next 3 Pages"
     },
-    DatePicker: {
-      lang: {
-        placeholder: 'Select date',
-        rangePlaceholder: [
-          'Start date',
-          'End date'
+    "DatePicker": {
+      "lang": {
+        "placeholder": "Select date",
+        "rangePlaceholder": [
+          "Start date",
+          "End date"
         ],
-        today: 'Today',
-        now: 'Now',
-        backToToday: 'Back to today',
-        ok: 'Ok',
-        clear: 'Clear',
-        month: 'Month',
-        year: 'Year',
-        timeSelect: 'select time',
-        dateSelect: 'select date',
-        weekSelect: 'Choose a week',
-        monthSelect: 'Choose a month',
-        yearSelect: 'Choose a year',
-        decadeSelect: 'Choose a decade',
-        yearFormat: 'YYYY',
-        dateFormat: 'M\/D\/YYYY',
-        dayFormat: 'D',
-        dateTimeFormat: 'M\/D\/YYYY HH:mm:ss',
-        monthBeforeYear: true,
-        previousMonth: 'Previous month (PageUp)',
-        nextMonth: 'Next month (PageDown)',
-        previousYear: 'Last year (Control + left)',
-        nextYear: 'Next year (Control + right)',
-        previousDecade: 'Last decade',
-        nextDecade: 'Next decade',
-        previousCentury: 'Last century',
-        nextCentury: 'Next century'
+        "today": "Today",
+        "now": "Now",
+        "backToToday": "Back to today",
+        "ok": "Ok",
+        "clear": "Clear",
+        "month": "Month",
+        "year": "Year",
+        "timeSelect": "select time",
+        "dateSelect": "select date",
+        "weekSelect": "Choose a week",
+        "monthSelect": "Choose a month",
+        "yearSelect": "Choose a year",
+        "decadeSelect": "Choose a decade",
+        "yearFormat": "YYYY",
+        "dateFormat": "M/D/YYYY",
+        "dayFormat": "D",
+        "dateTimeFormat": "M/D/YYYY HH:mm:ss",
+        "monthBeforeYear": true,
+        "previousMonth": "Previous month (PageUp)",
+        "nextMonth": "Next month (PageDown)",
+        "previousYear": "Last year (Control + left)",
+        "nextYear": "Next year (Control + right)",
+        "previousDecade": "Last decade",
+        "nextDecade": "Next decade",
+        "previousCentury": "Last century",
+        "nextCentury": "Next century"
       },
-      timePickerLocale: {
-        placeholder: 'Select time'
+      "timePickerLocale": {
+        "placeholder": "Select time"
       }
     },
-    TimePicker: {
-      placeholder: 'Select time'
+    "TimePicker": {
+      "placeholder": "Select time"
     },
-    global: {
-      placeholder: 'Please select'
+    "global": {
+      "placeholder": "Please select"
     },
-    Table: {
-      filterTitle: 'Filter menu',
-      filterConfirm: 'OK',
-      filterReset: 'Reset',
-      selectAll: 'Select current page',
-      selectInvert: 'Invert current page',
-      sortTitle: 'Sort',
-      expand: 'Expand row',
-      collapse: 'Collapse row'
+    "Table": {
+      "filterTitle": "Filter menu",
+      "filterConfirm": "OK",
+      "filterReset": "Reset",
+      "selectAll": "Select current page",
+      "selectInvert": "Invert current page",
+      "sortTitle": "Sort",
+      "expand": "Expand row",
+      "collapse": "Collapse row"
     },
-    Modal: {
-      okText: 'OK',
-      cancelText: 'Cancel',
-      justOkText: 'OK'
+    "Modal": {
+      "okText": "OK",
+      "cancelText": "Cancel",
+      "justOkText": "OK"
     },
-    Popconfirm: {
-      okText: 'OK',
-      cancelText: 'Cancel'
+    "Popconfirm": {
+      "okText": "OK",
+      "cancelText": "Cancel"
     },
-    Transfer: {
-      titles: [
-        '',
-        ''
+    "Transfer": {
+      "titles": [
+        "",
+        ""
       ],
-      searchPlaceholder: 'Search here',
-      itemUnit: 'item',
-      itemsUnit: 'items'
+      "searchPlaceholder": "Search here",
+      "itemUnit": "item",
+      "itemsUnit": "items"
     },
-    Upload: {
-      uploading: 'Uploading...',
-      removeFile: 'Remove file',
-      uploadError: 'Upload error',
-      previewFile: 'Preview file',
-      downloadFile: 'Download file'
+    "Upload": {
+      "uploading": "Uploading...",
+      "removeFile": "Remove file",
+      "uploadError": "Upload error",
+      "previewFile": "Preview file",
+      "downloadFile": "Download file"
     },
-    Empty: {
-      description: 'No Data'
+    "Empty": {
+      "description": "No Data"
     },
-    Icon: {
-      icon: 'icon'
+    "Icon": {
+      "icon": "icon"
     },
-    Text: {
-      edit: 'Edit',
-      copy: 'Copy',
-      copied: 'Copied',
-      expand: 'Expand'
+    "Text": {
+      "edit": "Edit",
+      "copy": "Copy",
+      "copied": "Copied",
+      "expand": "Expand"
     },
-    PageHeader: {
-      back: 'Back'
+    "PageHeader": {
+      "back": "Back"
     }
   },
   store: {
