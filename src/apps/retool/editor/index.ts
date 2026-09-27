@@ -20214,3 +20214,775 @@ export const EditorInspectorPanel = {
   },
 
 }
+
+export const ThemeProvider = {
+  "_migrated": true,
+  "danger": "#dc2626",
+  "info": "#3170f9",
+  "primary": "#3170f9",
+  "secondary": "",
+  "tertiary": "",
+  "success": "#059669",
+  "surfacePrimary": "#ffffff",
+  "surfaceSecondary": "#ffffff",
+  "textDark": "#0d0d0d",
+  "textLight": "#ffffff",
+  "warning": "#cd6f00",
+  "canvas": "#f6f6f6",
+  "highlight": "#fde68a",
+  "automatic": [
+    "#fde68a",
+    "#eecff3",
+    "#a7f3d0",
+    "#bfdbfe",
+    "#c7d2fe",
+    "#fecaca",
+    "#fcd6bb"
+  ],
+  "borderRadius": "4px",
+  "defaultFont": {
+    "size": "12px",
+    "fontWeight": "400"
+  },
+  "labelFont": {
+    "size": "12px",
+    "fontWeight": "500"
+  },
+  "labelEmphasizedFont": {
+    "size": "12px",
+    "fontWeight": "600"
+  },
+  "h1Font": {
+    "size": "36px",
+    "fontWeight": "700"
+  },
+  "h2Font": {
+    "size": "28px",
+    "fontWeight": "700"
+  },
+  "h3Font": {
+    "size": "24px",
+    "fontWeight": "700"
+  },
+  "h4Font": {
+    "size": "18px",
+    "fontWeight": "700"
+  },
+  "h5Font": {
+    "size": "16px",
+    "fontWeight": "700"
+  },
+  "h6Font": {
+    "size": "14px",
+    "fontWeight": "700"
+  },
+  "surfacePrimaryBorder": "",
+  "surfaceSecondaryBorder": ""
+}
+
+
+export const EditorCanvas = {
+  id: "$main",
+  screen: "Main",
+  instance: [],
+  fetching: false,
+
+
+
+  children: [
+    {
+      "id": "select1",
+      "type": "SelectWidget2",
+      "namespace": null,
+      "position": {
+        "type": "grid",
+        "container": "",
+        "rowGroup": "body",
+        "subcontainer": "",
+        "row": 14,
+        "col": 7,
+        "height": 1,
+        "width": 4,
+        "tabNum": 0,
+        "stackPosition": null
+      },
+      "mobilePosition": null,
+      "screen": "Main",
+      "template": {
+        "imageByIndex": [],
+        "_disabledByIndex": [
+          "",
+          "",
+          ""
+        ],
+        "showSelectionIndicator": true,
+        "_values": [
+          "Option 1",
+          "Option 2",
+          "Option 3"
+        ],
+        "iconByIndex": [],
+        "values": [],
+        "readOnly": false,
+        "clearInputValueOnChange": false,
+        "iconAfter": "",
+        "_iconByIndex": [
+          "",
+          "",
+          ""
+        ],
+        "overlayMinWidth": null,
+        "allowDeselect": false,
+        "inputValue": "",
+        "hidden": false,
+        "customValidation": "",
+        "data": [],
+        "searchMode": "fuzzy",
+        "hideValidationMessage": false,
+        "fallbackTextByIndex": [],
+        "textBefore": "",
+        "_fallbackTextByIndex": [
+          "",
+          "",
+          ""
+        ],
+        "selectedItem": null,
+        "validationMessage": "",
+        "margin": "4px 8px",
+        "automaticItemColors": false,
+        "itemAdornmentShape": "circle",
+        "textAfter": "",
+        "showInEditor": false,
+        "showClear": false,
+        "tooltipText": "",
+        "labelAlign": "left",
+        "formDataKey": "{{ self.id }}",
+        "value": null,
+        "hiddenByIndex": [],
+        "labelCaption": "",
+        "labelWidth": "33",
+        "deprecatedLabels": [],
+        "_hiddenByIndex": [
+          "",
+          "",
+          ""
+        ],
+        "placeholder": "Select an option",
+        "_captionByIndex": [
+          "",
+          "",
+          ""
+        ],
+        "itemAdornmentSize": "auto",
+        "label": "Label",
+        "_hasMigratedNestedItems": true,
+        "captionByIndex": [],
+        "_validate": false,
+        "itemMode": "static",
+        "labelWidthUnit": "%",
+        "allowCustomValue": false,
+        "invalid": false,
+        "selectedIndex": null,
+        "_tooltipByIndex": [
+          "",
+          "",
+          ""
+        ],
+        "_colorByIndex": [
+          "",
+          "",
+          ""
+        ],
+        "tooltipByIndex": [],
+        "iconBefore": "",
+        "colorByIndex": [],
+        "selectedLabel": "",
+        "events": {},
+        "_ids": [
+          "00030",
+          "00031",
+          "00032"
+        ],
+        "emptyMessage": "No options",
+        "overlayMaxHeight": 375,
+        "loading": false,
+        "disabled": false,
+        "labelPosition": "top",
+        "_labels": [
+          "",
+          "",
+          ""
+        ],
+        "labelWrap": false,
+        "disabledValues": [],
+        "disabledByIndex": [],
+        "maintainSpaceWhenHidden": false,
+        "_imageByIndex": [
+          "",
+          "",
+          ""
+        ],
+        "required": false,
+        "labels": []
+      },
+      "container": "",
+      "createdAt": "2026-09-27T03:34:11.845Z",
+      "updatedAt": "2026-09-27T03:34:11.845Z",
+      "boxId": null,
+      "subBoxIds": null
+    },
+    {
+      "id": "btn_load_workflow_templates",
+      "type": "ButtonWidget2",
+      "namespace": null,
+      "position": {
+        "type": "grid",
+        "container": "",
+        "rowGroup": "body",
+        "subcontainer": "",
+        "row": 32,
+        "col": 1,
+        "height": 5,
+        "width": 3,
+        "tabNum": 0,
+        "stackPosition": null
+      },
+      "mobilePosition": null,
+      "screen": "Main",
+      "template": {
+        "heightType": "fixed",
+        "horizontalAlign": "stretch",
+        "clickable": false,
+        "iconAfter": "",
+        "submitTargetId": null,
+        "hidden": false,
+        "ariaLabel": "",
+        "text": "Load Workflow Templates",
+        "margin": "4px 8px",
+        "showInEditor": false,
+        "tooltipText": "",
+        "allowWrap": true,
+        "styleVariant": "solid",
+        "submit": false,
+        "iconBefore": "",
+        "events": [
+          {
+            "method": "reset",
+            "params": {},
+            "targetId": null,
+            "pluginId": "QUERY_WORKFLOW_TEMPLATES",
+            "waitType": "debounce",
+            "event": "click",
+            "type": "datasource",
+            "id": "7183814b",
+            "waitMs": "0"
+          },
+          {
+            "method": "trigger",
+            "params": {},
+            "targetId": null,
+            "pluginId": "QUERY_WORKFLOW_TEMPLATES",
+            "waitType": "debounce",
+            "event": "click",
+            "type": "datasource",
+            "id": "83354339",
+            "waitMs": "0"
+          }
+        ],
+        "loading": "{{ QUERY_WORKFLOW_TEMPLATES.isFetching ? true : false }}",
+        "loaderPosition": "auto",
+        "disabled": false,
+        "maintainSpaceWhenHidden": false
+      },
+      "container": "",
+      "createdAt": "2026-09-20T12:41:11.989Z",
+      "updatedAt": "2026-09-20T13:27:46.576Z",
+      "boxId": null,
+      "subBoxIds": null
+    },
+    {
+      "id": "btn_load_workflow_templates2",
+      "type": "ButtonWidget2",
+      "namespace": null,
+      "position": {
+        "type": "grid",
+        "container": "",
+        "rowGroup": "body",
+        "subcontainer": "",
+        "row": 32,
+        "col": 5,
+        "height": 5,
+        "width": 2,
+        "tabNum": 0,
+        "stackPosition": null
+      },
+      "mobilePosition": null,
+      "screen": "Main",
+      "template": {
+        "heightType": "fixed",
+        "horizontalAlign": "stretch",
+        "clickable": false,
+        "iconAfter": "",
+        "submitTargetId": null,
+        "hidden": false,
+        "ariaLabel": "",
+        "text": "Reset",
+        "margin": "4px 8px",
+        "showInEditor": false,
+        "tooltipText": "",
+        "allowWrap": true,
+        "styleVariant": "solid",
+        "submit": false,
+        "iconBefore": "",
+        "events": [
+          {
+            "method": "trigger",
+            "params": {
+              "options": {
+                "onSuccess": null,
+                "onFailure": null,
+                "additionalScope": null
+              }
+            },
+            "targetId": null,
+            "pluginId": "QUERY_WORKFLOW_TEMPLATES",
+            "waitType": "debounce",
+            "event": "click",
+            "type": "datasource",
+            "id": "7183814b",
+            "waitMs": "0"
+          }
+        ],
+        "loading": false,
+        "loaderPosition": "auto",
+        "disabled": false,
+        "maintainSpaceWhenHidden": false
+      },
+      "container": "",
+      "createdAt": "2026-09-20T13:04:25.066Z",
+      "updatedAt": "2026-09-20T13:04:38.915Z",
+      "boxId": null,
+      "subBoxIds": null
+    },
+    {
+      "id": "tbl_workflow_templates",
+      "type": "TableWidget2",
+      "namespace": null,
+      "position": {
+        "type": "grid",
+        "container": "",
+        "rowGroup": "body",
+        "subcontainer": "",
+        "row": 38,
+        "col": 1,
+        "height": 66,
+        "width": 7,
+        "tabNum": 0,
+        "stackPosition": null
+      },
+      "mobilePosition": null,
+      "screen": "Main",
+      "template": {
+        "selectedRowKey": null,
+        "_nextAfterCursor": "",
+        "_columnBackgroundColor": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "_defaultSort": null,
+        "_columnSearchMode": {
+          "f7ed5": "default",
+          "6462c": "default",
+          "92a5e": "default",
+          "eb34b": "default",
+          "f950e": "default"
+        },
+        "_columnAlternateRowBackgroundColor": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "_clearChangesetOnSave": true,
+        "heightType": "fixed",
+        "_columnTextColor": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "disableEdits": false,
+        "autoColumnWidth": false,
+        "_rowHeight": "",
+        "_columnIds": [
+          "f7ed5",
+          "6462c",
+          "92a5e",
+          "eb34b",
+          "f950e"
+        ],
+        "_isSaving": false,
+        "_headerTextWrap": false,
+        "_actionIds": [],
+        "_clearChangeset": false,
+        "caseSensitiveFiltering": false,
+        "_limitOffsetRowCount": null,
+        "selectedSourceRow": null,
+        "_dynamicColumnsEnabled": false,
+        "disableSave": false,
+        "_columnEditableOptions": {
+          "f7ed5": {
+            "spellCheck": false
+          },
+          "6462c": {
+            "spellCheck": false
+          },
+          "92a5e": {
+            "spellCheck": false
+          },
+          "eb34b": {},
+          "f950e": {}
+        },
+        "_toolbarPosition": "bottom",
+        "_groupByColumns": [],
+        "_toolbarButtonLabel": {
+          "1a": "Filter",
+          "3c": "Download",
+          "4d": "Refresh"
+        },
+        "_nextBeforeCursor": "",
+        "_persistRowSelection": false,
+        "_toolbarButtonIcon": {
+          "1a": "bold/interface-text-formatting-filter-2",
+          "3c": "bold/interface-download-button-2",
+          "4d": "bold/interface-arrows-round-left"
+        },
+        "changesetArray": [],
+        "groupByColumns": [],
+        "_toolbarButtonType": {
+          "1a": "filter",
+          "3c": "custom",
+          "4d": "custom"
+        },
+        "_columnOptionList": {
+          "f7ed5": {},
+          "6462c": {},
+          "92a5e": {},
+          "eb34b": {},
+          "f950e": {}
+        },
+        "_columnValueOverride": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": "{{ _.startCase(item) }}"
+        },
+        "_showBorder": true,
+        "_templatePageSize": null,
+        "_dynamicColumnProperties": {},
+        "_showHeader": true,
+        "_currentPage": 0,
+        "overflowActionsOverlayMinWidth": null,
+        "_actionsOverflowPosition": 0,
+        "_columnKey": {
+          "f7ed5": "id",
+          "6462c": "name",
+          "92a5e": "description",
+          "eb34b": "resources",
+          "f950e": "category"
+        },
+        "hidden": false,
+        "_toolbarButtonIds": [
+          "1a",
+          "3c",
+          "4d"
+        ],
+        "columnOrdering": [],
+        "data": "{{  QUERY_WORKFLOW_TEMPLATES.data }}",
+        "_cellSelection": "none",
+        "_serverPaginated": false,
+        "_linkedFilterId": null,
+        "searchMode": "fuzzy",
+        "_columnCellTooltip": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "_columnFormat": {
+          "f7ed5": "string",
+          "6462c": "string",
+          "92a5e": "string",
+          "eb34b": "tags",
+          "f950e": "tag"
+        },
+        "_cursorCache": {},
+        "_calculatedPageSize": null,
+        "_primaryKeyColumnId": "f7ed5",
+        "selectedDataIndex": null,
+        "_columnAlignment": {
+          "f7ed5": "left",
+          "6462c": "left",
+          "92a5e": "left",
+          "eb34b": "left",
+          "f950e": "left"
+        },
+        "_actionIcon": {},
+        "margin": "4px 8px",
+        "_columnTooltip": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "_columnIcon": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "_alwaysShowRowSelectionCheckboxes": false,
+        "_columnCellTooltipMode": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "overflow",
+          "f950e": ""
+        },
+        "_pageSize": null,
+        "showInEditor": false,
+        "_isAddingNewRows": false,
+        "selectedSourceRows": [],
+        "_enableExpandableRows": false,
+        "_selectMultipleRowsOnActionClick": "no",
+        "_columnSortDisabled": {
+          "f7ed5": false,
+          "6462c": false,
+          "92a5e": false,
+          "eb34b": false,
+          "f950e": false
+        },
+        "_showSummaryRow": false,
+        "filterStack": null,
+        "_expandedRows": null,
+        "changesetObject": null,
+        "_actionDisabled": {},
+        "_columnReferenceId": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "_dynamicColumnSource": [],
+        "_rowSelection": "single",
+        "_columnCaption": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "_dynamicColumnFormatOptions": {},
+        "_dynamicRowHeights": false,
+        "_columnFormatOptions": {
+          "f7ed5": {},
+          "6462c": {},
+          "92a5e": {},
+          "eb34b": {
+            "automaticColors": true
+          },
+          "f950e": {
+            "automaticColors": true
+          }
+        },
+        "_changeset": null,
+        "_afterCursor": "",
+        "_columnHeaderBackgroundColor": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "selectedRowKeys": [],
+        "_columnHeaderTextColor": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "_beforeCursor": "",
+        "_columnSummaryAggregationMode": {
+          "f7ed5": "none",
+          "6462c": "none",
+          "92a5e": "none",
+          "eb34b": "none",
+          "f950e": "none"
+        },
+        "searchTerm": "",
+        "selectedRows": [],
+        "_disabledVirtualization": false,
+        "_expandedRowDataIndexes": [],
+        "_showColumnBorders": false,
+        "_columnStatusIndicatorOptions": {
+          "f7ed5": {},
+          "6462c": {},
+          "92a5e": {},
+          "eb34b": {},
+          "f950e": {}
+        },
+        "overflowActionsOverlayMaxHeight": null,
+        "_columnSize": {
+          "f7ed5": 100,
+          "6462c": 100,
+          "92a5e": 100,
+          "eb34b": 100,
+          "f950e": 100
+        },
+        "_serverPaginationType": "limitOffsetBased",
+        "_columnSortMode": {
+          "f7ed5": "default",
+          "6462c": "default",
+          "92a5e": "default",
+          "eb34b": "default",
+          "f950e": "default"
+        },
+        "_selectSingleRowsOnActionClick": "replace",
+        "_showFooter": true,
+        "_groupedColumnConfig": {},
+        "_dynamicColumnSize": {},
+        "_alwaysShowScrollbars": false,
+        "_virtualizeStartIndex": 0,
+        "_toolbarButtonHidden": {
+          "1a": "",
+          "3c": "",
+          "4d": ""
+        },
+        "_defaultFilters": {},
+        "events": [
+          {
+            "method": "trigger",
+            "params": {},
+            "targetId": null,
+            "pluginId": "QUERY_WORKFLOW_TEMPLATES",
+            "waitType": "debounce",
+            "event": "selectRow",
+            "type": "datasource",
+            "id": "7143129e",
+            "waitMs": "0"
+          },
+          {
+            "id": "be7ab122",
+            "type": "widget",
+            "waitMs": "0",
+            "waitType": "debounce",
+            "event": "clickToolbar",
+            "method": "exportData",
+            "pluginId": "tbl_workflow_templates",
+            "targetId": "3c"
+          },
+          {
+            "id": "68f733d8",
+            "type": "widget",
+            "waitMs": "0",
+            "waitType": "debounce",
+            "event": "clickToolbar",
+            "method": "refresh",
+            "pluginId": "tbl_workflow_templates",
+            "targetId": "4d"
+          }
+        ],
+        "_columnEditable": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "newRows": [],
+        "_rowBackgroundColor": [],
+        "emptyMessage": "No rows found",
+        "pagination": null,
+        "selectedDataIndexes": [],
+        "_columnEditableInNewRows": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "_columnGroupAggregationMode": {
+          "f7ed5": "none",
+          "6462c": "none",
+          "92a5e": "none",
+          "eb34b": "none",
+          "f950e": "none"
+        },
+        "sortArray": [],
+        "_selectedCell": null,
+        "overflowType": "scroll",
+        "selectedCell": null,
+        "_defaultSelectedRow": {
+          "mode": "index",
+          "indexType": "display",
+          "index": 0
+        },
+        "_hasNextPage": false,
+        "_includeRowInChangesetArray": false,
+        "_columnPosition": {
+          "f7ed5": "center",
+          "6462c": "center",
+          "92a5e": "center",
+          "eb34b": "center",
+          "f950e": "center"
+        },
+        "_enableSaveActions": true,
+        "_columnPlaceholder": {
+          "f7ed5": "Enter value",
+          "6462c": "Enter value",
+          "92a5e": "Enter value",
+          "eb34b": "Select options",
+          "f950e": "Select option"
+        },
+        "_defaultFilterOperator": "and",
+        "_actionLabel": {},
+        "_virtualizeEndIndex": 0,
+        "selectedRow": null,
+        "_actionHidden": {},
+        "maintainSpaceWhenHidden": false,
+        "_columnHidden": {
+          "f7ed5": "",
+          "6462c": "",
+          "92a5e": "",
+          "eb34b": "",
+          "f950e": ""
+        },
+        "_columnLabel": {
+          "f7ed5": "ID",
+          "6462c": "Name",
+          "92a5e": "Description",
+          "eb34b": "Resources",
+          "f950e": "Category"
+        },
+        "_showToolbar": true
+      },
+      "container": "",
+      "createdAt": "2026-09-20T12:40:57.486Z",
+      "updatedAt": "2026-09-20T13:27:23.344Z",
+      "boxId": null,
+      "subBoxIds": null
+    }
+  ]
+
+}
